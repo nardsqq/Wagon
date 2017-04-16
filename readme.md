@@ -1,4 +1,4 @@
-<p align="center">Wagon MS</p>
+<p align="center">![Wagon](http://imgur.com/WblhbL0)</p>
 
 ## About Laravel
 
