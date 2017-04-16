@@ -1,4 +1,3 @@
-![Wagon](http://imgur.com/WblhbL0)
 
 ## About Laravel
 
