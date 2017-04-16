@@ -2,7 +2,7 @@
   <img align="center" src="https://cloud.githubusercontent.com/assets/21337635/25072879/7a88242a-230c-11e7-844b-e232a76f1066.png" alt="...">
 </p>
 
-## About Laravel
+#### About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
