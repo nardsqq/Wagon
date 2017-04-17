@@ -4,6 +4,6 @@ php:
   - 7.0
 
 script:
-  - phpunit
+  - /phpunit
 
 os: windows
