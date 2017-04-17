@@ -3,22 +3,24 @@ language: php
 php:
   - 7.0.13
 
-before_script:
-  - mkdir bootstrap/cache
-  - mkdir storage
-  - mkdir storage/app
-  - mkdir storage/framework
-  - mkdir storage/framework/sessions
-  - mkdir storage/framework/cache
-  - mkdir storage/framework/views
-  - chmod 777 -R storage
-  - cp .env.travis .env
-  - mysql -e 'create database dbSAD;'
-  - composer self-update
-  - composer install --no-interaction
-  - php artisan key:generate
+env:
+  global:
+    - setup=basic
+    - APP_ENV=staging
+    - APP_DEBUG=true
+    - APP_KEY=xxxx
+    - DB_CONNECTION=sqlite
+    - CACHE_DRIVER=file
+    - SESSION_DRIVER=file
+    - QUEUE_DRIVER=sync
 
-script:
-  - vendor/bin/phpunit
+sudo: false
+
+install:
+- if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
+- if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-stable; fi
+- if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-lowest --prefer-stable; fi
+
+script: vendor/bin/phpunit
 
 os: windows
