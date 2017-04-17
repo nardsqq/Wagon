@@ -5,3 +5,5 @@ php:
 
 script:
   - phpunit
+
+os: windows
