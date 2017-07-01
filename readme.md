@@ -1,3 +1,67 @@
-<p align="center">
-  <img align="center" src="https://cloud.githubusercontent.com/assets/21337635/25072879/7a88242a-230c-11e7-844b-e232a76f1066.png" alt="...">
-</p>
+## Wagon: Sales and Services Management System
+***Wagon***, a **Sales and Services Management System** built from our blood :cold_sweat:, sweat :sweat:, and tears :cry:. Kidding aside :joy:, it's a project which is still under development and primaly made to be submitted to different courses. It has two primary sub-systems, Sales Management + Personnel and Services Management.
+
+### Maintenance
+1. **Sales Management Sub-System**
+    1. Product
+        - Product Category
+        - Product Maintenance
+    2. Inventory
+        - Inventory Status
+        - Inventory Management
+2. **Personnel and Services Management Sub-System**
+    1. Personnel
+        - Department List Maintenance
+        - Personnel Position Management
+        - Personnel Information Maintenance
+    2. Services
+        - Service Category Maintenance
+        - Service Management
+
+### Transaction (Not Final)
+1. **Client and Ship**
+    - Add New Client
+    - Add New Ship
+2. **Processes**
+    - New Inquiry
+    - Create Quotation
+    - New Purchase Order
+    - New Job Order
+    - Set Delivery Schedule
+    - Set Job Deployment Schedule
+3. **Logistics**
+    - Create Vehicle Request
+    - New OB and Itinerary Form
+    - Create Gate Pass
+
+### Reports (Not Final)
+   - Sales Report
+   - Status Report
+   - Service Ticket
+
+### Cloning the Repository
+1. Under the repository name, click **Clone or Download**.
+2. In the Clone with HTTPs section, click the *copy icon* to copy the clone URL for the repository.
+3. Open Git Bash.
+4. Change the current working directory to the location where you want the cloned directory to be made.
+5. Type `git clone`, and then paste the URL you copied in Step 2.
+6. Press Enter. Your local clone will be created.
+
+### Database
+
+#### Via Forward Engineering (.mwb)
+
+For the meantime, we'll be using the .mwb file attached within the project folder for our database. If you have MySQL Workbench, just open the .mwb file with it.
+
+1. Open *dbSAD.mwb* with Workbench.
+2. Access your local MySQL server with XAMPP or other cross-platform web server (WAMP, MAMP, EasyPHP etc).
+3. After starting your local server's MySQL service, go back to MySQL Workbench.
+4. Hit Ctrl + G (Shortcut for *Forward Engineer*) or via *Database* > *Forward Engineer* on your toolbar/ribbon.
+5. This will forward engineer the schema and it will make the database accessible through phpMyAdmin.
+
+### Getting Started
+
+1. After *forward engineering*, open the terminal on your computer.
+2. Generate a new APP_KEY via "php artisan key:generate" artisan command.
+3. Start your local server with the "php artisan serve" artisan command.
+4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
