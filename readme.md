@@ -62,6 +62,6 @@ For the meantime, we'll be using the .mwb file attached within the project folde
 ### Getting Started
 
 1. After *forward engineering*, open the terminal on your computer.
-2. Generate a new APP_KEY via "php artisan key:generate" artisan command.
-3. Start your local server with the "php artisan serve" artisan command.
+2. Generate a new APP_KEY via `php artisan key:generate` artisan command.
+3. Start your local server with the `php artisan serve` artisan command.
 4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
