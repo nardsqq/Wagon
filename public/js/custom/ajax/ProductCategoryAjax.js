@@ -38,7 +38,7 @@ $(document).ready(function(){
         })
     });
     //display modal form for creating new task
-    $('#btn-add').click(function(){
+    $('#btn-add').on('click',function(){
         $('#btn-save').val("add");
         $('#formProductCategory').trigger("reset");
         $('#add_productcategory').modal('show');
@@ -68,7 +68,7 @@ $(document).ready(function(){
      }
  });
     //create new task / update existing task
-    $("#btn-save").click(function (e) {
+    $("#btn-save").on('click',function (e) {
         if($('#formProductCategory').parsley().isValid())
         {
          $.ajaxSetup({
