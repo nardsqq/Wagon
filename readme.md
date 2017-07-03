@@ -1,3 +1,5 @@
+<p align="center"><img src="https://img.shields.io/badge/phase-capstone-blue.svg"> <img src="https://img.shields.io/badge/estimated--progress-35%25-red.svg"></img> <a href=""><img src="https://img.shields.io/badge/issues-0-brightgreen.svg"></img></a> </img> <img src="https://img.shields.io/badge/maintenance-80%25-green.svg"></img> <img src="https://img.shields.io/badge/transactions-0%25-red.svg"></img> <img src="https://img.shields.io/badge/reports-0%25-red.svg"></img></p>
+
 ## Wagon: Sales and Services Management System
 ***Wagon***, a **Sales and Services Management System** built from our blood :cold_sweat:, sweat :sweat:, and tears :cry:. Kidding aside :joy:, it's a project which is still under development and primaly made to be submitted to different courses. It has two primary sub-systems, Sales Management + Personnel and Services Management.
 
