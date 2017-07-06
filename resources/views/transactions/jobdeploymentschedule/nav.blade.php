@@ -7,7 +7,7 @@
           </div>
           <div><p><b>Client and Ship</b></p></div>
           <div class="list-group">
-            <a href="{{ url('/admin/transactions/company') }}" class="list-group-item"><i class="fa fa-building fa-fw" aria-hidden="true"></i>&nbsp; Add New Client</a>
+            <a href="{{ url('/admin/transactions/client') }}" class="list-group-item"><i class="fa fa-building fa-fw" aria-hidden="true"></i>&nbsp; Add New Client</a>
             <a href="{{ url('/admin/transactions/ship') }}" class="list-group-item"><i class="fa fa-ship fa-fw" aria-hidden="true"></i>&nbsp; Add New Ship</a>
           </div>
           <div><p><b>Processes</b></p></div>

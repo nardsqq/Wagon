@@ -65,52 +65,5 @@
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-{{--  <script type="text/javascript">$(document).ready(function(){
-    $('#dataTable').DataTable();
-  });
- </script> --}}
-{{--   <script type="text/javascript">
-    $( document ).ready(function() {
-
-      function loadTable(){
-        $.ajax({
-          type: 'get',
-          url: "{{ route('maintenance.department.table') }}",
-          dataType: 'html',
-          success:function(data)
-          {
-            $('#table-container').html(data);
-            $('#dataTable').DataTable();
-            toggle();
-          }
-        });
-      }
-
-      function toggle(){
-        $('#isActive').bootstrapToggle();
-        $(document).on('change','#isActive',function(){
-          var status = $(this).prop("checked") ? 1 : 0,
-          id = $(this).data('id');
-          console.log(id + " status " + status);
-
-          $.ajax({
-            type: 'POST',
-            url: '{{ route('maintenance.department.table') }}' + '/' + id,
-            data: {'status':status},
-            dataType: 'json',
-            success:function(data)
-            {
-              console.log("Status Changed.")
-            },
-            error:function(jqXHR, status, err)
-            {
-              console.log(err);
-            }
-          });
-        });
-      }
-      toggle();
-    });
-  </script> --}}
   <script src="{{ asset('/js/custom/ajax/DepartmentAjax.js/') }}"></script>
 @endsection

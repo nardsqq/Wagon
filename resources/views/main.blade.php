@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" href="{{{ asset('anchor.ico') }}}">
-    <title>Taitech - Wagon MSSMS</title>
+    <title>Taitech - MSSMS</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap/bootstrap.min.css') }}">
@@ -32,7 +32,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Wagon MSSMS</a>
+          <a class="navbar-brand" href="#">MSSMS</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">

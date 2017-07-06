@@ -32,7 +32,7 @@
               <i class="fa fa-tasks" aria-hidden="true"></i> Dashboard
             </a>
             <a href="{{ url('/admin/maintenance/productcategory') }}" class="list-group-item"><i class="fa fa-cogs" aria-hidden="true"></i> Maintenance</a>
-            <a href="#" class="list-group-item"><i class="fa fa-bar-chart" aria-hidden="true"></i> Transactions</a>
+            <a href="{{ url('/admin/transactions/client') }}" class="list-group-item"><i class="fa fa-bar-chart" aria-hidden="true"></i> Transactions</a>
             <a href="#" class="list-group-item"><i class="fa fa-file" aria-hidden="true"></i> Forms</a>
           </div>
           <div class="well">

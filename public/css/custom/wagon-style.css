@@ -5,13 +5,13 @@ body {
 
 /* Navigation Bar */
 
-.navbar {
+/*#navbar {
   min-height: 33px !important;
   margin-bottom: 0px;
   border-radius: 0px;
 }
 
-.navbar-nav > li > a, .navbar-brand {
+#navbar-nav > li > a, .navbar-brand {
   padding-top: 6px !important;
   padding-bottom: 0px !important;
   height: 33px;
@@ -69,7 +69,7 @@ body {
 }
 .navbar-default .navbar-link:hover {
   color: #ffffff;
-}
+}*/
 
 /* Custom Coloring and Positioning*/
 
@@ -92,6 +92,7 @@ body {
 #header {
   background-color: #38464F;
   color: #ffffff;
+  padding-top: 20px;
   padding-bottom: 0px;
   margin-bottom: 15px;
 }
