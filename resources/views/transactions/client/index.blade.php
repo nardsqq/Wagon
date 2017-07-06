@@ -14,18 +14,19 @@
     </div>
   </header>
 
+  <div class="container">
+    @include('transactions.client.nav')
+  </div>
+
   <section id="breadcrumb">
     <div class="container">
       <ol class="breadcrumb">
+        <li>Admin</li>
         <li>Transactions</li>
         <li class="breadcrumb-active">Client and Ships</li>
       </ol>
     </div>
   </section>
-
-  <div class="container">
-    @include('transactions.client.nav')
-  </div>
 
   <section id="main">
     <div class="container">

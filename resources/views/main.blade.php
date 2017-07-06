@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <!--Meta-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,18 +31,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">MSSMS</a>
+          <a id="title-font" class="navbar-brand" href="#"><span id="ms-color">Marine Sales and Services MS</span></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Admin</a></li>
-            <li><a href="#">Queries</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Utilities</a></li>
-          </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="animated fadeIn"><a href="#">Welcome, User</a></li>
-            <li><a href="#">Log Out</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Account</a></li>
+                <li><a href="#"><i class="fa fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp; System Settings</a></li>
+                <li role="role" class="divider"></li>
+                <li><a href="#"><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>&nbsp; Sign Out</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
