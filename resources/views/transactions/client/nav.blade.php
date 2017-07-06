@@ -11,16 +11,17 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bar-chart" aria-hidden="true"></i>Transactions <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-building fa-fw" aria-hidden="true"></i>&nbsp; Add New Client</a></li>
-                <li><a href="{{ url('/admin/transactions/ship') }}"><i class="fa fa-ship fa-fw" aria-hidden="true"></i>&nbsp; Add New Ship</a></li>
                 <li role="role" class="divider"></li>
                 <li><a href="{{ url('/admin/transactions/inquiry') }}"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>&nbsp; New Inquiry</a></li>
                 <li><a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Create Quotation</a></li>
+                <li role="separator" class="divider"></li>
                 <li><a href="{{ url('/admin/transactions/purchaseorder') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; New Purchase Order</a></li>
-                <li><a href="{{ url('/admin/transactions/joborder') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; New Job Order</a></li>
                 <li><a href="{{ url('/admin/transactions/deliveryschedule') }}"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>&nbsp; Set Delivery Schedule</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{{ url('/admin/transactions/joborder') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; New Job Order</a></li>
                 <li><a href="{{ url('/admin/transactions/jobdeploymentschedule') }}"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>&nbsp; Set Job Deployment Schedule</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{{ url('/admin/transactions/vehiclerequest') }}"<i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Create Vehicle Request</a></li>
+                <li><a href="{{ url('/admin/transactions/vehiclerequest') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Create Vehicle Request</a></li>
                 <li><a href="{{ url('/admin/transactions/obanditinerary') }}"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>&nbsp; New OB and Itinerary Form</a></li>
                 <li><a href="{{ url('/admin/transactions/gatepass') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Create Gate Pass</a></li>
               </ul>
