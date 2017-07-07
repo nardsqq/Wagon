@@ -14,12 +14,12 @@
     </div>
   </header>
 
-  <div class="container">
+  <div class="container fadeIn">
     @include('transactions.client.nav')
   </div>
 
   <section id="breadcrumb">
-    <div class="container">
+    <div class="container animated fadeIn">
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
@@ -29,7 +29,7 @@
   </section>
 
   <section id="main">
-    <div class="container">
+    <div class="container animated fadeIn">
       <div class="row">
         <div class="col-md-12">
           <div class="alert alert-success alert-white rounded">

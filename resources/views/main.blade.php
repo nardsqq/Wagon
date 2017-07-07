@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('/DataTables/datatables.min.css') }}"/> --}}
     <link rel="stylesheet" href="{{ asset('/css/custom/wagon-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/custom/flatify.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/animate/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('/toastr-master/build/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/parsley.css') }}">
 

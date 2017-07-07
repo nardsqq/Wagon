@@ -12,8 +12,8 @@
       <td>Maine Marine Philippines, Inc.</td>
       <td class="text-center">524-4973</td>
       <td class="text-center">
-        <span class="label label-primary">New</span>
-        <span class="label label-warning">Pending</span>
+        <span class="label label-primary"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>&nbsp; New</span>
+        <span class="label label-success">Inquiry Phase</span>
       </td>
       <td class="text-center">
           <button class="btn btn-info btn-sm btn-detail open-modal"><i class='fa fa-book'></i>&nbsp; View</button>
@@ -25,7 +25,7 @@
       <td>Bright Maritime Corporation</td>
       <td class="text-center">835-6200</td>
       <td class="text-center">
-        <span class="label label-danger">Cancelled</span>
+        <span class="label label-danger"><i class="fa fa-times fa-fw" aria-hidden="true"></i>&nbsp; Inactive</span>
       </td>
       <td class="text-center">
           <button class="btn btn-info btn-sm btn-detail open-modal"><i class='fa fa-book'></i>&nbsp; View</button>
