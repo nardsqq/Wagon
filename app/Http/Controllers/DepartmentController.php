@@ -63,8 +63,8 @@ class DepartmentController extends Controller
     {
         $this->validate($request, Department::$new_rules);
         $department = new Department;
-        $department->strDepartmentName = $request->strDepartmentName;
-        $department->strDesc=$request->strDesc;
+        $department->strDepartmentName = trim(ucfirst($request->strDepartmentName));
+        $department->strDesc=trim(ucfirst($request->strDesc));
         $department->save();
         return Response::json($department);
     }

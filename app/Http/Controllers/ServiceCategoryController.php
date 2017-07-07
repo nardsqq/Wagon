@@ -54,8 +54,8 @@ class ServiceCategoryController extends Controller
     {
         $this->validate($request, ServiceCategory::$new_rules);
         $servicecategory = new ServiceCategory;
-        $servicecategory->strServiceCategName = $request->strServiceCategName;
-        $servicecategory->strDesc=$request->strDesc;
+        $servicecategory->strServiceCategName = trim(ucfirst($request->strServiceCategName));
+        $servicecategory->strDesc= trim(ucfirst($request->strDesc));
         $servicecategory->save();
         return Response::json($servicecategory);
     }

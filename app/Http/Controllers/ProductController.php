@@ -61,8 +61,8 @@ class ProductController extends Controller
     {
         $this->validate($request, Product::$new_rules);
         $product = new Product;
-        $product->strProductName = $request->strProductName;
-        $product->intProductCategory = $request->intProductCategory;
+        $product->strProductName = trim(ucfirst($request->strProductName));
+        $product->intProductCategory = trim(ucfirst($request->intProductCategory));
         $product->strProductSerialNumber = $request->strProductSerialNumber;
         $product->save();
         $product = DB::table('tblProduct')

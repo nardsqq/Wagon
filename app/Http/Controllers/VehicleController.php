@@ -61,8 +61,8 @@ class VehicleController extends Controller
         $this->validate($request, Vehicle::$new_rules);
         $vehicle = new Vehicle;
         $vehicle->intVehicleTypeNum = $request->intVehicleTypeNum;
-        $vehicle->strVehicleModel = $request->strVehicleModel;
-        $vehicle->strVehiclePlateNumber = $request->strVehiclePlateNumber;
+        $vehicle->strVehicleModel = trim(ucfirst($request->strVehicleModel));
+        $vehicle->strVehiclePlateNumber = trim($request->strVehiclePlateNumber);
         $vehicle->intVehicleNetCapacity = $request->intVehicleNetCapacity;
         $vehicle->intVehicleGrossWeight = $request->intVehicleGrossWeight;
         $vehicle->save();

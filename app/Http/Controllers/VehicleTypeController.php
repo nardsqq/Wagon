@@ -55,8 +55,8 @@ class VehicleTypeController extends Controller
     {
         $this->validate($request, VehicleType::$new_rules);
         $vehicletype = new VehicleType;
-        $vehicletype->strVehicleTypeName = $request->strVehicleTypeName;
-        $vehicletype->strDesc=$request->strDesc;
+        $vehicletype->strVehicleTypeName = trim(ucfirst($request->strVehicleTypeName));
+        $vehicletype->strDesc= trim(ucfirst($request->strDesc));
         $vehicletype->save();
         return Response::json($vehicletype);
     }

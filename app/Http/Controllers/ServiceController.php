@@ -60,9 +60,9 @@ class ServiceController extends Controller
     {
         $this->validate($request, Service::$new_rules);
         $service = new Service;
-        $service->strServiceName = $request->strServiceName;
+        $service->strServiceName = trim(ucfirst($request->strServiceName));
         $service->intServiceCategory = $request->intServiceCategory;
-        $service->strDesc = $request->strDesc;
+        $service->strDesc = $request->trim(ucfirst(strDesc));
         $service->save();
         $service = DB::table('tblService')
             ->join('tblServiceCategory', 'tblService.intServiceCategory', '=', 'tblServiceCategory.intServiceCategID')

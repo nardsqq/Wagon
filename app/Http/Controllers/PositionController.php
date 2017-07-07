@@ -55,8 +55,8 @@ class PositionController extends Controller
     {
         $this->validate($request, Position::$new_rules);
         $position = new Position;
-        $position->strPositionName = $request->strPositionName;
-        $position->strDesc=$request->strDesc;
+        $position->strPositionName = trim(ucfirst($request->strPositionName));
+        $position->strDesc=trim(ucfirst($request->strDesc));
         $position->save();
         return Response::json($position);
     }

@@ -54,8 +54,8 @@ class ProductCategoryController extends Controller
     {
         $this->validate($request, ProductCategory::$new_rules);
         $productcategory = new ProductCategory;
-        $productcategory->strProductCategoryName = $request->strProductCategoryName;
-        $productcategory->strDesc=$request->strDesc;
+        $productcategory->strProductCategoryName = trim(ucfirst($request->strProductCategoryName));
+        $productcategory->strDesc=trim(ucfirst($request->strDesc));
         $productcategory->save();
         return Response::json($productcategory);
     }

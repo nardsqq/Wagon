@@ -68,13 +68,13 @@ class PersonnelController extends Controller
     {
         $this->validate($request, Personnel::$new_rules);
         $personnel = new Personnel;
-        $personnel->strPersFName = $request->strPersFName;
-        $personnel->strPersMName = $request->strPersMName;
-        $personnel->strPersLName = $request->strPersLName;
-        $personnel->intPersDeptID = $request->intPersDeptID;
-        $personnel->intPersPosID = $request->intPersPosID;
-        $personnel->strPersAddress = $request->strPersAddress;
-        $personnel->strPersContactNumber = $request->strPersContactNumber;
+        $personnel->strPersFName = trim(ucfirst($request->strPersFName));
+        $personnel->strPersMName = trim(ucfirst($request->strPersMName));
+        $personnel->strPersLName = trim(ucfirst($request->strPersLName));
+        $personnel->intPersDeptID = trim(ucfirst($request->intPersDeptID));
+        $personnel->intPersPosID = trim(ucfirst($request->intPersPosID));
+        $personnel->strPersAddress = trim(ucfirst($request->strPersAddress));
+        $personnel->strPersContactNumber = trim(ucfirst($request->strPersContactNumber));
         $personnel->save();
         $personnel = DB::table('tblPersonnel')
             ->join('tblDepartment', 'tblPersonnel.intPersDeptID', '=', 'tblDepartment.intDepartmentID')
