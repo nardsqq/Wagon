@@ -52,9 +52,7 @@ Route::put('admin/maintenance/vehicletype/checkbox/{id}', ['uses' => 'VehicleTyp
 Route::resource('admin/maintenance/vehicle','VehicleController');
 Route::put('admin/maintenance/vehicle/checkbox/{id}', ['uses' => 'VehicleController@checkbox', 'as' => 'vehicle.checkbox']);
 
-Route::get('/admin/transactions/client', function() {
-	return view('transactions.client.index');
-});
+Route::resource('admin/transactions/client','ClientController');
 
 Route::get('/admin/transactions/ship', function() {
 	return view('transactions.ship.index');

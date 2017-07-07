@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Client and Ships</li>
+        <li class="breadcrumb-active">Client</li>
       </ol>
     </div>
   </section>
@@ -43,7 +43,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Client and Ships</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Client</button>
               </div>
               <div class="panel-title">
                 <h4>Client List</h4>
@@ -57,7 +57,14 @@
           </div>
         </div>
       </div>
+      @include('maintenance.department.modal')
     </div>
-   
+
   </section>
+@endsection
+@section('meta')
+<meta name="_token" content="{!! csrf_token() !!}" />
+@endsection
+@section('scripts')
+  <script src="{{ asset('/js/custom/ajax/ClientAjax.js/') }}"></script>
 @endsection

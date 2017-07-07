@@ -34,7 +34,9 @@ class DepartmentController extends Controller
         ->get();
         return view('maintenance.department.index')->with('department', $department);
     }
-    public function table(Request $request) {
+
+    public function table(Request $request) 
+    {
         if($request->ajax()){
             $department = Department::all();
             return view('maintenance.department.table')->with('department', $department);
@@ -42,7 +44,8 @@ class DepartmentController extends Controller
         else {
             return redirect(route('dashboard'));
         }
-  }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,8 +66,8 @@ class DepartmentController extends Controller
     {
         $this->validate($request, Department::$new_rules);
         $department = new Department;
-        $department->strDepartmentName = trim(ucfirst($request->strDepartmentName));
-        $department->strDesc=trim(ucfirst($request->strDesc));
+        $department->strDepartmentName = trim(ucwords($request->strDepartmentName));
+        $department->strDesc=trim(ucwords($request->strDesc));
         $department->save();
         return Response::json($department);
     }
