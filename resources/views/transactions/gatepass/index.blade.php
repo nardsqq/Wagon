@@ -14,37 +14,50 @@
     </div>
   </header>
 
+  <div class="container fadeIn">
+    @include('transactions.gatepass.nav')
+  </div>
+
   <section id="breadcrumb">
-    <div class="container">
+    <div class="container animated fadeIn">
       <ol class="breadcrumb">
-        <li><a href="{{ url('admin/maintenance/product') }}">Transactions</a></li>
+        <li>Admin</li>
+        <li>Transactions</li>
         <li class="breadcrumb-active">Create Gate Pass</li>
       </ol>
     </div>
   </section>
 
   <section id="main">
-    <div class="container">
+    <div class="container animated fadeIn">
       <div class="row">
-        <div class="col-md-3">
-          @include('transactions.gatepass.nav')
-        </div>
-
-        <div class="col-md-9">
+        <div class="col-md-12">
+          <div class="alert alert-success alert-white rounded">
+            <div class="icon">
+              <i class="fa fa-info-circle"></i>
+            </div>
+            <strong> Manage your <i>Gate Passes</i> here.</strong>
+            <br>
+            <small>Add and manage new <i><b>Gate Pass</b></i>.</small>
+          </div>  
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading clearfix">
+              <div class="btn-group pull-right">
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;New Gate Pass</button>
+              </div>
               <div class="panel-title">
-                <h4>Gate Pass Form</h4>
+                <h4>Gate Passes</h4>
               </div>
             </div>
             <div class="panel-body">
-              @include('transactions.gatepass.form')
+              <div id="table-container">
+                @include('transactions.gatepass.table')
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
    
-     
   </section>
 @endsection

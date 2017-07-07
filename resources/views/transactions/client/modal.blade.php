@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" data-dismiss="modal">&times;</button>
-        <h4>Department Record</h4>
+        <h4>Client List</h4>
       </div>
       <div class="modal-body">
         <form id="formDepartment" data-parsley-validate>
