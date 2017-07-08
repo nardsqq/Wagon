@@ -4,6 +4,7 @@
       <th>Client</th>
       <th class="text-center">Contact</th>
       <th class="text-center">FAX</th>
+      <th class="text-center">Status</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
@@ -13,6 +14,10 @@
       <td>{{ $clients->strClientName }}</td>
       <td class="text-center">{{ $clients->strClientTelephone }}</td>
       <td class="text-center">{{ $clients->strClientFax }}</td>
+      <td class="text-center"><input type="checkbox" id="isActive" name="isActive" value="{{$clients->intClientID}}" 
+          @if (($clients->isActive)==1){{"checked"}}
+          @endif data-toggle="toggle" data-style="android" data-onstyle="success" data-offstyle="default" data-on="Active" data-off="Inactive" data-size="mini">
+      </td>
       {{-- <td class="text-center">
         <span class="label label-primary"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>&nbsp; New</span>
         <span class="label label-success">Inquiry Phase</span>

@@ -9,6 +9,17 @@ use DB;
 
 class ClientController extends Controller
 {
+    public function checkbox($id)
+    {
+        $client = Client::find($id);
+        if($client->isActive) {
+            $client->isActive=0;
+        }
+        else {
+            $client->isActive=1;
+        }
+        $client->save();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,17 +33,6 @@ class ClientController extends Controller
         ->get();
         return view('transactions.client.index')->withClient($client);
     }
-
-    // public function table(Request $request) 
-    // {
-    //     if($request->ajax()){
-    //         $client = Client::all();
-    //         return view('transactions.client.table')->withClient($client);
-    //     }
-    //     else {
-    //         return redirect(route('dashboard'));
-    //     }
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -116,6 +116,7 @@ class ClientController extends Controller
     {
         $client = Client::find($id);
         $client->isDeleted = 1;
+        $client->isActive = 0;
         $client->save();
         return Response::json($client);
     }

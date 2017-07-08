@@ -28,6 +28,8 @@
     </div>
   </section>
 
+  @include('transactions.client.modal')
+  
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">
@@ -57,7 +59,6 @@
           </div>
         </div>
       </div>
-      @include('maintenance.department.modal')
     </div>
 
   </section>

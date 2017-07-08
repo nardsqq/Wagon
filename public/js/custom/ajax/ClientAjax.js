@@ -1,10 +1,30 @@
 $(document).ready(function(){
    var url = "/admin/transactions/client";
    var id='';
+   var url2 = "/admin/maintenance/department/checkbox";
    $('#add_client').on('hide.bs.modal', function(){
     $('#formClient').trigger("reset");
-    });
 });
+   $('#client-list').on('change', '#isActive',function(e){ 
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
+     e.preventDefault(); 
+     var link_id = $(this).val();
+     $.ajax({
+        url: url2 + '/' + link_id,
+        type: "PUT",
+        success: function (data) {
+            console.log(link_id);
+        },
+        error: function (data) {
+            console.log(url + '/' + link_id);
+            console.log('Error:', data);
+        }
+    });
+ });
     //display modal form for task editing
     $('#client-list').on('click', '.open-modal',function(){ 
         var link_id = $(this).val();
@@ -12,8 +32,11 @@ $(document).ready(function(){
         $.get(url + '/' + link_id + '/edit', function (data) {
             //success data
             $('#strClientName').val(data.strClientName);
+            $('#strClientAddress').val(data.strClientAddress);
             $('#strClientTelephone').val(data.strClientTelephone);
             $('#strClientFax').val(data.strClientFax);
+            $('#strClientEmail').val(data.strClientEmail);
+            $('#strClientMobile').val(data.strClientMobile);
             $('#btn-save').val("update");
             $('#add_client').modal('show');
         })
@@ -89,8 +112,9 @@ $(document).ready(function(){
                 }
                 var row = "<tr id=id" + data.intCliendID +  ">"+
                 "<td>" + data.strClientName + "</td>" +
-                "<td>" + data.strClientTelephone + "</td>" +
-                "<td>" + data.strClientFax + "</td>" +
+                "<td class='text-center'>" + data.strClientTelephone + "</td>" +
+                "<td class='text-center'>" + data.strClientFax + "</td>" +
+                "<td class='text-center'><input type='checkbox' id='isActive' value=" + data.intClientID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='default' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
                 "<td class='text-center'>" +
                 "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+data.intClientID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
                 "<button class='btn btn-danger btn-sm btn-delete' value="+data.intClientID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
@@ -116,3 +140,4 @@ $(document).ready(function(){
         });
     }
 });
+});   
