@@ -1,10 +1,11 @@
 @extends('main')
 @section('content')
-  <header id="header">
+
+ <header id="header">
     <div class="container">
       <div class="row">
         <div class="col-md-10">
-          <h1><i class="fa fa-cogs" aria-hidden="true"></i> Maintenance</h1>
+          <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Maintenance</h1>
         </div>
         <div class="col-md-2">
 
@@ -13,24 +14,26 @@
     </div>
   </header>
 
+  <div class="container fadeIn">
+    @include('maintenance.productcategory.nav')
+  </div>
+
   <section id="breadcrumb">
-    <div class="container">
+    <div class="container animated fadeIn">
       <ol class="breadcrumb">
-        <li><a href="{{ url('admin/maintenance/productcategory') }}">Maintenance</a></li>
-        <li class="breadcrumb-extend">Sales Maintenance</li>
-        <li class="active">Product Category</li>
+        <li>Admin</li>
+        <li>Maintenance</li>
+        <li class="breadcrumb-active">Product Category</li>
       </ol>
     </div>
   </section>
 
+  @include('maintenance.productcategory.modal')
+  
   <section id="main">
-    <div class="container">
+    <div class="container animated fadeIn">
       <div class="row">
-        <div class="col-md-3">
-          @include('maintenance.productcategory.nav')
-        </div>
-
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="alert alert-success alert-white rounded">
             <div class="icon">
               <i class="fa fa-info-circle"></i>
@@ -45,27 +48,24 @@
                 <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Product Category</button>
               </div>
               <div class="panel-title">
-                <h4>Product Category List</h4>
+                <h4>Product Category</h4>
               </div>
             </div>
             <div class="panel-body">
-              @include('maintenance.productcategory.table')
+              <div id="table-container">
+                @include('maintenance.productcategory.table')
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-     @include('maintenance.productcategory.modal')
-     </div>
+
   </section>
 @endsection
 @section('meta')
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-{{--  <script type="text/javascript">$(document).ready(function(){
-    $('#dataTable').DataTable();
-  });
- </script> --}}
- <script src="{{ asset('/js/custom/ajax/ProductCategoryAjax.js/') }}"></script>
+  <script src="{{ asset('/js/custom/ajax/ProductCategoryAjax.js/') }}"></script>
 @endsection
