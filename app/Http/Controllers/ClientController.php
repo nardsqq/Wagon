@@ -52,6 +52,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Client::$new_rules);
         $client = new Client;
         $client->strClientName = trim(strtoupper($request->strClientName));
         $client->strClientAddress = trim($request->strClientAddress);
@@ -95,6 +96,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = Client::$update_rules;
         $client = Client::find($id);
         $client->strClientName = trim(strtoupper($request->strClientName));
         $client->strClientAddress = trim($request->strClientAddress);
