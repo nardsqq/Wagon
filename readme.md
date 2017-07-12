@@ -21,15 +21,13 @@
 
 ### Transaction (Not Final)
 1. **Client and Ship**
-    - Add New Client
-    - Add New Ship
+    - Clients
 2. **Processes**
-    - New Inquiry
-    - Create Quotation
-    - New Purchase Order
-    - New Job Order
-    - Set Delivery Schedule
-    - Set Job Deployment Schedule
+    - Inquiries
+    - Quotations
+    - Sales Orders
+    - Job Orders
+    - Sales Invoice
 3. **Logistics**
     - Create Vehicle Request
     - New OB and Itinerary Form
