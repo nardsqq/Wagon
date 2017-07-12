@@ -1,4 +1,4 @@
-<p align="center"><img src="https://img.shields.io/badge/phase-capstone-blue.svg"> <img src="https://img.shields.io/badge/estimated--progress-35%25-red.svg"></img> <a href=""><img src="https://img.shields.io/badge/issues-0-brightgreen.svg"></img></a> </img> <img src="https://img.shields.io/badge/maintenance-80%25-green.svg"></img> <img src="https://img.shields.io/badge/transactions-0%25-red.svg"></img> <img src="https://img.shields.io/badge/reports-0%25-red.svg"></img></p>
+<p align="center"><img src="https://img.shields.io/badge/phase-capstone-blue.svg"> <img src="https://img.shields.io/badge/estimated--progress-40%25-red.svg"></img> <a href="https://github.com/nardsqq/Wagon/issues"><img src="https://img.shields.io/badge/issues-1-brightgreen.svg"></img></a> </img> <img src="https://img.shields.io/badge/maintenance-80%25-green.svg"></img> <img src="https://img.shields.io/badge/transactions-10%25-red.svg"></img> <img src="https://img.shields.io/badge/reports-0%25-red.svg"></img></p>
 
 ## Marine Sales and Services Management System
 
@@ -63,6 +63,8 @@ For the meantime, we'll be using the .mwb file attached within the project folde
 ### Getting Started
 
 1. After *forward engineering*, open the terminal on your computer.
-2. Generate a new APP_KEY via `php artisan key:generate` artisan command.
-3. Start your local server with the `php artisan serve` artisan command.
-4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
+2. Run php -r "file_exists('.env') || copy('.env.example', '.env')";
+3. Generate a new APP_KEY via `php artisan key:generate` artisan command.
+4. Start your local server with the `php artisan serve` artisan command.
+5. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
+
