@@ -29,9 +29,9 @@
     - Job Orders
     - Sales Invoice
 3. **Logistics**
-    - Create Vehicle Request
-    - New OB and Itinerary Form
-    - Create Gate Pass
+    - Vehicle Requests
+    - Official Business Forms
+    - Gate Pass
 
 ### Reports (Not Final)
    - Sales Report
