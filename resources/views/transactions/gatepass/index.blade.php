@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Create Gate Pass</li>
+        <li class="breadcrumb-active">Gate Pass Records</li>
       </ol>
     </div>
   </section>
@@ -38,7 +38,7 @@
             </div>
             <strong> Manage your <i>Gate Passes</i> here.</strong>
             <br>
-            <small>Add and manage new <i><b>Gate Pass</b></i>.</small>
+            <small>Add and manage <i><b>Gate Pass</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">

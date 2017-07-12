@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Vehicle Request</li>
+        <li class="breadcrumb-active">Vehicle Requests</li>
       </ol>
     </div>
   </section>
@@ -38,7 +38,7 @@
             </div>
             <strong> Manage your <i>Vehicle Requests</i> here.</strong>
             <br>
-            <small>Add and manage new <i><b>Vehicle Request</b></i>.</small>
+            <small>Add and manage <i><b>Vehicle Request</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 <p align="center"><img src="https://img.shields.io/badge/phase-capstone-blue.svg"> <img src="https://img.shields.io/badge/estimated--progress-35%25-red.svg"></img> <a href=""><img src="https://img.shields.io/badge/issues-0-brightgreen.svg"></img></a> </img> <img src="https://img.shields.io/badge/maintenance-80%25-green.svg"></img> <img src="https://img.shields.io/badge/transactions-0%25-red.svg"></img> <img src="https://img.shields.io/badge/reports-0%25-red.svg"></img></p>
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+=======
+<p align="center"><img src="https://img.shields.io/badge/phase-capstone-blue.svg"> <img src="https://img.shields.io/badge/estimated--progress-40%25-red.svg"></img> <a href="https://github.com/nardsqq/Wagon/issues"><img src="https://img.shields.io/badge/issues-1-brightgreen.svg"></img></a> </img> <img src="https://img.shields.io/badge/maintenance-80%25-green.svg"></img> <img src="https://img.shields.io/badge/transactions-10%25-red.svg"></img> <img src="https://img.shields.io/badge/reports-0%25-red.svg"></img></p>
+>>>>>>> 3e8bb8e9e624018d5ce922b19bcf73a2cfb30aa4
 
 ## Marine Sales and Services Management System
 
@@ -64,6 +68,7 @@ For the meantime, we'll be using the .mwb file attached within the project folde
 ### Getting Started
 
 1. After *forward engineering*, open the terminal on your computer.
+<<<<<<< HEAD
 2. Generate a new APP_KEY via `php artisan key:generate` artisan command.
 3. Start your local server with the `php artisan serve` artisan command.
 4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
@@ -78,3 +83,10 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+=======
+2. Run php -r "file_exists('.env') || copy('.env.example', '.env')";
+3. Generate a new APP_KEY via `php artisan key:generate` artisan command.
+4. Start your local server with the `php artisan serve` artisan command.
+5. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
+
+>>>>>>> 3e8bb8e9e624018d5ce922b19bcf73a2cfb30aa4

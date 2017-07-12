@@ -34,9 +34,9 @@
                 <li><a href="{{ url('/admin/transactions/purchaseorder') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp;Sales Orders</a></li>
                 <li><a href="{{ url('/admin/transactions/joborder') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Job Orders</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{{ url('/admin/transactions/salesinvoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp;Sales Invoice</a></li>
+                <li class="active"><a href="{{ url('/admin/transactions/salesinvoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp;Sales Invoice</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="active"><a href="{{ url('/admin/transactions/vehiclerequest') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp;Vehicle Requests</a></li>
+                <li><a href="{{ url('/admin/transactions/vehiclerequest') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp;Vehicle Requests</a></li>
                 <li><a href="{{ url('/admin/transactions/obanditinerary') }}"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>&nbsp;Official Business Forms</a></li>
                 <li><a href="{{ url('/admin/transactions/gatepass') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp;Gate Pass Records</a></li>
               </ul>

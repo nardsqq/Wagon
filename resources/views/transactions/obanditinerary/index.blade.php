@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">OB and Itinerary Form</li>
+        <li class="breadcrumb-active">Official Business Forms</li>
       </ol>
     </div>
   </section>
@@ -36,17 +36,17 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong> Manage your <i>OB and Itinerary Forms</i> here.</strong>
+            <strong> Manage your <i>Official Business Forms</i> here.</strong>
             <br>
-            <small>Add and manage new <i><b>OB and  Itinerary Form</b></i>.</small>
+            <small>Add and manage <i><b>Official Business Forms</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;New OB and Itinerary Form</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;Official Business Form</button>
               </div>
               <div class="panel-title">
-                <h4>OB and Itinerary Forms</h4>
+                <h4>Official Business Form</h4>
               </div>
             </div>
             <div class="panel-body">

@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Client</li>
+        <li class="breadcrumb-active">Clients</li>
       </ol>
     </div>
   </section>
@@ -40,12 +40,12 @@
             </div>
             <strong>Manage your <i>Clients</i> here.</strong>
             <br>
-            <small>Add and manage the <i><b>clients</b></i> and their <i><b>ships</b></i>.</small>
+            <small>Add and manage <i><b>clients</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-test btn-round"><i class="fa fa-plus-square"></i>&nbsp; Add Client</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Client</button>
               </div>
               <div class="panel-title">
                 <h4>Client List</h4>

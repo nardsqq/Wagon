@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Quotation</li>
+        <li class="breadcrumb-active">quotations</li>
       </ol>
     </div>
   </section>
@@ -38,7 +38,7 @@
             </div>
             <strong>Manage your <i>Quotations</i> here.</strong>
             <br>
-            <small>Add and manage the <i><b>quotations</b></i>.</small>
+            <small>Add and manage <i><b>quotations</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">

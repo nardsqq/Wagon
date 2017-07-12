@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Job Order</li>
+        <li class="breadcrumb-active">Job Orders</li>
       </ol>
     </div>
   </section>
@@ -38,7 +38,7 @@
             </div>
             <strong> Manage your <i>Client's Job Orders</i> here.</strong>
             <br>
-            <small>Add and manage new <i><b>Job Order</b></i>.</small>
+            <small>Add and manage <i><b>Job Order</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">

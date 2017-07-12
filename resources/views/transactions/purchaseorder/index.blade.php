@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Purchase Order</li>
+        <li class="breadcrumb-active">Sales Orders</li>
       </ol>
     </div>
   </section>
@@ -36,17 +36,17 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong> Manage your <i>Client's Purchase Orders</i> here.</strong>
+            <strong> Manage your <i>Client's Sales Orders</i> here.</strong>
             <br>
-            <small>Add and manage new <i><b>Purchase Order</b></i>.</small>
+            <small>Add and manage <i><b>Sales Order</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;New Purchase Order</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;New Sales Order</button>
               </div>
               <div class="panel-title">
-                <h4>Purchase Orders</h4>
+                <h4>Sales Orders</h4>
               </div>
             </div>
             <div class="panel-body">
