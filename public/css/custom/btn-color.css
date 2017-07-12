@@ -469,19 +469,19 @@
     border-color: #d3d3d3;
 }
 
-.btn-test {
+.btn-wagon {
     color: #fff;
     background-color: #38464F;
     border-color: #2d2d2d;
 }
 
-.btn-test:hover {
+.btn-wagon:hover {
     color: #fff;
     background-color: #12171A;
     border-color: #616466;
 }
 
-.btn-test:focus {
+.btn-wagon:focus {
     color: #fff;
     background-color: #12171A;
     border-color: #616466;
