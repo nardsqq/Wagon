@@ -38,7 +38,7 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage your <i>Product Categories</i> here.</strong>
+            <strong>Manage <i>Product Categories</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
           </div>  

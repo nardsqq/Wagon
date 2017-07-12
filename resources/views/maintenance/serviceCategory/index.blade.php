@@ -1,10 +1,11 @@
 @extends('main')
 @section('content')
-  <header id="header">
+
+ <header id="header">
     <div class="container">
       <div class="row">
         <div class="col-md-10">
-          <h1><i class="fa fa-cogs" aria-hidden="true"></i> Maintenance</h1>
+          <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Maintenance</h1>
         </div>
         <div class="col-md-2">
 
@@ -13,29 +14,31 @@
     </div>
   </header>
 
+  <div class="container fadeIn">
+    @include('maintenance.serviceCategory.nav')
+  </div>
+
   <section id="breadcrumb">
-    <div class="container">
+    <div class="container animated fadeIn">
       <ol class="breadcrumb">
-        <li><a href="{{ url('admin/maintenance/product') }}">Maintenance</a></li>
-        <li class="breadcrumb-extend">Service Maintenance</li>
-        <li class="active">Service Category</li>
+        <li>Admin</li>
+        <li>Maintenance</li>
+        <li class="breadcrumb-active">Service Category</li>
       </ol>
     </div>
   </section>
 
+  @include('maintenance.serviceCategory.modal')
+  
   <section id="main">
-    <div class="container">
+    <div class="container animated fadeIn">
       <div class="row">
-        <div class="col-md-3">
-          @include('maintenance.servicecategory.nav')
-        </div>
-
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="alert alert-success alert-white rounded">
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage your <i>Service Categories</i> here.</strong>
+            <strong>Manage <i>Service Categories</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
           </div>  
@@ -45,27 +48,24 @@
                 <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Service Category</button>
               </div>
               <div class="panel-title">
-                <h4>Service Category List</h4>
+                <h4>Service Category</h4>
               </div>
             </div>
             <div class="panel-body">
-              @include('maintenance.servicecategory.table')
+              <div id="table-container">
+                @include('maintenance.serviceCategory.table')
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-     @include('maintenance.servicecategory.modal')
-     </div>
+
   </section>
 @endsection
 @section('meta')
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-{{--  <script type="text/javascript">$(document).ready(function(){
-    $('#dataTable').DataTable();
-  });
- </script> --}}
- <script src="{{ asset('/js/custom/ajax/ServiceCategoryAjax.js/') }}"></script>
+  <script src="{{ asset('/js/custom/ajax/ServiceCategoryAjax.js/') }}"></script>
 @endsection

@@ -1,10 +1,11 @@
 @extends('main')
 @section('content')
-  <header id="header">
+
+ <header id="header">
     <div class="container">
       <div class="row">
         <div class="col-md-10">
-          <h1><i class="fa fa-cogs" aria-hidden="true"></i> Maintenance</h1>
+          <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Maintenance</h1>
         </div>
         <div class="col-md-2">
 
@@ -13,29 +14,31 @@
     </div>
   </header>
 
+  <div class="container fadeIn">
+    @include('maintenance.department.nav')
+  </div>
+
   <section id="breadcrumb">
-    <div class="container">
+    <div class="container animated fadeIn">
       <ol class="breadcrumb">
-        <li><a href="{{ url('admin/maintenance/productcategory') }}">Maintenance</a></li>
-        <li class="breadcrumb-extend">Service Maintenance</li>
-        <li class="active">Department</li>
+        <li>Admin</li>
+        <li>Maintenance</li>
+        <li class="breadcrumb-active">Department</li>
       </ol>
     </div>
   </section>
 
+  @include('maintenance.department.modal')
+  
   <section id="main">
-    <div class="container">
+    <div class="container animated fadeIn">
       <div class="row">
-        <div class="col-md-3">
-          @include('maintenance.department.nav')
-        </div>
-
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="alert alert-success alert-white rounded">
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage your <i>Departments</i> here.</strong>
+            <strong>Manage <i>Departments</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
           </div>  
@@ -45,7 +48,7 @@
                 <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Department</button>
               </div>
               <div class="panel-title">
-                <h4>Department List</h4>
+                <h4>Department</h4>
               </div>
             </div>
             <div class="panel-body">
@@ -57,8 +60,7 @@
         </div>
       </div>
     </div>
-     @include('maintenance.department.modal')
-     </div>
+
   </section>
 @endsection
 @section('meta')
