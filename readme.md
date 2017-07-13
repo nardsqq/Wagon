@@ -1,6 +1,6 @@
-## Marine and Industrial Sales and Services Management System
-
 <p align="center"><img src="https://img.shields.io/badge/phase-capstone-blue.svg"> <img src="https://img.shields.io/badge/estimated--progress-35%25-red.svg"></img> </img> <img src="https://img.shields.io/badge/maintenance-80%25-green.svg"></img> <img src="https://img.shields.io/badge/transactions-10%25-red.svg"></img> <img src="https://img.shields.io/badge/reports-0%25-red.svg"></img></p>
+
+## Marine and Industrial Sales and Services Management System
 
 ### Maintenance
 1. **Sales Management Sub-System**
