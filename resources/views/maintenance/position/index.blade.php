@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li class="breadcrumb-active">Position</li>
+        <li>Position</li>
       </ol>
     </div>
   </section>

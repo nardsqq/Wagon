@@ -1,9 +1,9 @@
 <div class="modal fade" id="add_productcategory">
-  <div class="modal-dialog">
+  <div class="modal-dialog pulse animated">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header modal-header-success">
         <button class="close" data-dismiss="modal">&times;</button>
-        <h4>Add Product Category</h4>
+        <center><h4>New Product Category</h4></center>
       </div>
       <div class="modal-body">
         <form id="formProductCategory" data-parsley-validate>

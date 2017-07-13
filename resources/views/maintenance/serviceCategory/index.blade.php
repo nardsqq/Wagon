@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li class="breadcrumb-active">Service Category</li>
+        <li>Service Category</li>
       </ol>
     </div>
   </section>

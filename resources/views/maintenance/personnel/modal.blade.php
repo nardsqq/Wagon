@@ -1,27 +1,12 @@
 <div class="modal fade" id="add_personnel">
-  <div class="modal-dialog">
+  <div class="modal-dialog pulse animated">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header modal-header-success">
         <button class="close" data-dismiss="modal">&times;</button>
-        <h4>Personnel Record</h4>
+        <center><h4>Personnel Record</h4></center>
       </div>
       <div class="modal-body">
         <form id="formPersonnel" data-parsley-validate>
-          <div class="form-group">
-            <label for="strPersFName">First Name</label>
-            <input type="text" id="strPersFName" name="strPersFName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strPersMName">Middle Name</label>
-            <input type="text" id="strPersMName" name="strPersMName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strPersLName">Last Name</label>
-            <input type="text" id="strPersLName" name="strPersLName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
           <div class="form-group">
             <label>Department</label>
             <select id="intPersDeptID" class="form-control" name="intPersDeptID">
@@ -37,6 +22,21 @@
                 <option value={{$positions->intPositionID}}>{{$positions->strPositionName}}</option>
               @endforeach
             </select>
+          </div>
+          <div class="form-group">
+            <label for="strPersFName">First Name</label>
+            <input type="text" id="strPersFName" name="strPersFName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+          </div>
+          <div class="form-group">
+            <label for="strPersMName">Middle Name</label>
+            <input type="text" id="strPersMName" name="strPersMName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+          </div>
+          <div class="form-group">
+            <label for="strPersLName">Last Name</label>
+            <input type="text" id="strPersLName" name="strPersLName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
           </div>
           <div class="form-group">
             <label for="strPersAddress">Address</label>

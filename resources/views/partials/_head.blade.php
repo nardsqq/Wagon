@@ -3,8 +3,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="{{{ asset('anchor.ico') }}}">
-    <title>Taitech - MSSMS</title>
+    <link rel="shortcut icon" href="{{{ asset('big-anchor.ico') }}}">
+    <title>Taitech - MISS MS</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap/bootstrap.min.css') }}">
@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{{ asset('/css/custom/flatify.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/custom/btn-round.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/custom/btn-color.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/custom/gradient.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/custom/modal-header-color.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/animate/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/custom/moda-animate.css') }}">
     <link rel="stylesheet" href="{{ asset('/toastr-master/build/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/parsley.css') }}">

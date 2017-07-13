@@ -20,13 +20,13 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li class="breadcrumb-active">Product Category</li>
+        <li>Product Category</li>
       </ol>
     </div>
   </section>
 
   @include('maintenance.productcategory.modal')
-  
+
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">

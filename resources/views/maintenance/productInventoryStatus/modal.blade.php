@@ -1,9 +1,9 @@
 <div class="modal fade" id="add_prodstatus">
-  <div class="modal-dialog">
+  <div class="modal-dialog pulse animated">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header modal-header-success">
         <button class="close" data-dismiss="modal">&times;</button>
-        <h4>Product Inventory Status</h4>
+        <center><h4>Product Inventory Status</h4></center>
       </div>
       <div class="modal-body">
         <form id="formProductInventStatus" data-parsley-validate>
