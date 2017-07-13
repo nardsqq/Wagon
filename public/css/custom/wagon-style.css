@@ -14,10 +14,6 @@ body {
   padding-right: 0px !important;
 }
 
-#title-font {
-  font-family: roboto;
-  font-size: 30px;
-}
 /* Custom Coloring and Positioning*/
 
 .main-color-bg {
@@ -36,6 +32,23 @@ body {
   color: #ffffff !important;
 }
 
+.wagon-text-color {
+  color: #7D8AA5 !important;
+}
+
+.branding .navbar-brand {
+  height: 20px;
+}
+
+.branding .nav > li > a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.branding .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
 #ms-color {
   color: #38464F;
 }
@@ -43,7 +56,7 @@ body {
 #header {
   background-color: #38464F;
   color: #ffffff;
-  padding-top: 20px;
+  padding-top: 50px;
   padding-bottom: 0px;
   margin-bottom: 15px;
 }
@@ -80,7 +93,7 @@ body {
 
 .list-group.panel > .list-group-item {
   border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px
+  border-bottom-left-radius: 4px;
 }
 
 .list-group-submenu {
@@ -203,6 +216,14 @@ body {
 .alert-white.alert-danger .icon:after {
   border-color: #ca452e;
   background: #da4932;
+}
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 10px 0px 10px 15px;
+  font-size: 18px;
+  line-height: 20px;
 }
 
 /* Media Screen and Coloring */

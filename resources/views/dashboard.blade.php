@@ -17,8 +17,8 @@
   <section id="breadcrumb">
     <div class="container">
       <ol class="breadcrumb">
-        <li class="breadcrumb-extend">Admin</li>
-        <li class="active">Dashboard</li>
+        <li>Admin</li>
+        <li>Dashboard</li>
       </ol>
     </div>
   </section>

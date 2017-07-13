@@ -7,9 +7,6 @@
         <div class="col-md-10">
           <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Maintenance</h1>
         </div>
-        <div class="col-md-2">
-
-        </div>
       </div>
     </div>
   </header>

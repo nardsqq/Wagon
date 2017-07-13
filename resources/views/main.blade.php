@@ -6,7 +6,9 @@
   </head>
   <body>
     <!--Navigation and Content-->
-    @include('partials._top')
+    <div class="branding"> 
+      @include('partials._nav')
+    </div>
     <br>
     @yield('content')
     @yield('meta')
