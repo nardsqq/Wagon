@@ -12,7 +12,7 @@
 */
 
 Route::get('/admin/dashboard', function() {
-	return view('dashboard');
+	return view('dashboard.index');
 });
 
 Route::get('/admin/maintenance/personnel', function() {
