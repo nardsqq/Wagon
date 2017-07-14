@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">quotations</li>
+        <li>Quotations</li>
       </ol>
     </div>
   </section>

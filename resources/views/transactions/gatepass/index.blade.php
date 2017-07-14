@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Gate Pass Records</li>
+        <li>Gate Pass Records</li>
       </ol>
     </div>
   </section>

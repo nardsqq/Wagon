@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li class="breadcrumb-active">Job Deployment Schedule</li>
+        <li>Job Deployment Schedule</li>
       </ol>
     </div>
   </section>

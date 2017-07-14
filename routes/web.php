@@ -66,8 +66,8 @@ Route::get('/admin/transactions/quotation', function() {
 	return view('transactions.quotation.index');
 });
 
-Route::get('/admin/transactions/purchaseorder', function() {
-	return view('transactions.purchaseorder.index');
+Route::get('/admin/transactions/salesorder', function() {
+	return view('transactions.salesorder.index');
 });
 
 Route::get('/admin/transactions/joborder', function() {
