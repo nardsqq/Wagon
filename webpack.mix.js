@@ -13,3 +13,9 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.styles([
+    'public/css/custom/wagon-style.css',
+    'public/css/custom/modal-animate.css',
+    'public/css/custom/flatify.css',
+], 'public/css/wagon-all.css');
