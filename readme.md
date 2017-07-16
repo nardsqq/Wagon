@@ -46,6 +46,14 @@
 5. Type `git clone`, and then paste the URL you copied in Step 2.
 6. Press Enter. Your local clone will be created.
 
+### Installing Dependencies
+1. Run the following commands on Git CMD or Windows Powershell:
+    - `composer install` - To install required composer dependencies
+    - `npm install` - To install the default Laravel packages
+    - `npm run dev` - To run all Laravel Mix tasks
+2. Access XAMPP or other cross-platform web servers (WAMP, MAMP, EasyPHP etc).
+3. Start your local server's Apache and MySQL service.
+
 ### Database
 
 #### Via Forward Engineering (.mwb)
@@ -53,17 +61,15 @@
 For the meantime, we'll be using the .mwb file attached within the project folder for our database. If you have MySQL Workbench, just open the .mwb file with it.
 
 1. Open *dbSAD.mwb* with Workbench.
-2. Access your local MySQL server with XAMPP or other cross-platform web server (WAMP, MAMP, EasyPHP etc).
-3. After starting your local server's MySQL service, go back to MySQL Workbench.
-4. Hit Ctrl + G (Shortcut for *Forward Engineer*) or via *Database* > *Forward Engineer* on your toolbar/ribbon.
-5. This will forward engineer the schema and it will make the database accessible through phpMyAdmin.
+2. Hit Ctrl + G (Shortcut for *Forward Engineer*) or via *Database* > *Forward Engineer* on your toolbar/ribbon.
+3. This will forward engineer the schema and it will make the database accessible through `localhost/phpMyAdmin`.
 
 ### Getting Started
 
-1. After *forward engineering*, open the terminal on your computer.
+1. After *forward engineering*, open the terminal in your project's folder.
 2. Run `php -r "file_exists('.env') || copy('.env.example', '.env')";`
 3. Generate a new APP_KEY via `php artisan key:generate` artisan command.
-4. Start your local server with the `php artisan serve` artisan command.
+4. Start your local server with `php -S localhost:8080 -t public` command. (Preferably on a seperate terminal window)
 5. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
 
 ## Contributors
