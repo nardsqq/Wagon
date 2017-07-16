@@ -16,6 +16,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
 mix.styles([
     'public/css/custom/wagon-style.css',
-    'public/css/custom/modal-animate.css',
+    'public/css/custom/modal-header-color.css',
     'public/css/custom/flatify.css',
 ], 'public/css/wagon-all.css');

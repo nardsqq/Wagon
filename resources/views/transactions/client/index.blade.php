@@ -45,7 +45,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-wagon btn-round"><i class="fa fa-plus-square"></i>&nbsp; Add Client</button>
+                <button type="button" id="btn-add" class="btn btn-sucess"><i class="fa fa-plus-square"></i>&nbsp; Add Client</button>
               </div>
               <div class="panel-title">
                 <h4>Client List</h4>
