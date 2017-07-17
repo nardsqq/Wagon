@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{ asset('/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('/DataTables/datatables.min.css') }}"/> --}}
     <link rel="stylesheet" href="{{ asset('/css/wagon-all.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/custom/modal-header-color.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('/css/custom/btn-round.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/css/custom/btn-color.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('/css/animate/animate.css') }}">
