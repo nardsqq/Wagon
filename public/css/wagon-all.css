@@ -307,7 +307,6 @@ body {
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
 }
-
 .label, .panel, .navbar, .panel-heading, .well, {
     -webkit-border-radius: 0px !important;
 	-moz-border-radius: 0px !important;
