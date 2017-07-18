@@ -6,6 +6,5 @@
     <script src="{{ asset('/toastr-master/build/toastr.min.js') }}"></script>
     <script src="{{ asset('/js/script.js/') }}"></script>
     <script src="{{ asset('/js/parsley.min.js/') }}"></script>
-    <script src="{{ asset('/js/custom/modal-animate.js/') }}"></script>
 
     @yield('scripts')
