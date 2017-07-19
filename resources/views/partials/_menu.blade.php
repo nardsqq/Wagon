@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse test-padding" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
-              <a href="{{ url('/admin/dashboard') }}"><i class="fa fa-tasks" aria-hidden="true"></i> Dashboard</a>
+              <a href="{{ url('/admin') }}"><i class="fa fa-tasks" aria-hidden="true"></i> Admin</a>
             </li>
             <li class="dropdown">
               <a href="{{ url('/admin/maintenance/productcategory') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

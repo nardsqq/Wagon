@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/admin/dashboard', function() {
-	return view('dashboard.index');
-});
+Route::get('/admin', function() {
+	return view('admin.index');
+})->name('admin');
 
 Route::get('/admin/maintenance/personnel', function() {
 	return view('maintenance.personnel.index');
