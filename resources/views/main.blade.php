@@ -12,6 +12,7 @@
     <br>
     @yield('content')
     @yield('meta')
+    @include('partials._footer')
     <!--Scripts-->
     @include('partials._scripts')
   </body>
