@@ -15,7 +15,7 @@
   </header>
 
   <div class="container fadeIn">
-    @include('transactions.obanditinerary.nav')
+    @include('partials._menu')
   </div>
 
   <section id="breadcrumb">

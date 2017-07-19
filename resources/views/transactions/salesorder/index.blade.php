@@ -15,7 +15,7 @@
   </header>
 
   <div class="container fadeIn">
-    @include('transactions.purchaseorder.nav')
+    @include('partials._menu')
   </div>
 
   <section id="breadcrumb">
@@ -51,7 +51,7 @@
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('transactions.purchaseorder.table')
+                @include('transactions.salesorder.table')
               </div>
             </div>
           </div>

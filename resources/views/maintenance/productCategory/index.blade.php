@@ -12,7 +12,7 @@
   </header>
 
   <div class="container fadeIn">
-    @include('maintenance.productcategory.nav')
+    @include('partials._menu')
   </div>
 
   <section id="breadcrumb">
@@ -64,10 +64,5 @@
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-{{--   <script>
-    $(document).ready(function(){
-      $('#dataTable').DataTable();
-    });
-  </script> --}}
   <script src="{{ asset('/js/custom/ajax/ProductCategoryAjax.js/') }}"></script>
 @endsection

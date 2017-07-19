@@ -15,15 +15,10 @@
   </header>
 
   <div class="container fadeIn">
-    @include('dashboard.nav')
+    @include('partials._menu')
   </div>
 
   <section id="breadcrumb">
-    <div class="container animated fadeIn">
-      <ol class="breadcrumb">
-        <li>Admin</li>
-        <li>Dashboard</li>
-      </ol>
-    </div>
+    @include('partials._breadcrumbs')
   </section>
 @endsection

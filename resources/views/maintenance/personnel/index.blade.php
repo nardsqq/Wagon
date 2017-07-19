@@ -15,7 +15,7 @@
   </header>
 
   <div class="container fadeIn">
-    @include('maintenance.personnel.nav')
+    @include('partials._menu')
   </div>
 
   <section id="breadcrumb">
