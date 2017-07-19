@@ -7,4 +7,11 @@
     <script src="{{ asset('/js/script.js/') }}"></script>
     <script src="{{ asset('/js/parsley.min.js/') }}"></script>
 
+    <script>
+    	$(document).ready(function(){
+		    $('#dataTable').DataTable();
+		    $('body .dropdown-toggle').dropdown();
+		});
+    </script>
+    
     @yield('scripts')
