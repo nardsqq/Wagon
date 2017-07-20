@@ -2,42 +2,6 @@
 
 ## Marine and Industrial Sales and Services Management System
 
-### Maintenance
-1. **Sales Management Sub-System**
-    1. Product
-        - Product Category
-        - Product Maintenance
-    2. Inventory
-        - Inventory Status
-        - Inventory Management
-2. **Personnel and Services Management Sub-System**
-    1. Personnel
-        - Department List Maintenance
-        - Personnel Position Management
-        - Personnel Information Maintenance
-    2. Services
-        - Service Category Maintenance
-        - Service Management
-
-### Transaction (Not Final)
-1. **Client and Ship**
-    - Clients
-2. **Processes**
-    - Inquiries
-    - Quotations
-    - Sales Orders
-    - Job Orders
-    - Sales Invoice
-3. **Logistics**
-    - Vehicle Requests
-    - Official Business Forms
-    - Gate Pass
-
-### Reports (Not Final)
-   - Sales Report
-   - Status Report
-   - Service Ticket
-
 ### Cloning the Repository
 1. Under the repository name, click **Clone or Download**.
 2. In the Clone with HTTPs section, click the *copy icon* to copy the clone URL for the repository.
@@ -47,7 +11,7 @@
 6. Press Enter. Your local clone will be created.
 
 ### Installing Dependencies
-1. Run the following commands on Git CMD or Windows Powershell:
+1. Run the following commands on Git CMD or Windows Powershell (Run within the project's folder):
     - `composer install` - To install required composer dependencies
     - `npm install` - To install the default Laravel packages
     - `npm run dev` - To run all Laravel Mix tasks
@@ -69,8 +33,8 @@ For the meantime, we'll be using the .mwb file attached within the project folde
 1. After *forward engineering*, open the terminal in your project's folder.
 2. Run `php -r "file_exists('.env') || copy('.env.example', '.env')";`
 3. Generate a new APP_KEY via `php artisan key:generate` artisan command.
-4. Start your local server with `php -S localhost:8080 -t public` command. (Preferably on a seperate terminal window)
-5. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin/dashboard` on your address bar.
+4. Proceed to `C:\Windows\System32\drivers\etc` and open `hosts` with a text editor then add this line at the bottom: `127.0.0.1  localhost wagon.dev`
+5. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://wagon.dev/admin` on your address bar.
 
 ## Contributors
 
