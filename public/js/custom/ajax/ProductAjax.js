@@ -59,7 +59,8 @@ $(document).ready(function(){
             type: "DELETE",
             success: function (data) {
                 console.log(data);
-                $("#id" + link_id).remove();
+                var table = $('#dataTable').DataTable();
+                table.row($("#id" + link_id)).remove().draw();
             },
             error: function (data) {
                 console.log(url + '/' + link_id);
@@ -104,20 +105,22 @@ $(document).ready(function(){
                         checkstate = "";
                     }
                 }
-                var row = "<tr id=id" + data.intProductID +  ">"+
-                "<td>" + data.strProductName + "</td>" +
-                "<td>" + data.strProductCategoryName + "</td>" +
-                "<td>" + data.strProductSerialNumber + "</td>" +
-                "<td class='text-center'><input type='checkbox' id='isActive' value=" + data.intProductID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='default' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
-                "<td class='text-center'>" +
-                "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+data.intProductID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-                "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProductID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
-                "</td>" +
-                "</tr>";
+                var row = $("<tr id=id" + data.intProductCategoryID +  "></tr>")
+                .append(
+                    "<td>" + data.strProductName + "</td>" +
+                    "<td>" + data.strProductCategoryName + "</td>" +
+                    "<td>" + data.strProductSerialNumber + "</td>" +
+                    "<td class='text-center'><input type='checkbox' id='isActive' value=" + data.intProductID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='default' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
+                    "<td class='text-center'>" +
+                    "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+data.intProductID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+                    "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProductID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+                    "</td>"
+                );
                 if (state == "add"){ //if user added a new record
-                    $('#product-list').append(row);
+                    table.row.add(row).draw();
                 }else{ //if user updated an existing record`
-                    $("#id"+data.intProductID).replaceWith(row);
+                    table.row($("#id"+data.intProductID)).remove();
+                    table.row.add(row).draw();
                 }
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
                 $("[data-toggle='toggle']").bootstrapToggle();

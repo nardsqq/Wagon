@@ -10,7 +10,7 @@
   </thead>
   <tbody id="product-list">
     @foreach ($product as $products)
-    <tr id=id"{{$products->intProductID}}">
+    <tr id="id{{$products->intProductID}}">
       <td>{{ $products->strProductName }}</td>
       <td>{{ $products->strProductCategoryName }}</td>
       <td>{{ $products->strProductSerialNumber }}</td>
