@@ -1,5 +1,5 @@
 <?php 
 	Breadcrumbs::register('admin', function($breadcrumbs) {
-	    $breadcrumbs->push('Admin', secure_url('admin'));
+	    $breadcrumbs->push('Admin Dashboard', secure_url('admin'));
 	});
 ?>
