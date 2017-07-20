@@ -31,7 +31,7 @@ $(document).ready(function(){
                 $('#position-list').append("<tr id=id" + value.intPositionID +  ">"+
                     "<td>" + value.strPositionName + "</td>" +
                     "<td>" + value.strDesc +"</td>" +
-                    "<td><input type='checkbox' id='isActive' value=" + value.intPositionID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='danger' data-on=\"<i class='fa fa-check-circle'></i> Active\" data-off=\"<i class='fa fa-times-circle'></i> Inactive\" data-size='mini'></td>"+
+                    "<td><input type='checkbox' id='isActive' value=" + value.intPositionID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='danger' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
                     "<td class='text-center'>" +
                     "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+value.intPositionID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
                     "<button class='btn btn-danger btn-sm btn-delete' value="+value.intPositionID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
