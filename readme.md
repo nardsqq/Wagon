@@ -37,11 +37,11 @@ For development purposes, we need to configure our Apache environment.
 3. Add the following at the bottom of `httpd-vhosts.conf` file
 
         <VirtualHost *:80>
-            DocumentRoot "D:/xampp/htdocs/"
+            DocumentRoot "C:/xampp/htdocs/"
             ServerAdmin admin@localhost
             ServerName localhost
 
-            <Directory "D:/xampp/htdocs/">
+            <Directory "C:/xampp/htdocs/">
                Options Indexes FollowSymLinks
                AllowOverride all
                Require local
