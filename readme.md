@@ -30,7 +30,7 @@ For the meantime, we'll be using the .mwb file attached within the project folde
 
 ### Configurations
 
-For development purposes, we need to configure our Apache environment.
+For development purposes, we need to configure our Apache environment. In addition, please note that you need to put the project folder within the htdocs folder of xampp.
 
 1. Proceed to `C:\Windows\System32\drivers\etc` and open `hosts` with a text editor then add this line at the bottom: `127.0.0.1  localhost wagon.dev`
 2. Afterwards, go to `C:\xampp\apache\conf\extra` and configure `httpd-vhosts.conf` with a text editor. 
@@ -64,7 +64,7 @@ For development purposes, we need to configure our Apache environment.
 
 ### Getting Started
 
-1. After *forward engineering*, open the terminal in your project's folder.
+1. After *forward engineering*, open the command prompt in your project's folder.
 2. Run `php -r "file_exists('.env') || copy('.env.example', '.env')";`
 3. Generate a new APP_KEY via `php artisan key:generate` artisan command.
 4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://wagon.dev/admin` on your address bar.
