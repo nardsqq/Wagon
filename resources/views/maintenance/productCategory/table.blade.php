@@ -9,7 +9,7 @@
   </thead>
   <tbody id="productcategory-list">
     @foreach ($productcategory as $productcategories)
-    <tr id=id"{{$productcategories->intProductCategoryID}}" class="test-table-now">
+    <tr id="id{{$productcategories->intProductCategoryID}}">
       <td>{{ $productcategories->strProductCategoryName }}</td>
       <td>{{ $productcategories->strDesc }}</td>
       <td class="text-center">
