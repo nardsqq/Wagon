@@ -13,5 +13,10 @@
 		    $('body .dropdown-toggle').dropdown();
 		});
     </script>
-    
+    <script>
+        $('#table-container').on('draw.dt', '#dataTable', function(){
+              $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
+              $("[data-toggle='toggle']").bootstrapToggle();
+        });
+    </script>
     @yield('scripts')

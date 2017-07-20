@@ -67,11 +67,5 @@
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-  <script>
-    $('#table-container').on('draw.dt', '#dataTable', function(){
-          $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
-          $("[data-toggle='toggle']").bootstrapToggle();
-    });
-  </script>
   <script src="{{ asset('/js/custom/ajax/ProductAjax.js/') }}"></script>
 @endsection

@@ -5,48 +5,6 @@ $(document).ready(function(){
    $('#add_position').on('hide.bs.modal', function(){
     $('#formPosition').trigger("reset");
 });
-   $('.btn-default').click(function(e){
-    if($('#frmSearch').parsley().isValid())
-    {
-     $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    })
-     e.preventDefault();
-     var checkstate = "checked";
-    $.ajax({
-        type: 'POST',
-        url: my_url,
-        data: formData,
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
-            $('#position-list').empty();
-            $.each(data, function(index, value) {
-                console.log(index+" / "+value);
-                if(!value.isActive){
-                    checkstate = "";
-                }
-                $('#position-list').append("<tr id=id" + value.intPositionID +  ">"+
-                    "<td>" + value.strPositionName + "</td>" +
-                    "<td>" + value.strDesc +"</td>" +
-                    "<td><input type='checkbox' id='isActive' value=" + value.intPositionID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='danger' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
-                    "<td class='text-center'>" +
-                    "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+value.intPositionID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-                    "<button class='btn btn-danger btn-sm btn-delete' value="+value.intPositionID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
-                    "</td>" +
-                    "</tr>");
-                $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
-                $("[data-toggle='toggle']").bootstrapToggle();
-            });
-        },
-        error: function (data) {
-            console.log('Error:', data);
-        }
-    });
-}
-});
    $('#position-list').on('change', '#isActive',function(e){ 
      $.ajaxSetup({
         headers: {
@@ -100,7 +58,8 @@ $(document).ready(function(){
             type: "DELETE",
             success: function (data) {
                 console.log(data);
-                $("#id" + link_id).remove();
+                var table = $('#dataTable').DataTable();
+                table.row($("#id" + link_id)).remove().draw();
             },
             error: function (data) {
                 console.log(url + '/' + link_id);
@@ -144,19 +103,22 @@ $(document).ready(function(){
                         checkstate = "";
                     }
                 }
-                var row = "<tr id=id" + data.intPositionID +  ">"+
-                "<td>" + data.strPositionName + "</td>" +
-                "<td>" + data.strDesc + "</td>" +
-                "<td class='text-center'><input type='checkbox' id='isActive' value=" + data.intPositionID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='default' data-on=\"<i class='fa fa-thumbs-o-up'></i> Active\" data-off=\"<i class='fa fa-thumbs-o-down'></i> Inactive\" data-size='mini'></td>"+
-                "<td class='text-center'>" +
-                "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+data.intPositionID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-                "<button class='btn btn-danger btn-sm btn-delete' value="+data.intPositionID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
-                "</td>" +
-                "</tr>";
+                var row = $("<tr id=id" + data.intPositionID +  "></tr>")
+                .append(
+                    "<td>" + data.strPositionName + "</td>" +
+                    "<td>" + data.strDesc + "</td>" +
+                    "<td class='text-center'><input type='checkbox' id='isActive' value=" + data.intPositionID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='default' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
+                    "<td class='text-center'>" +
+                    "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+data.intPositionID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+                    "<button class='btn btn-danger btn-sm btn-delete' value="+data.intPositionID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+                    "</td>"
+                );
+                var table = $('#dataTable').DataTable();
                 if (state == "add"){ //if user added a new record
-                    $('#position-list').append(row);
+                    table.row.add(row).draw();
                 }else{ //if user updated an existing record`
-                    $("#id"+data.intPositionID).replaceWith(row);
+                    table.row($("#id"+data.intPositionID)).remove();
+                    table.row.add(row).draw();
                 }
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
                 $("[data-toggle='toggle']").bootstrapToggle();

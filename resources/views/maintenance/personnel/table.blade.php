@@ -11,7 +11,7 @@
   </thead>
   <tbody id="personnel-list">
     @foreach ($personnel as $personnels)
-    <tr id=id"{{$personnels->intPersID}}">
+    <tr id="id{{$personnels->intPersID}}">
       <td>{{ $personnels->strPersFName }}
           {{ $personnels->strPersMName }}
           {{ $personnels->strPersLName }}</td>

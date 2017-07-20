@@ -61,7 +61,8 @@ $(document).ready(function(){
             type: "DELETE",
             success: function (data) {
                 console.log(data);
-                $("#id" + link_id).remove();
+                var table = $('#dataTable').DataTable();
+                table.row($("#id" + link_id)).remove().draw();
             },
             error: function (data) {
                 console.log(url + '/' + link_id);
@@ -108,22 +109,25 @@ $(document).ready(function(){
                         checkstate = "";
                     }
                 }
-                var row = "<tr id=id" + data.intVehicleID +  ">"+
-                "<td>" + data.strVehicleTypeName + "</td>" +
-                "<td>" + data.strVehicleModel + "</td>" +
-                "<td>" + data.strVehiclePlateNumber + "</td>" +
-                "<td>" + data.intVehicleNetCapacity + "</td>" +
-                "<td>" + data.intVehicleGrossWeight + "</td>" +
-                "<td class='text-center'><input type='checkbox' id='isActive' value=" + data.intVehicleID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='default' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
-                "<td class='text-center'>" +
-                "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+data.intVehicleID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-                "<button class='btn btn-danger btn-sm btn-delete' value="+data.intVehicleID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
-                "</td>" +
-                "</tr>";
+                var row = $("<tr id=id" + data.intVehicleID +  "></tr>")
+                .append(
+                    "<td>" + data.strVehicleTypeName + "</td>" +
+                    "<td>" + data.strVehicleModel + "</td>" +
+                    "<td>" + data.strVehiclePlateNumber + "</td>" +
+                    "<td>" + data.intVehicleNetCapacity + "</td>" +
+                    "<td>" + data.intVehicleGrossWeight + "</td>" +
+                    "<td class='text-center'><input type='checkbox' id='isActive' value=" + data.intVehicleID + " name='isActive' "+checkstate+" data-toggle='toggle' data-style='android' data-onstyle='success' data-offstyle='default' data-on=\"Active\" data-off=\"Inactive\" data-size='mini'></td>"+
+                    "<td class='text-center'>" +
+                    "<button class='btn btn-warning btn-sm btn-detail open-modal' value="+data.intVehicleID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+                    "<button class='btn btn-danger btn-sm btn-delete' value="+data.intVehicleID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+                    "</td>"
+                );
+                var table = $('#dataTable').DataTable();
                 if (state == "add"){ //if user added a new record
-                    $('#vehicle-list').append(row);
+                    table.row.add(row).draw();
                 }else{ //if user updated an existing record`
-                    $("#id"+data.intVehicleID).replaceWith(row);
+                    table.row($("#id"+data.intVehicleID)).remove();
+                    table.row.add(row).draw();
                 }
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
                 $("[data-toggle='toggle']").bootstrapToggle();

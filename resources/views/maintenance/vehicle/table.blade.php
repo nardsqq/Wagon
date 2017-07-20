@@ -12,7 +12,7 @@
   </thead>
   <tbody id="vehicle-list">
     @foreach ($vehicle as $vehicles)
-    <tr id=id"{{$vehicles->intVehicleID}}">
+    <tr id="id{{$vehicles->intVehicleID}}">
       <td>{{ $vehicles->strVehicleTypeName }}</td>
       <td>{{ $vehicles->strVehicleModel }}</td>
       <td>{{ $vehicles->strVehiclePlateNumber }}</td>

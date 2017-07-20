@@ -9,7 +9,7 @@
   </thead>
   <tbody id="vehicletype-list">
     @foreach ($vehicletype as $vehicletypes)
-    <tr id=id"{{$vehicletypes->intVehicleTypeNumber}}">
+    <tr id="id{{$vehicletypes->intVehicleTypeNumber}}">
       <td>{{ $vehicletypes->strVehicleTypeName }}</td>
       <td>{{ $vehicletypes->strDesc }}</td>
       <td class="text-center">

@@ -105,7 +105,7 @@ $(document).ready(function(){
                         checkstate = "";
                     }
                 }
-                var row = $("<tr id=id" + data.intProductCategoryID +  "></tr>")
+                var row = $("<tr id=id" + data.intProductID +  "></tr>")
                 .append(
                     "<td>" + data.strProductName + "</td>" +
                     "<td>" + data.strProductCategoryName + "</td>" +
@@ -116,10 +116,11 @@ $(document).ready(function(){
                     "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProductID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
                     "</td>"
                 );
+                var table = $('#dataTable').DataTable();
                 if (state == "add"){ //if user added a new record
                     table.row.add(row).draw();
                 }else{ //if user updated an existing record`
-                    table.row($("#id"+data.intProductID)).remove();
+                    table.row($("#id"+data.intProductCategoryID)).remove();
                     table.row.add(row).draw();
                 }
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')                 

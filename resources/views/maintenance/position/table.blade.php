@@ -9,7 +9,7 @@
   </thead>
   <tbody id="position-list">
     @foreach ($position as $positions)
-    <tr id=id"{{$positions->intPositionID}}">
+    <tr id="id{{$positions->intPositionID}}">
       <td>{{ $positions->strPositionName }}</td>
       <td>{{ $positions->strDesc }}</td>
       <td class="text-center">
