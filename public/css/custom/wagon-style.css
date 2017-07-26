@@ -175,7 +175,7 @@ body {
   border-color: #d6e9c6;
 }
 
-.alert-white.alert-success .icon, 
+.alert-white.alert-success .icon,
 .alert-white.alert-success .icon:after {
   border-color: #54a754;
   background: #60c060;
@@ -187,14 +187,14 @@ body {
   color: #3a87ad;
 }
 
-.alert-white.alert-info .icon, 
+.alert-white.alert-info .icon,
 .alert-white.alert-info .icon:after {
   border-color: #3a8ace;
   background: #4d90fd;
 }
 
 
-.alert-white.alert-warning .icon, 
+.alert-white.alert-warning .icon,
 .alert-white.alert-warning .icon:after {
   border-color: #d68000;
   background: #fc9700;
@@ -212,7 +212,7 @@ body {
   color: #b94a48;
 }
 
-.alert-white.alert-danger .icon, 
+.alert-white.alert-danger .icon,
 .alert-white.alert-danger .icon:after {
   border-color: #ca452e;
   background: #da4932;
