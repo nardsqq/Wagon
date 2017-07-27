@@ -13,10 +13,10 @@ class CreateProductCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::table('tblproductcategory', function (Blueprint $table) {
+        Schema::create('tblproductcategory', function (Blueprint $table) {
             $table->increments('intProdCateg');
-            $table->string('strProdCategName');
-            $table->text('txtProdCategDesc');
+            $table->string('strProdCategName', 45);
+            $table->text('txtProdCategDesc', 50);
             $table->tinyInteger('intProdCategStatus')->default(1);
             $table->timestamps();
             $table->softdeletes();
@@ -30,8 +30,6 @@ class CreateProductCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::table('tblproductcategory', function (Blueprint $table) {
-            Schema::dropIfExists('tblproductcategory');
-        });
+        Schema::dropIfExists('tblproductcategory');
     }
 }
