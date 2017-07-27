@@ -14,9 +14,9 @@ class CreateProductCategoryTable extends Migration
     public function up()
     {
         Schema::create('tblproductcategory', function (Blueprint $table) {
-            $table->increments('intProdCateg');
+            $table->increments('intProdCategID');
             $table->string('strProdCategName', 45);
-            $table->text('txtProdCategDesc', 50);
+            $table->text('txtProdCategDesc', 50)->nullable();
             $table->tinyInteger('intProdCategStatus')->default(1);
             $table->timestamps();
             $table->softdeletes();

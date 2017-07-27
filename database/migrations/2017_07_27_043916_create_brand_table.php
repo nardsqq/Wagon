@@ -16,7 +16,7 @@ class CreateBrandTable extends Migration
         Schema::create('tblbrand', function (Blueprint $table) {
             $table->increments('intBrandID');
             $table->string('strBrandName', 45);
-            $table->text('txtBrandDesc', 50);
+            $table->text('txtBrandDesc', 50)->nullable();
             $table->tinyInteger('intBrandStatus')->default(1);
             $table->timestamps();
             $table->softdeletes();

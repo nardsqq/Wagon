@@ -17,13 +17,13 @@ class CreateProductTable extends Migration
             $table->increments('intProdID');
             $table->unsignedInteger('intProdRefCategID');
             $table->string('strProdName', 45);
-            $table->text('txtProdDesc', 50);
+            $table->text('txtProdDesc', 50)->nullable();
             $table->unsignedInteger('intProdLevel');
             $table->tinyInteger('intProdCategStatus')->default(1);
             $table->timestamps();
             $table->softdeletes();
 
-            $table->foreign('intProdRefCategID')->references('intProdCateg')->on('tblproductcategory');
+            $table->foreign('intProdRefCategID')->references('intProdCategID')->on('tblproductcategory');
         });
     }
 

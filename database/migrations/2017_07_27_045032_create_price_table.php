@@ -19,7 +19,8 @@ class CreatePriceTable extends Migration
             $table->decimal('dblPriceVal', 11, 2);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
-            $table->softdeletes();
+
+            $table->foreign('intPriceRefInvenID')->references('intItemID')->on('tblitem');
         });
 
         DB::statement('ALTER TABLE  `tblprice` DROP PRIMARY KEY , ADD PRIMARY KEY (  `intPriceID` ,  `created_at` ) ;');
@@ -32,6 +33,9 @@ class CreatePriceTable extends Migration
      */
     public function down()
     {
+        Schema::table('tblprice', function (Blueprint $table) {
+            $table->dropForeign(['intPriceRefInvenID']);
+        });
         Schema::dropIfExists('tblprice');
     }
 }
