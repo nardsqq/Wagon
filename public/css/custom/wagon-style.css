@@ -71,11 +71,11 @@ body {
 }
 
 #breadcrumb > .container > ol > li > a{
-  color: #ff7d00;
+  color: ##4BB5C1;
 }
 
 .breadcrumb-extend {
-  color: #ff7d00 !important;
+  color: ##4BB5C1 !important;
 }
 
 .progress-bar {
