@@ -18,7 +18,6 @@ class CreateProductTable extends Migration
             $table->unsignedInteger('intProdRefCategID');
             $table->string('strProdName', 45);
             $table->text('txtProdDesc', 50)->nullable();
-            $table->unsignedInteger('intProdLevel');
             $table->tinyInteger('intProdCategStatus')->default(1);
             $table->timestamps();
             $table->softdeletes();
