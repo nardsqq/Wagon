@@ -8,7 +8,7 @@ class Service extends Model
 {
 
     protected $table = 'tblservice';
-    protected $primaryKey = 'intServiceID'; 
+    protected $primaryKey = 'intServiceID';
     public $timestamps = false;
 
     public static $new_rules = [

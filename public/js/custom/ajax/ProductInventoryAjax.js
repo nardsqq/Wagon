@@ -5,13 +5,13 @@ $(document).ready(function(){
    $('#add_prodinvent').on('hide.bs.modal', function(){
     $('#formProductInventory').trigger("reset");
 });
-   $('#productinventory-list').on('change', '#isActive',function(e){ 
+   $('#productinventory-list').on('change', '#isActive',function(e){
      $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     })
-     e.preventDefault(); 
+     e.preventDefault();
      var link_id = $(this).val();
      $.ajax({
         url: url2 + '/' + link_id,
@@ -26,7 +26,7 @@ $(document).ready(function(){
     });
  });
     //display modal form for task editing
-    $('#productinventory-list').on('click', '.open-modal',function(){ 
+    $('#productinventory-list').on('click', '.open-modal',function(){
         var link_id = $(this).val();
         id = link_id;
         $.get(url + '/' + link_id + '/edit', function (data) {
@@ -45,13 +45,13 @@ $(document).ready(function(){
         $('#add_prodinvent').modal('show');
     });
     //delete task and remove it from list
-    $('#productinventory-list').on('click', '.btn-delete',function(e){ 
+    $('#productinventory-list').on('click', '.btn-delete',function(e){
      $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     })
-     e.preventDefault(); 
+     e.preventDefault();
      var link_id = $(this).val();
      if (confirm("Delete this record?")) {
          $.ajax({
@@ -120,7 +120,7 @@ $(document).ready(function(){
                 }else{ //if user updated an existing record`
                     $("#id"+data.intProductInventoryID).replaceWith(row);
                 }
-                $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
                 $('#formProductInventory').trigger("reset");
                 $('#add_prodinvent').modal('hide')
