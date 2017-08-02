@@ -8,7 +8,7 @@
             </li>
             <li class="dropdown dropdown-large">
               <a href="{{ url('/admin/maintenance/productcategory') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-cogs" aria-hidden="true"></i> Maintenance <span class="caret"></span>
+                <i class="fa fa-cogs" aria-hidden="true"></i> Maintenance <span class="caret"></span>
               </a>
       				<ul class="dropdown-menu dropdown-menu-large row">
       					<li class="col-sm-4">
@@ -74,39 +74,55 @@
       					</li>
       				</ul>
       			</li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i>&nbsp; Transactions <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp;Clients</a>
+            <li class="dropdown dropdown-large">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i>&nbsp; Transactions <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-large row">
+                <li class="col-sm-4">
+                  <ul>
+                    <li class="dropdown-main-header"><center>Preliminary Procedures</center></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Request for Quotation</li>
+                    <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
+                    </li>
+                    <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Quotation</a>
+                    </li>
+                  </ul>
                 </li>
-                <li role="role" class="divider"></li>
-                <li class="{{ Request::is('admin/transactions/inquiry') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/inquiry') }}"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>&nbsp;Inquiries</a>
+                <li class="col-sm-4">
+                  <ul>
+                    <li class="dropdown-main-header"><center>Orders Phase</center></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Placing a Job or Sales Order</li>
+                    <li class="{{ Request::is('admin/transactions/salesorder') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/salesorder') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Sales Orders</a>
+                    </li>
+                    <li class="{{ Request::is('admin/transactions/joborder') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/joborder') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Job Orders</a>
+                    </li>
+                    <li class="{{ Request::is('admin/transactions/salesinvoice') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/salesinvoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
+                    </li>
+                  </ul>
                 </li>
-                <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp;Quotations</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li class="{{ Request::is('admin/transactions/salesorder') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/salesorder') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp;Sales Orders</a>
-                </li>
-                <li class="{{ Request::is('admin/transactions/joborder') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/joborder') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Job Orders</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li class="{{ Request::is('admin/transactions/salesinvoice') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/salesinvoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp;Sales Invoice</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li class="{{ Request::is('admin/transactions/vehiclerequest') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/vehiclerequest') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp;Vehicle Requests</a>
-                </li>
-                <li class="{{ Request::is('admin/transactions/obanditinerary') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/obanditinerary') }}"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>&nbsp;Official Business Forms</a>
-                </li>
-                <li class="{{ Request::is('admin/transactions/gatepass') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/gatepass') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp;Gate Pass Records</a>
+                <li class="col-sm-4">
+                  <ul>
+                    <li class="dropdown-main-header"><center>Logistics</center></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Requisition for Transport</li>
+                    <li class="{{ Request::is('admin/transactions/vehiclerequest') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/vehiclerequest') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Requests</a>
+                    </li>
+                    <li class="{{ Request::is('admin/transactions/obanditinerary') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/obanditinerary') }}"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>&nbsp; Official Business</a>
+                    </li>
+                    <li class="{{ Request::is('admin/transactions/gatepass') ? "active" : "" }}">
+                      <a href="{{ url('/admin/transactions/gatepass') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Gate Pass Records</a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>
