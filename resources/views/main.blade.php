@@ -6,7 +6,7 @@
   </head>
   <body>
     <!--Navigation and Content-->
-    <div class="branding"> 
+    <div class="branding">
       @include('partials._nav')
     </div>
     <br>

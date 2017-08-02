@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse test-padding" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
-              <a href="{{ url('/admin') }}"><i class="fa fa-tasks" aria-hidden="true"></i> Admin</a>
+              <a href="{{ url('/admin') }}"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>&nbsp; Admin</a>
             </li>
             <li class="dropdown">
               <a href="{{ url('/admin/maintenance/productcategory') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -50,7 +50,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bar-chart" aria-hidden="true"></i>Transactions <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i>&nbsp; Transactions <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp;Clients</a>
