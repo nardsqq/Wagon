@@ -7,7 +7,6 @@
     <title>MRN & IND SSMS</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap/bootstrap-toggle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/DataTables/datatables.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('/css/custom/btn-round.css') }}"> --}}
