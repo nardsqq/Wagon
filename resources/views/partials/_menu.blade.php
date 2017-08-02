@@ -133,9 +133,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i>&nbsp; Reports <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Sales Report</a></li>
-                <li role="role" class="divider"></li>
                 <li><a href="#"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Service Ticket</a></li>
-                <li role="role" class="divider"></li>
                 <li><a href="#"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i>&nbsp; Delivery Receipt</a></li>
               </ul>
             </li>
