@@ -35,10 +35,14 @@ $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
-$panel-default-heading-bg: #fff;
+$panel-default-text: #ffffff;
+$panel-default-heading-bg: #38464F;
+// $panel-default-border: #4E616D;
 
+// Button Overrides
 $btn-success-bg: #2AB27B;
 $btn-info-bg: #4296FF;
 $btn-danger-bg: #D9534F;
 
+// Dropdown Link Active
 $dropdown-link-active-bg: #38464F;
