@@ -61,6 +61,10 @@ body {
   margin-bottom: 15px;
 }
 
+.breadcrumb {
+	margin-bottom: 10px;
+}
+
 #breadcrumb > .container > ol {
   background-color: #38464F;
   color: #ffffff;
@@ -245,5 +249,9 @@ body {
 }
 
 .modal-backdrop {
-   background-color: #38464F;
+  background-color: #38464F;
+}
+
+.alert {
+	margin-bottom: 15px;
 }
