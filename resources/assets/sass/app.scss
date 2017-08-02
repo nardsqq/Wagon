@@ -2,5 +2,19 @@
 // Variables
 @import "variables";
 
+// font-awesome
+@import "node_modules/font-awesome/scss/font-awesome";
+
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Animate
+@import "node_modules/animate.css/animate";
+
+// Helpers
+@import "helpers";
+
+// Style Overwrites
+@import "styles";
+@import "modals";
+@import "flatify";

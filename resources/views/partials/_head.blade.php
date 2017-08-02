@@ -7,13 +7,10 @@
     <title>Taitech - MISS MS</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap/bootstrap-toggle.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/DataTables/datatables.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/css/wagon-all.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('/css/custom/btn-round.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/css/custom/btn-color.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('/css/animate/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('/toastr-master/build/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/parsley.css') }}">

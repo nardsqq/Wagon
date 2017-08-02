@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header modal-header-success">
         <button class="close" data-dismiss="modal">&times;</button>
-        <center><h4>New Product Category</h4></center>
+        <center><h4>Product Category</h4></center>
       </div>
       <div class="modal-body">
         <form id="formProductCategory" data-parsley-validate>
