@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" href="{{{ asset('big-anchor.ico') }}}">
-    <title>Taitech - MISS MS</title>
+    <title>MRN & IND SSMS</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap/bootstrap-toggle.min.css') }}">
