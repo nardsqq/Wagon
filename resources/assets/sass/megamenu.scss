@@ -15,9 +15,9 @@
 }
 .dropdown-menu-large > li > ul > li > a {
   display: block;
-  padding: 3px 50px;
+  padding: 3px 20px;
   clear: both;
-  font-weight:300;
+  font-weight: normal;
   line-height: 1.428571429;
   color: #333333;
   white-space: normal;
@@ -42,9 +42,15 @@
   cursor: not-allowed;
 }
 .dropdown-menu-large .dropdown-header {
-  color: #38464F;
-  font-size: 18px;
+  color: #2A75D2;
+  font-size: 14px;
 }
+
+.dropdown-menu-large .dropdown-main-header {
+  color: #4E616D;
+  font-size: 16px;
+}
+
 @media (max-width: 768px) {
   .dropdown-menu-large {
     margin-left: 0 ;
@@ -57,6 +63,6 @@
     margin-bottom: 0;
   }
   .dropdown-menu-large .dropdown-header {
-    padding: 3px 5px !important;
+    padding: 3px 15px !important;
   }
 }

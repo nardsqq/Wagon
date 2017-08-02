@@ -1,54 +1,76 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse test-padding" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse js-navbar-collapse">
           <ul class="nav navbar-nav">
             <li>
               <a href="{{ url('/admin') }}"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>&nbsp; Admin</a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown dropdown-large">
               <a href="{{ url('/admin/maintenance/productcategory') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-cogs" aria-hidden="true"></i> Maintenance <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu">
-                <li class="{{ Request::is('admin/maintenance/productcategory') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/productcategory') }}"><i class="fa fa-cart-arrow-down fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/productinventorystatus') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/productinventorystatus') }}"><i class="fa fa-pie-chart fa-fw" aria-hidden="true"></i>&nbsp; Product Inventory Status</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/productinventory') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/productinventory') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Product Inventory</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li class="{{ Request::is('admin/maintenance/department') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/department') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Department</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/position') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/position') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Position</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/personnel') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li class="{{ Request::is('admin/maintenance/servicecategory') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/servicecategory') }}"><i class="fa fa-thumbs-o-up fa-fw" aria-hidden="true"></i>&nbsp; Service Category</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/service') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp; Service</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li class="{{ Request::is('admin/maintenance/vehicletype') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/vehicletype') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/vehicle') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/vehicle') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Vehicle</a>
-                </li>
-              </ul>
-            </li>
+      				<ul class="dropdown-menu dropdown-menu-large row">
+      					<li class="col-sm-4">
+      						<ul>
+                    <li class="dropdown-main-header"><center>Itemization and Inventory</center></li>
+                    <li class="divider"></li>
+      							<li class="dropdown-header">Assets</li>
+                    <li class="{{ Request::is('admin/maintenance/productcategory') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/productcategory') }}"><i class="fa fa-cart-arrow-down fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
+                    </li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Product Variants</a></li>
+                    <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Brand</a></li>
+                    <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Product Specifications</a></li>
+                    <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
+                    </li>
+                    <li class="{{ Request::is('admin/maintenance/productinventory') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/productinventory') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Inventory</a>
+                    </li>
+      						</ul>
+      					</li>
+      					<li class="col-sm-4">
+      						<ul>
+                    <li class="dropdown-main-header"><center>Job Appointments and Services</center></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Workforce</li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Specialization</a></li>
+                    <li class="{{ Request::is('admin/maintenance/position') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/position') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Role</a>
+                    </li>
+                    <li class="{{ Request::is('admin/maintenance/personnel') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
+                    </li>
+      							<li class="dropdown-header">Services</li>
+                    <li class="{{ Request::is('admin/maintenance/servicecategory') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/servicecategory') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Type</a>
+                    </li>
+                    <li class="{{ Request::is('admin/maintenance/service') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Area</a>
+                    </li>
+      						</ul>
+      					</li>
+      					<li class="col-sm-4">
+      						<ul>
+                    <li class="dropdown-main-header"><center>Logistics and Payments</center></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Transportation</li>
+                    <li class="{{ Request::is('admin/maintenance/vehicletype') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/vehicletype') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
+                    </li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Vehicle Specifications</a></li>
+                    <li class="{{ Request::is('admin/maintenance/vehicle') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/vehicle') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Vehicle</a>
+                    </li>
+      							<li class="divider"></li>
+      							<li class="dropdown-header">Payment</li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Price</a></li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Discount</a></li>
+      						</ul>
+      					</li>
+      				</ul>
+      			</li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i>&nbsp; Transactions <span class="caret"></span></a>
               <ul class="dropdown-menu">
