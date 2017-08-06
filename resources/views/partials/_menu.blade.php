@@ -4,11 +4,11 @@
         <div class="collapse navbar-collapse js-navbar-collapse">
           <ul class="nav navbar-nav">
             <li>
-              <a href="{{ url('/admin') }}"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>&nbsp; Admin</a>
+              <a href="{{ url('/admin') }}"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>&nbsp; Dashboard</a>
             </li>
             <li class="dropdown dropdown-large">
               <a href="{{ url('/admin/maintenance/productcategory') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-cogs" aria-hidden="true"></i> Maintenance <span class="caret"></span>
+                <i class="fa fa-cogs fa-fw" aria-hidden="true"></i>&nbsp; Maintenance <span class="caret"></span>
               </a>
       				<ul class="dropdown-menu dropdown-menu-large row">
       					<li class="col-sm-4">
@@ -19,7 +19,7 @@
                     <li class="{{ Request::is('admin/maintenance/productcategory') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/productcategory') }}"><i class="fa fa-cart-arrow-down fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
                     </li>
-      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Product Variants</a></li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Variants Management</a></li>
                     <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Brand</a></li>
                     <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Product Specifications</a></li>
                     <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">

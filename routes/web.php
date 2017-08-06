@@ -29,17 +29,11 @@ Route::put('admin/maintenance/productcategory/checkbox/{id}', ['uses' => 'Produc
 Route::resource('admin/maintenance/product','ProductController');
 Route::put('admin/maintenance/product/checkbox/{id}', ['uses' => 'ProductController@checkbox', 'as' => 'product.checkbox']);
 
-Route::resource('admin/maintenance/productinventorystatus','ProductInventoryStatusController');
-Route::put('admin/maintenance/vehicle/productinventorystatus/{id}', ['uses' => 'ProductInventoryStatusController@checkbox', 'as' => 'productinventorystatus.checkbox']);
-
 Route::resource('admin/maintenance/productinventory','ProductInventoryController');
 Route::put('admin/maintenance/vehicle/productinventory/{id}', ['uses' => 'ProductInventoryController@checkbox', 'as' => 'productinventory.checkbox']);
 
 Route::resource('admin/maintenance/personnel','PersonnelController');
 Route::put('admin/maintenance/personnel/checkbox/{id}', ['uses' => 'PersonnelController@checkbox', 'as' => 'personnel.checkbox']);
-
-Route::resource('admin/maintenance/department','DepartmentController');
-Route::put('admin/maintenance/department/checkbox/{id}', ['uses' => 'DepartmentController@checkbox', 'as' => 'department.checkbox']);
 
 Route::resource('admin/maintenance/position','PositionController');
 Route::put('admin/maintenance/position/checkbox/{id}', ['uses' => 'PositionController@checkbox', 'as' => 'position.checkbox']);
