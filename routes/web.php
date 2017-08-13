@@ -23,6 +23,10 @@ Route::get('/admin/maintenance', function() {
 	return view('maintenance.index');
 });
 
+Route::get('/admin/maintenance/warehouse', function() {
+	return view('maintenance.warehouse.index');
+});
+
 Route::resource('admin/maintenance/productcategory','ProductCategoryController');
 Route::put('admin/maintenance/productcategory/checkbox/{id}', ['uses' => 'ProductCategoryController@checkbox', 'as' => 'productcategory.checkbox']);
 

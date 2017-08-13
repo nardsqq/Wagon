@@ -16,15 +16,19 @@
                     <li class="dropdown-main-header"><center>Itemization and Inventory</center></li>
                     <li class="divider"></li>
       							<li class="dropdown-header">Assets</li>
+                    <li class="{{ Request::is('admin/maintenance/warehouse') ? "active" : "" }}">
+                      <a href="{{ url('/admin/maintenance/warehouse') }}"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Warehouse</a>
+                    </li>
                     <li class="{{ Request::is('admin/maintenance/productcategory') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/productcategory') }}"><i class="fa fa-cart-arrow-down fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
                     </li>
-      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Variants Management</a></li>
                     <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Brand</a></li>
-                    <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Product Specifications</a></li>
+                    <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Attributes</a></li>
+                    <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Feature Sets</a></li>
                     <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                     </li>
+                    <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Variants</a></li>
                     <li class="{{ Request::is('admin/maintenance/productinventory') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/productinventory') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Inventory</a>
                     </li>
@@ -35,10 +39,11 @@
                     <li class="dropdown-main-header"><center>Job Appointments and Services</center></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Workforce</li>
-      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Specialization</a></li>
                     <li class="{{ Request::is('admin/maintenance/position') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/position') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Role</a>
                     </li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Skill</a></li>
+                    <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Skill Set</a></li>
                     <li class="{{ Request::is('admin/maintenance/personnel') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
                     </li>
@@ -59,7 +64,7 @@
                     <li class="{{ Request::is('admin/maintenance/vehicletype') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/vehicletype') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
                     </li>
-      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Vehicle Specifications</a></li>
+      							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Specifications</a></li>
                     <li class="{{ Request::is('admin/maintenance/vehicle') ? "active" : "" }}">
                       <a href="{{ url('/admin/maintenance/vehicle') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Vehicle</a>
                     </li>
