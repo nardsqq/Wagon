@@ -68,6 +68,25 @@
 @endsection
 @section('scripts')
   <script>
+    $(document).ready(function(){
 
+      $(document).on('click', '.edit-modal', function(event) {
+        var text = $('#test').text();
+        $('#title').text('Edit Warehouse Details');
+        $('#strWarehouseName').val(text);
+        $('#add_warehouse').modal('show');
+        $('.modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+        $('#btn-save').hide();
+        $('#btn-edit').show();
+      });
+
+      $('#btn-add').on('click', function(event) {
+        $('#title').text('Add Warehouse');
+        $('.modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+        $('#btn-save').show();
+        $('#btn-edit').hide();
+      });
+
+    });
   </script>
 @endsection

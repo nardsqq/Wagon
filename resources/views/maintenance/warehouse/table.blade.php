@@ -10,7 +10,7 @@
   </thead>
   <tbody id="warehouse-list">
     <tr>
-      <td>Jollibee Warehouse</td>
+      <td id="test">Jollibee Warehouse</td>
       <td>Jollitown</td>
       <td>Bida ang Saya</td>
       <td class="text-center">
@@ -18,7 +18,7 @@
         data-onstyle="success" data-offstyle="default" data-on="Active" data-off="Inactive" data-size="mini">
       </td>
       <td class="text-center">
-          <button class="btn btn-info btn-sm btn-detail open-modal"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+          <button class="btn btn-info btn-sm btn-detail edit-modal"><i class='fa fa-edit'></i>&nbsp; Edit</button>
           <button class="btn btn-danger btn-sm btn-delete"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
       </td>
     </tr>

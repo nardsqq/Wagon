@@ -5,13 +5,13 @@ $(document).ready(function(){
    $('#add_productcategory').on('hide.bs.modal', function(){
     $('#formProductCategory').trigger("reset");
 });
-   $('#productcategory-list').on('change', '#isActive',function(e){ 
+   $('#productcategory-list').on('change', '#isActive',function(e){
      $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     })
-     e.preventDefault(); 
+     e.preventDefault();
      var link_id = $(this).val();
      $.ajax({
         url: url2 + '/' + link_id,
@@ -26,7 +26,7 @@ $(document).ready(function(){
     });
  });
     //display modal form for task editing
-    $('#productcategory-list').on('click', '.open-modal',function(){ 
+    $('#productcategory-list').on('click', '.open-modal',function(){
         var link_id = $(this).val();
         id = link_id;
         $.get(url + '/' + link_id + '/edit', function (data) {
@@ -44,13 +44,13 @@ $(document).ready(function(){
         $('#add_productcategory').modal('show');
     });
     //delete task and remove it from list
-    $('#productcategory-list').on('click', '.btn-delete',function(e){ 
+    $('#productcategory-list').on('click', '.btn-delete',function(e){
      $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     })
-     e.preventDefault(); 
+     e.preventDefault();
      var link_id = $(this).val();
      if (confirm("Delete this record?")) {
          $.ajax({
@@ -120,7 +120,7 @@ $(document).ready(function(){
                     table.row($("#id"+data.intProductCategoryID)).remove();
                     table.row.add(row).draw();
                 }
-                $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
                 $('#formProductCategory').trigger("reset");
                 $('#add_productcategory').modal('hide')
