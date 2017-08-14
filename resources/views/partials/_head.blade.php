@@ -12,4 +12,3 @@
     {{-- <link rel="stylesheet" href="{{ asset('/css/custom/btn-round.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/css/custom/btn-color.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('/toastr-master/build/toastr.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/parsley.css') }}">

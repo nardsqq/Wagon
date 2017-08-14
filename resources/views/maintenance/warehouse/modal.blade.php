@@ -1,12 +1,12 @@
 <div class="modal fade" id="add_warehouse" role="dialog">
-  <div class="modal-dialog pulse animated">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="warehouse-modal-header">
         <button class="close" data-dismiss="modal">&times;</button>
         <center><h4 id="title">Add New Warehouse</h4></center>
       </div>
       <div class="modal-body">
-        <form id="formWarehouse" data-parsley-validate>
+        <form id="formWarehouse" method="POST" enctype="multipart/form-data" v-on:submit.prevent="createWarehouse">
           <div class="form-group">
             <label for="strWarehouseName">Warehouse Name</label>
             <input type="text" id="strWarehouseName" name="strWarehouseName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
