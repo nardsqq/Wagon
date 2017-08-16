@@ -28,46 +28,13 @@ For the meantime, we'll be using the .mwb file attached within the project folde
 2. Hit Ctrl + G (Shortcut for *Forward Engineer*) or via *Database* > *Forward Engineer* on your toolbar/ribbon.
 3. This will forward engineer the schema and it will make the database accessible through `localhost/phpMyAdmin`.
 
-### Configurations
-
-For development purposes, we need to configure our Apache environment. In addition, please note that you need to put the project folder within the htdocs folder of xampp.
-
-1. Proceed to `C:\Windows\System32\drivers\etc` and open `hosts` with a text editor then add this line at the bottom: `127.0.0.1  localhost wagon.dev`
-2. Afterwards, go to `C:\xampp\apache\conf\extra` and configure `httpd-vhosts.conf` with a text editor. 
-3. Add the following at the bottom of `httpd-vhosts.conf` file
-
-        <VirtualHost *:80>
-            DocumentRoot "C:/xampp/htdocs/"
-            ServerAdmin admin@localhost
-            ServerName localhost
-
-            <Directory "C:/xampp/htdocs/">
-               Options Indexes FollowSymLinks
-               AllowOverride all
-               Require local
-            </Directory>
-        </VirtualHost>
-
-        <VirtualHost *:80>
-            DocumentRoot "C:/xampp/htdocs/WagonMS/public"
-            ServerAdmin admin@localhost
-            ServerName wagon.dev
-            ServerAlias www.wagon.dev
-
-            <Directory "C:/xampp/htdocs/WagonMS/public">
-               AllowOverride All
-               Options Indexes FollowSymLinks
-               Require local
-            </Directory>
-        </VirtualHost>
-
-
 ### Getting Started
 
 1. After *forward engineering*, open the command prompt in your project's folder.
 2. Run `php -r "file_exists('.env') || copy('.env.example', '.env')";`
 3. Generate a new APP_KEY via `php artisan key:generate` artisan command.
-4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://wagon.dev/admin` on your address bar.
+4. Run `php -S localhost:8080 -t public` on the command line.
+4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin` on your address bar.
 
 ## Contributors
 
