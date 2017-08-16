@@ -6,19 +6,21 @@
         <center><h4 id="title">Add New Warehouse</h4></center>
       </div>
       <div class="modal-body">
-        <form id="formWarehouse" method="POST">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <form id="formWarehouse">
           <div class="form-group">
             <label for="strWarehouseName">Warehouse Name</label>
             <input type="text" id="strWarehouseName" name="strWarehouseName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
             <label for="txtWarehouseLocation">Location</label>
             <textarea class="form-control resize" rows="5" id="txtWarehouseLocation"></textarea>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
             <label for="txtWarehouseDesc">Description</label>
             <textarea class="form-control resize" rows="5" id="txtWarehouseDesc"></textarea>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>
       </div>

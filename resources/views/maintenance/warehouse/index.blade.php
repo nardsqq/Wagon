@@ -65,10 +65,6 @@
   </section>
 @endsection
 
-@section('meta')
-<meta name="_token" content="{!! csrf_token() !!}" />
-@endsection
-
 @section('scripts')
 
   <!-- Delay table load until everything else is loaded -->
@@ -78,7 +74,6 @@
         })
   </script>
 
-  <script src="{{ asset('/js/custom/ajax/warehouse.js/') }}"></script>
-
+  <script src="{{ asset('/js/ajax/warehouse-ajax.js/') }}"></script>
 
 @endsection

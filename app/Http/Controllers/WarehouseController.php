@@ -121,15 +121,4 @@ class WarehouseController extends Controller
 
         return response()->json($warehouse);
     }
-
-    public function changeStatus() 
-    {
-        $id = Input::get('intWarehouseID');
-
-        $warehouse = Warehouse::findOrFail($id);
-        $warehouse->intWarehouseStatus = !$warehouse->intWarehouseStatus;
-        $warehouse->save();
-
-        return response()->json($post);
-    }
 }
