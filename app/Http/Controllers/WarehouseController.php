@@ -27,7 +27,7 @@ class WarehouseController extends Controller
     public function index()
     {
         $warehouses = Warehouse::orderBy('intWarehouseID', 'txtWarehouseDesc')->get();
-        return view('maintenance.warehouse.index', ['warehouses' => $warehouses]);
+        return view('maintenance.warehouse.index')->with('warehouses',$warehouses);
     }
 
     /**
@@ -52,12 +52,19 @@ class WarehouseController extends Controller
         if ($validator->fails()) {
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         } else {
-            $warehouse = new Warehouse;
-            $warehouse->strWarehouseName = trim(ucfirst($request->strWarehouseName));
-            $warehouse->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
-            $warehouse->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
-            $warehouse->save();
-            return response()->json($warehouse);
+            
+            if($request->ajax()) {
+                $warehouse = new Warehouse;
+                $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
+                $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
+                $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
+                $warehouse->save();
+                return response()->json($warehouse);
+            }
+            else
+            {
+                return view('maintenance.warehouse.index');
+            }
         }
     }
 
@@ -80,7 +87,8 @@ class WarehouseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $warehouse = Warehouse::findOrFail($id);
+        return response()->json($warehouse);
     }
 
     /**
@@ -96,12 +104,19 @@ class WarehouseController extends Controller
         if ($validator->fails()) {
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         } else {
-            $warehouse = Warehouse::findOrFail($id);
-            $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
-            $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
-            $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
-            $warehouse->save();
-            return response()->json($warehouse);
+
+            if($request->ajax()) {
+                $warehouse = Warehouse::findOrFail($id);
+                $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
+                $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
+                $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
+                $warehouse->save();
+                return response()->json($warehouse);
+            }
+            else
+            {
+                return view('maintenance.warehouse.index');
+            }
         }
     }
 
