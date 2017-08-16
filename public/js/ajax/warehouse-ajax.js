@@ -38,6 +38,8 @@ $(document).ready(function() {
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
+    $('#add_warehouse').modal('show');
+
   }); 
 
   $("#btn-save").on('click', function (e) {
@@ -50,6 +52,7 @@ $(document).ready(function() {
     console.log(e);
 
   var formData = {
+    _token: $('input[name=_token]').val(),
     strWarehouseName: $('#strWarehouseName').val(),
     txtWarehouseLocation: $('#txtWarehouseLocation').val(),
     txtWarehouseDesc: $('#txtWarehouseDesc').val()
@@ -71,9 +74,6 @@ $(document).ready(function() {
     dataType: 'json',
     success: function (data) {
         console.log(data);
-        if (state == "update"){
-            type: "PUT";
-        }
 
         var row = $("<tr id=id" + data.intWarehouseID +  "></tr>")
         .append(

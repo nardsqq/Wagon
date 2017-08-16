@@ -46,7 +46,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success" data-target="#add_warehouse" data-toggle="modal"><i class="fa fa-plus-square"></i>&nbsp; Add Warehouse</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Warehouse</button>
               </div>
               <div class="panel-title">
                 <h4>Warehouse</h4>
