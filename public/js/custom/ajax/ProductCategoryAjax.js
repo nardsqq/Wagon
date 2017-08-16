@@ -123,7 +123,7 @@ $(document).ready(function(){
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
                 $('#formProductCategory').trigger("reset");
-                $('#add_productcategory').modal('hide')
+                $('#add_productcategory').modal('hide');
             },
             error: function (data) {
                 toastr.options = {"preventDuplicates": true}

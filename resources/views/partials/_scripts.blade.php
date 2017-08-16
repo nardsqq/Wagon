@@ -7,7 +7,7 @@
     <script src="{{ asset('/js/script.js/') }}"></script>
     <script src="{{ asset('/js/parsley.min.js/') }}"></script>
 
-    {{-- <script>
+    <script>
     	$(document).ready(function(){
 		    $('#dataTable').DataTable();
 		    $('body .dropdown-toggle').dropdown();
@@ -18,5 +18,5 @@
               $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
               $("[data-toggle='toggle']").bootstrapToggle();
         });
-    </script> --}}
+    </script>
     @yield('scripts')

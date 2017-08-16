@@ -6,7 +6,7 @@
         <center><h4 id="title">Add New Warehouse</h4></center>
       </div>
       <div class="modal-body">
-        <form id="formWarehouse" method="POST" enctype="multipart/form-data" v-on:submit.prevent="createWarehouse">
+        <form id="formWarehouse" method="POST">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group">
             <label for="strWarehouseName">Warehouse Name</label>
@@ -23,8 +23,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button id="btn-edit" style="display: none;" value="update" class="btn btn-info btn-block">Update</button>
-        <button id="btn-save" value="add" class="btn btn-success btn-block">Submit</button>
+        <button id="btn-save" value="add" class="modal-btn btn btn-success btn-block">Submit</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
