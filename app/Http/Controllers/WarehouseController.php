@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use Validator;
 use App\Warehouse;
 use Response;
+use View;
 
 class WarehouseController extends Controller
 {
+    /*Enforce Validation Rules*/
+    protected $rules =
+    [
+        'strWarehouseName' => 'required|min:2|max:45|regex:/^[a-z ,.\'-]+$/i',
+        'txtWarehouseLocation' => 'required|min:2|max:500|regex:/^[a-z ,.\'-]+$/i',
+        'txtWarehouseDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +26,8 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouses = Warehouse::all();
-        return view('maintenance.warehouse.index')->with('warehouses', $warehouses);
+        $warehouses = Warehouse::orderBy('intWarehouseID', 'txtWarehouseDesc')->get();
+        return view('maintenance.warehouse.index', ['warehouses' => $warehouses]);
     }
 
     /**
@@ -37,12 +48,17 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        $warehouse = new Warehouse;
-        $warehouse -> strWarehouseName = trim(ucfirst($request->strWarehouseName));
-        $warehouse -> txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
-        $warehouse -> txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
-        $warehouse->save();
-        return Response::json($warehouse);
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $warehouse = new Warehouse;
+            $warehouse->strWarehouseName = trim(ucfirst($request->strWarehouseName));
+            $warehouse->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
+            $warehouse->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
+            $warehouse->save();
+            return response()->json($warehouse);
+        }
     }
 
     /**
@@ -76,12 +92,17 @@ class WarehouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $warehouse = Warehouse::find($id);
-        $warehouse -> strWarehouseName = trim(ucfirst($request->strWarehouseName));
-        $warehouse -> txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
-        $warehouse -> txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
-        $warehouse->save();
-        return Response::json($warehouse);
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $warehouse = Warehouse::findOrFail($id);
+            $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
+            $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
+            $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
+            $warehouse->save();
+            return response()->json($warehouse);
+        }
     }
 
     /**
@@ -92,6 +113,21 @@ class WarehouseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $warehouse = Warehouse::findOrFail($id);
+        $warehouse->intWarehouseStatus = 0;
+        $warehouse->delete();
+
+        return response()->json($warehouse);
+    }
+
+    public function changeStatus() 
+    {
+        $id = Input::get('intWarehouseID');
+
+        $warehouse = Warehouse::findOrFail($id);
+        $warehouse->intWarehouseStatus = !$warehouse->intWarehouseStatus;
+        $warehouse->save();
+
+        return response()->json($post);
     }
 }

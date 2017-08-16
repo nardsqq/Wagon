@@ -19,8 +19,8 @@
           data-onstyle="success" data-offstyle="default" data-on="Active" data-off="" data-size="mini">
         </td>
         <td class="text-center">
-            <button class="btn btn-info btn-sm btn-detail edit-modal" @click.prevent="editWarehouse(warehouse)"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-            <button class="btn btn-danger btn-sm btn-delete" @click.prevent="deleteWarehouse(warehouse)"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+            <button class="btn btn-info btn-sm btn-detail edit-modal"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <button class="btn btn-danger btn-sm btn-delete"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
     </tr>
     @endforeach

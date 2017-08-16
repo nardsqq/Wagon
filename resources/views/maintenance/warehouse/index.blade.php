@@ -1,4 +1,5 @@
 @extends('main')
+
 @section('content')
 
  <header id="header">
@@ -63,9 +64,11 @@
 
   </section>
 @endsection
+
 @section('meta')
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
+
 @section('scripts')
   <script>
     $(document).ready(function(){
