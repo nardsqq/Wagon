@@ -31,48 +31,48 @@ $(document).ready(function() {
 
   }); 
 
-  $('#btn-add').on('click', function(event) {
-    $('#title').text('Add Warehouse');
-    $('.modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formWarehouse').trigger("reset");
-    $('#btn-save').text('Submit');
-    $('#btn-save').val("add");
-    $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_warehouse').modal('show');
+    $('#btn-add').on('click', function(event) {
+      $('#title').text('Add Warehouse');
+      $('.modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+      $('#formWarehouse').trigger("reset");
+      $('#btn-save').text('Submit');
+      $('#btn-save').val("add");
+      $('.modal-btn').addClass('btn-success').removeClass('btn-info');
+      $('#add_warehouse').modal('show');
 
-  }); 
+    }); 
 
-  $("#btn-save").on('click', function (e) {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    e.preventDefault();
-    console.log(e);
+    $("#btn-save").on('click', function (e) {
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      e.preventDefault();
+      console.log(e);
 
-  var formData = {
-    _token: $('input[name=_token]').val(),
-    strWarehouseName: $('#strWarehouseName').val(),
-    txtWarehouseLocation: $('#txtWarehouseLocation').val(),
-    txtWarehouseDesc: $('#txtWarehouseDesc').val()
-  };
+      var formData = {
+        _token: $('input[name=_token]').val(),
+        strWarehouseName: $('#strWarehouseName').val(),
+        txtWarehouseLocation: $('#txtWarehouseLocation').val(),
+        txtWarehouseDesc: $('#txtWarehouseDesc').val()
+      };
 
-  var state = $('#btn-save').val();
-  var type = "POST";
-  var my_url = url;
+      var state = $('#btn-save').val();
+      var type = "POST";
+      var my_url = url;
 
-  if (state == "update") {
-    type = "PUT";
-    my_url += '/' + id;
-  }
+    if (state == "update") {
+      type = "PUT";
+      my_url += '/' + id;
+    }
 
-  $.ajax({
-    type: type,
-    url: my_url,
-    data: formData,
-    dataType: 'json',
-    success: function (data) {
+    $.ajax({
+        type: type,
+        url: my_url,
+        data: formData,
+        dataType: 'json'
+    }).done(function(data) {
         console.log(data);
 
         var row = $("<tr id=id" + data.intWarehouseID +  "></tr>")
@@ -100,16 +100,15 @@ $(document).ready(function() {
         $('#add_warehouse').modal('hide')
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
-    },
-    error: function (data) {
-        console.log('Error:', data);
-        toastr.options = {"preventDuplicates": true}
-        var errors = data.responseJSON;
 
-        for (i in errors){
-            toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
-        }
-      }
+    }).fail(function(data) {
+      console.log('Error:', data);
+          toastr.options = {"preventDuplicates": true}
+          var errors = data.responseJSON;
+
+          for (i in errors){
+              toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
+          }
     });
-  });
+  }); // $$("#btn-save").on('click', function (e) {});
 }); // $(document).ready(function() {});

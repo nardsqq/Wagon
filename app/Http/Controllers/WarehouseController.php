@@ -14,7 +14,7 @@ class WarehouseController extends Controller
     /*Enforce Validation Rules*/
     protected $rules =
     [
-        'strWarehouseName' => 'required|min:2|max:45|regex:/^[a-z ,.\'-]+$/i',
+        'strWarehouseName' => 'required|min:2|unique:tblwarehouse|max:45|regex:/^[a-z ,.\'-]+$/i',
         'txtWarehouseLocation' => 'required|min:2|max:500|regex:/^[a-z ,.\'-]+$/i',
         'txtWarehouseDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
     ];
