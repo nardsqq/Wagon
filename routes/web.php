@@ -24,6 +24,7 @@ Route::get('/admin/maintenance', function() {
 });
 
 Route::resource('/admin/maintenance/warehouse','WarehouseController');
+Route::resource('/admin/maintenance/brand','BrandController');
 
 Route::resource('admin/maintenance/productcategory','ProductCategoryController');
 Route::put('admin/maintenance/productcategory/checkbox/{id}', ['uses' => 'ProductCategoryController@checkbox', 'as' => 'productcategory.checkbox']);

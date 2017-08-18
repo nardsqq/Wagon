@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
-use Validator;
 use App\Warehouse;
+use Validator;
 use Response;
 use View;
 
@@ -26,7 +26,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouses = Warehouse::orderBy('intWarehouseID', 'txtWarehouseDesc')->get();
+        $warehouses = Warehouse::orderBy('intWarehouseID', 'strWarehouseName')->get();
         return view('maintenance.warehouse.index')->with('warehouses',$warehouses);
     }
 

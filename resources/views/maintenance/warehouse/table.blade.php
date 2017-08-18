@@ -9,7 +9,7 @@
   </thead>
   <tbody id="warehouse-list">
     @foreach ($warehouses as $warehouse)
-    <tr id="id{{$warehouse->intWarehouseID}}" class="warehouseRow">
+    <tr id="id{{$warehouse->intWarehouseID}}" class="warehouse-row">
         <td>{{ $warehouse->strWarehouseName }}</td>
         <td>{{ $warehouse->txtWarehouseLocation }}</td>
         <td>{{ $warehouse->txtWarehouseDesc }}</td>
