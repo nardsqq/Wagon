@@ -8,7 +8,7 @@
   </thead>
   <tbody id="brand-list">
     @foreach ($brands as $brand)
-    <tr id="id{{$brand->intBrandID}}" class="brand-row">
+    <tr id="id{{$brand->intBrandID}}">
         <td>{{ $brand->strBrandName }}</td>
         <td>{{ $brand->txtBrandDesc }}</td>
         <td class="text-center">

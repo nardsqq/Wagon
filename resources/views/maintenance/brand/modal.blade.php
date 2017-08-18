@@ -2,8 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="brand-modal-header">
-        <button class="close" data-dismiss="modal">&times;</button>
-        <center><h4 id="title">Add New Brand</h4></center>
+        <h4 id="title">Add New Brand</h4>
       </div>
       <div class="modal-body">
         <form id="formBrand">

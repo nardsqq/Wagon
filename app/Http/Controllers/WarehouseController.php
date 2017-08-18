@@ -54,9 +54,9 @@ class WarehouseController extends Controller
         } else {
             
             $warehouse = new Warehouse;
-            $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
-            $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
-            $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
+            $warehouse ->strWarehouseName = trim($request->strWarehouseName);
+            $warehouse ->txtWarehouseLocation = trim($request->txtWarehouseLocation);
+            $warehouse ->txtWarehouseDesc = trim($request->txtWarehouseDesc);
             $warehouse->save();
             return response()->json($warehouse);
         }

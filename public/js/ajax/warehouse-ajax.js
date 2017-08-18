@@ -12,7 +12,7 @@ $(document).ready(function() {
   var url = "/admin/maintenance/warehouse";
   var id = '';
 
-  $('.warehouse-row').on('click', '.open-modal', function() {
+  $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 

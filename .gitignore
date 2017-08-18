@@ -8,5 +8,6 @@ npm-debug.log
 
 /public/js/app.js
 /public/css/app.css
+/public/js/main.js
 /public/mix-manifest\.json
 /public/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular\.svg

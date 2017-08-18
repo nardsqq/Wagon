@@ -12,7 +12,7 @@ $(document).ready(function() {
   var url = "/admin/maintenance/brand";
   var id = '';
 
-  $('.brand-row').on('click', '.open-modal', function() {
+  $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
   }); 
 
     $('#btn-add').on('click', function(event) {
-      $('#title').text('Add Brand');
+      $('#title').text('Add New Brand');
       $('.modal-header').addClass('modal-header-success').removeClass('modal-header-info');
       $('#formBrand').trigger("reset");
       $('#btn-save').text('Submit');
