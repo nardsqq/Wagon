@@ -115,10 +115,6 @@ class WarehouseController extends Controller
      */
     public function destroy($id)
     {
-        $warehouse = Warehouse::findOrFail($id);
-        $warehouse->intWarehouseStatus = 0;
-        $warehouse->delete();
-
-        return response()->json($warehouse);
+        //
     }
 }
