@@ -21,7 +21,9 @@ Route::group(['prefix' => 'admin'], function() {
   Route::group(['prefix' => 'maintenance'], function() {
 
   	Route::get('/', 'RouteController@maintenance');
+    
     Route::resource('warehouse', 'WarehouseController');
+    Route::resource('product-category', 'ProdCategController');
     Route::resource('brand', 'BrandController');
 
   });

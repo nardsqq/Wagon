@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
-use App\Brand;
+use App\ProductCategory;
 use Validator;
 use Response;
 use View;
 
-class BrandController extends Controller
+class ProdCategController extends Controller
 {
+
     /*Enforce Validation Rules*/
     protected $rules =
     [
-        'strBrandName' => 'required|min:2|unique:tblBrand|max:45|regex:/^[a-z ,.\'-]+$/i',
-        'txtBrandDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
+        'strProdCategName' => 'required|min:2|unique:tblProductCategory|max:45|regex:/^[a-z ,.\'-]+$/i',
+        'txtProdCategDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
     ];
 
     /**
@@ -25,8 +26,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('intBrandID', 'strBrandName')->get();
-        return view('maintenance.brand.index')->with('brands', $brands);
+        $prodcategs = ProductCategory::orderBy('intProdCategID', 'strProdCategName')->get();
+        return view('maintenance.product-category.index')->with('prodcategs', $prodcategs);
     }
 
     /**
@@ -51,11 +52,11 @@ class BrandController extends Controller
         if ($validator->fails()) {
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         } else {
-            $brand = new Brand;
-            $brand ->strBrandName = trim(ucfirst($request->strBrandName));
-            $brand ->txtBrandDesc = trim(ucfirst($request->txtBrandDesc));
-            $brand->save();
-            return response()->json($brand);
+            $prodcateg = new ProductCategory;
+            $prodcateg ->strProdCategName = trim(ucfirst($request->strProdCategName));
+            $prodcateg ->txtProdCategDesc = trim(ucfirst($request->txtProdCategDesc));
+            $prodcateg->save();
+            return response()->json($prodcateg);
         }
     }
 
@@ -78,8 +79,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        $brand = Brand::findOrFail($id);
-        return response()->json($brand);
+        $prodcateg = ProductCategory::findOrFail($id);
+        return response()->json($prodcateg);
     }
 
     /**
@@ -91,11 +92,11 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brand = Brand::findOrFail($id);
-        $brand ->strBrandName = trim($request->strBrandName);
-        $brand ->txtBrandDesc = trim($request->txtBrandDesc);
-        $brand->save();
-        return response()->json($brand);
+        $prodcateg = ProductCategory::findOrFail($id);
+        $prodcateg ->strProdCategName = trim($request->strProdCategName);
+        $prodcateg ->txtProdCategDesc = trim($request->txtProdCategDesc);
+        $prodcateg->save();
+        return response()->json($prodcateg);
     }
 
     /**

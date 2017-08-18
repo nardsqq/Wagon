@@ -25,7 +25,7 @@
     </div>
   </section>
 
-  @include('maintenance.productcategory.modal')
+  @include('maintenance.product-category.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -50,7 +50,7 @@
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.productcategory.table')
+                @include('maintenance.product-category.table')
               </div>
             </div>
           </div>
@@ -60,9 +60,15 @@
 
   </section>
 @endsection
-@section('meta')
-<meta name="_token" content="{!! csrf_token() !!}" />
-@endsection
+
 @section('scripts')
-  <script src="{{ asset('/js/custom/ajax/ProductCategoryAjax.js/') }}"></script>
+
+  <!-- Delay table load until everything else is loaded -->
+  <script>
+        $(window).on('load', function(){
+            $('#dataTable').removeAttr('style');
+        })
+  </script>
+
+  <script src="{{ asset('/js/ajax/product-category-ajax.js/') }}"></script>
 @endsection

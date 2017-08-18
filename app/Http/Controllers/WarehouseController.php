@@ -94,17 +94,12 @@ class WarehouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        } else {
-            $warehouse = Warehouse::findOrFail($id);
-            $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
-            $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
-            $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
-            $warehouse->save();
-            return response()->json($warehouse);
-        }
+        $warehouse = Warehouse::findOrFail($id);
+        $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
+        $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
+        $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
+        $warehouse->save();
+        return response()->json($warehouse);
     }
 
     /**

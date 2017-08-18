@@ -102,9 +102,6 @@ $(document).ready(function() {
         // $("[data-toggle='toggle']").bootstrapToggle();
         $('#formWarehouse').trigger("reset");
         $('#add_warehouse').modal('hide')
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
-
     }).fail(function(data) {
       console.log('Error:', data);
           toastr.options = {"preventDuplicates": true}

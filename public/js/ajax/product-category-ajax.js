@@ -5,18 +5,18 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_brand').on('hide.bs.modal', function() {
-        $('#formBrand').trigger('reset');
+  $('#add_prodcateg').on('hide.bs.modal', function() {
+        $('#formProdCateg').trigger('reset');
     });
 
-  var url = "/admin/maintenance/brand";
+  var url = "/admin/maintenance/product-category";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Brand Details');
+    $('#title').text('Edit Product Category');
     $('.modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
@@ -25,23 +25,23 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#strBrandName').val(data.strBrandName);
-      $('#txtBrandDesc').val(data.txtBrandDesc);
+      $('#strProdCategName').val(data.strProdCategName);
+      $('#txtProdCategDesc').val(data.txtProdCategDesc);
       $('#btn-save').val("update");
-      $('#add_brand').modal('show');
+      $('#add_prodcateg').modal('show');
 
     }) 
 
   }); 
 
     $('#btn-add').on('click', function(event) {
-      $('#title').text('Add New Brand');
+      $('#title').text('Add New Product Category');
       $('.modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-      $('#formBrand').trigger("reset");
+      $('#formProdCateg').trigger("reset");
       $('#btn-save').text('Submit');
       $('#btn-save').val("add");
       $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-      $('#add_brand').modal('show');
+      $('#add_prodcateg').modal('show');
 
     }); 
 
@@ -56,8 +56,8 @@ $(document).ready(function() {
 
       var formData = {
         _token: $('input[name=_token]').val(),
-        strBrandName: $('#strBrandName').val(),
-        txtBrandDesc: $('#txtBrandDesc').val(),
+        strProdCategName: $('#strProdCategName').val(),
+        txtProdCategDesc: $('#txtProdCategDesc').val()
       };
 
       var state = $('#btn-save').val();
@@ -77,13 +77,13 @@ $(document).ready(function() {
     }).done(function(data) {
         console.log(data);
 
-        var row = $("<tr id=id" + data.intBrandID +  "></tr>")
+        var row = $("<tr id=id" + data.intProdCategID +  "></tr>")
         .append(
-            "<td>" + data.strBrandName + "</td>" +
-            "<td>" + data.txtBrandDesc + "</td>" +
+            "<td>" + data.strProdCategName + "</td>" +
+            "<td>" + data.txtProdCategDesc + "</td>" +
             "<td class='text-center'>" +
-            "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intBrandID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-            "<button class='btn btn-danger btn-sm btn-delete' value="+data.intBrandID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+            "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intProdCategID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+            "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProdCategID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
             "</td>"
         );
 
@@ -92,15 +92,13 @@ $(document).ready(function() {
             table.row.add(row).draw();
         } 
         else { 
-            table.row($("#id"+data.intBrandID)).remove();
+            table.row($("#id"+data.intProdCategID)).remove();
             table.row.add(row).draw();
         }
         // $("[data-toggle='toggle']").bootstrapToggle('destroy');
         // $("[data-toggle='toggle']").bootstrapToggle();
-        $('#formBrand').trigger("reset");
-        $('#add_brand').modal('hide')
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+        $('#formProdCateg').trigger("reset");
+        $('#add_prodcateg').modal('hide')
 
     }).fail(function(data) {
       console.log('Error:', data);

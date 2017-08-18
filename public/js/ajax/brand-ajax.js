@@ -99,8 +99,6 @@ $(document).ready(function() {
         // $("[data-toggle='toggle']").bootstrapToggle();
         $('#formBrand').trigger("reset");
         $('#add_brand').modal('hide')
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
 
     }).fail(function(data) {
       console.log('Error:', data);
