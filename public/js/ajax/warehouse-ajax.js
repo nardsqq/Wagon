@@ -5,10 +5,14 @@ $(document).ready(function() {
     }
   });
 
+  $('#add_warehouse').on('hide.bs.modal', function() {
+        $('#formWarehouse').trigger('reset');
+    });
+
   var url = "/admin/maintenance/warehouse";
   var id = '';
 
-  $('#warehouse-list').on('click', '.open-modal', function() {
+  $('.warehouseRow').on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
