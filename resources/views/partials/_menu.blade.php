@@ -19,14 +19,13 @@
                 <li class="{{ Request::is('admin/maintenance/warehouse') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/warehouse') }}"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Warehouse</a>
                 </li>
-                <li class="{{ Request::is('admin/maintenance/productcategory') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/productcategory') }}"><i class="fa fa-cart-arrow-down fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
+                <li class="{{ Request::is('admin/maintenance/product-category') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/product-category') }}"><i class="fa fa-cart-arrow-down fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
                 </li>
                 <li class="{{ Request::is('admin/maintenance/brand') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
                 </li>
                 <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Attributes</a></li>
-                <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Feature Sets</a></li>
                 <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                 </li>
