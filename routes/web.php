@@ -11,90 +11,25 @@
 |
 */
 
-Route::get('/admin', function() {
-	return view('admin.index');
-})->name('admin');
+Route::get('/', 'RouteController@index');
 
-Route::get('/admin/maintenance/personnel', function() {
-	return view('maintenance.personnel.index');
-});
+Route::group(['prefix' => 'admin'], function() {
 
-Route::get('/admin/maintenance', function() {
-	return view('maintenance.index');
-});
+  Route::get('/', 'RouteController@admin');
+  Route::get('/dashboard', 'RouteController@dashboard')->name('admin.dashboard');
 
-Route::resource('/admin/maintenance/warehouse','WarehouseController');
-Route::resource('/admin/maintenance/brand','BrandController');
+  Route::group(['prefix' => 'maintenance'], function() {
 
-Route::resource('admin/maintenance/productcategory','ProductCategoryController');
-Route::put('admin/maintenance/productcategory/checkbox/{id}', ['uses' => 'ProductCategoryController@checkbox', 'as' => 'productcategory.checkbox']);
+  	Route::get('/', 'RouteController@maintenance');
+    Route::resource('warehouse', 'WarehouseController');
+    Route::resource('brand', 'BrandController');
 
-Route::resource('admin/maintenance/product','ProductController');
-Route::put('admin/maintenance/product/checkbox/{id}', ['uses' => 'ProductController@checkbox', 'as' => 'product.checkbox']);
+  });
 
-Route::resource('admin/maintenance/productinventory','ProductInventoryController');
-Route::put('admin/maintenance/vehicle/productinventory/{id}', ['uses' => 'ProductInventoryController@checkbox', 'as' => 'productinventory.checkbox']);
+  Route::group(['prefix' => 'transactions'], function() {
 
-Route::resource('admin/maintenance/personnel','PersonnelController');
-Route::put('admin/maintenance/personnel/checkbox/{id}', ['uses' => 'PersonnelController@checkbox', 'as' => 'personnel.checkbox']);
+  	Route::get('/', 'RouteController@transactions');
 
-Route::resource('admin/maintenance/position','PositionController');
-Route::put('admin/maintenance/position/checkbox/{id}', ['uses' => 'PositionController@checkbox', 'as' => 'position.checkbox']);
+  });
 
-Route::resource('admin/maintenance/servicecategory','ServiceCategoryController');
-Route::put('admin/maintenance/servicecategory/checkbox/{id}', ['uses' => 'ServiceCategoryController@checkbox', 'as' => 'servicecategory.checkbox']);
-
-Route::resource('admin/maintenance/service','ServiceController');
-Route::put('admin/maintenance/service/checkbox/{id}', ['uses' => 'ServiceController@checkbox', 'as' => 'service.checkbox']);
-
-Route::resource('admin/maintenance/vehicletype','VehicleTypeController');
-Route::put('admin/maintenance/vehicletype/checkbox/{id}', ['uses' => 'VehicleTypeController@checkbox', 'as' => 'vehicletype.checkbox']);
-
-Route::resource('admin/maintenance/vehicle','VehicleController');
-Route::put('admin/maintenance/vehicle/checkbox/{id}', ['uses' => 'VehicleController@checkbox', 'as' => 'vehicle.checkbox']);
-
-Route::resource('admin/transactions/client','ClientController');
-
-Route::get('/admin/transactions/ship', function() {
-	return view('transactions.ship.index');
-});
-
-Route::get('/admin/transactions/inquiry', function() {
-	return view('transactions.inquiry.index');
-});
-
-Route::get('/admin/transactions/quotation', function() {
-	return view('transactions.quotation.index');
-});
-
-Route::get('/admin/transactions/salesorder', function() {
-	return view('transactions.salesorder.index');
-});
-
-Route::get('/admin/transactions/joborder', function() {
-	return view('transactions.joborder.index');
-});
-
-Route::get('/admin/transactions/deliveryschedule', function() {
-	return view('transactions.deliveryschedule.index');
-});
-
-Route::get('/admin/transactions/jobdeploymentschedule', function() {
-	return view('transactions.jobdeploymentschedule.index');
-});
-
-Route::get('/admin/transactions/deliveryrequest', function() {
-	return view('transactions.deliveryrequest.index');
-});
-
-Route::get('/admin/transactions/vehiclerequest', function() {
-	return view('transactions.vehiclerequest.index');
-});
-
-Route::get('/admin/transactions/obanditinerary', function() {
-	return view('transactions.obanditinerary.index');
-});
-
-Route::get('/admin/transactions/gatepass', function() {
-	return view('transactions.gatepass.index');
 });

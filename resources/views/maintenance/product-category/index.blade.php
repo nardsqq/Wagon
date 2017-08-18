@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-10">
-          <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Maintenance</h1>
+          <h1><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Maintenance</h1>
         </div>
       </div>
     </div>
