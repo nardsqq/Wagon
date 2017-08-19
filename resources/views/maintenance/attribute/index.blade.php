@@ -74,6 +74,6 @@
         })
   </script>
 
-  <script src="{{ asset('/js/ajax/attribute-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/attributes-ajax.js/') }}"></script>
 
 @endsection
