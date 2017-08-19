@@ -20,6 +20,7 @@
     "bootstrap-select": "^1.12.4",
     "bootstrap-toggle": "^2.2.2",
     "font-awesome": "^4.7.0",
+    "icheck": "^1.0.2",
     "parsleyjs": "^2.7.2"
   }
 }

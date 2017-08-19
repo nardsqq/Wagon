@@ -21,5 +21,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
     'public/js/bootstrap/bootstrap-toggle.min.js',
     'public/toastr-master/build/toastr.min.js',
     'public/js/script.js/',
-    'public/js/parsley.min.js/'
+    'public/js/parsley.min.js/',
+    'public/js/icheck.js/'
 	], 'public/js/main.js');
