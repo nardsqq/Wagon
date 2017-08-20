@@ -63,7 +63,7 @@ $(document).ready(function() {
         strProdName: $('#strProdName').val(),
         strProdHandle: $('#strProdHandle').val(),
         strProdSKU: $('#strProdSKU').val(),
-        txtProdDesc: $('#txtProdDesc').val()
+        txtProdDesc: $('#txtProdDesc').val(),
       };
 
       var state = $('#btn-save').val();
@@ -84,7 +84,7 @@ $(document).ready(function() {
         console.log(data);
 
         var row = $("<tr id=id" + data.intProdID +  "></tr>")
-        .append(
+        .prepend(
             "<td>" + data.strProdCategName + "</td>" +
             "<td>" + data.strProdName + "</td>" +
             "<td>" + data.strProdHandle + "</td>" +
@@ -127,7 +127,7 @@ $(document).ready(function() {
           "showMethod": "slideDown",
           "hideMethod": "fadeOut"
         }
-        
+
         var errors = data.responseJSON;
 
         for (i in errors){

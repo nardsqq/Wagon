@@ -56,22 +56,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, Product::$rules);
+        $prodcateg = ProductCategory::find($request->intProdProdCateID);
         $product = new Product;
+        $product->prodcateg()->associate($prodcateg);
         $product->intProdProdCateID = $request->intProdProdCateID;
         $product->strProdName = trim(ucwords($request->strProdName));
         $product->strProdHandle = trim(ucwords($request->strProdHandle));
         $product->strProdSKU = trim(strtoupper($request->strProdSKU));
         $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
         $product->save();
-
-        $product = DB::table('tblProduct')
-            ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
-            ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
-            ->get();
-
-        foreach ($product as $prod) {
-            $product = $prod;
-        }
 
         return response()->json($product);
     }
@@ -117,15 +110,14 @@ class ProductController extends Controller
         $product->save();
 
         $product = DB::table('tblProduct')
-            ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
-            ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
-            ->get();
+        ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
+        ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
+        ->get();
 
-        foreach ($product as $prod) {
-            $product = $prod;
+        foreach ($product as $b) {
+            $product=$b;
         }
-
-        return response()->json($product);
+        return Response::json($product);
     }
 
     /**

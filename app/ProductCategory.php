@@ -10,4 +10,8 @@ class ProductCategory extends Model
   protected $fillable = ['strProdCategName', 'txtProdCategDesc'];
   protected $primaryKey = 'intProdCategID';
   public $timestamps = false;
+
+  public function product() {
+	return $this->hasMany('App\Product', 'intProdCategID');
+  }
 }

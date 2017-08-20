@@ -11,6 +11,10 @@ class Product extends Model
   protected $primaryKey = 'intProdID';
   public $timestamps = false;
 
+  public function prodcateg() {
+	return $this->belongsTo('App\ProductCategory', 'intProdProdCateID');
+  }
+
   public static $rules = [
     'strProdName' => 'required|unique_with:tblproduct,intProdProdCateID,strProdHandle',
     'intProdProdCateID' => 'required'

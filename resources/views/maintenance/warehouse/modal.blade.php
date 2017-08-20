@@ -32,3 +32,21 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="del_warehouse">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-danger" id="warehouse-del-modal-header">
+        <h4 id="title">Delete Warehouse Record</h4>
+      </div>
+      <div class="modal-body">
+        <h4><b>Warning, you are about to delete a warehouse data and all its contents. This action cannot be undone. Delete <i id="warehousedel">Warehouse</i> ?</b></h4>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
+        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Data</button>
+        <input type="hidden" id="link_id" name="link_id" value="0">
+      </div>
+    </div>
+  </div>
+</div>
