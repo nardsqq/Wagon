@@ -17,8 +17,9 @@
 
 <script>
 	$('input').iCheck({
-        radioClass: 'iradio_flat',
-    });
+    radioClass: 'iradio_flat',
+    checkboxClass: 'icheckbox_flat',
+  });
 </script>
 
 @yield('scripts')
