@@ -7,10 +7,32 @@ $(document).ready(function() {
 
   $('#add_warehouse').on('hide.bs.modal', function() {
         $('#formWarehouse').trigger('reset');
-    });
+  });
 
   var url = "/admin/maintenance/warehouse";
+  var cboxurl = "/admin/maintenance/department/checkbox";
   var id = '';
+
+  $(document).on('change', '#intWarehouseStatus', function(e){ 
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
+     e.preventDefault(); 
+     var link_id = $(this).val();
+     $.ajax({
+        url: cboxurl + '/' + link_id,
+        type: "PUT",
+        success: function (data) {
+            console.log(link_id);
+        },
+        error: function (data) {
+            console.log(url + '/' + link_id);
+            console.log('Error:', data);
+        }
+    });
+ });
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
@@ -140,6 +162,7 @@ $(document).ready(function() {
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
+    var checkstate = "checked";
 
   if (state == "update") {
     type = "PUT";
@@ -153,6 +176,11 @@ $(document).ready(function() {
       dataType: 'json'
   }).done(function(data) {
       console.log(data);
+      if (state == "update"){
+          if(!data.intWarehouseStatus){
+              checkstate = "";
+          }
+      }
 
       var row = $("<tr id=id" + data.intWarehouseID +  "></tr>")
       .append(
@@ -173,8 +201,8 @@ $(document).ready(function() {
           table.row($("#id"+data.intWarehouseID)).remove();
           table.row.add(row).draw();
       }
-      // $("[data-toggle='toggle']").bootstrapToggle('destroy');
-      // $("[data-toggle='toggle']").bootstrapToggle();
+      $("[data-toggle='toggle']").bootstrapToggle('destroy');
+      $("[data-toggle='toggle']").bootstrapToggle();
       $('#formWarehouse').trigger("reset");
       $('#add_warehouse').modal('hide')
   }).fail(function(data) {

@@ -8,6 +8,7 @@ use App\Warehouse;
 use Validator;
 use Response;
 use View;
+use DB;
 
 class WarehouseController extends Controller
 {
@@ -19,6 +20,18 @@ class WarehouseController extends Controller
         'txtWarehouseDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
     ];
 
+    public function checkbox($id)
+    {
+        $warehouse = Warehouse::findOrFail($id);
+        if($warehouse->intWarehouseStatus) {
+            $warehouse->intWarehouseStatus=0;
+        }
+        else {
+            $warehouse->intWarehouseStatus=1;
+        }
+        $warehouse->save();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +39,10 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouses = Warehouse::orderBy('intWarehouseID', 'strWarehouseName')->get();
+        $warehouses = DB::table('tblWarehouse')
+            ->select('tblWarehouse.*')
+            ->where('isDeleted', '=', 0)
+            ->get();
         return view('maintenance.warehouse.index')->with('warehouses',$warehouses);
     }
 
@@ -111,10 +127,8 @@ class WarehouseController extends Controller
     public function destroy($id)
     {
         $warehouse = Warehouse::findOrFail($id);
-        $name = $warehouse->strWarehouseName;
-        $warehouse->update([
-            'isDeleted' => 1
-        ]);
+        $warehouse->isDeleted = 1;
+        $warehouse->intWarehouseStatus = 0;
         $warehouse->save();
         return response()->json($warehouse);
     }
