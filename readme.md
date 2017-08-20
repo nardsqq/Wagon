@@ -37,12 +37,12 @@ For the meantime, we'll be using the .mwb file attached within the project folde
 3. Run `php -S localhost:8080 -t public` on the command shell.
 4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin` on your address bar.
 
-#### Note to Collaborators
+#### Note to Contributors
 
 1. Always pull the latest commit from the remote repository to avoid problems.
 2. Check for `[NPM]` and `[COMP]` tags. If a commit has one or both of these tags, execute `npm run dev` and/or `composer install` commands on the shell to install and/or compile assets.
 3. **BUG REPORTS** and **CONTRIBUTIONS** are always welcome.
-4. To submit a bug report, please go to issue [#2] and read the instructions.
+4. To submit a bug report, please go to issue [[#2]](https://github.com/user/repo/blob/branch/other_file.md) and read the instructions.
 
 ## Contributors
 
