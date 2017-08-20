@@ -57,7 +57,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->intProdProdCateID = $request->intProdProdCateID;
         $product->strProdName = trim(ucwords($request->strProdName));
-        $product->strProdHandle = trim(ucfirst($request->strProdHandle));
+        $product->strProdHandle = trim(ucwords($request->strProdHandle));
         $product->strProdSKU = trim(strtoupper($request->strProdSKU));
         $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
         $product->save();
@@ -65,14 +65,13 @@ class ProductController extends Controller
         $product = DB::table('tblProduct')
             ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
             ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
-            ->where('tblProduct.intProdStatus', '=', 1)
             ->get();
 
         foreach ($product as $prod) {
             $product = $prod;
         }
 
-        return Response::json($product);
+        return response()->json($product);
     }
 
     /**
@@ -107,7 +106,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->intProdProdCateID = $request->intProdProdCateID;
+        $product->strProdName = trim(ucwords($request->strProdName));
+        $product->strProdHandle = trim(ucfirst($request->strProdHandle));
+        $product->strProdSKU = trim(strtoupper($request->strProdSKU));
+        $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+        $product->save();
+
+        $product = DB::table('tblProduct')
+            ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
+            ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
+            ->get();
+
+        foreach ($product as $prod) {
+            $product = $prod;
+        }
+
+        return response()->json($product);
     }
 
     /**
