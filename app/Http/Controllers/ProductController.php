@@ -65,8 +65,18 @@ class ProductController extends Controller
         $product->strProdSKU = trim(strtoupper($request->strProdSKU));
         $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
         $product->save();
+        
+        $product = DB::table('tblProduct')
+        ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
+        ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
+        ->get();
 
-        return response()->json($product);
+        foreach ($product as $b) {
+            $product=$b;
+        }
+        return Response::json($product);
+
+        // return response()->json($product);
     }
 
     /**
