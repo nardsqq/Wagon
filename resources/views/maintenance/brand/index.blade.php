@@ -69,9 +69,9 @@
 
   <!-- Delay table load until everything else is loaded -->
   <script>
-        $(window).on('load', function(){
-            $('#dataTable').removeAttr('style');
-        })
+    $(window).on('load', function(){
+        $('#dataTable').removeAttr('style');
+    })
   </script>
 
   <script src="{{ asset('/js/ajax/brand-ajax.js/') }}"></script>
