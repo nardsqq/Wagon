@@ -115,22 +115,11 @@ return [
     */
 
     'attributes' => [
-        'strDepartmentName' => 'Department Name',
-        'strProductCategoryName' => 'Product Category',
-        'strPositionName' => 'Position Name',
-        'strServiceCategName' => 'Service Category',
-        'strVehicleTypeName' => 'Vehicle Type',
-        'strPersContactNumber' => 'Contact Number',
-        'strPersFName' => 'First Name',
-        'strPersMName' => 'Middle Name',
-        'strPersLName' => 'Last Name',
-        'strProductName' => 'Product',
-        'intProductCategory' => 'Product Category',
-        'strProductSerialNumber' => 'Serial Number',
-        'strProdInventoryStatusName' => 'Inventory Status',
-        'strServiceName' => 'Service Name',
-        'strDesc' => 'Description',
-        'intServiceCategory' => 'Service Category',
+        'strProdName' => 'Product Name',
+        'strProdHandle' => 'Product Handle',
+        'strProdCategName' => 'Product Category',
+        'intProdCateg' => 'Product Category',
+        'intProdProdCateID' => 'Product Category',
     ],
 
 ];

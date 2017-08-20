@@ -14,6 +14,7 @@ use DB;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -54,6 +55,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Product::$rules);
         $product = new Product;
         $product->intProdProdCateID = $request->intProdProdCateID;
         $product->strProdName = trim(ucwords($request->strProdName));

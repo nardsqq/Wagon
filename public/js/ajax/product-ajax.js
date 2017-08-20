@@ -108,13 +108,31 @@ $(document).ready(function() {
         $('#formProduct').trigger("reset");
         $('#add_product').modal('hide')
     }).fail(function(data) {
-      console.log('Error:', data);
-          toastr.options = {"preventDuplicates": true}
-          var errors = data.responseJSON;
+        console.log('Error:', data);
 
-          for (i in errors){
-              toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
-          }
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": true,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "slideDown",
+          "hideMethod": "fadeOut"
+        }
+        
+        var errors = data.responseJSON;
+
+        for (i in errors){
+            toastr.error(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
+        }
     });
   }); // $$("#btn-save").on('click', function (e) {});
 }); // $(document).ready(function() {});

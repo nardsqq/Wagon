@@ -10,4 +10,9 @@ class Product extends Model
   protected $fillable = ['strProdName', 'strProdHandle', 'strProdSKU', 'txtProdDesc'];
   protected $primaryKey = 'intProdID';
   public $timestamps = false;
+
+  public static $rules = [
+    'strProdName' => 'required|unique_with:tblproduct,intProdProdCateID,strProdHandle',
+    'intProdProdCateID' => 'required'
+  ];
 }
