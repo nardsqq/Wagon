@@ -25,7 +25,7 @@ class ProductController extends Controller
         $products = DB::table('tblProduct')
             ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
             ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
-            ->where('tblProduct.intProdStatus', '=', 1)
+            ->where('tblProduct.isDeleted', '=', 0)
             ->orderBy('tblProduct.intProdID')
             ->get();
 
@@ -65,7 +65,7 @@ class ProductController extends Controller
         $product->strProdSKU = trim(strtoupper($request->strProdSKU));
         $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
         $product->save();
-        
+
         $product = DB::table('tblProduct')
         ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
         ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
@@ -138,6 +138,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->isDeleted = 1;
+        $product->intWarehouseStatus = 0;
+        $product->save();
+        return response()->json($product);
     }
 }

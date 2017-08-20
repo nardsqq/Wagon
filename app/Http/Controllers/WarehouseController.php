@@ -20,18 +20,6 @@ class WarehouseController extends Controller
         'txtWarehouseDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
     ];
 
-    public function checkbox($id)
-    {
-        $warehouse = Warehouse::findOrFail($id);
-        if($warehouse->intWarehouseStatus) {
-            $warehouse->intWarehouseStatus=0;
-        }
-        else {
-            $warehouse->intWarehouseStatus=1;
-        }
-        $warehouse->save();
-    }
-
     /**
      * Display a listing of the resource.
      *

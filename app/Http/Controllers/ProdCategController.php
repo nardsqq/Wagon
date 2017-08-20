@@ -8,6 +8,7 @@ use App\ProductCategory;
 use Validator;
 use Response;
 use View;
+use DB;
 
 class ProdCategController extends Controller
 {
@@ -26,7 +27,11 @@ class ProdCategController extends Controller
      */
     public function index()
     {
-        $prodcategs = ProductCategory::orderBy('intProdCategID', 'strProdCategName')->get();
+        $prodcategs = DB::table('tblProductCategory')
+            ->select('tblProductCategory.*')
+            ->where('isDeleted', '=', 0)
+            ->orderBy('intProdCategID', 'strProdCategName')
+            ->get();
         return view('maintenance.product-category.index')->with('prodcategs', $prodcategs);
     }
 
@@ -53,7 +58,7 @@ class ProdCategController extends Controller
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         } else {
             $prodcateg = new ProductCategory;
-            $prodcateg ->strProdCategName = trim(ucfirst($request->strProdCategName));
+            $prodcateg ->strProdCategName = trim(ucwords($request->strProdCategName));
             $prodcateg ->txtProdCategDesc = trim(ucfirst($request->txtProdCategDesc));
             $prodcateg->save();
             return response()->json($prodcateg);
@@ -107,6 +112,10 @@ class ProdCategController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prodcateg = ProductCategory::findOrFail($id);
+        $prodcateg->isDeleted = 1;
+        $prodcateg->intProdCategStatus = 0;
+        $prodcateg->save();
+        return response()->json($prodcateg);
     }
 }
