@@ -73,6 +73,7 @@ $(document).ready(function() {
     if (state == "update") {
       type = "PUT";
       my_url += '/' + id;
+      console.log(my_url)
     }
 
     $.ajax({

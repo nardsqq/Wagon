@@ -31,7 +31,7 @@ class WarehouseController extends Controller
             ->select('tblWarehouse.*')
             ->where('isDeleted', '=', 0)
             ->get();
-        return view('maintenance.warehouse.index')->with('warehouses',$warehouses);
+        return view('maintenance.warehouse.index')->with('warehouses', $warehouses);
     }
 
     /**

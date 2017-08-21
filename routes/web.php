@@ -22,11 +22,16 @@ Route::group(['prefix' => 'admin'], function() {
 
   	Route::get('/', 'RouteController@maintenance');
     
+
+    // Product Building and Inventory
     Route::resource('warehouse', 'WarehouseController');
     Route::resource('product-category', 'ProdCategController');
     Route::resource('brand', 'BrandController');
     Route::resource('attributes', 'AttributeController');
     Route::resource('product', 'ProductController');
+
+    // Personnel
+    Route::resource('role', 'RoleController');
 
 
   });

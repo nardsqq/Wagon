@@ -2,8 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="warehouse-modal-header">
-        <button class="close" data-dismiss="modal">&times;</button>
-        <center><h4 id="title">Add New Warehouse</h4></center>
+        <h4 id="title">Add New Warehouse</h4>
       </div>
       <div class="modal-body">
         <form id="formWarehouse">
@@ -34,13 +33,13 @@
 </div>
 
 <div class="modal fade" id="del_warehouse">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header modal-header-danger" id="warehouse-del-modal-header">
-        <h4 id="title">Delete Warehouse Record</h4>
+        <center><h4 id="title">Delete Warehouse Record</h4></center>
       </div>
       <div class="modal-body">
-        <h4><b>Warning, you are about to delete a warehouse data and all its contents. This action cannot be undone. Delete <i id="warehousedel">Warehouse</i> ?</b></h4>
+        <center><h5><b>You are about to delete a warehouse data and all its contents. This action cannot be undone. Delete Warehouse?</b></h5></center>
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>

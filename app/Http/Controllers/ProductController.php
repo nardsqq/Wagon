@@ -74,7 +74,7 @@ class ProductController extends Controller
         foreach ($product as $b) {
             $product=$b;
         }
-        return Response::json($product);
+        return response()->json($product);
 
         // return response()->json($product);
     }
@@ -111,6 +111,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return Input::all();
+
         $product = Product::findOrFail($id);
         $product->intProdProdCateID = $request->intProdProdCateID;
         $product->strProdName = trim(ucwords($request->strProdName));
@@ -127,7 +129,7 @@ class ProductController extends Controller
         foreach ($product as $b) {
             $product=$b;
         }
-        return Response::json($product);
+        return response()->json($product);
     }
 
     /**
