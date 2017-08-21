@@ -183,6 +183,7 @@ $(document).ready(function() {
       );
 
       var table = $('#dataTable').DataTable();
+      
       if (state == "add") { 
           table.row.add(row).draw();
           toastr.options = {

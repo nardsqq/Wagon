@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin'], function() {
 
     // Personnel
     Route::resource('role', 'RoleController');
+    Route::resource('skill', 'SkillController');
 
 
   });

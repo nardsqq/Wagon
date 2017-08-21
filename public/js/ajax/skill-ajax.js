@@ -5,19 +5,19 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_role').on('hide.bs.modal', function() {
-        $('#formRole').trigger('reset');
+  $('#add_skill').on('hide.bs.modal', function() {
+        $('#formSkill').trigger('reset');
   });
 
-  var url = "/admin/maintenance/role";
+  var url = "/admin/maintenance/skill";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Role Record');
-    $('#role-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#title').text('Edit Skill Record');
+    $('#skill-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -25,10 +25,10 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#strRoleName').val(data.strRoleName);
-      $('#txtRoleDesc').val(data.txtRoleDesc);
+      $('#strSkillName').val(data.strSkillName);
+      $('#txtSkillDesc').val(data.txtSkillDesc);
       $('#btn-save').val("update");
-      $('#add_role').modal('show');
+      $('#add_skill').modal('show');
 
     }) 
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
-      $('#del_role').modal('show');
+      $('#del_skill').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -59,7 +59,7 @@ $(document).ready(function() {
 
               var table = $('#dataTable').DataTable();
               table.row($("#id" + id)).remove().draw();
-              $('#del_role').modal('hide');
+              $('#del_skill').modal('hide');
 
               toastr.options = {
                 "closeButton": false,
@@ -79,7 +79,7 @@ $(document).ready(function() {
                 "hideMethod": "slideUp"
               }
 
-              toastr.success("Successfully Deleted Role Record");
+              toastr.success("Successfully Deleted Skill Record");
           },
           error: function (data) {
               console.log(url + '/' + id);
@@ -109,13 +109,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add Role');
-    $('#role-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formRole').trigger("reset");
+    $('#title').text('Add Skill');
+    $('#skill-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formSkill').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_role').modal('show');
+    $('#add_skill').modal('show');
 
   }); 
 
@@ -126,12 +126,13 @@ $(document).ready(function() {
         }
     });
     e.preventDefault();
+
     console.log(e);
 
     var formData = {
       _token: $('input[name=_token]').val(),
-      strRoleName: $('#strRoleName').val(),
-      txtRoleDesc: $('#txtRoleDesc').val()
+      strSkillName: $('#strSkillName').val(),
+      txtSkillDesc: $('#txtSkillDesc').val()
     };
 
     var state = $('#btn-save').val();
@@ -141,6 +142,26 @@ $(document).ready(function() {
   if (state == "update") {
     type = "PUT";
     my_url += '/' + id;
+
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": true,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": true,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "slideDown",
+      "hideMethod": "slideUp"
+    }
+
+    toastr.info("Successfully Updated Skill Record");
   }
 
   $.ajax({
@@ -151,36 +172,56 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intRoleID +  "></tr>")
+      var row = $("<tr id=id" + data.intSkillID +  "></tr>")
       .append(
-          "<td>" + data.strRoleName + "</td>" +
-          "<td>" + data.txtRoleDesc + "</td>" +
+          "<td>" + data.strSkillName + "</td>" +
+          "<td>" + data.txtSkillDesc + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intRoleID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intRoleID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intSkillID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intSkillID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
       var table = $('#dataTable').DataTable();
+
       if (state == "add") { 
           table.row.add(row).draw();
-      } 
+          toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+          }
+
+          toastr.success("Successfully Added a New Skill Record");
+      }  
       else { 
-          table.row($("#id"+data.intRoleID)).remove();
+          table.row($("#id"+data.intSkillID)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formRole').trigger("reset");
-      $('#add_role').modal('hide')
+      $('#formSkill').trigger("reset");
+      $('#add_skill').modal('hide')
   }).fail(function(data) {
-    console.log('Error:', data);
-        toastr.options = {"preventDuplicates": true}
-        var errors = data.responseJSON;
+      console.log('Error:', data);
+      toastr.options = {"preventDuplicates": true}
+      var errors = data.responseJSON;
 
-        for (i in errors){
-            toastr.error(errors[i]+'\n','INPUT ERROR', {timeOut: 2000});
-        }
+      for (i in errors){
+          toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
+      }
     });
   }); // $$("#btn-save").on('click', function (e) {});
 }); // $(document).ready(function() {});

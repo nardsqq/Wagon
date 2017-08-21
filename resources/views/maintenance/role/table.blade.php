@@ -6,7 +6,7 @@
       <th class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody id="warehouse-list">
+  <tbody id="skill-list">
     @foreach ($roles as $role)
     <tr id=" id{{ $role->intRoleID }}">
         <td>{{ $role->strRoleName }}</td>
