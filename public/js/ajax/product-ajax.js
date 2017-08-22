@@ -15,27 +15,108 @@ $(document).ready(function() {
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
+    console.log(id);
 
     $('#title').text('Edit Product Details');
     $('.modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
-    $.get(url + '/' + link_id + '/edit', function (data) {
-      console.log(url + '/' + link_id + '/edit');
-      console.log(data);
+    $.ajax({
+        type: "GET",
+        url: url + '/' + id + '/edit',
+        data: { intProdID: id, },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
 
-      $('#intProdProdCateID').val(data.intProdProdCateID);
-      $('#strProdName').val(data.strProdName);
-      $('#strProdHandle').val(data.strProdHandle);
-      $('#strProdSKU').val(data.strProdSKU);
-      $('#txtProdDesc').val(data.txtProdDesc);
-      $('#btn-save').val("update");
-      $('#add_product').modal('show');
+            $('#intProdProdCateID').val(data.intProdProdCateID);
+            $("input[name=strProdName]").val(data.strProdName);
+            $('#strProdHandle').val(data.strProdHandle);
+            $('#strProdSKU').val(data.strProdSKU);
+            $('#txtProdDesc').val(data.txtProdDesc);
+            $('#btn-save').val("update");
+            $('#add_product').modal('show');
+        },
+        error: function (data) {
+          console.log(data);
+        },
+    });
+  });
 
-    }) 
+  $(document).on('click', '.btn-delete', function() {
+      var link_id = $(this).val();
+      id = link_id;
+      console.log(id)
+      $('#del_product').modal('show');
+  });
 
-  }); 
+  $('#btn-del-confirm').on('click', function(e) { 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
+    e.preventDefault();
+
+    $.ajax({
+        type: "DELETE",
+        url: url + '/' + id,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            console.log(url);
+
+            var table = $('#dataTable').DataTable();
+            table.row($("#id" + id)).remove().draw();
+            $('#del_product').modal('hide');
+
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": true,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "slideDown",
+              "hideMethod": "slideUp"
+            }
+
+            toastr.success("Successfully Deleted Product Record");
+        },
+        error: function (data) {
+            console.log(url + '/' + id);
+            console.log('Error:', data);
+
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": true,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "slideDown",
+              "hideMethod": "slideUp"
+            }
+
+            toastr.error("It seems like this record is still in use in other processes. Record removal failed.");
+        }
+    });
+  });  
 
     $('#btn-add').on('click', function(event) {
       $('#title').text('Add Product');
@@ -57,24 +138,20 @@ $(document).ready(function() {
       e.preventDefault();
       console.log(e);
 
-      var formData = {
-        _token: $('input[name=_token]').val(),
-        intProdProdCateID: $('#intProdProdCateID').val(),
-        strProdName: $('#strProdName').val(),
-        strProdHandle: $('#strProdHandle').val(),
-        strProdSKU: $('#strProdSKU').val(),
-        txtProdDesc: $('#txtProdDesc').val(),
-      };
-
+      var formData = $("#formProduct").serialize();
       var state = $('#btn-save').val();
       var type = "POST";
       var my_url = url;
 
-    if (state == "update") {
+
+    if(state === "add")
+      type = "POST";
+    else {
       type = "PUT";
       my_url += '/' + id;
-      console.log(my_url)
     }
+
+    console.log("" + type + ": " + my_url);
 
     $.ajax({
         type: type,
@@ -85,8 +162,8 @@ $(document).ready(function() {
         console.log(data);
 
         var row = $("<tr id=id" + data.intProdID +  "></tr>")
-        .prepend(
-            "<td>" + data.strProdCategName + "</td>" +
+        .append(
+            "<td>" + data.prodcateg.strProdCategName + "</td>" +
             "<td>" + data.strProdName + "</td>" +
             "<td>" + data.strProdHandle + "</td>" +
             "<td>" + data.strProdSKU + "</td>" +

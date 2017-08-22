@@ -11,7 +11,7 @@
   <tbody id="product-list">
     @foreach ($products as $product)
     <tr id="id{{$product->intProdID}}">
-        <td>{{ $product->strProdCategName }}</td>
+        <td>{{ $product->prodcateg->strProdCategName }}</td>
         <td>{{ $product->strProdName }}</td>
         <td>{{ $product->strProdHandle }}</td>
         <td>{{ $product->strProdSKU }}</td>

@@ -76,7 +76,7 @@
                 </li>
   							<li class="divider"></li>
   							<li class="dropdown-header">Payment</li>
-  							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Price</a></li>
+  							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Base Price</a></li>
   							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Discount</a></li>
                 <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Mode of Payment</a></li>
                 <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Delivery Charge</a></li>

@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\ProductCategory;
 use App\Product;
-use Validator;
-use Response;
-use View;
-use DB;
-
 
 class ProductController extends Controller
 {
@@ -22,19 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = DB::table('tblProduct')
-            ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
-            ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
-            ->where('tblProduct.isDeleted', '=', 0)
-            ->orderBy('tblProduct.intProdID')
-            ->get();
-
-        $prodcategs = DB::table('tblProductCategory')
-            ->select('tblProductCategory.*')
-            ->where('tblProductCategory.intProdCategStatus', '=', 1)
-            ->get();
-
+        $prodcategs = ProductCategory::where('isDeleted', 0)->get();
+        $products = Product::where('isDeleted', 0)->get();
         return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs);
+        // return view('maintenance.product.index', compact('products', 'prodcategs'));
     }
 
     /**
@@ -55,28 +40,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Product::$rules);
-        $prodcateg = ProductCategory::find($request->intProdProdCateID);
-        $product = new Product;
-        $product->prodcateg()->associate($prodcateg);
-        $product->intProdProdCateID = $request->intProdProdCateID;
-        $product->strProdName = trim(ucwords($request->strProdName));
-        $product->strProdHandle = trim(ucwords($request->strProdHandle));
-        $product->strProdSKU = trim(strtoupper($request->strProdSKU));
-        $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
-        $product->save();
-
-        $product = DB::table('tblProduct')
-        ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
-        ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
-        ->get();
-
-        foreach ($product as $b) {
-            $product=$b;
+        if ($request->ajax()) {
+            $this->validate($request, Product::$rules);
+            $prodcateg = ProductCategory::find($request->intProdProdCateID);
+            $product = new Product();
+            $product->prodcateg()->associate($prodcateg);
+            $product->strProdName = trim(ucwords($request->strProdName));
+            $product->strProdHandle = trim(ucwords($request->strProdHandle));
+            $product->strProdSKU = trim(strtoupper($request->strProdSKU));
+            $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+            $product->save();
+            return response()->json($product);
+        } else {
+            return redirect(route('product.index'));
         }
-        return response()->json($product);
-
-        // return response()->json($product);
     }
 
     /**
@@ -111,25 +88,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Input::all();
-
-        $product = Product::findOrFail($id);
-        $product->intProdProdCateID = $request->intProdProdCateID;
-        $product->strProdName = trim(ucwords($request->strProdName));
-        $product->strProdHandle = trim(ucfirst($request->strProdHandle));
-        $product->strProdSKU = trim(strtoupper($request->strProdSKU));
-        $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
-        $product->save();
-
-        $product = DB::table('tblProduct')
-        ->join('tblProductCategory', 'tblProduct.intProdProdCateID', '=', 'tblProductCategory.intProdCategID')
-        ->select('tblProduct.*', 'tblProductCategory.strProdCategName')
-        ->get();
-
-        foreach ($product as $b) {
-            $product=$b;
+        if ($request->ajax()) {
+            $prodcateg = ProductCategory::find($request->intProdProdCateID);
+            $product = Product::findOrFail($id);
+            $product->prodcateg()->associate($prodcateg);
+            $product->strProdName = trim($request->strProdName);
+            $product->strProdHandle = trim($request->strProdHandle);
+            $product->strProdSKU = trim($request->strProdSKU);
+            $product->txtProdDesc = trim($request->txtProdDesc);
+            $product->save();
+            return response()->json($product);
+        } else {
+            return redirect(route('product.index'));
         }
-        return response()->json($product);
+        
     }
 
     /**
@@ -140,12 +112,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        if ($request->ajax()) {
-            $product = Product::findOrFail($id);
-            $product->isDeleted = 1;
-            $product->intWarehouseStatus = 0;
-            $product->save();
-            return response()->json($product);
-        }
+        $product = Product::findOrFail($id);
+        $product->isDeleted = 1;
+        $product->intProdStatus = 0;
+        $product->save();
+        return response()->json($product);
     }
 }
