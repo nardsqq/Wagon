@@ -18,7 +18,7 @@ $(document).ready(function() {
     console.log(id);
 
     $('#title').text('Edit Product Details');
-    $('.modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#product-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -120,7 +120,7 @@ $(document).ready(function() {
 
     $('#btn-add').on('click', function(event) {
       $('#title').text('Add Product');
-      $('.modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+      $('#product-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
       $('#formProduct').trigger("reset");
       $('#btn-save').text('Submit');
       $('#btn-save').val("add");
@@ -149,6 +149,25 @@ $(document).ready(function() {
     else {
       type = "PUT";
       my_url += '/' + id;
+
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "slideDown",
+        "hideMethod": "slideUp"
+      }
+      toastr.info("Successfully Updated Product Record");
     }
 
     console.log("" + type + ": " + my_url);
@@ -176,6 +195,25 @@ $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         if (state == "add") { 
             table.row.add(row).draw();
+
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": true,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "slideDown",
+              "hideMethod": "slideUp"
+            }
+            toastr.success("Successfully Added a New Product");
         } 
         else { 
             table.row($("#id"+data.intProdID)).remove();

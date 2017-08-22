@@ -16,10 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $prodcategs = ProductCategory::where('isDeleted', 0)->get();
+        $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
         $products = Product::where('isDeleted', 0)->get();
         return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs);
-        // return view('maintenance.product.index', compact('products', 'prodcategs'));
     }
 
     /**
