@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Warehouse;
 use Validator;
-use Response;
-use View;
-use DB;
 
 class WarehouseController extends Controller
 {
@@ -27,10 +23,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouses = DB::table('tblWarehouse')
-            ->select('tblWarehouse.*')
-            ->where('isDeleted', '=', 0)
-            ->get();
+        $warehouses = Warehouse::where('isDeleted', 0)->get();
         return view('maintenance.warehouse.index')->with('warehouses', $warehouses);
     }
 
@@ -52,17 +45,15 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        } else {
-            
-            $warehouse = new Warehouse;
-            $warehouse ->strWarehouseName = trim($request->strWarehouseName);
-            $warehouse ->txtWarehouseLocation = trim($request->txtWarehouseLocation);
-            $warehouse ->txtWarehouseDesc = trim($request->txtWarehouseDesc);
+        if ($request->ajax()) {
+            $warehouse = new Warehouse();
+            $warehouse->strWarehouseName = trim(ucwords($request->strWarehouseName));
+            $warehouse->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
+            $warehouse->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
             $warehouse->save();
             return response()->json($warehouse);
+        } else {
+            return redirect(route('warehouse.index'));
         }
     }
 
@@ -99,9 +90,9 @@ class WarehouseController extends Controller
     public function update(Request $request, $id)
     {
         $warehouse = Warehouse::findOrFail($id);
-        $warehouse ->strWarehouseName = trim(ucfirst($request->strWarehouseName));
-        $warehouse ->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
-        $warehouse ->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
+        $warehouse->strWarehouseName = trim($request->strWarehouseName);
+        $warehouse->txtWarehouseLocation = trim($request->txtWarehouseLocation);
+        $warehouse->txtWarehouseDesc = trim($request->txtWarehouseDesc);
         $warehouse->save();
         return response()->json($warehouse);
     }

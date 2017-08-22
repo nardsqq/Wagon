@@ -54,8 +54,8 @@
                   <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
                 </li>
   							<li class="dropdown-header">Services</li>
-                <li class="{{ Request::is('admin/maintenance/servicecategory') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/servicecategory') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Type</a>
+                <li class="{{ Request::is('admin/maintenance/service-type') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/service-type') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Type</a>
                 </li>
                 <li class="{{ Request::is('admin/maintenance/service') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Area</a>

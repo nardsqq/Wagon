@@ -5,31 +5,29 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_warehouse').on('hide.bs.modal', function() {
-        $('#formWarehouse').trigger('reset');
+  $('#add_servtype').on('hide.bs.modal', function() {
+        $('#formServType').trigger('reset');
   });
 
-  var url = "/admin/maintenance/warehouse";
+  var url = "/admin/maintenance/service-type";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('.modal-title').text('Edit Warehouse Details');
-    $('#warehouse-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('.modal-title').text('Edit Service Type Details');
+    $('#service-type-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
     $.get(url + '/' + link_id + '/edit', function (data) {
-      console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#strWarehouseName').val(data.strWarehouseName);
-      $('#txtWarehouseLocation').val(data.txtWarehouseLocation);
-      $('#txtWarehouseDesc').val(data.txtWarehouseDesc);
+      $('#strServTypeName').val(data.strServTypeName);
+      $('#txtServTypeDesc').val(data.txtServTypeDesc);
       $('#btn-save').val("update");
-      $('#add_warehouse').modal('show');
+      $('#add_servtype').modal('show');
 
     }) 
 
@@ -39,7 +37,7 @@ $(document).ready(function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
-      $('#del_warehouse').modal('show');
+      $('#del_servtype').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -60,7 +58,7 @@ $(document).ready(function() {
 
               var table = $('#dataTable').DataTable();
               table.row($("#id" + id)).remove().draw();
-              $('#del_warehouse').modal('hide');
+              $('#del_servtype').modal('hide');
 
               toastr.options = {
                 "closeButton": false,
@@ -80,7 +78,7 @@ $(document).ready(function() {
                 "hideMethod": "slideUp"
               }
 
-              toastr.success("Successfully Deleted Warehouse Record");
+              toastr.success("Successfully Deleted Service Type Record");
           },
           error: function (data) {
               console.log(url + '/' + id);
@@ -110,13 +108,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('.modal-title').text('Add New Warehouse');
-    $('#warehouse-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formWarehouse').trigger("reset");
+    $('.modal-title').text('Add New Service Type');
+    $('#service-type-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formServtype').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_warehouse').modal('show');
+    $('#add_servtype').modal('show');
 
   }); 
 
@@ -131,9 +129,8 @@ $(document).ready(function() {
 
     var formData = {
       _token: $('input[name=_token]').val(),
-      strWarehouseName: $('#strWarehouseName').val(),
-      txtWarehouseLocation: $('#txtWarehouseLocation').val(),
-      txtWarehouseDesc: $('#txtWarehouseDesc').val()
+      strServTypeName: $('#strServTypeName').val(),
+      txtServTypeDesc: $('#txtServTypeDesc').val()
     };
 
     var state = $('#btn-save').val();
@@ -161,7 +158,7 @@ $(document).ready(function() {
       "showMethod": "slideDown",
       "hideMethod": "slideUp"
     }
-    toastr.info("Successfully Updated Warehouse Record");
+    toastr.info("Successfully Updated Service Type Record");
 
   }
 
@@ -173,14 +170,13 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intWarehouseID +  "></tr>")
+      var row = $("<tr id=id" + data.intServTypeID +  "></tr>")
       .append(
-          "<td>" + data.strWarehouseName + "</td>" +
-          "<td>" + data.txtWarehouseLocation + "</td>" +
-          "<td>" + data.txtWarehouseDesc + "</td>" +
+          "<td>" + data.strServTypeName + "</td>" +
+          "<td>" + data.txtServTypeDesc + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intWarehouseID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intWarehouseID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intServTypeID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intServTypeID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -205,17 +201,17 @@ $(document).ready(function() {
           "showMethod": "slideDown",
           "hideMethod": "slideUp"
         }
-        toastr.success("Successfully Added a New Warehouse Record");
+        toastr.success("Successfully Added a New Service Type Record");
 
       } 
       else { 
-          table.row($("#id"+data.intWarehouseID)).remove();
+          table.row($("#id"+data.intServTypeID)).remove();
           table.row.add(row).draw();
       }
-      $("[data-toggle='toggle']").bootstrapToggle('destroy');
-      $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formWarehouse').trigger("reset");
-      $('#add_warehouse').modal('hide')
+      // $("[data-toggle='toggle']").bootstrapToggle('destroy');
+      // $("[data-toggle='toggle']").bootstrapToggle();
+      $('#formServType').trigger("reset");
+      $('#add_servtype').modal('hide')
   }).fail(function(data) {
     console.log('Error:', data);
         toastr.options = {"preventDuplicates": true}

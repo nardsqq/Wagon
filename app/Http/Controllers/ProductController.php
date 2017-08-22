@@ -140,10 +140,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        $product->isDeleted = 1;
-        $product->intWarehouseStatus = 0;
-        $product->save();
-        return response()->json($product);
+        if ($request->ajax()) {
+            $product = Product::findOrFail($id);
+            $product->isDeleted = 1;
+            $product->intWarehouseStatus = 0;
+            $product->save();
+            return response()->json($product);
+        }
     }
 }

@@ -112,10 +112,12 @@ class ProdCategController extends Controller
      */
     public function destroy($id)
     {
-        $prodcateg = ProductCategory::findOrFail($id);
-        $prodcateg->isDeleted = 1;
-        $prodcateg->intProdCategStatus = 0;
-        $prodcateg->save();
-        return response()->json($prodcateg);
+        if ($request->ajax()) {
+            $prodcateg = ProductCategory::findOrFail($id);
+            $prodcateg->isDeleted = 1;
+            $prodcateg->intProdCategStatus = 0;
+            $prodcateg->save();
+            return response()->json($prodcateg);
+        }
     }
 }

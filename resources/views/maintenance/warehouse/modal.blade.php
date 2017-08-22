@@ -1,8 +1,8 @@
-<div class="modal fade" id="add_warehouse" role="dialog">
+<div class="modal fade" id="add_warehouse" role="document">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="warehouse-modal-header">
-        <h4 id="title">Add New Warehouse</h4>
+        <h4 class="modal-title"></h4>
       </div>
       <div class="modal-body">
         <form id="formWarehouse">
@@ -33,17 +33,25 @@
 </div>
 
 <div class="modal fade" id="del_warehouse">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-danger" id="warehouse-del-modal-header">
         <center><h4 id="title">Delete Warehouse Record</h4></center>
       </div>
       <div class="modal-body">
-        <center><h5><b>You are about to delete a warehouse data and all its contents. This action cannot be undone. Delete Warehouse?</b></h5></center>
+        <center>
+          <h5>
+            <b>
+              You are about to delete this Warehouse data and all its contents. 
+              <br>
+              This action cannot be undone. Delete Warehouse?
+            </b>
+          </h5>
+        </center>
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
-        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Data</button>
+        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Warehouse</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
