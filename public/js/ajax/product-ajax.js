@@ -156,7 +156,7 @@ $(document).ready(function() {
         "newestOnTop": true,
         "progressBar": true,
         "positionClass": "toast-top-right",
-        "preventDuplicates": true,
+        "preventDuplicates": false,
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",

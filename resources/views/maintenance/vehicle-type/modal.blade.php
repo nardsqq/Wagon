@@ -7,13 +7,13 @@
       <div class="modal-body">
         <form id="formVehiType">
           <div class="form-group">
-            <label for="strVehiName">Vehicle Type</label>
-            <input type="text" id="strVehiName" name="strVehiName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <label for="strVehiTypeName">Vehicle Type</label>
+            <input type="text" id="strVehiTypeName" name="strVehiTypeName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            <label for="txtVehicDesc">Description</label>
-            <textarea class="form-control resize" rows="5" id="txtVehicDesc"></textarea>
+            <label for="txtVehiTypeDesc">Description</label>
+            <textarea class="form-control resize" rows="5" id="txtVehiTypeDesc" name="txtVehiTypeDesc"></textarea>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>

@@ -67,7 +67,7 @@ $(document).ready(function() {
                 "newestOnTop": true,
                 "progressBar": true,
                 "positionClass": "toast-top-right",
-                "preventDuplicates": true,
+                "preventDuplicates": false,
                 "onclick": null,
                 "showDuration": "300",
                 "hideDuration": "1000",
@@ -128,40 +128,36 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    var formData = {
-      _token: $('input[name=_token]').val(),
-      strVehiTypeName: $('#strVehiTypeName').val(),
-      txtVehiTypeDesc: $('#txtVehiTypeDesc').val()
-    };
-
+    var formData = $("#formVehiType").serialize();
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
 
-  if (state == "update") {
-    type = "PUT";
-    my_url += '/' + id;
+    if(state === "add")
+      type = "POST";
+    else {
+      type = "PUT";
+      my_url += '/' + id;
 
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": true,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": true,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "slideDown",
-      "hideMethod": "slideUp"
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "slideDown",
+        "hideMethod": "slideUp"
+      }
+      toastr.info("Successfully Updated Product Record");
     }
-    toastr.info("Successfully Updated Vehicle Type Record");
-
-  }
 
   $.ajax({
       type: type,
@@ -191,7 +187,7 @@ $(document).ready(function() {
           "newestOnTop": true,
           "progressBar": true,
           "positionClass": "toast-top-right",
-          "preventDuplicates": true,
+          "preventDuplicates": false,
           "onclick": null,
           "showDuration": "300",
           "hideDuration": "1000",

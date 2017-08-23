@@ -37,6 +37,9 @@ Route::group(['prefix' => 'admin'], function() {
     // Services
     Route::resource('service-type', 'ServiceTypeController');
 
+    // Transportation
+    Route::resource('vehicle-type', 'VehicleTypeController');
+
   });
 
   Route::group(['prefix' => 'transactions'], function() {
