@@ -21,6 +21,8 @@
     "bootstrap-toggle": "^2.2.2",
     "font-awesome": "^4.7.0",
     "icheck": "^1.0.2",
-    "parsleyjs": "^2.7.2"
+    "inputmask": "^3.3.7",
+    "parsleyjs": "^2.7.2",
+    "select2": "^4.0.3"
   }
 }
