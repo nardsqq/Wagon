@@ -67,8 +67,8 @@
                 <li class="dropdown-main-header"><center>Logistics and Payments</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Transportation</li>
-                <li class="{{ Request::is('admin/maintenance/vehicletype') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/vehicletype') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
+                <li class="{{ Request::is('admin/maintenance/vehicle-type') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/vehicle-type') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
                 </li>
   							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Specifications</a></li>
                 <li class="{{ Request::is('admin/maintenance/vehicle') ? "active" : "" }}">

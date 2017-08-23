@@ -11,6 +11,11 @@ class Skill extends Model
   protected $primaryKey = 'intSkillID';
   public $timestamps = false;
 
+  public function skillset()
+  {
+  	return $this->belongsToMany('App/SkillSet, intSkillSetSkillID');
+  }
+
   public static $rules = [
     'strSkillName' => 'required|min:2|unique:tblSkill|max:45|regex:/^[a-z ,.\'-]+$/i',
 	'txtSkillDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'

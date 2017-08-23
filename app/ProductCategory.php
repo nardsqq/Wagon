@@ -11,7 +11,8 @@ class ProductCategory extends Model
   protected $primaryKey = 'intProdCategID';
   public $timestamps = false;
 
-  public function prod() {
+  public function prod() 
+  {
 	return $this->hasMany('App\Product', 'intProdProdID');
   }
 }

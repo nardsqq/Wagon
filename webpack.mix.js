@@ -22,5 +22,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
     'public/toastr-master/toastr.js',
     'public/js/script.js',
     'public/js/parsley.min.js',
+    'public/js/select2.full.min.js',
     'public/js/icheck.js'
 	], 'public/js/main.js');
