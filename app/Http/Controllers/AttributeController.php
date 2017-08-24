@@ -16,7 +16,7 @@ class AttributeController extends Controller
     public function index()
     {
         $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
-        return view('maintenance.attribute.index')->with('attribs', $attribs)->with('attribtypes', $attribtypes);
+        return view('maintenance.attribute.index')->with('attribs', $attribs);
     }
 
     /**
@@ -28,7 +28,6 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
         $attrib = new Attribute;
-        $attrib->intAttribType = $request->intAttribType;
         $attrib->strAttribName = trim(ucfirst($request->strAttribName));
         $attrib->save();
 
