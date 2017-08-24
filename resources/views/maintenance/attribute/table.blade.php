@@ -1,7 +1,6 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Type</th>
       <th>Attribute</th>
       <th class="text-center">Actions</th>
     </tr>
@@ -9,7 +8,6 @@
   <tbody id="attribute-list">
     @foreach ($attribs as $attrib)
     <tr id="id{{$attrib->intAttribID}}">
-        <td>{{ $attrib->intItemType }}</td>
         <td>{{ $attrib->strAttribName }}</td>
         <td class="text-center">
             <a href="{{ route('attributes.show', $attrib->intAttribID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>

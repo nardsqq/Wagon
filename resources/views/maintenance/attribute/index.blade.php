@@ -62,17 +62,6 @@
                   {!! Form::open(['route' => 'attributes.store', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
 
                     <div class="form-group">
-                      <label for="intAttribType" class="col-sm-2 control-label">Attribute Type</label>
-                      <div class="col-sm-10">
-                        <select name="intAttribType" id="intAttribType" class="form-control">
-                          @foreach ($attribtypes as $attribtype)
-                            <option value="{{$attribtype['ID']}}">{{$attribtype['NAME']}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
                       <label for="strAttribName" class="col-sm-2 control-label">Attribute Name</label>
                       <div class="col-sm-10">
                         <input type="text" id="strAttribName" name="strAttribName" class="form-control">

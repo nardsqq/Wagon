@@ -9,16 +9,9 @@ class Attribute extends Model
 {
 
   protected $table = 'tblAttribute';
-  protected $fillable = ['strAttribName, intAttribType'];
+  protected $fillable = ['strAttribName'];
   protected $primaryKey = 'intAttribID';
   public $timestamps = false;
-
-  protected $appends = ['attrib_type'];
-
-  public function getAttributeType()
-  {
-	return AttribType::getName($this->intAttribType);
-  }
 
   public function product()
   {

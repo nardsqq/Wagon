@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Attribute;
-use App\AttribType;
-use Validator;
-use Response;
-use View;
 
 class AttributeController extends Controller
 {
@@ -20,7 +15,6 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attribtypes = AttribType::attribtypes();
         $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
         return view('maintenance.attribute.index')->with('attribs', $attribs)->with('attribtypes', $attribtypes);
     }
@@ -61,8 +55,7 @@ class AttributeController extends Controller
      */
     public function edit($id)
     {
-        $attrib = Attribute::findOrFail($id);
-        return response()->json($attrib);
+        //
     }
 
     /**
@@ -74,10 +67,7 @@ class AttributeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $attrib = Attribute::findOrFail($id);
-        $attrib ->strAttribName = trim($request->strAttribName);
-        $attrib->save();
-        return response()->json($attrib);
+        //
     }
 
     /**
