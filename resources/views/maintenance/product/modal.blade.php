@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-xs-6">
               <label>Product Category</label>
-              <select name="intProdProdCateID" id="intProdProdCateID" class="form-control">
+              <select name="intP_ProdCateg_ID" id="intP_ProdCateg_ID" class="form-control">
                 @foreach ($prodcategs as $prodcateg)
                   <option value="{{$prodcateg->intProdCategID}}">{{ $prodcateg->strProdCategName }}</option>
                 @endforeach

@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="{{{ asset('big-anchor.ico') }}}">
-    <title>MRN & IND SSMS</title>
+    <title>MRN & IND SSMS @yield('title')</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('/DataTables/datatables.min.css') }}"/>

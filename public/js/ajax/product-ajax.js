@@ -30,7 +30,7 @@ $(document).ready(function() {
         success: function (data) {
             console.log(data);
 
-            $('#intProdProdCateID').val(data.intProdProdCateID);
+            $('#intP_ProdCateg_ID').val(data.intP_ProdCateg_ID);
             $("input[name=strProdName]").val(data.strProdName);
             $('#strProdHandle').val(data.strProdHandle);
             $('#strProdSKU').val(data.strProdSKU);

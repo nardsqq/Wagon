@@ -41,7 +41,7 @@ class ProductController extends Controller
     {
         if ($request->ajax()) {
             $this->validate($request, Product::$rules);
-            $prodcateg = ProductCategory::find($request->intProdProdCateID);
+            $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
             $product = new Product();
             $product->prodcateg()->associate($prodcateg);
             $product->strProdName = trim(ucwords($request->strProdName));
@@ -88,7 +88,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->ajax()) {
-            $prodcateg = ProductCategory::find($request->intProdProdCateID);
+            $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
             $product = Product::findOrFail($id);
             $product->prodcateg()->associate($prodcateg);
             $product->strProdName = trim($request->strProdName);

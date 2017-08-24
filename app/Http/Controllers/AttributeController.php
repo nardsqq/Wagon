@@ -46,15 +46,11 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        } else {
-            $attrib = new Attribute;
-            $attrib ->strAttribName = trim(ucfirst($request->strAttribName));
-            $attrib->save();
-            return response()->json($attrib);
-        }
+        $attrib = new Attribute;
+        $attrib ->strAttribName = trim(ucfirst($request->strAttribName));
+        $attrib->save();
+
+        return redirect()->route('attributes.index');
     }
 
     /**
@@ -65,7 +61,8 @@ class AttributeController extends Controller
      */
     public function show($id)
     {
-        //
+        $attrib = Attribute::findOrFail($id);
+        return view('maintenance.attribute.show')->with('attrib', $attrib);
     }
 
     /**
