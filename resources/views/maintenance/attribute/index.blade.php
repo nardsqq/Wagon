@@ -65,8 +65,8 @@
                       <label for="intAttribType" class="col-sm-2 control-label">Attribute Type</label>
                       <div class="col-sm-10">
                         <select name="intAttribType" id="intAttribType" class="form-control">
-                          @foreach ($attribs as $attrib)
-                            <option value="{{$attrib->intAttribID}}">{{ $attrib->strAttribName }}</option>
+                          @foreach ($attribtypes as $attribtype)
+                            <option value="{{$attribtype['ID']}}">{{$attribtype['NAME']}}</option>
                           @endforeach
                         </select>
                       </div>

@@ -5,17 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Attribute;
+use App\AttribType;
 use Validator;
 use Response;
 use View;
 
 class AttributeController extends Controller
 {
-    /*Enforce Validation Rules*/
-    protected $rules =
-    [
-        'strAttribName' => 'required|min:2|unique:tblAttribute|max:45|regex:/^[a-z ,.\'-]+$/i'
-    ];
 
     /**
      * Display a listing of the resource.
@@ -24,8 +20,9 @@ class AttributeController extends Controller
      */
     public function index()
     {
+        $attribtypes = AttribType::attribtypes();
         $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
-        return view('maintenance.attribute.index')->with('attribs', $attribs);
+        return view('maintenance.attribute.index')->with('attribs', $attribs)->with('attribtypes', $attribtypes);
     }
 
     /**
@@ -37,7 +34,8 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
         $attrib = new Attribute;
-        $attrib ->strAttribName = trim(ucfirst($request->strAttribName));
+        $attrib->intAttribType = $request->intAttribType;
+        $attrib->strAttribName = trim(ucfirst($request->strAttribName));
         $attrib->save();
 
         return redirect()->route('attributes.index');
