@@ -24,18 +24,8 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attribs = Attribute::orderBy('intAttribID', 'strAttribName')->get();
+        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
         return view('maintenance.attribute.index')->with('attribs', $attribs);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -100,6 +90,10 @@ class AttributeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attrib = Attribute::findOrFail($id);
+        $attrib->isDeleted = 1;
+        $attrib->intAttribStatus = 0;
+        $attrib->save();
+        return response()->json($attrib);
     }
 }
