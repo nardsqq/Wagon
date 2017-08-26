@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ProductCategory;
+use App\Attribute;
 use App\Product;
 
 class ProductController extends Controller
@@ -17,8 +18,9 @@ class ProductController extends Controller
     public function index()
     {
         $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
+        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
         $products = Product::where('isDeleted', 0)->get();
-        return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs);
+        return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
     /**
@@ -42,7 +44,7 @@ class ProductController extends Controller
         if ($request->ajax()) {
             $this->validate($request, Product::$rules);
             $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
-            $product = new Product();
+            $product = new Product;
             $product->prodcateg()->associate($prodcateg);
             $product->strProdName = trim(ucwords($request->strProdName));
             $product->strProdHandle = trim(ucwords($request->strProdHandle));

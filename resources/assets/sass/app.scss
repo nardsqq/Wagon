@@ -8,6 +8,9 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Select2
+@import "~select2/dist/css/select2.min.css";
+
 // Bootstrap Toggle
 @import "node_modules/bootstrap-toggle/css/bootstrap-toggle";
 
@@ -17,9 +20,6 @@
 // Parsley
 @import "node_modules/parsleyjs/src/parsley";
 
-// iCheck
-@import "~icheck/skins/flat/flat.css";
-
 // Helpers
 @import "helpers";
 
@@ -28,4 +28,3 @@
 @import "modals";
 @import "flatify";
 @import "megamenu";
-@import "helpers";

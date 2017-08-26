@@ -74,6 +74,12 @@
     })
   </script>
 
+  <script>
+  $('.multi-attrib').select2({
+    dropdownParent: $('#add_product')
+  });
+  </script>
+
   <script src="{{ asset('/js/ajax/product-ajax.js/') }}"></script>
 
 @endsection
