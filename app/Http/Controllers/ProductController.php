@@ -31,7 +31,7 @@ class ProductController extends Controller
     public function create()
     {
         $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
-        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
+        $attribs = Attribute::all();
         $products = Product::where('isDeleted', 0)->get();
         return view('maintenance.product.create')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
@@ -44,6 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $this->validate($request, Product::$rules);
         $product = new Product;
         $product->intP_ProdCateg_ID = $request->intP_ProdCateg_ID;
@@ -90,20 +91,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->ajax()) {
-            $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
-            $product = Product::findOrFail($id);
-            $product->prodcateg()->associate($prodcateg);
-            $product->strProdName = trim($request->strProdName);
-            $product->strProdHandle = trim($request->strProdHandle);
-            $product->strProdSKU = trim($request->strProdSKU);
-            $product->txtProdDesc = trim($request->txtProdDesc);
-            $product->save();
-            return response()->json($product);
-        } else {
-            return redirect(route('product.index'));
-        }
-        
+        $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
+        $product = Product::findOrFail($id);
+        $product->prodcateg()->associate($prodcateg);
+        $product->strProdName = trim($request->strProdName);
+        $product->strProdHandle = trim($request->strProdHandle);
+        $product->strProdSKU = trim($request->strProdSKU);
+        $product->txtProdDesc = trim($request->txtProdDesc);
+
+        $product->save();
+
+        return redirect(route('product.index'));
     }
 
     /**

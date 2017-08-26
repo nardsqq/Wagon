@@ -45,7 +45,7 @@
 			              </div>
 			            </div>
 			            <div class="panel-body">	
-			               	<h1>{{ $attrib->strAttribName }} Attribute</h1>
+			               	<h1>{{ $attrib->strAttribName }} Attribute <small>{{ $attrib->product()->count() }} Product(s)</small></h1>
 			            </div>
 		          	</div>
 		        </div>

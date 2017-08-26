@@ -5,6 +5,7 @@
       <th>Name</th>
       <th>Handle</th>
       <th>SKU</th>
+      <th>Feature Set</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
@@ -15,6 +16,11 @@
         <td>{{ $product->strProdName }}</td>
         <td>{{ $product->strProdHandle }}</td>
         <td>{{ $product->strProdSKU }}</td>
+        <td>
+          @foreach($product->attribs as $attrib)
+            <span class="label label-default">{{ $attrib->strAttribName }}</span>
+          @endforeach
+        </td>
         <td class="text-center">
             <button class="btn btn-info btn-sm btn-detail" value="{{ $product->intProdID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $product->intProdID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>

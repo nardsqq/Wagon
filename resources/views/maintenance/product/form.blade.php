@@ -27,7 +27,7 @@
   </div>
   <div class="form-group m-t-10">
     <label for="intFeatSetID">Feature Set</label>
-    <select name="intFeatSetID" id="intFeatSetID" class="form-control attrib-multi" multiple="multiple">
+    <select name="intFeatSetID[]" id="intFeatSetID" class="form-control attrib-multi" multiple="multiple">
       @foreach($attribs as $attrib)
         <option value="{{ $attrib->intAttribID }}">{{ $attrib->strAttribName }}</option>
       @endforeach

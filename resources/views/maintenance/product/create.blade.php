@@ -37,7 +37,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="panel-title">
-                <h4>Product</h4>
+                <h4>Create New Product</h4>
               </div>
             </div>
             <div class="panel-body">
