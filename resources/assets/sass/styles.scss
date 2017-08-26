@@ -263,3 +263,11 @@ body {
 .toast {
   opacity: 1 !important;
 }
+
+.select2 {
+  width: 100% !important;
+}
+
+.select2-container .select2-search__field:not([placeholder = '']) {
+     width: 100% !important;
+}

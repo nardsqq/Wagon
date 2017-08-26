@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\AttribType;
 
 class Attribute extends Model
 {
@@ -15,7 +14,7 @@ class Attribute extends Model
 
   public function product()
   {
-  	return $this->belongsToMany('App\Product', 'tblFeatureSet', 'int_FS_Prod_ID', 'int_FS_Attrib_ID');
+  	return $this->belongsToMany('App\Product', 'tblFeatureSet', 'intFS_Prod_ID', 'intFS_Attrib_ID');
   }
 
 }

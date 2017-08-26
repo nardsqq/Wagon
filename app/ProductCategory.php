@@ -13,6 +13,6 @@ class ProductCategory extends Model
 
   public function prod() 
   {
-	return $this->hasMany('App\Product', 'intP_ProdCateg_ID');
+  	return $this->hasMany('App\Product');
   }
 }

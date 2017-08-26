@@ -18,7 +18,7 @@ class Product extends Model
 
   public function attribs() 
   {
-    return $this->belongsToMany('App\Attribute', 'tblFeatureSet', 'int_FS_Attrib_ID', 'int_FS_Prod_ID');
+    return $this->belongsToMany('App\Attribute', 'tblFeatureSet', 'intFS_Prod_ID', 'intFS_Attrib_ID');
   }
 
   public static $rules = [

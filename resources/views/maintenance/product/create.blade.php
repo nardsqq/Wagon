@@ -24,39 +24,25 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Attributes</li>
+        <li>Product</li>
+        <li>Create</li>
       </ol>
     </div>
   </section>
-
-  @include('maintenance.attribute.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">
         <div class="col-md-12">
-        {{-- test --}}
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
-              <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Attribute</button>
-              </div>
               <div class="panel-title">
-                <h4>Attribute</h4>
+                <h4>Product</h4>
               </div>
             </div>
             <div class="panel-body">
-              <div class="alert alert-success alert-white rounded">
-                <div class="icon">
-                  <i class="fa fa-info-circle"></i>
-                </div>
-                <strong>Manage <i>Attributes</i> here.</strong>
-                <br>
-                <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
-              </div>
-                @include('maintenance.attribute.form')
               <div id="table-container">
-                @include('maintenance.attribute.table')
+                @include('maintenance.product.form')
               </div>
             </div>
           </div>
@@ -69,13 +55,8 @@
 
 @section('scripts')
 
-  <!-- Delay table load until everything else is loaded -->
   <script>
-    $(window).on('load', function(){
-        $('#dataTable').removeAttr('style');
-    })
+    $('.attrib-multi').select2({ placeholder: "Select Attribute(s)", minimumResultsForSearch: -1 });
   </script>
-
-  <script src="{{ asset('/js/ajax/attributes-ajax.js/') }}"></script>
 
 @endsection

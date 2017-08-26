@@ -30,7 +30,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
+        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
+        $products = Product::where('isDeleted', 0)->get();
+        return view('maintenance.product.create')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
     /**
@@ -41,20 +44,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->ajax()) {
-            $this->validate($request, Product::$rules);
-            $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
-            $product = new Product;
-            $product->prodcateg()->associate($prodcateg);
-            $product->strProdName = trim(ucwords($request->strProdName));
-            $product->strProdHandle = trim(ucwords($request->strProdHandle));
-            $product->strProdSKU = trim(strtoupper($request->strProdSKU));
-            $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
-            $product->save();
-            return response()->json($product);
-        } else {
-            return redirect(route('product.index'));
-        }
+        $this->validate($request, Product::$rules);
+        $product = new Product;
+        $product->intP_ProdCateg_ID = $request->intP_ProdCateg_ID;
+        $product->strProdName = trim(ucwords($request->strProdName));
+        $product->strProdHandle = trim(ucwords($request->strProdHandle));
+        $product->strProdSKU = trim(strtoupper($request->strProdSKU));
+        $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+
+        $product->save();
+        $product->attribs()->sync($request->intFeatSetID, false);
+
+        return redirect()->route('product.index');
     }
 
     /**

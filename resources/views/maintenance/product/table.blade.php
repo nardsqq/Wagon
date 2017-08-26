@@ -16,7 +16,7 @@
         <td>{{ $product->strProdHandle }}</td>
         <td>{{ $product->strProdSKU }}</td>
         <td class="text-center">
-            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $product->intProdID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <button class="btn btn-info btn-sm btn-detail" value="{{ $product->intProdID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $product->intProdID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
     </tr>
