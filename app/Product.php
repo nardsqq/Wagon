@@ -11,7 +11,7 @@ class Product extends Model
   protected $primaryKey = 'intProdID';
   public $timestamps = false;
 
-  public function prodcateg() 
+  public function prodcategs() 
   {
     return $this->belongsTo('App\ProductCategory', 'intP_ProdCateg_ID');
   }

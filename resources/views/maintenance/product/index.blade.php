@@ -29,6 +29,8 @@
     </div>
   </section>
 
+  @include('maintenance.product.modal')
+
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">
