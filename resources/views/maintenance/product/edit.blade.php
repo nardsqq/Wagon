@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('title', '- Edit Product')
+
 @section('content')
 
  <header id="header">
@@ -25,6 +27,7 @@
         <li>Admin</li>
         <li>Maintenance</li>
         <li>Product</li>
+        <li>Edit Product Details</li>
       </ol>
     </div>
   </section>
@@ -35,24 +38,13 @@
         <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
-              <div class="btn-group pull-right">
-                <a href="{{ route('product.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add New Product</a>
-              </div>
               <div class="panel-title">
-                <h4>Product</h4>
+                <h4>Edit Product</h4>
               </div>
             </div>
             <div class="panel-body">
-              <div class="alert alert-success alert-white rounded">
-                <div class="icon">
-                  <i class="fa fa-info-circle"></i>
-                </div>
-                <strong>Manage <i>Products</i> here.</strong>
-                <br>
-                <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
-              </div>
               <div id="table-container">
-                @include('maintenance.product.table')
+                @include('maintenance.product.edit')
               </div>
             </div>
           </div>
@@ -65,13 +57,8 @@
 
 @section('scripts')
 
-  <!-- Delay table load until everything else is loaded -->
   <script>
-    $(window).on('load', function(){
-        $('#dataTable').removeAttr('style');
-    })
+    $('.attrib-multi').select2({ placeholder: "Select Attribute(s)", minimumResultsForSearch: -1 });
   </script>
-
-  <script src="{{ asset('/js/ajax/product-ajax.js/') }}"></script>
 
 @endsection
