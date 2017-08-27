@@ -44,7 +44,7 @@
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.product.edit')
+                @include('maintenance.product.edit-form')
               </div>
             </div>
           </div>

@@ -78,7 +78,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return redirect(route('product.edit'));
+        $prodcategs = ProductCategory::pluck('strProdCategName', 'intProdCategID');
+        return view('maintenance.product.edit')->with('product', $product)->with('prodcategs', $prodcategs);
     }
 
     /**

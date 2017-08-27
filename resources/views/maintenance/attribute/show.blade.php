@@ -45,7 +45,30 @@
 			              </div>
 			            </div>
 			            <div class="panel-body">	
-			               	<h1>{{ $attrib->strAttribName }} Attribute <small>{{ $attrib->product()->count() }} Product(s)</small></h1>
+			               	<h1>{{ $attrib->strAttribName }} Attribute - Attached to {{ $attrib->products()->count() }} Product(s)</h1> 
+			               	<hr>
+			               	<div id="table-container">
+				               	<table id="dataTable" class="table table-bordered table-hover table-condensed" width="100%">
+								  <thead>
+								    <tr>
+								      <th>Product</th>
+								      <th>Attributes</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    @foreach ($attrib->products as $product)
+								    <tr id="{{ $product->intProdID }}">
+								        <td>{{ $product->strProdName }}</td>
+								        <td>
+								        	@foreach($product->attribs as $attrib)
+								        		<span class="label label-default">{{ $attrib->strAttribName }}</span>
+								        	@endforeach
+								        </td>
+								    </tr>
+								    @endforeach
+								  </tbody>
+								</table>
+				            </div>
 			            </div>
 		          	</div>
 		        </div>

@@ -12,9 +12,9 @@ class Attribute extends Model
   protected $primaryKey = 'intAttribID';
   public $timestamps = false;
 
-  public function product()
+  public function products()
   {
-  	return $this->belongsToMany('App\Product', 'tblFeatureSet', 'intFS_Prod_ID', 'intFS_Attrib_ID');
+  	return $this->belongsToMany('App\Product', 'tblFeatureSet', 'intFS_Attrib_ID', 'intFS_Prod_ID');
   }
 
 }

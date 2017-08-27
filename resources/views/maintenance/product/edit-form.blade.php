@@ -1,12 +1,8 @@
-{!! Form::model($product, ['route' => ['product.update', $product->intProdID]]) !!}
+{!! Form::model($product, ['route' => ['product.update', $product->intProdID], 'method' => 'PUT']) !!}
   <div class="row">
     <div class="col-xs-6">
       <label>Product Category</label>
-      <select name="intP_ProdCateg_ID" id="intP_ProdCateg_ID" class="form-control">
-        @foreach ($prodcategs as $prodcateg)
-          <option value="{{$prodcateg->intProdCategID}}">{{ $prodcateg->strProdCategName }}</option>
-        @endforeach
-      </select>
+      {!! Form::select('intP_ProdCateg_ID', $prodcategs, null, ['class' => 'form-control']) !!}﻿
     </div>
     <div class="col-xs-6">
       <label for="strProdName">Product Name</label>
