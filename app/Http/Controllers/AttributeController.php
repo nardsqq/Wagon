@@ -15,7 +15,7 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
+        $attribs = Attribute::orderBy('strAttribName')->get();
         return view('maintenance.attribute.index')->with('attribs', $attribs);
     }
 
@@ -28,6 +28,7 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
         $attrib = new Attribute;
+
         $attrib->strAttribName = trim(ucfirst($request->strAttribName));
         $attrib->save();
 
@@ -75,12 +76,12 @@ class AttributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $attrib = Attribute::findOrFail($id);
-        $attrib->isDeleted = 1;
-        $attrib->intAttribStatus = 0;
-        $attrib->save();
+        $del = [];
+        $request->has('values') ? $del = $request->values : array_push($del, $id);
+        $attrib = Attribute::destroy($del);
+
         return response()->json($attrib);
     }
 }

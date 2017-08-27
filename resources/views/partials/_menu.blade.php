@@ -16,14 +16,8 @@
                 <li class="dropdown-main-header"><center>Itemization and Inventory</center></li>
                 <li class="divider"></li>
   							<li class="dropdown-header">Assets</li>
-                <li class="{{ Request::is('admin/maintenance/warehouse') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/warehouse') }}"><i class="fa fa-archive fa-fw" aria-hidden="true"></i>&nbsp; Warehouse</a>
-                </li>
                 <li class="{{ Request::is('admin/maintenance/product-category') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/product-category') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/brand') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
                 </li>
                 <li class="{{ Request::is('admin/maintenance/attributes') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/attributes') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Attributes</a>
@@ -31,7 +25,12 @@
                 <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                 </li>
-                <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Feature Sets</a></li>
+                <li class="{{ Request::is('admin/maintenance/warehouse') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/warehouse') }}"><i class="fa fa-archive fa-fw" aria-hidden="true"></i>&nbsp; Warehouse</a>
+                </li>
+                <li class="{{ Request::is('admin/maintenance/brand') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
+                </li>
                 <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Variants</a></li>
                 <li class="{{ Request::is('admin/maintenance/productinventory') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/productinventory') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Inventory</a>

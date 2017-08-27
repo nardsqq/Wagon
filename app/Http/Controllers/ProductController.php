@@ -18,8 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
-        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
-        $products = Product::where('isDeleted', 0)->get();
+        $attribs = Attribute::orderBy('strAttribName')->get();
+        $products = Product::all();
         return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
@@ -31,8 +31,8 @@ class ProductController extends Controller
     public function create()
     {
         $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
-        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
-        $products = Product::where('isDeleted', 0)->get();
+        $attribs = Attribute::orderBy('strAttribName')->get();
+        $products = Product::all();
         return view('maintenance.product.create')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
@@ -111,12 +111,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
-        $product->isDeleted = 1;
-        $product->intProdStatus = 0;
-        $product->save();
+        $del = [];
+        $request->has('values') ? $del = $request->values : array_push($del, $id);
+        $product = Product::destroy($del);
+
         return response()->json($product);
     }
 }
