@@ -31,14 +31,22 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-danger" id="prodcateg-del-modal-header">
-        <h4 id="title">Delete Product Category Record</h4>
+        <center><h4 id="title">Delete Product Category Record</h4></center>
       </div>
       <div class="modal-body">
-        <h4><b>Warning, you are about to delete a warehouse data and all its contents. This action cannot be undone. Delete <i id="prodcategdel">Product Category</i> ?</b></h4>
+        <center>
+          <h5>
+            <b>
+              You are about to delete this Product Category data and all its contents. 
+              <br>
+              This action cannot be undone. Delete Product Category?
+            </b>
+          </h5>
+        </center>
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
-        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Data</button>
+        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Product Category</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>

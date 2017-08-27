@@ -90,8 +90,12 @@ class ProdCategController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $del = [];
+        $request->has('values') ? $del = $request->values : array_push($del, $id);
+        $prodcateg = ProductCategory::destroy($del);
+
+        return response()->json($prodcateg);
     }
 }
