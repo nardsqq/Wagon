@@ -11,13 +11,6 @@ use View;
 
 class BrandController extends Controller
 {
-    /*Enforce Validation Rules*/
-    protected $rules =
-    [
-        'strBrandName' => 'required|min:2|unique:tblBrand|max:45|regex:/^[a-z ,.\'-]+$/i',
-        'txtBrandDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
-    ];
-
     /**
      * Display a listing of the resource.
      *
@@ -47,16 +40,12 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        } else {
-            $brand = new Brand;
-            $brand ->strBrandName = trim(ucfirst($request->strBrandName));
-            $brand ->txtBrandDesc = trim(ucfirst($request->txtBrandDesc));
-            $brand->save();
-            return response()->json($brand);
-        }
+        $brand = new Brand;
+        $brand ->strBrandName = trim(ucfirst($request->strBrandName));
+        $brand ->txtBrandDesc = trim(ucfirst($request->txtBrandDesc));
+        $brand->save();
+
+        return response()->json($brand);
     }
 
     /**
@@ -95,6 +84,7 @@ class BrandController extends Controller
         $brand ->strBrandName = trim($request->strBrandName);
         $brand ->txtBrandDesc = trim($request->txtBrandDesc);
         $brand->save();
+        
         return response()->json($brand);
     }
 

@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Role;
-use Validator;
-use Response;
-use View;
-use DB;
 
 class RoleController extends Controller
 {
@@ -19,10 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = DB::table('tblRole')
-            ->select('tblRole.*')
-            ->where('isDeleted', '=', 0)
-            ->get();
+        $roles = Role::orderBy('strRoleName')->get();
         return view('maintenance.role.index')->with('roles', $roles);
     }
 
@@ -44,11 +36,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Role::$rules);
         $role = new Role;
         $role ->strRoleName = trim(ucwords($request->strRoleName));
         $role ->txtRoleDesc = trim($request->txtRoleDesc);
         $role->save();
+
         return response()->json($role);
     }
 
@@ -88,6 +80,7 @@ class RoleController extends Controller
         $role ->strRoleName = trim($request->strRoleName);
         $role ->txtRoleDesc = trim($request->txtRoleDesc);
         $role ->save();
+
         return response()->json($role);
     }
 
@@ -99,10 +92,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::findOrFail($id);
-        $role->isDeleted = 1;
-        $role->intRoleStatus = 0;
-        $role->save();
-        return response()->json($role);
+        //
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ServiceType;
-use Validator;
 
 class ServiceTypeController extends Controller
 {
@@ -15,7 +14,7 @@ class ServiceTypeController extends Controller
      */
     public function index()
     {
-        $servtypes = ServiceType::where('isDeleted', 0)->get();
+        $servtypes = ServiceType::orderBy('strServTypeName')->get();
         return view('maintenance.service-type.index')->with('servtypes', $servtypes);
     }
 
@@ -99,10 +98,6 @@ class ServiceTypeController extends Controller
      */
     public function destroy($id)
     {
-        $servtype = ServiceType::findOrFail($id);
-        $servtype->isDeleted = 1;
-        $servtype->intServTypeStatus = 0;
-        $servtype->save();
-        return response()->json($servtype);
+        //
     }
 }

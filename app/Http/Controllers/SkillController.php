@@ -19,10 +19,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        $skills = DB::table('tblSkill')
-            ->select('tblSkill.*')
-            ->where('isDeleted', '=', 0)
-            ->get();
+        $skills = Skill::orderBy('strSkillName')->get();
         return view('maintenance.skill.index')->with('skills', $skills);
     }
 
@@ -44,11 +41,11 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Skill::$rules);
         $skill = new Skill;
         $skill ->strSkillName = trim(ucwords($request->strSkillName));
         $skill ->txtSkillDesc = trim(ucfirst($request->txtSkillDesc));
         $skill->save();
+
         return response()->json($skill);
     }
 
@@ -88,6 +85,7 @@ class SkillController extends Controller
         $skill ->strSkillName = trim($request->strSkillName);
         $skill ->txtSkillDesc = trim($request->txtSkillDesc);
         $skill ->save();
+
         return response()->json($skill);
     }
 
@@ -99,10 +97,6 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        $skill = Skill::findOrFail($id);
-        $skill->isDeleted = 1;
-        $skill->intSkillStatus = 0;
-        $skill->save();
-        return response()->json($skill);
+        //
     }
 }

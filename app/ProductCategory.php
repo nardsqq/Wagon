@@ -3,16 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductCategory extends Model
 {
-  protected $table = 'tblProductCategory';
-  protected $fillable = ['strProdCategName', 'txtProdCategDesc'];
-  protected $primaryKey = 'intProdCategID';
-  public $timestamps = false;
+	use SoftDeletes;
 
-  public function prod() 
-  {
-  	return $this->hasMany('App\Product');
-  }
+  	protected $table = 'tblProductCategory';
+  	protected $fillable = ['strProdCategName', 'txtProdCategDesc'];
+  	protected $primaryKey = 'intProdCategID';
+  	public $timestamps = false;
+
+  	public function prod() 
+  	{
+  		return $this->hasMany('App\Product');
+  	}
 }

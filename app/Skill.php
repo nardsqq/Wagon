@@ -3,18 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Skill extends Model
 {
-  protected $table = 'tblSkill';
-  protected $fillable = ['strSkillName', 'txtSkillDesc'];
-  protected $primaryKey = 'intSkillID';
-  public $timestamps = false;
+    use SoftDeletes;
+    protected $table = 'tblSkill';
+    protected $fillable = ['strSkillName', 'txtSkillDesc'];
+    protected $primaryKey = 'intSkillID';
+    public $timestamps = false;
 
-  public function skillset()
-  {
-  	return $this->belongsToMany('App/SkillSet, intSkillSetSkillID');
-  }
+    public function skillsets()
+    {
+  	   return $this->belongsToMany('App/SkillSet, intSkillSetSkillID');
+    }
 
   public static $rules = [
     'strSkillName' => 'required|min:2|unique:tblSkill|max:45|regex:/^[a-z ,.\'-]+$/i',

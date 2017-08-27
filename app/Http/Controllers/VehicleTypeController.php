@@ -15,7 +15,7 @@ class VehicleTypeController extends Controller
      */
     public function index()
     {
-        $vehitypes = VehicleType::where('isDeleted', 0)->get();
+        $vehitypes = VehicleType::orderBy('strVehiTypeName')->get();
         return view('maintenance.vehicle-type.index')->with('vehitypes', $vehitypes);
     }
 
@@ -99,10 +99,6 @@ class VehicleTypeController extends Controller
      */
     public function destroy($id)
     {
-        $vehitype = VehicleType::findOrFail($id);
-        $vehitype->isDeleted = 1;
-        $vehitype->intVehiTypeStatus = 0;
-        $vehitype->save();
-        return response()->json($vehitype);
+        //
     }
 }

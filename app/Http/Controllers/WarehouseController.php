@@ -4,18 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Warehouse;
-use Validator;
 
 class WarehouseController extends Controller
 {
-    /*Enforce Validation Rules*/
-    protected $rules =
-    [
-        'strWarehouseName' => 'required|min:2|unique:tblwarehouse|max:45|regex:/^[a-z ,.\'-]+$/i',
-        'txtWarehouseLocation' => 'required|min:2|max:500|regex:/^[a-z ,.\'-]+$/i',
-        'txtWarehouseDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
-    ];
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +14,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouses = Warehouse::where('isDeleted', 0)->get();
+        $warehouses = Warehouse::orderBy('strWarehouseName')->get();
         return view('maintenance.warehouse.index')->with('warehouses', $warehouses);
     }
 
