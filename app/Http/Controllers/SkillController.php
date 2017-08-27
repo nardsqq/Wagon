@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Skill;
-use Validator;
-use Response;
-use View;
-use DB;
 
 class SkillController extends Controller
 {

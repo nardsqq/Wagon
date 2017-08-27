@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\VehicleType;
-use Validator;
 
 class VehicleTypeController extends Controller
 {

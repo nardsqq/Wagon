@@ -17,9 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
+        $prodcategs = ProductCategory::orderBy('strProdCategName')->get();
         $attribs = Attribute::orderBy('strAttribName')->get();
-        $products = Product::all();
+        $products = Product::orderBy('strProdName')->get();
         return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
@@ -30,9 +30,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
+        $prodcategs = ProductCategory::orderBy('strProdCategName')->get();
         $attribs = Attribute::orderBy('strAttribName')->get();
-        $products = Product::all();
+        $products = Product::orderBy('strProdName')->get();
         return view('maintenance.product.create')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 

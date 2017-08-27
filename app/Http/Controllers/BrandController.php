@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Brand;
-use Validator;
-use Response;
-use View;
 
 class BrandController extends Controller
 {
@@ -18,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('intBrandID', 'strBrandName')->get();
+        $brands = Brand::orderBy('strBrandName')->get();
         return view('maintenance.brand.index')->with('brands', $brands);
     }
 
