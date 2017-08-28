@@ -17,9 +17,15 @@ class ProductController extends Controller
      */
     public function index()
     {
+<<<<<<< Updated upstream
         $prodcategs = ProductCategory::orderBy('strProdCategName')->get();
         $attribs = Attribute::orderBy('strAttribName')->get();
         $products = Product::orderBy('strProdName')->get();
+=======
+        $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
+        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
+        $products = Product::where('isDeleted', 0)->get();
+>>>>>>> Stashed changes
         return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
@@ -44,6 +50,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< Updated upstream
         $this->validate($request, Product::$rules);
         $product = new Product;
         $product->intP_ProdCateg_ID = $request->intP_ProdCateg_ID;
@@ -56,6 +63,22 @@ class ProductController extends Controller
         $product->attribs()->sync($request->intFeatSetID, false);
 
         return redirect()->route('product.index');
+=======
+        if ($request->ajax()) {
+            $this->validate($request, Product::$rules);
+            $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
+            $product = new Product;
+            $product->prodcateg()->associate($prodcateg);
+            $product->strProdName = trim(ucwords($request->strProdName));
+            $product->strProdHandle = trim(ucwords($request->strProdHandle));
+            $product->strProdSKU = trim(strtoupper($request->strProdSKU));
+            $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+            $product->save();
+            return response()->json($product);
+        } else {
+            return redirect(route('product.index'));
+        }
+>>>>>>> Stashed changes
     }
 
     /**

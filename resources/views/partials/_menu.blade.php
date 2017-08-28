@@ -75,11 +75,21 @@
                 </li>
   							<li class="divider"></li>
   							<li class="dropdown-header">Payment</li>
-  							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Base Price</a></li>
-  							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Discount</a></li>
-                <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Mode of Payment</a></li>
-                <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Delivery Charge</a></li>
-                <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Price Validity</a></li>
+  							<li class="{{ Request::is('admin/maintenance/base-price') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/base-price') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Base Price</a>
+                </li>
+  							<li class="{{ Request::is('admin/maintenance/discount') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
+                </li>
+                 <li class="{{ Request::is('admin/maintenance/mode-of-payment') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Mode Of Payment</a>
+                </li>
+                <li class="{{ Request::is('admin/maintenance/delivery-charge') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/delivery-charge') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Delivery Charge</a>
+                </li>
+                <li class="{{ Request::is('admin/maintenance/price-validity') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/price-validity') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Price Validity</a>
+                </li>
   						</ul>
   					</li>
   				</ul>

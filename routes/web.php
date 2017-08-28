@@ -40,6 +40,13 @@ Route::group(['prefix' => 'admin'], function() {
     // Transportation
     Route::resource('vehicle-type', 'VehicleTypeController');
 
+    // Payment
+    Route::resource('base-price', 'BasePriceController');
+    Route::resource('discount', 'DiscountController');
+    Route::resource('mode-of-payment', 'ModeOfPaymentController');
+    Route::resource('delivery-charge', 'DeliveryChargeController');
+    Route::resource('price-validity', 'PriceValidityController');
+
   });
 
   Route::group(['prefix' => 'transactions'], function() {
