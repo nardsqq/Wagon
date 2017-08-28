@@ -17,15 +17,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-<<<<<<< Updated upstream
         $prodcategs = ProductCategory::orderBy('strProdCategName')->get();
         $attribs = Attribute::orderBy('strAttribName')->get();
         $products = Product::orderBy('strProdName')->get();
-=======
-        $prodcategs = ProductCategory::orderBy('strProdCategName')->where('isDeleted', 0)->get();
-        $attribs = Attribute::orderBy('strAttribName')->where('isDeleted', 0)->get();
-        $products = Product::where('isDeleted', 0)->get();
->>>>>>> Stashed changes
+
         return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
