@@ -13,11 +13,4 @@ class DeliveryCharge extends Model
   	protected $fillable = ['strDelCharName', 'strDelCharWeight', 'strDelCharRate'];
   	protected $primaryKey = 'intDelCharID';
   	public $timestamps = false;
-
-  	/*
-  	public function prod() 
-  	{
-  		return $this->hasMany('App\Product');
-  	}
-  	*/
 }

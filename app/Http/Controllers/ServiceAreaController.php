@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ServiceArea;
 use App\ServiceType;
 
-class ServiceTypeController extends Controller
+class ServiceAreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,9 @@ class ServiceTypeController extends Controller
     public function index()
     {
         $servtypes = ServiceType::orderBy('strServTypeName')->get();
-
-        return view('maintenance.service-type.index')->with('servtypes', $servtypes);
+        $servareas = ServiceArea::orderBy('strServAreaName')->get();
+        
+        return view('maintenance.service-area.index')->with('servareas', $servareas)->with('servtypes', $servtypes);
     }
 
     /**
@@ -38,15 +40,15 @@ class ServiceTypeController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $servtype = new ServiceType();
-
-            $servtype->strServTypeName = trim(ucwords($request->strServTypeName));
-            $servtype->txtServTypeDesc = trim(ucfirst($request->txtServTypeDesc));
-
-            $servtype->save();
-            return response()->json($servtype);
+            $servtype = ServiceType::find($request->intSA_ServType_ID);
+            $servarea = new ServiceArea;
+            $servarea->servtypes()->associate($servtype);
+            $servarea->strServAreaName = trim(ucwords($request->strServAreaName));
+            $servarea->txtServAreaDesc = trim(ucwords($request->txtServAreaDesc));
+            $servarea->save();
+            return response()->json($servarea);
         } else {
-            return redirect(route('service-type.index'));
+            return redirect(route('service-area.index'));
         }
     }
 
@@ -69,9 +71,8 @@ class ServiceTypeController extends Controller
      */
     public function edit($id)
     {
-        $servtype = ServiceType::findOrFail($id);
-
-        return response()->json($servtype);
+        $servarea = ServiceArea::findOrFail($id);
+        return response()->json($servarea);
     }
 
     /**
@@ -84,15 +85,15 @@ class ServiceTypeController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->ajax()) {
-            $servtype = ServiceType::findOrFail($id);
-            
-            $servtype->strServTypeName = trim($request->strServTypeName);
-            $servtype->txtServTypeDesc = trim($request->txtServTypeDesc);
-
-            $servtype->save();
-            return response()->json($servtype);
+            $servtype = ServiceType::find($request->intSA_ServType_ID);
+            $servarea = ServiceArea::findOrFail($id);
+            $servarea->servtypes()->associate($servtype);
+            $servarea->strServAreaName = trim($request->strServAreaName);
+            $servarea->txtServAreaDesc = trim($request->txtServAreaDesc);
+            $servarea->save();
+            return response()->json($servarea);
         } else {
-            return redirect(route('service-type.index'));
+            return redirect(route('service-area.index'));
         }
     }
 
@@ -106,8 +107,8 @@ class ServiceTypeController extends Controller
     {
         $del = [];
         $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $servtype = ServiceType::destroy($del);
+        $servarea = ServiceArea::destroy($del);
 
-        return response()->json($servtype);
+        return response()->json($servarea);
     }
 }

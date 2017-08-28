@@ -10,7 +10,7 @@
     </div>
     <div class="col-xs-6">
       <label for="strProdName">Product Name</label>
-      {{ Form::text('strProdName', "", ['class' => 'form-control'])}}
+      <input type="text" id="strProdName" name="strProdName" class="form-control">
     </div>
   </div>
   <div class="row m-t-10">

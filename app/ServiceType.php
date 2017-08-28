@@ -13,4 +13,9 @@ class ServiceType extends Model
   	protected $fillable = ['strServTypeName', 'txtServTypeDesc'];
   	protected $primaryKey = 'intServTypeID';
   	public $timestamps = false;
+
+  	public function servareas() 
+  	{
+  		return $this->hasMany('App\ServiceArea');
+  	}
 }

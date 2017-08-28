@@ -34,6 +34,7 @@ class ProductController extends Controller
         $prodcategs = ProductCategory::orderBy('strProdCategName')->get();
         $attribs = Attribute::orderBy('strAttribName')->get();
         $products = Product::orderBy('strProdName')->get();
+
         return view('maintenance.product.create')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
@@ -68,6 +69,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+        
         return view('maintenance.product.show')->with('product', $product);
     }
 
@@ -81,6 +83,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $prodcategs = ProductCategory::pluck('strProdCategName', 'intProdCategID');
+
         return view('maintenance.product.edit')->with('product', $product)->with('prodcategs', $prodcategs);
     }
 

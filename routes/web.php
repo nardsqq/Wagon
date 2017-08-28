@@ -36,12 +36,12 @@ Route::group(['prefix' => 'admin'], function() {
 
     // Services
     Route::resource('service-type', 'ServiceTypeController');
+    Route::resource('service-area', 'ServiceAreaController');
 
     // Transportation
     Route::resource('vehicle-type', 'VehicleTypeController');
 
     // Payment
-    Route::resource('base-price', 'BasePriceController');
     Route::resource('discount', 'DiscountController');
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
     Route::resource('delivery-charge', 'DeliveryChargeController');

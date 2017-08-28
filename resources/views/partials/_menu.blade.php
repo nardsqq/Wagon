@@ -56,8 +56,8 @@
                 <li class="{{ Request::is('admin/maintenance/service-type') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/service-type') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Type</a>
                 </li>
-                <li class="{{ Request::is('admin/maintenance/service') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Area</a>
+                <li class="{{ Request::is('admin/maintenance/service-area') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/service-area') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Area</a>
                 </li>
   						</ul>
   					</li>
