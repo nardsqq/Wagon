@@ -14,7 +14,7 @@ class ModeOfPaymentController extends Controller
      */
     public function index()
     {
-        $modes = ModeOfPayment::orderBy('strMODName')->get();
+        $modes = ModeOfPayment::all();
         return view('maintenance.mode-of-payment.index')->with('modes', $modes);
     }
 
@@ -36,14 +36,11 @@ class ModeOfPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->ajax()) {
-            $mode = new ModeOfPayment();
-            $mode->strMODName = trim(ucwords($request->strMODName));
-            $mode->save();
-            return response()->json($mode);
-        } else {
-            return redirect(route('mode-of-payment.index'));
-        }
+        $mode = new ModeOfPayment;
+        $mode ->strMODName = trim(ucwords($request->strMODName));
+        $mode->save();
+        
+        return response()->json($mode);
     }
 
     /**
@@ -78,14 +75,11 @@ class ModeOfPaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->ajax()) {
-            $mode = ModeOfPayment::findOrFail($id);
-            $mode->strMODName = trim($request->strMODName);
-            $mode->save();
-            return response()->json($mode);
-        } else {
-            return redirect(route('mode-of-payment.index'));
-        }
+        $mode = ModeOfPayment::findOrFail($id);
+        $mode ->strMODName = trim($request->strMODName);
+        $mode->save();
+        
+        return response()->json($mode);
     }
 
     /**
@@ -94,8 +88,8 @@ class ModeOfPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+       //
     }
 }

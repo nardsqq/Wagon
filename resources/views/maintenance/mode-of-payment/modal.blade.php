@@ -1,14 +1,14 @@
-<div class="modal fade" id="add_mode" role="document">
+<div class="modal fade" id="add_mode" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-success" id="mode-of-payment-modal-header">
-        <h4 class="modal-title"></h4>
+      <div class="modal-header modal-header-success" id="mode-modal-header">
+        <h4 id="title">Add New Mode Of Payment</h4>
       </div>
       <div class="modal-body">
-        <form id="formVehiType">
+        <form id="formMode">
           <div class="form-group">
-            <label for="strVehiTypeName">Mode Of Payment</label>
-            <input type="text" id="strVehiTypeName" name="strVehiTypeName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <label for="strMODName">Mode Of Payment</label>
+            <input type="text" id="strMODName" name="strMODName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>
@@ -25,7 +25,7 @@
 <div class="modal fade" id="del_mode">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-danger" id="mode-of-payment-del-modal-header">
+      <div class="modal-header modal-header-danger" id="mode-del-modal-header">
         <center><h4 id="title">Delete Mode Of Payment Record</h4></center>
       </div>
       <div class="modal-body">

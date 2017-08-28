@@ -1,5 +1,4 @@
 @extends('main')
-
 @section('content')
 
  <header id="header">
@@ -7,9 +6,6 @@
       <div class="row">
         <div class="col-md-10">
           <h1><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Maintenance</h1>
-        </div>
-        <div class="col-md-2">
-
         </div>
       </div>
     </div>
@@ -39,7 +35,7 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Delivery Charges</i> here.</strong>
+            <strong>Manage <i>Delivery Charge</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
           </div>
@@ -61,8 +57,8 @@
         </div>
       </div>
     </div>
+
   </section>
-  
 @endsection
 
 @section('scripts')
@@ -75,5 +71,4 @@
   </script>
 
   <script src="{{ asset('/js/ajax/delivery-charge-ajax.js/') }}"></script>
-
 @endsection

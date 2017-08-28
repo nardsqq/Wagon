@@ -1,21 +1,20 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Vehicle Type</th>
-      <th>Weight</th>
-      <th>Rate</th>
+      <th>Delivery Charge</th>
+      <th>Description</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody id="delivery-charge-list">
-    @foreach ($delcharges as $delcharge)
-    <tr id="id{{ $delcharge->intDelCharID }}">
-        <td>{{ $delcharge->strDelCharName }}</td>
-        <td>{{ $delcharge->strDelCharWeight }}</td>
-        <td>{{ $delcharge->strDelCharRate }}</td>
+  <tbody id="delchar-list">
+    @foreach ($delchars as $delchar)
+    <tr id="id{{$delchar->intProdCategID}}">
+        <td>{{ $delchar->strDelCharName }}</td>
+        <td>{{ $delchar->strDelCharWeight }}</td>
+        <td>{{ $delchar->strDelCharRate }}</td>
         <td class="text-center">
-            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $delcharge->intDelCharID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-            <button class="btn btn-danger btn-sm btn-delete" value="{{ $delcharge->intDelCharID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $delchar->intProdCategID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <button class="btn btn-danger btn-sm btn-delete" value="{{ $delchar->intProdCategID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
     </tr>
     @endforeach

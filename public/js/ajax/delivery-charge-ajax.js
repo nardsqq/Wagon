@@ -6,8 +6,8 @@ $(document).ready(function() {
   });
 
   $('#add_delchar').on('hide.bs.modal', function() {
-        $('#formDelCharge').trigger('reset');
-  });
+        $('#formDelChar').trigger('reset');
+    });
 
   var url = "/admin/maintenance/delivery-charge";
   var id = '';
@@ -16,8 +16,8 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('.modal-title').text('Edit Delvery Charge Details');
-    $('#delivery-charge-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#title').text('Edit Delivery Charge');
+    $('#delchar-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -26,8 +26,8 @@ $(document).ready(function() {
       console.log(data);
 
       $('#strDelCharName').val(data.strDelCharName);
-      $('#decDelCharWeight').val(data.decDelCharWeight);
-      $('#decDelCharRate').val(data.decDelCharRate);
+      $('#strDelCharWeight').val(data.strDelCharWeight);
+      $('#strDelCharRate').val(data.strDelCharRate);
       $('#btn-save').val("update");
       $('#add_delchar').modal('show');
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
   });
 
-  $(document).on('click', '.btn-delete', function() {
+    $(document).on('click', '.btn-delete', function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
@@ -43,76 +43,77 @@ $(document).ready(function() {
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-          }
-      })
-      e.preventDefault();
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
+    e.preventDefault();
 
-      $.ajax({
-          type: "DELETE",
-          url: url + '/' + id,
-          dataType: "json",
-          success: function (data) {
-              console.log(data);
-              console.log(url);
+    $.ajax({
+      type: "DELETE",
+      url: '/admin/maintenance/delivery-charge/' + id,
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        console.log(url);
 
-              var table = $('#dataTable').DataTable();
-              table.row($("#id" + id)).remove().draw();
-              $('#del_delchar').modal('hide');
+        var table = $('#dataTable').DataTable();
+        table.row($("#id" + id)).remove().draw();
 
-              toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "slideDown",
-                "hideMethod": "slideUp"
-              }
+        $('#del_delchar').modal('hide');
 
-              toastr.success("Successfully Deleted Delivery Charge Record");
-          },
-          error: function (data) {
-              console.log(url + '/' + id);
-              console.log('Error:', data);
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": true,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "slideDown",
+          "hideMethod": "slideUp"
+        }
 
-              toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": true,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "slideDown",
-                "hideMethod": "slideUp"
-              }
+        toastr.error("Successfully Deleted Delivery Charge Record");
+      },
+      error: function (data) {
+        console.log(url + '/' + id);
+        console.log('Error:', data);
 
-              toastr.error("It seems like this record is still in use in other processes. Record removal failed.");
-          }
-      });
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": true,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "slideDown",
+          "hideMethod": "slideUp"
+        }
+
+        toastr.error("It seems that this record is still in use in other processes. Record removal failed.");
+      }
+    });
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('.modal-title').text('Add New Delivery Charge');
-    $('#delivery-charge-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formDelCharge').trigger("reset");
+    $('#title').text('Add New Delivery Charge');
+    $('#delchar-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formDelChar').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
@@ -129,96 +130,102 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    var formData = $("#formDelCharge").serialize();
+    var formData = {
+      _token: $('input[name=_token]').val(),
+      strDelCharName: $('#strDelCharName').val(),
+      strDelCharWeight: $('#strDelCharWeight').val(),
+      strDelCharRate: $('#strDelCharRate').val()
+    };
+
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
 
-    if(state === "add")
-      type = "POST";
-    else {
-      type = "PUT";
-      my_url += '/' + id;
+  if (state == "update") {
+    type = "PUT";
+    my_url += '/' + id;
 
-      toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "slideDown",
-        "hideMethod": "slideUp"
-      }
-      toastr.info("Successfully Updated Product Record");
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": true,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": true,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "slideDown",
+      "hideMethod": "slideUp"
     }
 
+    toastr.info("Successfully Updated Delivery Charge Record");
+  }
+
   $.ajax({
-      type: type,
-      url: my_url,
-      data: formData,
-      dataType: 'json'
+    type: type,
+    url: my_url,
+    data: formData,
+    dataType: 'json'
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intDelChargeID +  "></tr>")
+      var row = $("<tr id=id" + data.intDelCharID +  "></tr>")
       .append(
           "<td>" + data.strDelCharName + "</td>" +
-          "<td>" + data.decDelCharWeight + "</td>" +
-          "<td>" + data.decDelCharRate + "</td>" +
+          "<td>" + data.strDelCharWeight + "</td>" +
+          "<td>" + data.strDelCharRate + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intDelChargeID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intDelChargeID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intDelCharID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intDelCharID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
       var table = $('#dataTable').DataTable();
+      
       if (state == "add") { 
-        table.row.add(row).draw();
+          table.row.add(row).draw();
+          toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+          }
 
-        toastr.options = {
-          "closeButton": false,
-          "debug": false,
-          "newestOnTop": true,
-          "progressBar": true,
-          "positionClass": "toast-top-right",
-          "preventDuplicates": false,
-          "onclick": null,
-          "showDuration": "300",
-          "hideDuration": "1000",
-          "timeOut": "5000",
-          "extendedTimeOut": "1000",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "slideDown",
-          "hideMethod": "slideUp"
-        }
-        toastr.success("Successfully Added a New Delivery Charge Record");
-
+          toastr.success("Successfully Added a New Delivery Charge Record");
       } 
       else { 
-          table.row($("#id"+data.intDelChargeID)).remove();
+          table.row($("#id"+data.intDelCharID)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formDelCharge').trigger("reset");
+      $('#formDelChar').trigger("reset");
       $('#add_delchar').modal('hide')
-  }).fail(function(data) {
-    console.log('Error:', data);
-        toastr.options = {"preventDuplicates": true}
-        var errors = data.responseJSON;
 
-        for (i in errors){
-            toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
-        }
+  }).fail(function(data) {
+      console.log('Error:', data);
+      toastr.options = {"preventDuplicates": true}
+      var errors = data.responseJSON;
+
+      for (i in errors){
+          toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
+      }
     });
   }); // $$("#btn-save").on('click', function (e) {});
 }); // $(document).ready(function() {});

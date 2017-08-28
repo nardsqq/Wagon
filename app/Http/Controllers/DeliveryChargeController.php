@@ -14,8 +14,8 @@ class DeliveryChargeController extends Controller
      */
     public function index()
     {
-        $delcharges = DeliveryCharge::all();
-        return view('maintenance.delivery-charge.index')->with('delcharges', $delcharges);
+        $delchars = DeliveryCharge::orderBy('strDelCharName')->get();
+        return view('maintenance.delivery-charge.index')->with('delchars', $delchars);
     }
 
     /**
@@ -36,16 +36,13 @@ class DeliveryChargeController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->ajax()) {
-            $delcharge = new DeliveryCharge();
-            $delcharge->strDelCharName = trim(ucwords($request->strDelCharName));
-            $delcharge->strDelCharWeight = trim(ucwords($request->strDelCharWeight));
-            $delcharge->strDelCharRate = trim(ucwords($request->strDelCharRate));
-            $delcharge->save();
-            return response()->json($delcharge);
-        } else {
-            return redirect(route('delivery-charge.index'));
-        }
+        $delchar = new DeliveryCharge;
+        $delchar ->strDelCharName = trim(ucwords($request->strDelCharName));
+        $delchar ->strDelCharWeight = trim(ucwords($request->strDelCharWeight));
+        $delchar ->strDelCharRate = trim(ucwords($request->strDelCharRate));
+        $delchar->save();
+        
+        return response()->json($delchar);
     }
 
     /**
@@ -67,8 +64,8 @@ class DeliveryChargeController extends Controller
      */
     public function edit($id)
     {
-        $delcharge = DeliveryCharge::findOrFail($id);
-        return response()->json($delcharge);
+        $delchar = DeliveryCharge::findOrFail($id);
+        return response()->json($delchar);
     }
 
     /**
@@ -80,16 +77,13 @@ class DeliveryChargeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->ajax()) {
-            $delcharge = DeliveryCharge::findOrFail($id);
-            $delcharge->strDelCharName = trim($request->strDelCharName);
-            $delcharge->strDelCharWeight = trim($request->strDelCharWeight);
-            $delcharge->strDelCharRate = trim($request->strDelCharRate);
-            $delcharge->save();
-            return response()->json($delcharge);
-        } else {
-            return redirect(route('delivery-charge.index'));
-        }
+        $delchar = DeliveryCharge::findOrFail($id);
+        $delchar ->strDelCharName = trim($request->strDelCharName);
+        $delchar ->strDelCharWeight = trim($request->strDelCharWeight);
+        $delchar ->strDelCharRate = trim($request->strDelCharRate);
+        $delchar->save();
+        
+        return response()->json($delchar);
     }
 
     /**
@@ -98,8 +92,12 @@ class DeliveryChargeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $del = [];
+        $request->has('values') ? $del = $request->values : array_push($del, $id);
+        $delchar = DeliveryCharge::destroy($del);
+
+        return response()->json($delchar);
     }
 }
