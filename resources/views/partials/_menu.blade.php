@@ -48,7 +48,6 @@
   							<li class="{{ Request::is('admin/maintenance/skill') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/skill') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Skill</a>
                 </li>
-                <li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Skill Set</a></li>
                 <li class="{{ Request::is('admin/maintenance/personnel') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
                 </li>
