@@ -24,12 +24,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Product</li>
+        <li>Personnel</li>
       </ol>
     </div>
   </section>
 
-  @include('maintenance.product.modal')
+  @include('maintenance.personnel.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -38,10 +38,10 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <a href="{{ route('product.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add New Product</a>
+                <a href="{{ route('personnel.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add New Personnel</a>
               </div>
               <div class="panel-title">
-                <h4>Product</h4>
+                <h4>Personnel</h4>
               </div>
             </div>
             <div class="panel-body">
@@ -49,12 +49,12 @@
                 <div class="icon">
                   <i class="fa fa-info-circle"></i>
                 </div>
-                <strong>Manage <i>Products</i> here.</strong>
+                <strong>Manage <i>Personnel</i> here.</strong>
                 <br>
                 <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
               </div>
               <div id="table-container">
-                @include('maintenance.product.table')
+                @include('maintenance.personnel.table')
               </div>
             </div>
           </div>
@@ -74,12 +74,6 @@
     })
   </script>
 
-  <script>
-  $('.multi-attrib').select2({
-    dropdownParent: $('#add_product')
-  });
-  </script>
-
-  <script src="{{ asset('/js/ajax/product-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/personnel-ajax.js/') }}"></script>
 
 @endsection

@@ -26,7 +26,7 @@
 		        <li>Admin</li>
 		        <li>Maintenance</li>
 		      	<li>Product</li>
-		      	<li>View</li>
+		      	<li>View Personnel Record</li>
 		    </ol>
 	   	</div>
 	</section>
@@ -40,10 +40,10 @@
 		          	<div class="panel panel-default">
 			            <div class="panel-heading clearfix">
 			              	<div class="btn-group pull-right">
-			              		<a href="{{ route('product.index') }}" class="btn btn-success">Return to Product List</a>
+			              		<a href="{{ route('personnel.index') }}" class="btn btn-success">Return to Personnel List</a>
 			              	</div>
 			              <div class="panel-title">
-			                <h4>View Product Details</h4>
+			                <h4>View Personnel Details</h4>
 			              </div>
 			            </div>
 			            <div class="panel-body">	

@@ -1,45 +1,32 @@
-{{ Form::open(array('route' => 'product.store'))}}
+{{ Form::open(array('route' => 'personnel.store'))}}
   <div class="row">
-    <div class="col-xs-6">
-      <label>Product Category</label>
-      <select name="intP_ProdCateg_ID" id="intP_ProdCateg_ID" class="form-control">
-        @foreach ($prodcategs as $prodcateg)
-          <option value="{{$prodcateg->intProdCategID}}">{{ $prodcateg->strProdCategName }}</option>
+    <div class="col-xs-12">
+      <label for="">Personnel Role</label>
+      <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
+        @foreach ($roles as $role)
+          <option value="{{$role->intRoleID}}">{{ $role->strRoleName }}</option>
         @endforeach
       </select>
     </div>
-    <div class="col-xs-6">
-      <label for="strProdName">Product Name</label>
-      <input type="text" id="strProdName" name="strProdName" class="form-control">
-    </div>
   </div>
   <div class="row m-t-10">
-    <div class="col-xs-6">
-      <label for="strProdHandle">Product Handle</label>
-      <input type="text" id="strProdHandle" name="strProdHandle" class="form-control">
+    <div class="col-xs-4">
+      <label for="strPersFName">First Name</label>
+      <input type="text" id="strPersFName" name="strPersFName" class="form-control">
+    </div>
+    <div class="col-xs-4">
+      <label for="strPersMName">Middle Name</label>
+      <input type="text" id="strPersMName" name="strPersMName" class="form-control">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </div>
-    <div class="col-xs-6">
-      <label for="strProdSKU">Stock Keeping Unit</label>
-      <input type="text" id="strProdSKU" name="strProdSKU" class="form-control">
+    <div class="col-xs-4">
+      <label for="strPersLName">Last Name</label>
+      <input type="text" id="strPersLName" name="strPersLName" class="form-control">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </div>
-  </div>
-  <div class="form-group m-t-10">
-    <label for="intFeatSetID">Feature Set</label>
-    <select name="intFeatSetID[]" id="intFeatSetID" class="form-control attrib-multi" multiple="multiple">
-      @foreach($attribs as $attrib)
-        <option value="{{ $attrib->intAttribID }}">{{ $attrib->strAttribName }}</option>
-      @endforeach
-    </select>
-  </div>
-  <div class="form-group m-t-10">
-    <label for="txtProdDesc">Description</label>
-    <textarea class="form-control resize" rows="5" id="txtProdDesc" name="txtProdDesc"></textarea>
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
   </div>
   <div class="form-group">
-  	<a href="{{ route('product.index') }}" class="btn btn-default">Cancel, Return to Product List</a>
-  	{!! Form::submit('Save Product', array('class' => 'btn btn-success pull-right')) !!}
+  	<a href="{{ route('personnel.index') }}" class="btn btn-default">Cancel, Return to Personnel List</a>
+  	{!! Form::submit('Save Personnel Record', array('class' => 'btn btn-success pull-right')) !!}
   </div>
 {!! Form::close() !!}

@@ -1,10 +1,8 @@
 <table id="dataTable" class="table table-bordered table-hover table-condensed" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Category</th>
+      <th>Role</th>
       <th>Name</th>
-      <th>Handle</th>
-      <th>SKU</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
