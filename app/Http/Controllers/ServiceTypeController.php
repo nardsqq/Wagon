@@ -38,12 +38,15 @@ class ServiceTypeController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $servtype = new ServiceType();
+            $this->validate($request, ServiceType::$rules);
+
+            $servtype = new ServiceType;
 
             $servtype->strServTypeName = trim(ucwords($request->strServTypeName));
             $servtype->txtServTypeDesc = trim(ucfirst($request->txtServTypeDesc));
 
             $servtype->save();
+
             return response()->json($servtype);
         } else {
             return redirect(route('service-type.index'));
@@ -104,10 +107,14 @@ class ServiceTypeController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $del = [];
-        $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $servtype = ServiceType::destroy($del);
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $servtype = ServiceType::destroy($del);
 
-        return response()->json($servtype);
+            return response()->json($servtype);
+        } else {
+            return redirect(route('service-type.index'));
+        }
     }
 }

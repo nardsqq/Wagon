@@ -18,4 +18,9 @@ class ServiceType extends Model
   	{
   		return $this->hasMany('App\ServiceArea');
   	}
+
+    public static $rules = [
+        'strServTypeName' => 'required|min:2|unique:tblServiceType|max:45|regex:/^[a-z ,.\'-]+$/i',
+        'txtServTypeDesc' => 'min:2|max:50|regex:/^[a-z ,.\'-]+$/i'
+    ];
 }
