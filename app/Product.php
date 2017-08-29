@@ -7,25 +7,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-  use SoftDeletes;
+    use SoftDeletes;
 
-  protected $table = 'tblProduct';
-  protected $fillable = ['intP_ProdCateg_ID', 'strProdName', 'strProdHandle', 'strProdSKU', 'txtProdDesc'];
-  protected $primaryKey = 'intProdID';
-  public $timestamps = false;
+    protected $table = 'tblProduct';
+    protected $fillable = ['intP_ProdCateg_ID', 'strProdName', 'strProdHandle', 'strProdSKU', 'txtProdDesc'];
+    protected $primaryKey = 'intProdID';
+    public $timestamps = false;
 
-  public function prodcategs() 
-  {
-    return $this->belongsTo('App\ProductCategory', 'intP_ProdCateg_ID');
-  }
+    public function prodcategs() 
+    {
+      return $this->belongsTo('App\ProductCategory', 'intP_ProdCateg_ID');
+    }
 
-  public function attribs() 
-  {
-    return $this->belongsToMany('App\Attribute', 'tblFeatureSet', 'intFS_Prod_ID', 'intFS_Attrib_ID');
-  }
+    public function attribs() 
+    {
+      return $this->belongsToMany('App\Attribute', 'tblFeatureSet', 'intFS_Prod_ID', 'intFS_Attrib_ID');
+    }
 
-  public static $rules = [
-    'strProdName' => 'required|unique_with:tblproduct, intP_ProdCateg_ID, strProdHandle',
-    'intP_ProdCateg_ID' => 'required'
-  ];
+    public static $rules = [
+      'strProdName' => 'required|unique_with:tblproduct, intP_ProdCateg_ID, strProdHandle',
+      'intP_ProdCateg_ID' => 'required'
+    ];
 }
