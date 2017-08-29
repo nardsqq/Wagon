@@ -37,7 +37,8 @@ class WarehouseController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $warehouse = new Warehouse();
+            $this->validate($request, Warehouse::$rules);
+            $warehouse = new Warehouse;
             $warehouse->strWarehouseName = trim(ucwords($request->strWarehouseName));
             $warehouse->txtWarehouseLocation = trim(ucfirst($request->txtWarehouseLocation));
             $warehouse->txtWarehouseDesc = trim(ucfirst($request->txtWarehouseDesc));
@@ -80,12 +81,17 @@ class WarehouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $warehouse = Warehouse::findOrFail($id);
-        $warehouse->strWarehouseName = trim($request->strWarehouseName);
-        $warehouse->txtWarehouseLocation = trim($request->txtWarehouseLocation);
-        $warehouse->txtWarehouseDesc = trim($request->txtWarehouseDesc);
-        $warehouse->save();
-        return response()->json($warehouse);
+        if ($request->ajax()) {
+            $warehouse = Warehouse::findOrFail($id);
+            $warehouse->strWarehouseName = trim($request->strWarehouseName);
+            $warehouse->txtWarehouseLocation = trim($request->txtWarehouseLocation);
+            $warehouse->txtWarehouseDesc = trim($request->txtWarehouseDesc);
+            $warehouse->save();
+            return response()->json($warehouse);
+        } else {
+            return redirect(route('warehouse.index'));
+        }
+        
     }
 
     /**
@@ -94,12 +100,12 @@ class WarehouseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $warehouse = Warehouse::findOrFail($id);
-        $warehouse->isDeleted = 1;
-        $warehouse->intWarehouseStatus = 0;
-        $warehouse->save();
+        $del = [];
+        $request->has('values') ? $del = $request->values : array_push($del, $id);
+        $warehouse = Warehouse::destroy($del);
+
         return response()->json($warehouse);
     }
 }
