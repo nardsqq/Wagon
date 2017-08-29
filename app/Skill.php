@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Skill extends Model
 {
     use SoftDeletes;
+    
     protected $table = 'tblSkill';
     protected $fillable = ['strSkillName', 'txtSkillDesc'];
     protected $primaryKey = 'intSkillID';
@@ -15,11 +16,11 @@ class Skill extends Model
 
     public function skillsets()
     {
-  	   return $this->belongsToMany('App/SkillSet, intSkillSetSkillID');
+       return $this->belongsToMany('App/SkillSet, intSkillSetSkillID');
     }
 
-  public static $rules = [
-    'strSkillName' => 'required|min:2|unique:tblSkill|max:45|regex:/^[a-z ,.\'-]+$/i',
-	'txtSkillDesc' => 'min:2|max:500|regex:/^[a-z ,.\'-]+$/i'
-  ];
+    public static $rules = [
+        'strSkillName' => 'required|min:2|unique:tblSkill|max:45|regex:/^[a-z ,.\'-]+$/i',
+        'txtSkillDesc' => 'min:2|max:50|regex:/^[a-z ,.\'-]+$/i'
+    ];
 }

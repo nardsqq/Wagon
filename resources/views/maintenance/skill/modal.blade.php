@@ -13,7 +13,7 @@
           </div>
           <div class="form-group">
             <label for="txtSkillDesc">Description</label>
-            <textarea class="form-control resize" rows="5" id="txtSkillDesc"></textarea>
+            <textarea class="form-control resize" rows="5" id="txtSkillDesc" name="txtSkillDesc"></textarea>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>
@@ -28,13 +28,21 @@
 </div>
 
 <div class="modal fade" id="del_skill">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-danger" id="skill-del-modal-header">
         <center><h4 id="title">Delete Skill Record</h4></center>
       </div>
       <div class="modal-body">
-        <center><h5><b>You are about to delete a skill data and all its contents. This action cannot be undone. Delete Skill?</b></h5></center>
+        <center>
+          <h5>
+            <b>
+              You are about to delete this Skill data and all its contents. 
+              <br>
+              This action cannot be undone. Delete Skill?
+            </b>
+          </h5>
+        </center>
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>

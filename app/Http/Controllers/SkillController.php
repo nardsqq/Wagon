@@ -36,12 +36,20 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        $skill = new Skill;
-        $skill ->strSkillName = trim(ucwords($request->strSkillName));
-        $skill ->txtSkillDesc = trim(ucfirst($request->txtSkillDesc));
-        $skill->save();
+        if ($request->ajax()) {
+            $this->validate($request, Skill::$rules);
 
-        return response()->json($skill);
+            $skill = new Skill;
+
+            $skill ->strSkillName = trim(ucwords($request->strSkillName));
+            $skill ->txtSkillDesc = trim(ucfirst($request->txtSkillDesc));
+
+            $skill->save();
+
+            return response()->json($skill);
+        } else {
+            return redirect(route('skill.index'));
+        }
     }
 
     /**
@@ -76,12 +84,16 @@ class SkillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $skill = Skill::findOrFail($id);
-        $skill ->strSkillName = trim($request->strSkillName);
-        $skill ->txtSkillDesc = trim($request->txtSkillDesc);
-        $skill ->save();
+        if ($request->ajax()) {
+            $skill = Skill::findOrFail($id);
+            $skill ->strSkillName = trim($request->strSkillName);
+            $skill ->txtSkillDesc = trim($request->txtSkillDesc);
+            $skill ->save();
 
-        return response()->json($skill);
+            return response()->json($skill);
+        } else {
+            return redirect(route('skill.index'));
+        }
     }
 
     /**
@@ -90,8 +102,16 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $skill = Skill::destroy($del);
+
+            return response()->json($skill);
+        } else {
+            return redirect(route('skill.index'));
+        }
     }
 }

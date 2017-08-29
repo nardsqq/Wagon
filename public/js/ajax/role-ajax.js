@@ -164,7 +164,7 @@ $(document).ready(function() {
         "showMethod": "slideDown",
         "hideMethod": "slideUp"
       }
-      toastr.info("Successfully Updated Service Area Record");
+      toastr.info("Successfully Updated Role Record");
     }
 
     console.log("" + type + ": " + my_url);
@@ -208,7 +208,7 @@ $(document).ready(function() {
               "showMethod": "slideDown",
               "hideMethod": "slideUp"
             }
-            toastr.success("Successfully Added a New Service");
+            toastr.success("Successfully Added a New Role");
         } 
         else { 
             table.row($("#id"+data.intRoleID)).remove();
