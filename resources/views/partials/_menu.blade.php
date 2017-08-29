@@ -42,11 +42,11 @@
                 <li class="dropdown-main-header"><center>Job Appointments and Services</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Workforce</li>
-                <li class="{{ Request::is('admin/maintenance/role') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/role') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Role</a>
-                </li>
   							<li class="{{ Request::is('admin/maintenance/skill') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/skill') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Skill</a>
+                </li>
+                <li class="{{ Request::is('admin/maintenance/role') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/role') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Role</a>
                 </li>
                 <li class="{{ Request::is('admin/maintenance/personnel') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
