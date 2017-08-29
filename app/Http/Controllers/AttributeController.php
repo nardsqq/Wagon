@@ -27,6 +27,8 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Attribute::$rules);
+
         $attrib = new Attribute;
 
         $attrib->strAttribName = trim(ucfirst($request->strAttribName));
@@ -78,10 +80,14 @@ class AttributeController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $del = [];
-        $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $attrib = Attribute::destroy($del);
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $attrib = Attribute::destroy($del);
 
-        return response()->json($attrib);
+            return response()->json($attrib);
+        } else {
+            return redirect(route('attributes.index'));
+        }
     }
 }

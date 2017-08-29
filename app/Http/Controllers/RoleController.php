@@ -36,12 +36,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role;
-        $role ->strRoleName = trim(ucwords($request->strRoleName));
-        $role ->txtRoleDesc = trim($request->txtRoleDesc);
-        $role->save();
+        if ($request->ajax()) {
+            $this->validate($request, Role::$rules);
 
-        return response()->json($role);
+            $role = new Role;
+            $role ->strRoleName = trim(ucwords($request->strRoleName));
+            $role ->txtRoleDesc = trim($request->txtRoleDesc);
+
+            $role->save();
+
+            return response()->json($role);
+        } else {
+            return redirect(route('role.index'));
+        }
     }
 
     /**
@@ -76,12 +83,18 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Role::findOrFail($id);
-        $role ->strRoleName = trim($request->strRoleName);
-        $role ->txtRoleDesc = trim($request->txtRoleDesc);
-        $role ->save();
+        if ($request->ajax()) {
+            $role = Role::findOrFail($id);
 
-        return response()->json($role);
+            $role ->strRoleName = trim($request->strRoleName);
+            $role ->txtRoleDesc = trim($request->txtRoleDesc);
+            
+            $role ->save();
+
+            return response()->json($role);
+        } else {
+            return redirect(route('role.index'));
+        }
     }
 
     /**
@@ -90,8 +103,16 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $role = Role::destroy($del);
+
+            return response()->json($role);
+        } else {
+            return redirect(route('role.index'));
+        }
     }
 }

@@ -20,4 +20,7 @@ class Attribute extends Model
 		return $this->belongsToMany('App\Product', 'tblFeatureSet', 'intFS_Attrib_ID', 'intFS_Prod_ID');
 	}
 
+	public static $rules = [
+        'strAttribName' => 'required|min:2|unique:tblAttribute|max:45|regex:/^[a-z ,.\'-]+$/i',
+    ];
 }
