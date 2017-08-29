@@ -102,10 +102,14 @@ class WarehouseController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $del = [];
-        $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $warehouse = Warehouse::destroy($del);
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $warehouse = Warehouse::destroy($del);
 
-        return response()->json($warehouse);
+            return response()->json($warehouse);
+        } else {
+            return redirect(route('warehouse.index'));
+        } 
     }
 }

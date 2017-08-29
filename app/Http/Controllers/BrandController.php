@@ -36,12 +36,18 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $brand = new Brand;
-        $brand ->strBrandName = trim(ucfirst($request->strBrandName));
-        $brand ->txtBrandDesc = trim(ucfirst($request->txtBrandDesc));
-        $brand->save();
+        if ($request->ajax()) {
+            $this->validate($request, Brand::$rules);
+            $brand = new Brand;
+            $brand ->strBrandName = trim(ucfirst($request->strBrandName));
+            $brand ->txtBrandDesc = trim(ucfirst($request->txtBrandDesc));
+            $brand->save();
 
-        return response()->json($brand);
+            return response()->json($brand);
+        } else {
+            return redirect(route('brand.index'));
+        }
+        
     }
 
     /**
@@ -76,12 +82,17 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brand = Brand::findOrFail($id);
-        $brand ->strBrandName = trim($request->strBrandName);
-        $brand ->txtBrandDesc = trim($request->txtBrandDesc);
-        $brand->save();
+        if ($request->ajax()) {
+            $brand = Brand::findOrFail($id);
+            $brand ->strBrandName = trim($request->strBrandName);
+            $brand ->txtBrandDesc = trim($request->txtBrandDesc);
+            $brand->save();
+            
+            return response()->json($brand);
+        } else {
+            return redirect(route('brand.index'));
+        }
         
-        return response()->json($brand);
     }
 
     /**
@@ -90,8 +101,16 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $brand = Brand::destroy($del);
+
+            return response()->json($brand);
+        } else {
+            return redirect(route('brand.index'));
+        } 
     }
 }

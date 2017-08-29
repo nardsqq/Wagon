@@ -13,4 +13,9 @@ class Brand extends Model
   	protected $fillable = ['strBrandName', 'txtBrandDesc'];
   	protected $primaryKey = 'intBrandID';
   	public $timestamps = false;
+
+  	public static $rules = [
+        'strBrandName' => 'required|min:2|unique:tblBrand|max:45|regex:/^[a-z ,.\'-]+$/i',
+      	'txtBrandDesc' => 'min:2|max:50|regex:/^[a-z ,.\'-]+$/i'
+    ];
 }
