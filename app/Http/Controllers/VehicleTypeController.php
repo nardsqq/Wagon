@@ -37,10 +37,15 @@ class VehicleTypeController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $vehitype = new VehicleType();
+            $this->validate($request, VehicleType::$rules);
+
+            $vehitype = new VehicleType;
+
             $vehitype->strVehiTypeName = trim(ucwords($request->strVehiTypeName));
             $vehitype->txtVehiTypeDesc = trim(ucfirst($request->txtVehiTypeDesc));
+
             $vehitype->save();
+
             return response()->json($vehitype);
         } else {
             return redirect(route('vehicle-type.index'));
@@ -81,9 +86,12 @@ class VehicleTypeController extends Controller
     {
         if ($request->ajax()) {
             $vehitype = VehicleType::findOrFail($id);
+
             $vehitype->strVehiTypeName = trim($request->strVehiTypeName);
             $vehitype->txtVehiTypeDesc = trim($request->txtVehiTypeDesc);
+
             $vehitype->save();
+
             return response()->json($vehitype);
         } else {
             return redirect(route('vehicle-type.index'));
@@ -96,8 +104,16 @@ class VehicleTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $vehitype = VehicleType::destroy($del);
+
+            return response()->json($vehitype);
+        } else {
+            return redirect(route('vehicle-type.index'));
+        }
     }
 }

@@ -156,7 +156,7 @@ $(document).ready(function() {
         "showMethod": "slideDown",
         "hideMethod": "slideUp"
       }
-      toastr.info("Successfully Updated Product Record");
+      toastr.info("Successfully Updated Vehicle Type Record");
     }
 
   $.ajax({
@@ -215,7 +215,7 @@ $(document).ready(function() {
         var errors = data.responseJSON;
 
         for (i in errors){
-            toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
+            toastr.error(errors[i]+'\n','VALIDATION ERROR', {timeOut: 2000});
         }
     });
   }); // $$("#btn-save").on('click', function (e) {});
