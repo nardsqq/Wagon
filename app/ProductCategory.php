@@ -18,4 +18,9 @@ class ProductCategory extends Model
   	{
   		return $this->hasMany('App\Product');
   	}
+
+  	public static $rules = [
+        'strProdCategName' => 'required|min:2|unique:tblProductCategory|max:45|regex:/^[a-z ,.\'-]+$/i',
+      	'txtProdCategDesc' => 'min:2|max:50|regex:/^[a-z ,.\'-]+$/i'
+    ];
 }

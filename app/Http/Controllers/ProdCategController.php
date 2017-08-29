@@ -36,12 +36,18 @@ class ProdCategController extends Controller
      */
     public function store(Request $request)
     {
-        $prodcateg = new ProductCategory;
-        $prodcateg ->strProdCategName = trim(ucwords($request->strProdCategName));
-        $prodcateg ->txtProdCategDesc = trim(ucfirst($request->txtProdCategDesc));
-        $prodcateg->save();
+        if ($request->ajax()) {
+            $this->validate($request, ProductCategory::$rules);
+            $prodcateg = new ProductCategory;
+            $prodcateg ->strProdCategName = trim(ucwords($request->strProdCategName));
+            $prodcateg ->txtProdCategDesc = trim(ucfirst($request->txtProdCategDesc));
+            $prodcateg->save();
+            
+            return response()->json($prodcateg);
+        } else {
+            return redirect(route('product-category.index'));
+        }
         
-        return response()->json($prodcateg);
     }
 
     /**
@@ -76,12 +82,17 @@ class ProdCategController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $prodcateg = ProductCategory::findOrFail($id);
-        $prodcateg ->strProdCategName = trim($request->strProdCategName);
-        $prodcateg ->txtProdCategDesc = trim($request->txtProdCategDesc);
-        $prodcateg->save();
+        if ($request->ajax()) {
+            $prodcateg = ProductCategory::findOrFail($id);
+            $prodcateg ->strProdCategName = trim($request->strProdCategName);
+            $prodcateg ->txtProdCategDesc = trim($request->txtProdCategDesc);
+            $prodcateg->save();
+            
+            return response()->json($prodcateg);
+        } else {
+            return redirect(route('product-category.index'));
+        }
         
-        return response()->json($prodcateg);
     }
 
     /**
@@ -92,10 +103,15 @@ class ProdCategController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $del = [];
-        $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $prodcateg = ProductCategory::destroy($del);
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $prodcateg = ProductCategory::destroy($del);
 
-        return response()->json($prodcateg);
+            return response()->json($prodcateg);
+        } else {
+            return redirect(route('product-category.index'));
+        }
+        
     }
 }
