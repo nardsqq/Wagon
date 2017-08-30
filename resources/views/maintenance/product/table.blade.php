@@ -17,7 +17,7 @@
         <td>{{ $product->strProdSKU }}</td>
         <td class="text-center">
             <a href="{{ route('product.show', $product->intProdID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
-            <button class="btn btn-info btn-sm btn-detail" value="{{ $product->intProdID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <a href="{{ route('product.edit', $product->intProdID) }}" class="btn btn-info btn-sm btn-detail"><i class='fa fa-edit'></i>&nbsp; Edit</a>
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $product->intProdID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
     </tr>
