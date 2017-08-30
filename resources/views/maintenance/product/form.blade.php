@@ -13,18 +13,6 @@
       <input type="text" id="strProdName" name="strProdName" class="form-control">
     </div>
   </div>
-  <div class="row m-t-10">
-    <div class="col-xs-6">
-      <label for="strProdHandle">Product Handle</label>
-      <input type="text" id="strProdHandle" name="strProdHandle" class="form-control">
-      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    </div>
-    <div class="col-xs-6">
-      <label for="strProdSKU">Stock Keeping Unit</label>
-      <input type="text" id="strProdSKU" name="strProdSKU" class="form-control">
-      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    </div>
-  </div>
   <div class="form-group m-t-10">
     <label for="intFeatSetID">Feature Set</label>
     <select name="intFeatSetID[]" id="intFeatSetID" class="form-control attrib-multi" multiple="multiple">

@@ -12,11 +12,12 @@ class ProductCategory extends Model
   	protected $table = 'tblProductCategory';
   	protected $fillable = ['strProdCategName', 'txtProdCategDesc'];
   	protected $primaryKey = 'intProdCategID';
+    protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
   	public function products() 
   	{
-  		return $this->hasMany('App\Product');
+  		return $this->hasMany('App\Product', 'intP_ProdCateg_ID');
   	}
 
   	public static $rules = [

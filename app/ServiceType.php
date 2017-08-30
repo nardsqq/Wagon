@@ -12,6 +12,7 @@ class ServiceType extends Model
   	protected $table = 'tblServiceType';
   	protected $fillable = ['strServTypeName', 'txtServTypeDesc'];
   	protected $primaryKey = 'intServTypeID';
+    protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
   	public function servareas() 

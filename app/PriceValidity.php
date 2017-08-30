@@ -12,6 +12,7 @@ class PriceValidity extends Model
   	protected $table = 'tblPriceValid';
   	protected $fillable = ['strPriceVName', 'strPriceVDuration'];
   	protected $primaryKey = 'intPriceVID';
+  	protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
 

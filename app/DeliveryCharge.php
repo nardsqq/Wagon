@@ -12,6 +12,7 @@ class DeliveryCharge extends Model
   	protected $table = 'tblDeliveryCharge';
   	protected $fillable = ['strDelCharName', 'decDelCharWeight', 'decDelCharRate'];
   	protected $primaryKey = 'intDelCharID';
+    protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
   	public static $rules = [

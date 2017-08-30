@@ -9,18 +9,6 @@
       {!! Form::text('strProdName', null, ["class" => "form-control"]) !!}
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-6">
-      <label for="strProdHandle">Product Handle</label>
-      {!! Form::text('strProdHandle', null, ["class" => "form-control"]) !!}
-      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    </div>
-    <div class="col-xs-6">
-      <label for="strProdSKU">Stock Keeping Unit</label>
-      {!! Form::text('strProdSKU', null, ["class" => "form-control"]) !!}
-      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    </div>
-  </div>
   <div class="form-group m-t-10">
     <label for="intFeatSetID">Feature Set</label>
     {!! Form::select('intFeatSetID[]', $attribs, null, ['class' => 'form-control attrib-multi', 'multiple' => 'multiple']) !!}

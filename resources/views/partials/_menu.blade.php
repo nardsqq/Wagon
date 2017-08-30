@@ -28,10 +28,10 @@
                 <li class="{{ Request::is('admin/maintenance/brand') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
                 </li>
-                <li><a href="#"><i class="fa fa-cube fa-fw"></i>&nbsp; Variants</a></li>
-                <li class="{{ Request::is('admin/maintenance/productinventory') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/productinventory') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Inventory</a>
+                <li class="{{ Request::is('admin/maintenance/product-build') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/product-build') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Build</a>
                 </li>
+                <li><a href="#"><i class="fa fa-cubes fa-fw"></i>&nbsp; Variants</a></li>
   						</ul>
   					</li>
   					<li class="col-sm-4">

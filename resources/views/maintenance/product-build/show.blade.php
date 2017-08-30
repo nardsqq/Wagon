@@ -25,13 +25,13 @@
 		    <ol class="breadcrumb">
 		        <li>Admin</li>
 		        <li>Maintenance</li>
-		      	<li>Product</li>
+		      	<li>Product Build</li>
 		      	<li>View</li>
 		    </ol>
 	   	</div>
 	</section>
 
-	@include('maintenance.product.modal')
+	@include('maintenance.product-build.modal')
 
     <section id="main">
     	<div class="container animated fadeIn">
@@ -40,40 +40,41 @@
 		          	<div class="panel panel-default">
 			            <div class="panel-heading clearfix">
 			              	<div class="btn-group pull-right">
-			              		<a href="{{ route('product.index') }}" class="btn btn-success">Return to Product List</a>
+			              		<a href="{{ route('product-build.index') }}" class="btn btn-success">Return to Product Build List</a>
 			              	</div>
 			              <div class="panel-title">
-			                <h4>View Product Details</h4>
+			                <h4>View Product Build</h4>
 			              </div>
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h1>{{ $product->strProdName }}</h1>
-			               		<hr>
-								<p class="lead">{{ $product->txtProdDesc }}</p>
+								<h1>{{ $item->brands->strBrandName }} - {{ $item->products->strProdName }}</h1>
+								<hr>
+								<p class="lead">{{ $item->txtItemDesc }}</p>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
 									<dl>
-									  <dt>Category </dt>
-									  <dd>{{ $product->prodcategs->strProdCategName }}</dd>
+									  <dt>Model</dt>
+									  <dd>{{ $item->strItemModel }}</dd>
 									</dl>
 
 									<dl>
-									  <dt>Feature Set </dt>
-									  <dd>
-										@foreach($product->attribs as $attrib)
-											<span class="label label-default">{{ $attrib->strAttribName }}</span>
-										@endforeach
-									  </dd>
+									  <dt>Handle</dt>
+									  <dd>{{ $item->strItemHandle }}</dd>
+									</dl>
+
+									<dl>
+									  <dt>Stock Threshold</dt>
+									  <dd>{{ $item->intItemLevel }}</dd>
 									</dl>
 
 									<hr>
 
 									<div class="row">
 										<div class="col-sm-12">
-											{!! Html::linkRoute('product.edit', 'Edit Product', array($product->intProdID), array('class' => 'btn btn-primary btn-block')) !!}
+											{!! Html::linkRoute('product-build.edit', 'Edit Product Build', array($item->intItemID), array('class' => 'btn btn-primary btn-block')) !!}
 										</div>
 									</div>
 

@@ -12,6 +12,7 @@ class Role extends Model
     protected $table = 'tblRole';
     protected $fillable = ['strRoleName', 'txtRoleDesc'];
     protected $primaryKey = 'intRoleID';
+    protected $dates = ['deleted_at'];
     public $timestamps = false;
 
     public function skillset()

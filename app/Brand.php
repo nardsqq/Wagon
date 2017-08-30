@@ -12,7 +12,13 @@ class Brand extends Model
   	protected $table = 'tblBrand';
   	protected $fillable = ['strBrandName', 'txtBrandDesc'];
   	protected $primaryKey = 'intBrandID';
+  	protected $dates = ['deleted_at'];
   	public $timestamps = false;
+
+    public function items()
+    {
+      return $this->hasMany('App\Item', 'intI_Brand_ID');
+    }
 
   	public static $rules = [
         'strBrandName' => 'required|min:2|unique:tblBrand|max:45|regex:/^[a-z ,.\'-]+$/i',

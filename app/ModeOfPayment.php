@@ -12,5 +12,6 @@ class ModeOfPayment extends Model
   	protected $table = 'tblModeOfPayment';
   	protected $fillable = ['strMODName'];
   	protected $primaryKey = 'intMODID';
+  	protected $dates = ['deleted_at'];
   	public $timestamps = false;
 }

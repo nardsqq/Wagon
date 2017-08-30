@@ -12,6 +12,7 @@ class Skill extends Model
     protected $table = 'tblSkill';
     protected $fillable = ['strSkillName', 'txtSkillDesc'];
     protected $primaryKey = 'intSkillID';
+    protected $dates = ['deleted_at'];
     public $timestamps = false;
 
     public function skillsets()

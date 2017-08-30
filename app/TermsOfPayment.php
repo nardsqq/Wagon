@@ -12,6 +12,7 @@ class TermsOfPayment extends Model
   	protected $table = 'tblTermsOfPayment';
   	protected $fillable = ['intTOPNumOfDays'];
   	protected $primaryKey = 'intTOPID';
+  	protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
   

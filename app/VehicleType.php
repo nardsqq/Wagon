@@ -12,6 +12,7 @@ class VehicleType extends Model
   	protected $table = 'tblVehicleType';
   	protected $fillable = ['strVehiTypeName', 'txtVehiTypeDesc'];
   	protected $primaryKey = 'intVehiTypeID';
+    protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
   	public static $rules = [

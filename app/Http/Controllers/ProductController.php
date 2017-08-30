@@ -50,8 +50,6 @@ class ProductController extends Controller
         $product = new Product;
         $product->intP_ProdCateg_ID = $request->intP_ProdCateg_ID;
         $product->strProdName = trim(ucwords($request->strProdName));
-        $product->strProdHandle = trim(ucwords($request->strProdHandle));
-        $product->strProdSKU = trim(strtoupper($request->strProdSKU));
         $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
 
         $product->save();
@@ -101,8 +99,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->prodcategs()->associate($prodcateg);
         $product->strProdName = trim($request->strProdName);
-        $product->strProdHandle = trim($request->strProdHandle);
-        $product->strProdSKU = trim($request->strProdSKU);
         $product->txtProdDesc = trim($request->txtProdDesc);
 
         $product->save();

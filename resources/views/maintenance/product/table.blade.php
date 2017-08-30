@@ -3,8 +3,6 @@
     <tr>
       <th>Category</th>
       <th>Name</th>
-      <th>Handle</th>
-      <th>SKU</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
@@ -13,8 +11,6 @@
     <tr id="id{{$product->intProdID}}">
         <td>{{ $product->prodcategs->strProdCategName }}</td>
         <td>{{ $product->strProdName }}</td>
-        <td>{{ $product->strProdHandle }}</td>
-        <td>{{ $product->strProdSKU }}</td>
         <td class="text-center">
             <a href="{{ route('product.show', $product->intProdID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
             <a href="{{ route('product.edit', $product->intProdID) }}" class="btn btn-info btn-sm btn-detail"><i class='fa fa-edit'></i>&nbsp; Edit</a>
