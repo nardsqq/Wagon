@@ -80,6 +80,9 @@
                  <li class="{{ Request::is('admin/maintenance/mode-of-payment') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Mode Of Payment</a>
                 </li>
+                   <li class="{{ Request::is('admin/maintenance/terms-of-payment') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/terms-of-payment') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Terms Of Payment</a>
+                </li>
                 <li class="{{ Request::is('admin/maintenance/delivery-charge') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/delivery-charge') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Delivery Charge</a>
                 </li>

@@ -5,19 +5,19 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_prodcateg').on('hide.bs.modal', function() {
-        $('#formProdCateg').trigger('reset');
+  $('#add_term').on('hide.bs.modal', function() {
+        $('#formTerm').trigger('reset');
     });
 
-  var url = "/admin/maintenance/product-category";
+  var url = "/admin/maintenance/terms-of-payment";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Product Category');
-    $('#prodcateg-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#title').text('Edit Terms Of Payment');
+    $('#term-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -25,10 +25,9 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#strProdCategName').val(data.strProdCategName);
-      $('#txtProdCategDesc').val(data.txtProdCategDesc);
+      $('#intTOPNumOfDays').val(data.intTOPNumOfDays);
       $('#btn-save').val("update");
-      $('#add_prodcateg').modal('show');
+      $('#add_term').modal('show');
 
     }) 
 
@@ -38,7 +37,7 @@ $(document).ready(function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
-      $('#del_prodcateg').modal('show');
+      $('#del_term').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -51,7 +50,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "DELETE",
-      url: '/admin/maintenance/product-category/' + id,
+      url: '/admin/maintenance/terms-of-payment/' + id,
       dataType: "json",
       success: function (data) {
         console.log(data);
@@ -60,7 +59,7 @@ $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         table.row($("#id" + id)).remove().draw();
 
-        $('#del_prodcateg').modal('hide');
+        $('#del_term').modal('hide');
 
         toastr.options = {
           "closeButton": false,
@@ -80,7 +79,7 @@ $(document).ready(function() {
           "hideMethod": "slideUp"
         }
 
-        toastr.error("Successfully Deleted Product Category Record");
+        toastr.error("Successfully Deleted Terms Of Payment Record");
       },
       error: function (data) {
         console.log(url + '/' + id);
@@ -110,13 +109,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Product Category');
-    $('#prodcateg-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formProdCateg').trigger("reset");
+    $('#title').text('Add New Terms Of Payment');
+    $('#term-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formTerm').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_prodcateg').modal('show');
+    $('#add_term').modal('show');
 
   }); 
 
@@ -131,8 +130,7 @@ $(document).ready(function() {
 
     var formData = {
       _token: $('input[name=_token]').val(),
-      strProdCategName: $('#strProdCategName').val(),
-      txtProdCategDesc: $('#txtProdCategDesc').val()
+      intTOPNumOfDays: $('#intTOPNumOfDays').val()
     };
 
     var state = $('#btn-save').val();
@@ -161,7 +159,7 @@ $(document).ready(function() {
       "hideMethod": "slideUp"
     }
 
-    toastr.info("Successfully Updated Product Category Record");
+    toastr.info("Successfully Updated Terms Of Payment Record");
   }
 
   $.ajax({
@@ -172,13 +170,12 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intProdCategID +  "></tr>")
+      var row = $("<tr id=id" + data.intTOPID +  "></tr>")
       .append(
-          "<td>" + data.strProdCategName + "</td>" +
-          "<td>" + data.txtProdCategDesc + "</td>" +
+          "<td>" + data.intTOPNumOfDays + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intProdCategID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProdCategID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intTOPID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intTOPID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -204,16 +201,16 @@ $(document).ready(function() {
             "hideMethod": "slideUp"
           }
 
-          toastr.success("Successfully Added a New Product Category Record");
+          toastr.success("Successfully Added a New Terms Of Payment Record");
       } 
       else { 
-          table.row($("#id"+data.intProdCategID)).remove();
+          table.row($("#id"+data.intTOPID)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formProdCateg').trigger("reset");
-      $('#add_prodcateg').modal('hide')
+      $('#formTerm').trigger("reset");
+      $('#add_term').modal('hide')
 
   }).fail(function(data) {
       console.log('Error:', data);
