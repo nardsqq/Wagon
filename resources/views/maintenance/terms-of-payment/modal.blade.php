@@ -8,7 +8,7 @@
         <form id="formTerm">
           <div class="form-group">
             <label for="intTOPNumOfDays">Number of Days</label>
-            <input type="text" id="intTOPNumOfDays" name="intTOPNumOfDays" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <input type="number" id="intTOPNumOfDays" name="intTOPNumOfDays" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
     
