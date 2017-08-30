@@ -1,18 +1,18 @@
-<div class="modal fade" id="add_priceval" role="document">
+<div class="modal fade" id="add_priceval" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-success" id="price-validity-modal-header">
-        <h4 class="modal-title"></h4>
+      <div class="modal-header modal-header-success" id="priceval-modal-header">
+        <h4 id="title">Add New Price Validity</h4>
       </div>
       <div class="modal-body">
         <form id="formPriceVal">
           <div class="form-group">
-            <label for="strPriceVName">Price Validity</label>
+            <label for="strPriceVName">Name</label>
             <input type="text" id="strPriceVName" name="strPriceVName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-          <div class="form-group">
-            <label for="strPriceVDuration">Price Duration</label>
+           <div class="form-group">
+            <label for="strPriceVDuration">Duration</label>
             <input type="text" id="strPriceVDuration" name="strPriceVDuration" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
@@ -30,7 +30,7 @@
 <div class="modal fade" id="del_priceval">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-danger" id="price-validity-del-modal-header">
+      <div class="modal-header modal-header-danger" id="priceval-del-modal-header">
         <center><h4 id="title">Delete Price Validity Record</h4></center>
       </div>
       <div class="modal-body">

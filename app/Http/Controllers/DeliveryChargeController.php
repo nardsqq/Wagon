@@ -36,10 +36,11 @@ class DeliveryChargeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, DeliveryCharge::$rules);
         $delchar = new DeliveryCharge;
         $delchar ->strDelCharName = trim(ucwords($request->strDelCharName));
-        $delchar ->strDelCharWeight = trim(ucwords($request->strDelCharWeight));
-        $delchar ->strDelCharRate = trim(ucwords($request->strDelCharRate));
+        $delchar ->decDelCharWeight = trim(ucwords($request->decDelCharWeight));
+        $delchar ->decDelCharRate = trim(ucwords($request->decDelCharRate));
         $delchar->save();
         
         return response()->json($delchar);
@@ -79,8 +80,8 @@ class DeliveryChargeController extends Controller
     {
         $delchar = DeliveryCharge::findOrFail($id);
         $delchar ->strDelCharName = trim($request->strDelCharName);
-        $delchar ->strDelCharWeight = trim($request->strDelCharWeight);
-        $delchar ->strDelCharRate = trim($request->strDelCharRate);
+        $delchar ->decDelCharWeight = trim($request->decDelCharWeight);
+        $delchar ->decDelCharRate = trim($request->decDelCharRate);
         $delchar->save();
         
         return response()->json($delchar);

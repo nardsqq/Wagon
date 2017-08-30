@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PriceValidity;
-use Validator;
 
 class PriceValidityController extends Controller
 {
@@ -15,7 +14,7 @@ class PriceValidityController extends Controller
      */
     public function index()
     {
-        $pricevals = PriceValidity::where('isDeleted', 0)->get();
+        $pricevals = PriceValidity::orderBy('strPriceVName')->get();
         return view('maintenance.price-validity.index')->with('pricevals', $pricevals);
     }
 
@@ -38,14 +37,17 @@ class PriceValidityController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $priceval = new PriceValidity();
-            $priceval->strPriceVName = trim(ucwords($request->strPriceVName));
-            $priceval->strPriceVDuration = ($request->strPriceVDuration);
+            $this->validate($request, PriceValidity::$rules);
+            $priceval = new PriceValidity;
+            $priceval ->strPriceVName = trim(ucwords($request->strPriceVName));
+            $priceval ->strPriceVDuration = trim(ucfirst($request->strPriceVDuration));
             $priceval->save();
+            
             return response()->json($priceval);
         } else {
             return redirect(route('price-validity.index'));
         }
+        
     }
 
     /**
@@ -82,13 +84,15 @@ class PriceValidityController extends Controller
     {
         if ($request->ajax()) {
             $priceval = PriceValidity::findOrFail($id);
-            $priceval->strPriceVName = trim($request->strPriceVName);
-            $priceval->strPriceVDuration = trim($request->strPriceVDuration);
+            $priceval ->strPriceVName = trim($request->strPriceVName);
+            $priceval ->strPriceVDuration = trim($request->strPriceVDuration);
             $priceval->save();
+            
             return response()->json($priceval);
         } else {
             return redirect(route('price-validity.index'));
         }
+        
     }
 
     /**
@@ -97,12 +101,17 @@ class PriceValidityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $priceval = PriceValidity::findOrFail($id);
-        $priceval->isDeleted = 1;
-        $priceval->intPriceValStatus = 0;
-        $priceval->save();
-        return response()->json($priceval);
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $priceval = PriceValidity::destroy($del);
+
+            return response()->json($priceval);
+        } else {
+            return redirect(route('price-validity.index'));
+        }
+        
     }
 }

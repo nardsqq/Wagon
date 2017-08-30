@@ -90,6 +90,14 @@ class ModeOfPaymentController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-       //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $mode = ModeOfPayment::destroy($del);
+
+            return response()->json($mode);
+        } else {
+            return redirect(route('mode-of-payment.index'));
+        }
     }
 }

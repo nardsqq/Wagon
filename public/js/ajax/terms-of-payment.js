@@ -5,19 +5,19 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_delchar').on('hide.bs.modal', function() {
-        $('#formDelChar').trigger('reset');
+  $('#add_prodcateg').on('hide.bs.modal', function() {
+        $('#formProdCateg').trigger('reset');
     });
 
-  var url = "/admin/maintenance/delivery-charge";
+  var url = "/admin/maintenance/product-category";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Delivery Charge');
-    $('#delchar-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#title').text('Edit Product Category');
+    $('#prodcateg-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -25,11 +25,10 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#strDelCharName').val(data.strDelCharName);
-      $('#decDelCharWeight').val(data.decDelCharWeight);
-      $('#decDelCharRate').val(data.decDelCharRate);
+      $('#strProdCategName').val(data.strProdCategName);
+      $('#txtProdCategDesc').val(data.txtProdCategDesc);
       $('#btn-save').val("update");
-      $('#add_delchar').modal('show');
+      $('#add_prodcateg').modal('show');
 
     }) 
 
@@ -39,7 +38,7 @@ $(document).ready(function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
-      $('#del_delchar').modal('show');
+      $('#del_prodcateg').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -52,7 +51,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "DELETE",
-      url: '/admin/maintenance/delivery-charge/' + id,
+      url: '/admin/maintenance/product-category/' + id,
       dataType: "json",
       success: function (data) {
         console.log(data);
@@ -61,7 +60,7 @@ $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         table.row($("#id" + id)).remove().draw();
 
-        $('#del_delchar').modal('hide');
+        $('#del_prodcateg').modal('hide');
 
         toastr.options = {
           "closeButton": false,
@@ -81,7 +80,7 @@ $(document).ready(function() {
           "hideMethod": "slideUp"
         }
 
-        toastr.error("Successfully Deleted Delivery Charge Record");
+        toastr.error("Successfully Deleted Product Category Record");
       },
       error: function (data) {
         console.log(url + '/' + id);
@@ -111,13 +110,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Delivery Charge');
-    $('#delchar-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formDelChar').trigger("reset");
+    $('#title').text('Add New Product Category');
+    $('#prodcateg-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formProdCateg').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_delchar').modal('show');
+    $('#add_prodcateg').modal('show');
 
   }); 
 
@@ -132,9 +131,8 @@ $(document).ready(function() {
 
     var formData = {
       _token: $('input[name=_token]').val(),
-      strDelCharName: $('#strDelCharName').val(),
-      decDelCharWeight: $('#decDelCharWeight').val(),
-      decDelCharRate: $('#decDelCharRate').val()
+      strProdCategName: $('#strProdCategName').val(),
+      txtProdCategDesc: $('#txtProdCategDesc').val()
     };
 
     var state = $('#btn-save').val();
@@ -163,7 +161,7 @@ $(document).ready(function() {
       "hideMethod": "slideUp"
     }
 
-    toastr.info("Successfully Updated Delivery Charge Record");
+    toastr.info("Successfully Updated Product Category Record");
   }
 
   $.ajax({
@@ -174,14 +172,13 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intDelCharID +  "></tr>")
+      var row = $("<tr id=id" + data.intProdCategID +  "></tr>")
       .append(
-          "<td>" + data.strDelCharName + "</td>" +
-          "<td>" + data.decDelCharWeight + "</td>" +
-          "<td>" + data.decDelCharRate + "</td>" +
+          "<td>" + data.strProdCategName + "</td>" +
+          "<td>" + data.txtProdCategDesc + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intDelCharID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intDelCharID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intProdCategID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProdCategID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -207,16 +204,16 @@ $(document).ready(function() {
             "hideMethod": "slideUp"
           }
 
-          toastr.success("Successfully Added a New Delivery Charge Record");
+          toastr.success("Successfully Added a New Product Category Record");
       } 
       else { 
-          table.row($("#id"+data.intDelCharID)).remove();
+          table.row($("#id"+data.intProdCategID)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formDelChar').trigger("reset");
-      $('#add_delchar').modal('hide')
+      $('#formProdCateg').trigger("reset");
+      $('#add_prodcateg').modal('hide')
 
   }).fail(function(data) {
       console.log('Error:', data);

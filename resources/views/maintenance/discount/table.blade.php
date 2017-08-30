@@ -1,15 +1,15 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Discount</th>
+      <th>Discount Name</th>
       <th>Value</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody id="discount-list">
+  <tbody id="disc-list">
     @foreach ($discs as $disc)
-    <tr id="id{{ $disc->intDiscID }}">
-        <td>{{ $disc->strVehiTypeName }}</td>
+    <tr id="id{{$disc->intDiscID}}">
+        <td>{{ $disc->strDiscName }}</td>
         <td>{{ $disc->decDiscValue }}</td>
         <td class="text-center">
             <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $disc->intDiscID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>

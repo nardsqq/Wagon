@@ -20,12 +20,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Discount</li>
+        <li>Terms of Payment</li>
       </ol>
     </div>
   </section>
 
-  @include('maintenance.discount.modal')
+  @include('maintenance.terms-of-payment.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -35,22 +35,22 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Discounts</i> here.</strong>
+            <strong>Manage <i>PTerms of Payments</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Discount</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Terms of Payment</button>
               </div>
               <div class="panel-title">
-                <h4>Discount</h4>
+                <h4>Terms of Payment</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.discount.table')
+                @include('maintenance.terms-of-payment.table')
               </div>
             </div>
           </div>
@@ -70,5 +70,5 @@
     })
   </script>
 
-  <script src="{{ asset('/js/ajax/discount-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/terms-of-payment-ajax.js/') }}"></script>
 @endsection
