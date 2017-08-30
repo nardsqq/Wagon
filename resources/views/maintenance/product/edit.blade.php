@@ -59,6 +59,7 @@
 
   <script>
     $('.attrib-multi').select2({ placeholder: "Select Attribute(s)", minimumResultsForSearch: -1 });
+    $('.attrib-multi').select2().val({!! json_encode($product->attribs()->allRelatedIds()) !!}).trigger('change');
   </script>
 
 @endsection

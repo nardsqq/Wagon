@@ -83,8 +83,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $prodcategs = ProductCategory::pluck('strProdCategName', 'intProdCategID');
+        $attribs = Attribute::pluck('strAttribName', 'intAttribID');
 
-        return view('maintenance.product.edit')->with('product', $product)->with('prodcategs', $prodcategs);
+        return view('maintenance.product.edit')->with('product', $product)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
     }
 
     /**
@@ -98,13 +99,14 @@ class ProductController extends Controller
     {
         $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
         $product = Product::findOrFail($id);
-        $product->prodcateg()->associate($prodcateg);
+        $product->prodcategs()->associate($prodcateg);
         $product->strProdName = trim($request->strProdName);
         $product->strProdHandle = trim($request->strProdHandle);
         $product->strProdSKU = trim($request->strProdSKU);
         $product->txtProdDesc = trim($request->txtProdDesc);
 
         $product->save();
+        $product->attribs()->sync($request->intFeatSetID);
 
         return redirect(route('product.index'));
     }
