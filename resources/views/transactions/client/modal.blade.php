@@ -13,6 +13,26 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}">
           </div>
           <div class="form-group">
+            <label for="strClientAddress">Lot Number</label>
+            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+          </div>
+          <div class="form-group">
+            <label for="strClientAddress">Client Address</label>
+            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+          </div>
+          <div class="form-group">
+            <label for="strClientAddress">Client Address</label>
+            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+          </div>
+          <div class="form-group">
+            <label for="strClientAddress">Client Address</label>
+            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+          </div>
+          <div class="form-group">
             <label for="strClientAddress">Client Address</label>
             <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
             <input type="hidden" name="_token" value="{{csrf_token()}}">

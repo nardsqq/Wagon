@@ -37,7 +37,7 @@
             </div>
             <strong>Manage <i>Product Categories</i> here.</strong>
             <br>
-            <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
+            <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">

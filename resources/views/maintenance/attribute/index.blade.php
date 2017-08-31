@@ -52,7 +52,7 @@
                 </div>
                 <strong>Manage <i>Attributes</i> here.</strong>
                 <br>
-                <small>Perform <i>Add</i>, <i>Update</i>, <i>Deactivate</i> and <i>Delete</i> Operations.</small>
+                <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
               </div>
                 @include('maintenance.attribute.form')
               <div id="table-container">

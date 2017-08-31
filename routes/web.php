@@ -54,6 +54,9 @@ Route::group(['prefix' => 'admin'], function() {
 
   	Route::get('/', 'RouteController@transactions');
 
+    //Request for Quotation
+    Route::resource('client', 'ClientController');
+
   });
 
 });
