@@ -5,15 +5,15 @@
         <h4 id="title">Add New Discount</h4>
       </div>
       <div class="modal-body">
-        <form id="formProdCateg">
+        <form id="formDisc">
           <div class="form-group">
             <label for="strDiscName">Discount Name</label>
-            <input type="text" id="strDiscName" name="strDiscName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <input type="text" id="strDiscName" name="strDiscName" class="form-control" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
             <label for="decDiscValue">Value</label>
-            <input type="text" id="decDiscValue" name="decDiscValue" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <input type="number" name="decDiscValue" id="decDiscValue" class="form-control" required min="01.00">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>

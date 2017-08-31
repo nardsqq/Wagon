@@ -24,8 +24,8 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Product</li>
-        <li>Create</li>
+        <li>Personnel</li>
+        <li>Add New Personnel Information</li>
       </ol>
     </div>
   </section>
@@ -37,12 +37,12 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="panel-title">
-                <h4>Create New Product</h4>
+                <h4>New Personnel Record</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.product.form')
+                @include('maintenance.personnel.form')
               </div>
             </div>
           </div>
@@ -51,12 +51,4 @@
     </div>
 
   </section>
-@endsection
-
-@section('scripts')
-
-  <script>
-    $('.attrib-multi').select2({ placeholder: "Select Attribute(s)", minimumResultsForSearch: -1 });
-  </script>
-
 @endsection

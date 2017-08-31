@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '- Edit Product')
+@section('title', '- Edit Product Build')
 
 @section('content')
 
@@ -26,8 +26,8 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Personnel</li>
-        <li>Edit Personnel Details</li>
+        <li>Product</li>
+        <li>Edit Personnel Information</li>
       </ol>
     </div>
   </section>
@@ -39,7 +39,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="panel-title">
-                <h4>Edit Personnel</h4>
+                <h4>Edit Personnel Information</h4>
               </div>
             </div>
             <div class="panel-body">

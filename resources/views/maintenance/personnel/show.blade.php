@@ -25,13 +25,13 @@
 		    <ol class="breadcrumb">
 		        <li>Admin</li>
 		        <li>Maintenance</li>
-		      	<li>Product</li>
-		      	<li>View Personnel Record</li>
+		      	<li>Personnel</li>
+		      	<li>View Personnel Information</li>
 		    </ol>
 	   	</div>
 	</section>
 
-	@include('maintenance.product.modal')
+	@include('maintenance.product-build.modal')
 
     <section id="main">
     	<div class="container animated fadeIn">
@@ -43,41 +43,23 @@
 			              		<a href="{{ route('personnel.index') }}" class="btn btn-success">Return to Personnel List</a>
 			              	</div>
 			              <div class="panel-title">
-			                <h4>View Personnel Details</h4>
+			                <h4>View Personnel Information</h4>
 			              </div>
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h1>{{ $product->strProdName }}</h1>
-								@foreach($product->attribs as $attrib)
-									<span class="label label-default">{{ $attrib->strAttribName }}</span>
-								@endforeach
-			               		<hr>
-								<p class="lead">{{ $product->txtProdDesc }}</p>
+								<h1>{{ $personnel->strPersLName }}, {{ $personnel->strPersFName }} {{ $personnel->strPersMName }} - {{ $personnel->roles->strRoleName }}</h1>
+								<hr>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
-									<dl>
-									  <dt>Category </dt>
-									  <dd>{{ $product->prodcategs->strProdCategName }}</dd>
-									</dl>
-
-									<dl>
-									  <dt>Handle </dt>
-									  <dd>{{ $product->strProdHandle }}</dd>
-									</dl>
-
-									<dl>
-									  <dt>Stock Keeping Unit </dt>
-									  <dd>{{ $product->strProdSKU }}</dd>
-									</dl>
 
 									<hr>
 
 									<div class="row">
 										<div class="col-sm-12">
-											{!! Html::linkRoute('product.edit', 'Edit Product', array($product->intProdID), array('class' => 'btn btn-primary btn-block')) !!}
+											{!! Html::linkRoute('personnel.edit', 'Edit Personnel Information', array($personnel->intPersID), array('class' => 'btn btn-primary btn-block')) !!}
 										</div>
 									</div>
 

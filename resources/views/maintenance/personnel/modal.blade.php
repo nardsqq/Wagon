@@ -8,15 +8,15 @@
         <center>
           <h5>
             <b>
-              You are about to delete this Personnel record and all its contents. 
+              You are about to delete this Personnel Record data and all its contents. 
               <br>
-              This action cannot be undone. Delete Personnel?
+              This action cannot be undone. Delete Personnel Record?
             </b>
           </h5>
         </center>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
+        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Record</button>
         <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Personnel Record</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>

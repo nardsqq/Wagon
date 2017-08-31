@@ -41,7 +41,7 @@
                 <a href="{{ route('personnel.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add New Personnel</a>
               </div>
               <div class="panel-title">
-                <h4>Personnel</h4>
+                <h4>Product Build</h4>
               </div>
             </div>
             <div class="panel-body">

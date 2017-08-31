@@ -6,7 +6,7 @@ $(document).ready(function() {
   });
 
   $('#add_disc').on('hide.bs.modal', function() {
-        $('#formVehiType').trigger('reset');
+        $('#formDisc').trigger('reset');
   });
 
   var url = "/admin/maintenance/discount";
@@ -16,7 +16,7 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('.modal-title').text('Edit Vehicle Type Details');
+    $('.modal-title').text('Edit Discount Data');
     $('#discount-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
@@ -79,7 +79,7 @@ $(document).ready(function() {
                 "hideMethod": "slideUp"
               }
 
-              toastr.success("Successfully Deleted Vehicle Type Record");
+              toastr.success("Successfully Deleted Discount Record");
           },
           error: function (data) {
               console.log(url + '/' + id);
@@ -111,7 +111,7 @@ $(document).ready(function() {
   $('#btn-add').on('click', function(event) {
     $('.modal-title').text('Add New Vehicle Type');
     $('#discount-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formVehiType').trigger("reset");
+    $('#formDisc').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
@@ -128,7 +128,7 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    var formData = $("#formVehiType").serialize();
+    var formData = $("#formDisc").serialize();
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
@@ -156,7 +156,7 @@ $(document).ready(function() {
         "showMethod": "slideDown",
         "hideMethod": "slideUp"
       }
-      toastr.info("Successfully Updated Product Record");
+      toastr.info("Successfully Updated Discount Record");
     }
 
   $.ajax({
@@ -167,13 +167,13 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intVehiTypeID +  "></tr>")
+      var row = $("<tr id=id" + data.intDiscID +  "></tr>")
       .append(
           "<td>" + data.strDiscName + "</td>" +
           "<td>" + data.decDiscValue + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intVehiTypeID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intVehiTypeID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intDiscID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intDiscID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -198,16 +198,16 @@ $(document).ready(function() {
           "showMethod": "slideDown",
           "hideMethod": "slideUp"
         }
-        toastr.success("Successfully Added a New Vehicle Type Record");
+        toastr.success("Successfully Added a New Discount Record");
 
       } 
       else { 
-          table.row($("#id"+data.intVehiTypeID)).remove();
+          table.row($("#id"+data.intDiscID)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formVehiType').trigger("reset");
+      $('#formDisc').trigger("reset");
       $('#add_disc').modal('hide')
   }).fail(function(data) {
     console.log('Error:', data);
@@ -215,7 +215,7 @@ $(document).ready(function() {
         var errors = data.responseJSON;
 
         for (i in errors){
-            toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
+            toastr.error(errors[i]+'\n','VALIDATION ERROR', {timeOut: 2000});
         }
     });
   }); // $$("#btn-save").on('click', function (e) {});

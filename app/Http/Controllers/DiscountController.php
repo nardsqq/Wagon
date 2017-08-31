@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Discount;
-use Validator;
 
 class DiscountController extends Controller
 {
@@ -15,7 +14,7 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discs = Discount::where('isDeleted', 0)->get();
+        $discs = Discount::orderBy('strDiscName')->get();
         return view('maintenance.discount.index')->with('discs', $discs);
     }
 
@@ -37,15 +36,19 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->ajax()) {
-            $disc = new Discount();
-            $disc->strDiscName = trim(ucwords($request->strDiscName));
-            $disc->decDiscValue = trim(ucfirst($request->decDiscValue));
+            $this->validate($request, Discount::$rules);
+            $disc = new Discount;
+            $disc ->strDiscName = trim(ucwords($request->strDiscName));
+            $disc ->decDiscValue = trim(ucfirst($request->decDiscValue));
             $disc->save();
+            
             return response()->json($disc);
         } else {
             return redirect(route('discount.index'));
         }
+        
     }
 
     /**
@@ -82,13 +85,15 @@ class DiscountController extends Controller
     {
         if ($request->ajax()) {
             $disc = Discount::findOrFail($id);
-            $disc->strDiscName = trim($request->strDiscName);
-            $disc->decDiscValue = trim($request->decDiscValue);
+            $disc ->strDiscName = trim($request->strDiscName);
+            $disc ->decDiscValue = trim($request->decDiscValue);
             $disc->save();
+            
             return response()->json($disc);
         } else {
             return redirect(route('discount.index'));
         }
+        
     }
 
     /**
@@ -97,8 +102,17 @@ class DiscountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $disc = Discount::destroy($del);
+
+            return response()->json($disc);
+        } else {
+            return redirect(route('discount.index'));
+        }
+        
     }
 }

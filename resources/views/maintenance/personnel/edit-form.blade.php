@@ -1,41 +1,28 @@
-{!! Form::model($product, ['route' => ['product.update', $product->intProdID], 'method' => 'PUT']) !!}
-  <div class="row">
-    <div class="col-xs-6">
-      <label>Product Category</label>
-      {!! Form::select('intP_ProdCateg_ID', $prodcategs, null, ['class' => 'form-control']) !!}﻿
+{!! Form::model($personnel, ['route' => ['personnel.update', $personnel->intPersID], 'method' => 'PUT']) !!}
+    <div class="form-group">
+      <label>Product</label>
+      {!! Form::select('intPers_Role_ID', $roles, null, ['class' => 'form-control']) !!}﻿
     </div>
-    <div class="col-xs-6">
-      <label for="strProdName">Product Name</label>
-      {{ Form::text('strProdName', "", ['class' => 'form-control'])}}
-    </div>
-  </div>
   <div class="row m-t-10">
-    <div class="col-xs-6">
-      <label for="strProdHandle">Product Handle</label>
-      <input type="text" id="strProdHandle" name="strProdHandle" class="form-control">
+    <div class="col-xs-4">
+      <label for="strPersFName">First Name</label>
+      {!! Form::text('strPersFName', null, ['class' => 'form-control']) !!}
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </div>
-    <div class="col-xs-6">
-      <label for="strProdSKU">Stock Keeping Unit</label>
-      <input type="text" id="strProdSKU" name="strProdSKU" class="form-control">
+    <div class="col-xs-4">
+      <label for="strPersMName">Middle Name</label>
+      {!! Form::text('strPersMName', null, ['class' => 'form-control']) !!}
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </div>
+    <div class="col-xs-4">
+      <label for="strPersLName">Last Name</label>
+      {!! Form::text('strPersLName', null, ['class' => 'form-control']) !!}
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </div>
   </div>
-  <div class="form-group m-t-10">
-    <label for="intFeatSetID">Feature Set</label>
-    <select name="intFeatSetID[]" id="intFeatSetID" class="form-control attrib-multi" multiple="multiple">
-      @foreach($attribs as $attrib)
-        <option value="{{ $attrib->intAttribID }}">{{ $attrib->strAttribName }}</option>
-      @endforeach
-    </select>
-  </div>
-  <div class="form-group m-t-10">
-    <label for="txtProdDesc">Description</label>
-    <textarea class="form-control resize" rows="5" id="txtProdDesc" name="txtProdDesc"></textarea>
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  </div>
+  <hr>
   <div class="form-group">
-  	<a href="{{ route('product.index') }}" class="btn btn-default">Cancel, Return to Product List</a>
-  	{!! Form::submit('Save Product', array('class' => 'btn btn-success pull-right')) !!}
+  	<a href="{{ route('personnel.index') }}" class="btn btn-default">Cancel, Return to Personnel List</a>
+  	{!! Form::submit('Update Personnel Information', array('class' => 'btn btn-success pull-right')) !!}
   </div>
 {!! Form::close() !!}
