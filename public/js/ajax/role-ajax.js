@@ -1,47 +1,15 @@
 $(document).ready(function() {
+
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
 
-  $('#add_role').on('hide.bs.modal', function() {
-        $('#formRole').trigger('reset');
-    });
-
   var url = "/admin/maintenance/role";
   var id = '';
 
-  $(document).on('click', '.open-modal', function() {
-    var link_id = $(this).val();
-    id = link_id;
-    console.log(id);
-
-    $('#title').text('Edit Service Area Details');
-    $('#role-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
-    $('#btn-save').text('Update');
-    $('.modal-btn').addClass('btn-info').removeClass('btn-success');
-
-    $.ajax({
-        type: "GET",
-        url: url + '/' + id + '/edit',
-        data: { intRoleID: id, },
-        dataType: "json",
-        success: function (data) {
-            console.log(data);
-
-            $("input[name=strRoleName]").val(data.strRoleName);
-            $('#txtRoleDesc').val(data.txtRoleDesc);
-            $('#btn-save').val("update");
-            $('#add_role').modal('show');
-        },
-        error: function (data) {
-          console.log(data);
-        },
-    });
-  });
-
-  $(document).on('click', '.btn-delete', function() {
+  $('.btn-delete').on('click', function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
@@ -58,7 +26,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: "DELETE",
-        url: url + '/' + id,
+        url: '/admin/maintenance/role/' + id,
         dataType: "json",
         success: function (data) {
             console.log(data);
@@ -66,6 +34,7 @@ $(document).ready(function() {
 
             var table = $('#dataTable').DataTable();
             table.row($("#id" + id)).remove().draw();
+
             $('#del_role').modal('hide');
 
             toastr.options = {
@@ -86,7 +55,7 @@ $(document).ready(function() {
               "hideMethod": "slideUp"
             }
 
-            toastr.success("Successfully Deleted Role Record");
+            toastr.error("Successfully Deleted Role Record");
         },
         error: function (data) {
             console.log(url + '/' + id);
@@ -110,140 +79,8 @@ $(document).ready(function() {
               "hideMethod": "slideUp"
             }
 
-            toastr.error("It seems like this record is still in use in other processes. Record removal failed.");
-        }
-    });
-  });  
-
-    $('#btn-add').on('click', function(event) {
-      $('#title').text('Add Role');
-      $('#role-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-      $('#formRole').trigger("reset");
-      $('#btn-save').text('Submit');
-      $('#btn-save').val("add");
-      $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-      $('#add_role').modal('show');
-
-    }); 
-
-    $("#btn-save").on('click', function (e) {
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            toastr.error("It seems that this record is still in use in other processes. Record removal failed.");
           }
       });
-      e.preventDefault();
-      console.log(e);
-
-      var formData = $("#formRole").serialize();
-      var state = $('#btn-save').val();
-      var type = "POST";
-      var my_url = url;
-
-
-    if(state === "add")
-      type = "POST";
-    else {
-      type = "PUT";
-      my_url += '/' + id;
-
-      toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "slideDown",
-        "hideMethod": "slideUp"
-      }
-      toastr.info("Successfully Updated Role Record");
-    }
-
-    console.log("" + type + ": " + my_url);
-
-    $.ajax({
-        type: type,
-        url: my_url,
-        data: formData,
-        dataType: 'json'
-    }).done(function(data) {
-        console.log(data);
-
-        var row = $("<tr id=id" + data.intRoleID +  "></tr>")
-        .append(
-            "<td>" + data.strRoleName + "</td>" +
-            "<td>" + data.txtRoleDesc + "</td>" +
-            "<td class='text-center'>" +
-            "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intRoleID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-            "<button class='btn btn-danger btn-sm btn-delete' value="+data.intRoleID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
-            "</td>"
-        );
-
-        var table = $('#dataTable').DataTable();
-        if (state == "add") { 
-            table.row.add(row).draw();
-
-            toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": true,
-              "progressBar": true,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": true,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "slideDown",
-              "hideMethod": "slideUp"
-            }
-            toastr.success("Successfully Added a New Role");
-        } 
-        else { 
-            table.row($("#id"+data.intRoleID)).remove();
-            table.row.add(row).draw();
-        }
-        // $("[data-toggle='toggle']").bootstrapToggle('destroy');
-        // $("[data-toggle='toggle']").bootstrapToggle();
-        $('#formRole').trigger("reset");
-        $('#add_role').modal('hide')
-    }).fail(function(data) {
-        console.log('Error:', data);
-
-        toastr.options = {
-          "closeButton": false,
-          "debug": false,
-          "newestOnTop": true,
-          "progressBar": true,
-          "positionClass": "toast-top-right",
-          "preventDuplicates": true,
-          "onclick": null,
-          "showDuration": "300",
-          "hideDuration": "1000",
-          "timeOut": "5000",
-          "extendedTimeOut": "1000",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "slideDown",
-          "hideMethod": "fadeOut"
-        }
-
-        var errors = data.responseJSON;
-
-        for (i in errors){
-            toastr.error(errors[i]+'\n','VALIDATION ERROR', {timeOut: 2000});
-        }
-    });
-  }); // $$("#btn-save").on('click', function (e) {});
+  });
 }); // $(document).ready(function() {});

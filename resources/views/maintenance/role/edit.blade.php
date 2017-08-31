@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('title', '- Edit Role')
+
 @section('content')
 
  <header id="header">
@@ -24,12 +26,11 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Role</li>
+        <li>Product</li>
+        <li>Edit Role Details</li>
       </ol>
     </div>
   </section>
-
-  @include('maintenance.role.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -37,24 +38,13 @@
         <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
-              <div class="btn-group pull-right">
-                <a href="{{ route('role.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add New Role</a>
-              </div>
               <div class="panel-title">
-                <h4>Role</h4>
+                <h4>Edit Role</h4>
               </div>
             </div>
             <div class="panel-body">
-              <div class="alert alert-success alert-white rounded">
-                <div class="icon">
-                  <i class="fa fa-info-circle"></i>
-                </div>
-                <strong>Manage <i>Roles</i> here.</strong>
-                <br>
-                <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
-              </div>
               <div id="table-container">
-                @include('maintenance.role.table')
+                @include('maintenance.role.edit-form')
               </div>
             </div>
           </div>
@@ -67,13 +57,9 @@
 
 @section('scripts')
 
-  <!-- Delay table load until everything else is loaded -->
   <script>
-    $(window).on('load', function(){
-        $('#dataTable').removeAttr('style');
-    })
+    $('.role-multi').select2({ placeholder: "Select Skill(s)", minimumResultsForSearch: -1 });
+    $('.role-multi').select2().val({!! json_encode($role->skills()->allRelatedIds()) !!}).trigger('change');
   </script>
-
-  <script src="{{ asset('/js/ajax/role-ajax.js/') }}"></script>
 
 @endsection

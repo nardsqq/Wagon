@@ -15,9 +15,9 @@ class Role extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = false;
 
-    public function skillset()
+    public function skills() 
     {
-        return $this->hasMany('App/SkillSet, intSkillSetRoleID');
+      return $this->belongsToMany('App\Skill', 'tblSkillSet', 'intSS_Role_ID', 'intSS_Skill_ID');
     }
 
     public static $rules = [
