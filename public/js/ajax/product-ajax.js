@@ -13,7 +13,7 @@ $(document).ready(function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
-      $('#del_product').modal('show');
+      $('#del_prod').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -35,7 +35,7 @@ $(document).ready(function() {
             var table = $('#dataTable').DataTable();
             table.row($("#id" + id)).remove().draw();
 
-            $('#del_product').modal('hide');
+            $('#del_prod').modal('hide');
 
             toastr.options = {
               "closeButton": false,

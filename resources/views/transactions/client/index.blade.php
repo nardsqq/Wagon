@@ -74,12 +74,6 @@
     })
   </script>
 
-  <script>
-  $('.multi-attrib').select2({
-    dropdownParent: $('#add_client')
-  });
-  </script>
-
   <script src="{{ asset('/js/ajax/client-ajax.js/') }}"></script>
 
 @endsection

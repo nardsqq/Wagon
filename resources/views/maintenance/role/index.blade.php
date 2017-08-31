@@ -35,16 +35,6 @@
     <div class="container animated fadeIn">
       <div class="row">
         <div class="col-md-12">
-
-          <div class="alert alert-success alert-white rounded">
-            <div class="icon">
-              <i class="fa fa-info-circle"></i>
-            </div>
-            <strong>Manage <i>Roles</i> here.</strong>
-            <br>
-            <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
-          </div>
-
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">

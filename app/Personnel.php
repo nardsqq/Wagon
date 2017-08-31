@@ -10,7 +10,7 @@ class Product extends Model
     use SoftDeletes;
 
     protected $table = 'tblPersonnel';
-    protected $fillable = ['intPers_SkillSet_ID', 'strPersFName', 'strPersMName', 'strPersLName'];
+    protected $fillable = ['intPers_Role_ID', 'strPersFName', 'strPersMName', 'strPersLName'];
     protected $primaryKey = 'intPersID';
     protected $dates = ['deleted_at'];
     public $timestamps = false;

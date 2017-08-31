@@ -1,4 +1,4 @@
-<div class="modal fade" id="del_product">
+<div class="modal fade" id="del_prod">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-danger" id="prod-del-modal-header">
@@ -10,7 +10,7 @@
             <b>
               You are about to delete this Product data and all its contents. 
               <br>
-              This action cannot be undone. Delete Product?
+              This action cannot be undone. Delete Product Record?
             </b>
           </h5>
         </center>

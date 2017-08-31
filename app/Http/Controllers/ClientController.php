@@ -122,10 +122,10 @@ class ClientController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $del = [];
-        $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $client = Client::destroy($del);
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $client = Client::destroy($del);
 
-        return response()->json($client);
+            return response()->json($client);
     }
 }

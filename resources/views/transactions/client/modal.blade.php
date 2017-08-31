@@ -1,66 +1,24 @@
-<div class="modal fade" id="add_client">
+<div class="modal fade" id="del_client">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal">&times;</button>
-        <h4>Client Form</h4>
+      <div class="modal-header modal-header-danger" id="prod-del-modal-header">
+        <center><h4 id="title">Delete Client Record</h4></center>
       </div>
       <div class="modal-body">
-        <form id="formClient" data-parsley-validate>
-          <div class="form-group">
-            <label for="strClientName">Client Name</label>
-            <input type="text" id="strClientName" name="strClientName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientAddress">Lot Number</label>
-            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientAddress">Client Address</label>
-            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientAddress">Client Address</label>
-            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientAddress">Client Address</label>
-            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientAddress">Client Address</label>
-            <input type="text" id="strClientAddress" name="strClientAddress" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientTelephone">Telephone Number</label>
-            <input type="text" id="strClientTelephone" name="strClientTelephone" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientFax">FAX Number</label>
-            <input type="text" id="strClientFax" name="strClientFax" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientEmail">Email Address</label>
-            <input type="text" id="strClientEmail" name="strClientEmail" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <label for="strClientMobile">Mobile Number</label>
-            <input type="text" id="strClientMobile" name="strClientMobile" class="form-control" minlength="3" maxlength="45">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-          </div>
-          <div class="form-group">
-            <button id="btn-save" value="add" class="btn btn-success btn-block">Submit</button>
-          </div>
-        </form>
+        <center>
+          <h5>
+            <b>
+              You are about to delete this Client record and all its contents. 
+              <br>
+              This action cannot be undone. Delete Client Record?
+            </b>
+          </h5>
+        </center>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
+        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Client Record</button>
+        <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
   </div>

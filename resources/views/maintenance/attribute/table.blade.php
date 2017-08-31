@@ -1,7 +1,7 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Attribute</th>
+      <th>Attributes</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>

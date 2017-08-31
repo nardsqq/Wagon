@@ -56,7 +56,7 @@
 @section('scripts')
 
   <script>
-    $('.role-multi').select2({ placeholder: "Select Role(s)", minimumResultsForSearch: -1 });
+    $('.role-multi').select2({ placeholder: "Select Skill(s)", minimumResultsForSearch: -1 });
   </script>
 
 @endsection

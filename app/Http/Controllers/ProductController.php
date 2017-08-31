@@ -115,10 +115,14 @@ class ProductController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $del = [];
-        $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $product = Product::destroy($del);
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $product = Product::destroy($del);
 
-        return response()->json($product);
+            return response()->json($product);
+        } else {
+            return redirect(route('product.index'));
+        }
     }
 }

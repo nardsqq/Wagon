@@ -42,7 +42,7 @@
                 <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Attribute</button>
               </div>
               <div class="panel-title">
-                <h4>Attribute</h4>
+                <h4>Attributes</h4>
               </div>
             </div>
             <div class="panel-body">
