@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Role;
+use App\Skill;
 
 class RoleController extends Controller
 {
@@ -15,7 +16,9 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::orderBy('strRoleName')->get();
-        return view('maintenance.role.index')->with('roles', $roles);
+        $skills = Skill::orderBy('strSkillName')->get();
+
+        return view('maintenance.role.index')->with('roles', $roles)->with('skills', $skills);
     }
 
     /**
@@ -25,7 +28,10 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::orderBy('strRoleName')->get();
+        $skills = Skill::orderBy('strSkillName')->get();
+
+        return view('maintenance.role.create')->with('roles', $roles)->with('skills', $skills);
     }
 
     /**
@@ -36,19 +42,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->ajax()) {
-            $this->validate($request, Role::$rules);
+        $this->validate($request, Role::$rules);
+        $role = new Role;
 
-            $role = new Role;
-            $role ->strRoleName = trim(ucwords($request->strRoleName));
-            $role ->txtRoleDesc = trim($request->txtRoleDesc);
+        $role->strRoleName = trim(ucwords($request->strRoleName));
+        $role->txtRoleDesc = trim(ucfirst($request->txtRoleDesc));
 
-            $role->save();
+        $role->save();
+        $role->skills()->sync($request->intSkillSetID, false);
 
-            return response()->json($role);
-        } else {
-            return redirect(route('role.index'));
-        }
+        return redirect()->route('role.index');
     }
 
     /**
@@ -59,7 +62,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        
+        return view('maintenance.role.show')->with('role', $role);
     }
 
     /**
@@ -71,7 +76,9 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::findOrFail($id);
-        return response()->json($role);
+        $skills = Skill::pluck('strSkillName', 'intSkillID');
+
+        return view('maintenance.role.edit')->with('role', $role)->with('skills', $skills);
     }
 
     /**
@@ -83,18 +90,15 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->ajax()) {
-            $role = Role::findOrFail($id);
+        $role = Role::findOrFail($id);
 
-            $role ->strRoleName = trim($request->strRoleName);
-            $role ->txtRoleDesc = trim($request->txtRoleDesc);
-            
-            $role ->save();
+        $role->strRoleName = trim($request->strRoleName);
+        $role->txtRoleDesc = trim($request->txtRoleDesc);
 
-            return response()->json($role);
-        } else {
-            return redirect(route('role.index'));
-        }
+        $role->save();
+        $role->skills()->sync($request->intSkillSetID);
+
+        return redirect(route('role.index'));
     }
 
     /**
