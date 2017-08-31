@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Brand extends Model
 {
-	use SoftDeletes;
+	  use SoftDeletes;
 
   	protected $table = 'tblBrand';
   	protected $fillable = ['strBrandName', 'txtBrandDesc'];

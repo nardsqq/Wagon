@@ -1,19 +1,23 @@
-<div class="modal fade" id="add_price" role="document">
+<div class="modal fade" id="add_bprice" role="document">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="base-price-modal-header">
         <h4 class="modal-title"></h4>
       </div>
       <div class="modal-body">
-        <form id="formBasePrice">
+        <form id="formBPrice">
           <div class="form-group">
-            <label for="strBasePriceName">Base Price</label>
-            <input type="text" id="strBasePriceName" name="strBasePriceName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            <label>Item Model</label>
+            <select name="intP_Item_ID" id="intP_Item_ID" class="form-control">
+              @foreach ($items as $item)
+                <option value="{{$item->intItemID}}">{{ $item->strItemModel }}</option>
+              @endforeach
+            </select>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            <label for="txtBasePriceDesc">Description</label>
-            <textarea class="form-control resize" rows="5" id="txtBasePriceDesc" name="txtBasePriceDesc"></textarea>
+            <label for="txtBasePriceDesc">Amount</label>
+            <input type="number" name="decPriceAmount" id="decPriceAmount" min="01.00" class="form-control">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>
