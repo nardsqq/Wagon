@@ -7,6 +7,11 @@ use App\ModeOfPayment;
 
 class ModeOfPaymentController extends Controller
 {
+    public function table()
+    {
+        $modes = ModeOfPayment::all();
+        return view('maintenance.mode-of-payment.table')->with('modes', $modes);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,11 +41,16 @@ class ModeOfPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $mode = new ModeOfPayment;
-        $mode ->strMODName = trim(ucwords($request->strMODName));
-        $mode->save();
+        if ($request->ajax()) {
+            $mode = new ModeOfPayment;
+            $mode ->strMODName = trim(ucwords($request->strMODName));
+            $mode->save();
+            
+            return response()->json($mode);
+        } else {
+            return redirect(route('mode-of-payment.index'));
+        }
         
-        return response()->json($mode);
     }
 
     /**

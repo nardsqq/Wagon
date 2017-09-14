@@ -6,11 +6,13 @@ $(document).ready(function() {
   });
 
   $('#add_mode').on('hide.bs.modal', function() {
-        $('#formMode').trigger('reset');
-    });
+    $('#formMode').trigger('reset');
+  });
 
   var url = "/admin/maintenance/mode-of-payment";
   var id = '';
+
+  loadTable();
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
@@ -80,6 +82,7 @@ $(document).ready(function() {
         }
 
         toastr.error("Successfully Deleted Mode Of Payment Record");
+        loadTable();
       },
       error: function (data) {
         console.log(url + '/' + id);
@@ -128,61 +131,21 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    var formData = {
-      _token: $('input[name=_token]').val(),
-      strMODName: $('#strMODName').val()
-    };
-
     var state = $('#btn-save').val();
-    var type = "POST";
-    var my_url = url;
+    var method = $('#formMode').attr('method');
+    var url = $('#formMode').attr('action');
+    var formData = $('#formMode').serialize();
 
-  if (state == "update") {
-    type = "PUT";
-    my_url += '/' + id;
-
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": true,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": true,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "slideDown",
-      "hideMethod": "slideUp"
-    }
-
-    toastr.info("Successfully Updated Mode Of Payment Record");
-  }
-
-  $.ajax({
-    type: type,
-    url: my_url,
-    data: formData,
-    dataType: 'json'
-  }).done(function(data) {
-      console.log(data);
-
-      var row = $("<tr id=id" + data.intMODID +  "></tr>")
-      .append(
-          "<td>" + data.strMODName + "</td>" +
-          "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intMODID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intMODID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
-          "</td>"
-      );
-
-      var table = $('#dataTable').DataTable();
+    $.ajax({
+      type: method,
+      url: url,
+      data: formData,
+      success:function(data) {
+        console.log(data);
+        $('#add_mode').modal('hide');
+        loadTable();
       
-      if (state == "add") { 
-          table.row.add(row).draw();
+        if (state == "add") { 
           toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -202,24 +165,20 @@ $(document).ready(function() {
           }
 
           toastr.success("Successfully Added a New Mode Of Payment Record");
-      } 
-      else { 
-          table.row($("#id"+data.intMODID)).remove();
-          table.row.add(row).draw();
+        } 
       }
-      // $("[data-toggle='toggle']").bootstrapToggle('destroy');
-      // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formMode').trigger("reset");
-      $('#add_mode').modal('hide')
-
-  }).fail(function(data) {
-      console.log('Error:', data);
-      toastr.options = {"preventDuplicates": true}
-      var errors = data.responseJSON;
-
-      for (i in errors){
-          toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
-      }
-    });
+    })
   }); // $$("#btn-save").on('click', function (e) {});
+
+  function loadTable() {
+    $.ajax({
+      type: 'get',
+      url: url + "-table",
+      dataType: 'html',
+      success:function(data) {
+        $('#dataTable').DataTable();
+        $('#dataTable').html(data);
+      }
+    })
+  } // function loadTable() {}
 }); // $(document).ready(function() {});

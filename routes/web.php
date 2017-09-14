@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('base-price', 'BasePriceController');
     Route::resource('discount', 'DiscountController');
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
+    Route::get('/mode-of-payment-table', 'ModeOfPaymentController@table');
     Route::resource('terms-of-payment', 'TermsOfPaymentController');
     Route::resource('delivery-charge', 'DeliveryChargeController');
     Route::resource('price-validity', 'PriceValidityController');

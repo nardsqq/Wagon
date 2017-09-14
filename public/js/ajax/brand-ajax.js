@@ -212,7 +212,7 @@ $(document).ready(function() {
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
       $('#formBrand').trigger("reset");
-      $('#add_brand').modal('hide')
+      $('#add_brand').modal('hide');
   }).fail(function(data) {
     console.log('Error:', data);
         toastr.options = {"preventDuplicates": true}

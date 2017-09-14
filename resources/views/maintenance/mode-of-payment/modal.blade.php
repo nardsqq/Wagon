@@ -5,13 +5,13 @@
         <h4 id="title">Add New Mode Of Payment</h4>
       </div>
       <div class="modal-body">
-        <form id="formMode">
+        {!! Form::open(['url' => '/admin/maintenance/mode-of-payment', 'method' => 'POST', 'id' => 'formMode']) !!}
           <div class="form-group">
-            <label for="strMODName">Mode Of Payment</label>
-            <input type="text" id="strMODName" name="strMODName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
+            {!! Form::label('strMODName', 'Mode of Payment') !!}
+            {!! Form::text('strMODName', null, ['id' => 'strModName', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-        </form>
+        {!! Form::close() !!}
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>

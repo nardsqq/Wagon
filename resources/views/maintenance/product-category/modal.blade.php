@@ -13,7 +13,7 @@
           </div>
           <div class="form-group">
             <label for="txtProdCategDesc">Description</label>
-            <textarea class="form-control resize" rows="5" id="txtProdCategDesc"></textarea>
+            <textarea class="form-control resize" rows="5" id="txtProdCategDesc" name="txtProdCategDesc"></textarea>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>

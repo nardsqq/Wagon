@@ -34,11 +34,11 @@ $(document).ready(function() {
 
   });
 
-    $(document).on('click', '.btn-delete', function() {
-      var link_id = $(this).val();
-      id = link_id;
-      console.log(id)
-      $('#del_prodcateg').modal('show');
+  $(document).on('click', '.btn-delete', function() {
+    var link_id = $(this).val();
+    id = link_id;
+    console.log(id)
+    $('#del_prodcateg').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -129,12 +129,13 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    var formData = {
-      _token: $('input[name=_token]').val(),
-      strProdCategName: $('#strProdCategName').val(),
-      txtProdCategDesc: $('#txtProdCategDesc').val()
-    };
+    // var formData = {
+    //   _token: $('input[name=_token]').val(),
+    //   strProdCategName: $('#strProdCategName').val(),
+    //   txtProdCategDesc: $('#txtProdCategDesc').val()
+    // };
 
+    var formData = $("#formProdCateg").serialize();
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
