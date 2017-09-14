@@ -22,6 +22,30 @@
   </div>
 </div>
 
+<div class="modal fade" id="edit_mode" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-info" id="mode-modal-header-info">
+        <h4 id="title">Edit Mode Of Payment Record</h4>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['url' => '#', 'method' => 'POST', 'id' => 'formEditMode']) !!}
+          <div class="form-group">
+            {!! Form::label('strMODName', 'Mode of Payment') !!}
+            {!! Form::text('strMODName', null, ['id' => 'strModName', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+        {!! Form::close() !!}
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button id="btn-update" value="update" class="modal-btn btn btn-info pull-right">Update</button>
+        <input type="hidden" id="link_id" name="link_id" value="0">
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="del_mode">
   <div class="modal-dialog">
     <div class="modal-content">

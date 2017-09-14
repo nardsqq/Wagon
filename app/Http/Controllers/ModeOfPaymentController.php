@@ -70,10 +70,14 @@ class ModeOfPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $mode = ModeOfPayment::findOrFail($id);
-        return response()->json($mode);
+        if ($request->ajax()) {
+            $mode = ModeOfPayment::findOrFail($id);
+            return response()->json($mode);
+        } else {
+            return redirect(route('mode-of-payment.index'));
+        }
     }
 
     /**

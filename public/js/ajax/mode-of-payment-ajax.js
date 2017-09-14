@@ -15,23 +15,21 @@ $(document).ready(function() {
   loadTable();
 
   $(document).on('click', '.open-modal', function() {
-    var link_id = $(this).val();
-    id = link_id;
+    var id = $(this).val();
 
-    $('#title').text('Edit Mode Of Payment');
-    $('#mode-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
-    $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
-    $.get(url + '/' + link_id + '/edit', function (data) {
-      console.log(url + '/' + link_id + '/edit');
-      console.log(data);
+    $.ajax({
+      type: 'GET',
+      url: url + '/' + id + '/edit',
+      success: function(data) {
+        var formEditMode = $('#formEditMode');
 
-      $('#strMODName').val(data.strMODName);
-      $('#btn-save').val("update");
-      $('#add_mode').modal('show');
+        formEditMode.find('#strModName').val(data.strMODName);
 
-    }) 
+        $('#edit_mode').modal('show');
+      }
+    })
 
   });
 
