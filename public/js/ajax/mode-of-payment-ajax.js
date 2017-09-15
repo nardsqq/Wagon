@@ -15,7 +15,8 @@ $(document).ready(function() {
   loadTable();
 
   $(document).on('click', '.open-modal', function() {
-    var id = $(this).val();
+    var link_id = $(this).val();
+    id = link_id;
 
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -33,11 +34,30 @@ $(document).ready(function() {
 
   });
 
-    $(document).on('click', '.btn-delete', function() {
-      var link_id = $(this).val();
-      id = link_id;
-      console.log(id)
-      $('#del_mode').modal('show');
+  $('#btn-update').on('click', function(e) {
+    e.preventDefault();
+
+    var data = $('#formEditMode').serialize();
+    var url = '/admin/maintenance/mode-of-payment/';
+    var type = "PUT";
+
+    $.ajax({
+      type: type,
+      url: url + id,
+      data: data,
+      dataType: 'json'
+    }).done(function(data) {
+      $('#formEditMode').trigger('reset');
+      $('#edit_mode').modal('hide');
+      loadTable();
+    })
+  });
+
+  $(document).on('click', '.btn-delete', function() {
+    var link_id = $(this).val();
+    id = link_id;
+    console.log(id)
+    $('#del_mode').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 

@@ -43,7 +43,7 @@ class ModeOfPaymentController extends Controller
     {
         if ($request->ajax()) {
             $mode = new ModeOfPayment;
-            $mode ->strMODName = trim(ucwords($request->strMODName));
+            $mode->strMODName = trim(ucwords($request->strMODName));
             $mode->save();
             
             return response()->json($mode);
@@ -72,12 +72,8 @@ class ModeOfPaymentController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        if ($request->ajax()) {
-            $mode = ModeOfPayment::findOrFail($id);
-            return response()->json($mode);
-        } else {
-            return redirect(route('mode-of-payment.index'));
-        }
+        $mode = ModeOfPayment::findOrFail($id);
+        return response()->json($mode);
     }
 
     /**
@@ -89,11 +85,15 @@ class ModeOfPaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mode = ModeOfPayment::findOrFail($id);
-        $mode ->strMODName = trim($request->strMODName);
-        $mode->save();
-        
-        return response()->json($mode);
+        if ($request->ajax()) {
+            $mode = ModeOfPayment::findOrFail($id);
+            $mode->strMODName = trim($request->strMODName);
+            $mode->save();
+            
+            return response()->json($mode);
+        } else {
+            return redirect(route('mode-of-payment.index'));
+        }
     }
 
     /**

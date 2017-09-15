@@ -29,13 +29,13 @@
         <h4 id="title">Edit Mode Of Payment Record</h4>
       </div>
       <div class="modal-body">
-        {!! Form::open(['url' => '#', 'method' => 'POST', 'id' => 'formEditMode']) !!}
+        <form id="formEditMode">
           <div class="form-group">
             {!! Form::label('strMODName', 'Mode of Payment') !!}
             {!! Form::text('strMODName', null, ['id' => 'strModName', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-        {!! Form::close() !!}
+        </form>
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
