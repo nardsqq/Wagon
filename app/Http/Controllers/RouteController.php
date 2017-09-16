@@ -30,4 +30,39 @@ class RouteController extends Controller
     {
       return view('transactions.index');
     }
+
+    public function quotation()
+    {
+      return view('transactions.quotation.index');
+    }
+
+    public function salesorder()
+    {
+      return view('transactions.sales-order.index');
+    }
+
+    public function joborder()
+    {
+      return view('transactions.job-order.index');
+    }
+
+    public function invoice()
+    {
+      return view('transactions.invoice.index');
+    }
+
+    public function vehicreq()
+    {
+      return view('transactions.vehicle-request.index');
+    }
+
+    public function ob()
+    {
+      return view('transactions.official-business.index');
+    }
+
+    public function gp()
+    {
+      return view('transactions.gate-pass.index');
+    }
 }

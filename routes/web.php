@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('base-price', 'BasePriceController');
     Route::resource('discount', 'DiscountController');
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
-    Route::get('/mode-of-payment-table', 'ModeOfPaymentController@table');
+    Route::get('mode-of-payment-table', 'ModeOfPaymentController@table');
     Route::resource('terms-of-payment', 'TermsOfPaymentController');
     Route::resource('delivery-charge', 'DeliveryChargeController');
     Route::resource('price-validity', 'PriceValidityController');
@@ -57,8 +57,17 @@ Route::group(['prefix' => 'admin'], function() {
 
   	Route::get('/', 'RouteController@transactions');
 
-    //Request for Quotation
+    // Client
     Route::resource('client', 'ClientController');
+
+    // Temporary Routes
+    Route::get('quotation', 'RouteController@quotation');
+    Route::get('sales-order', 'RouteController@salesorder');
+    Route::get('job-order', 'RouteController@joborder');
+    Route::get('invoice', 'RouteController@invoice');
+    Route::get('vehicle-request', 'RouteController@vehicreq');
+    Route::get('official-business', 'RouteController@ob');
+    Route::get('gate-pass', 'RouteController@gp');
 
   });
 

@@ -28,6 +28,8 @@
     </div>
   </section>
 
+  @include('transactions.quotation.modal')
+
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">
@@ -38,12 +40,12 @@
             </div>
             <strong>Manage your <i>Quotations</i> here.</strong>
             <br>
-            <small>Add and manage <i><b>quotations</b></i>.</small>
+            <small>Create and Manage <i><b>Quotations</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add New Quotation</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Create Quotation</button>
               </div>
               <div class="panel-title">
                 <h4>Quotations</h4>
@@ -60,4 +62,43 @@
     </div>
    
   </section>
+@endsection
+
+@section('scripts')
+
+  <!-- Delay table load until everything else is loaded -->
+  <script>
+    $(window).on('load', function() {
+        $('#dataTable').removeAttr('style');
+    })
+  </script>
+
+  <script>
+    $(document).on('ready', function() {
+      $.fn.modal.Constructor.prototype.enforceFocus = function() {};
+      $('#prodsearch').select2();
+      $('#servsearch').select2();
+    })
+  </script>
+
+  <script src="{{ asset('/js/ajax/transactions/quotation-ajax.js/') }}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // example: if user clicks 
+      $('#btn-prod').click(function () {
+        $(this).addClass('btn-primary').removeClass('btn-default');
+        $('#btn-serv').removeClass('btn-primary').addClass('btn-default');
+        $('#display-area').html($('#content-a').html());
+      });
+      
+      $('#btn-serv').click(function () {
+        $(this).addClass('btn-primary').removeClass('btn-default');
+        $('#btn-prod').removeClass('btn-primary').addClass('btn-default');
+        $('#display-area').html($('#content-b').html());
+      });
+      
+    });
+  </script>
+
 @endsection

@@ -55,14 +55,20 @@
 					               	<table id="dataTable" class="table table-bordered table-hover table-condensed" width="100%">
 									  <thead>
 									    <tr>
-									      <th>Transactions</th>
-									      <th>Status</th>
+									      <th>Quotations</th>
+									      <th class="text-center">Status</th>
+									      <th class="text-center">Action</th>
 									    </tr>
 									  </thead>
 									  <tbody>
 									    <tr>
-									        <td></td>
-									        <td></td>
+									        <td>RFQCODSAMPLE01</td>
+									        <td class="text-center">
+									        	<span class="label label-success"><i class="fa fa-check fa-fw" aria-hidden="true"></i>&nbsp; Active</span>
+									        </td>
+									        <td class="text-center">
+									        	<button class="btn btn-default btn-sm"><i class='fa fa-circle-o'></i>&nbsp; View</button>
+									        </td>
 									    </tr>
 									  </tbody>
 									</table>

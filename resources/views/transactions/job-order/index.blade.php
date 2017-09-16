@@ -51,7 +51,7 @@
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('transactions.joborder.table')
+                @include('transactions.job-order.table')
               </div>
             </div>
           </div>

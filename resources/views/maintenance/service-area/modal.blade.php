@@ -8,11 +8,11 @@
         <form id="formServArea">
           <div class="form-group">
             <label for="intSA_ServType_ID">Service Type</label>
-              <select name="intSA_ServType_ID" id="intSA_ServType_ID" class="form-control">
-                @foreach ($servtypes as $servtype)
-                  <option value="{{$servtype->intServTypeID}}">{{ $servtype->strServTypeName }}</option>
-                @endforeach
-              </select>
+            <select name="intSA_ServType_ID" id="intSA_ServType_ID" class="form-control">
+              @foreach ($servtypes as $servtype)
+                <option value="{{$servtype->intServTypeID}}">{{ $servtype->strServTypeName }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="form-group">
             <label for="strServAreaName">Service Area</label>

@@ -23,13 +23,11 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Sales Invoice</li>
+        <li>Gate Pass Records</li>
       </ol>
     </div>
   </section>
 
-  @include('transactions.salesinvoice.modal')
-  
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">
@@ -38,34 +36,28 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage your <i>Sales Invoice</i> here.</strong>
+            <strong> Manage your <i>Gate Passes</i> here.</strong>
             <br>
-            <small>Add and manage <i><b>Sales Invoice</b></i>.</small>
+            <small>Add and manage <i><b>Gate Pass</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Sales Invoice</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;New Gate Pass</button>
               </div>
               <div class="panel-title">
-                <h4>Sales Invoice</h4>
+                <h4>Gate Passes</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('transactions.salesinvoice.table')
+                @include('transactions.gate-pass.table')
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+   
   </section>
-@endsection
-@section('meta')
-<meta name="_token" content="{!! csrf_token() !!}" />
-@endsection
-@section('scripts')
-  <script src="{{ asset('/js/custom/ajax/ClientAjax.js/') }}"></script>
 @endsection

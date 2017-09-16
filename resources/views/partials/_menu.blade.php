@@ -116,14 +116,14 @@
                 <li class="dropdown-main-header"><center>Orders Phase</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Placing a Job or Sales Order</li>
-                <li class="{{ Request::is('admin/transactions/salesorder') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/salesorder') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Sales Orders</a>
+                <li class="{{ Request::is('admin/transactions/sales-order') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/sales-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Sales Orders</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/joborder') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/joborder') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Job Orders</a>
+                <li class="{{ Request::is('admin/transactions/job-order') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/job-order') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Job Orders</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/salesinvoice') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/salesinvoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
+                <li class="{{ Request::is('admin/transactions/invoice') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/invoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
                 </li>
               </ul>
             </li>
@@ -132,14 +132,14 @@
                 <li class="dropdown-main-header"><center>Logistics</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Requisition for Transport</li>
-                <li class="{{ Request::is('admin/transactions/vehiclerequest') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/vehiclerequest') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Requests</a>
+                <li class="{{ Request::is('admin/transactions/vehicle-request') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/vehicle-request') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Requests</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/obanditinerary') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/obanditinerary') }}"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>&nbsp; Official Business</a>
+                <li class="{{ Request::is('admin/transactions/official-business') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/official-business') }}"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>&nbsp; Official Business</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/gatepass') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/gatepass') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Gate Pass Records</a>
+                <li class="{{ Request::is('admin/transactions/gate-pass') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/gate-pass') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Gate Pass Records</a>
                 </li>
               </ul>
             </li>
