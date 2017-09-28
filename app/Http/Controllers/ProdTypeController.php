@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Attribute;
 
-class AttributeController extends Controller
+class ProdTypeController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +13,17 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attribs = Attribute::orderBy('strAttribName')->get();
-        return view('maintenance.attribute.index')->with('attribs', $attribs);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -27,14 +34,7 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Attribute::$rules);
-
-        $attrib = new Attribute;
-
-        $attrib->strAttribName = trim(ucfirst($request->strAttribName));
-        $attrib->save();
-
-        return redirect()->route('attributes.index');
+        //
     }
 
     /**
@@ -45,8 +45,7 @@ class AttributeController extends Controller
      */
     public function show($id)
     {
-        $attrib = Attribute::findOrFail($id);
-        return view('maintenance.attribute.show')->with('attrib', $attrib);
+        //
     }
 
     /**
@@ -78,16 +77,8 @@ class AttributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        if ($request->ajax()) {
-            $del = [];
-            $request->has('values') ? $del = $request->values : array_push($del, $id);
-            $attrib = Attribute::destroy($del);
-
-            return response()->json($attrib);
-        } else {
-            return redirect(route('attributes.index'));
-        }
+        //
     }
 }

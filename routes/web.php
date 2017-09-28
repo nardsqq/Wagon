@@ -26,13 +26,11 @@ Route::group(['prefix' => 'admin'], function() {
     // Product Building and Inventory
     Route::resource('product-category', 'ProdCategController');
     Route::resource('brand', 'BrandController');
-    Route::resource('attributes', 'AttributeController', ['except' => ['create']]);
     Route::resource('product', 'ProductController');
     Route::resource('product-build', 'ItemController');
 
     // Personnel
     Route::resource('role', 'RoleController');
-    Route::resource('skill', 'SkillController');
     Route::resource('personnel', 'PersonnelController');
 
     // Services
@@ -47,9 +45,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('discount', 'DiscountController');
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
     Route::get('mode-of-payment-table', 'ModeOfPaymentController@table');
-    Route::resource('terms-of-payment', 'TermsOfPaymentController');
     Route::resource('delivery-charge', 'DeliveryChargeController');
-    Route::resource('price-validity', 'PriceValidityController');
 
   });
 

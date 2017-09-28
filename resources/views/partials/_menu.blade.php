@@ -16,22 +16,18 @@
                 <li class="dropdown-main-header"><center>Itemization and Inventory</center></li>
                 <li class="divider"></li>
   							<li class="dropdown-header">Assets</li>
-                <li class="{{ Request::is('admin/maintenance/product-category') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/product-category') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Product Category</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/attributes') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/attributes') }}"><i class="fa fa-adjust fa-fw" aria-hidden="true"></i>&nbsp; Attributes</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
+                <li class="{{ Request::is('admin/maintenance/product-type') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/product-type') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Product Type</a>
                 </li>
                 <li class="{{ Request::is('admin/maintenance/brand') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
                 </li>
-                <li class="{{ Request::is('admin/maintenance/product-build') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/product-build') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Build</a>
+                <li class="{{ Request::is('admin/maintenance/product') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                 </li>
-                <li><a href="#"><i class="fa fa-cubes fa-fw"></i>&nbsp; Variants</a></li>
+                <li class="{{ Request::is('admin/maintenance/product-variant') ? "active" : "" }}">
+                  <a href="{{ url('/admin/maintenance/product-variant') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Variant</a>
+                </li>
   						</ul>
   					</li>
   					<li class="col-sm-4">
@@ -39,9 +35,6 @@
                 <li class="dropdown-main-header"><center>Job Appointments and Services</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Workforce</li>
-  							<li class="{{ Request::is('admin/maintenance/skill') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/skill') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Skill</a>
-                </li>
                 <li class="{{ Request::is('admin/maintenance/role') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/role') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Role</a>
                 </li>
@@ -77,17 +70,11 @@
   							<li class="{{ Request::is('admin/maintenance/discount') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
                 </li>
-                 <li class="{{ Request::is('admin/maintenance/mode-of-payment') ? "active" : "" }}">
+                <li class="{{ Request::is('admin/maintenance/mode-of-payment') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Mode Of Payment</a>
-                </li>
-                   <li class="{{ Request::is('admin/maintenance/terms-of-payment') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/terms-of-payment') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Terms Of Payment</a>
                 </li>
                 <li class="{{ Request::is('admin/maintenance/delivery-charge') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/delivery-charge') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Delivery Charge</a>
-                </li>
-                <li class="{{ Request::is('admin/maintenance/price-validity') ? "active" : "" }}">
-                  <a href="{{ url('/admin/maintenance/price-validity') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Price Validity</a>
                 </li>
   						</ul>
   					</li>
