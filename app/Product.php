@@ -26,7 +26,7 @@ class Product extends Model
     }
 
     public static $rules = [
-      'strProdName' => 'required|unique_with:tblproduct, intP_ProdType_ID',
+      'strProdName' => 'required|max:45|unique:tblproduct',
       'intP_ProdType_ID' => 'required'
     ];
 }

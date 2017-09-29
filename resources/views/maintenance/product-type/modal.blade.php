@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="prodtype-modal-header">
-        <h4 id="title">Add New Mode Of Payment</h4>
+        <h4 id="title">Add New Product Type</h4>
       </div>
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/product-type', 'method' => 'POST', 'id' => 'formProdType']) !!}

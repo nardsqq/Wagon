@@ -52,7 +52,6 @@ class ProdTypeController extends Controller
         } else {
             return redirect(route('product-type.index'));
         }
-        
     }
 
     /**
