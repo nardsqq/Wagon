@@ -5,19 +5,19 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_prodcateg').on('hide.bs.modal', function() {
-        $('#formProdCateg').trigger('reset');
+  $('#add_prodtype').on('hide.bs.modal', function() {
+        $('#formProdType').trigger('reset');
     });
 
-  var url = "/admin/maintenance/product-category";
+  var url = "/admin/maintenance/product-type";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Product Category');
-    $('#prodcateg-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#title').text('Edit Product Type');
+    $('#prodtype-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -25,10 +25,10 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#strProdCategName').val(data.strProdCategName);
-      $('#txtProdCategDesc').val(data.txtProdCategDesc);
+      $('#strProdTypeName').val(data.strProdTypeName);
+      $('#txtProdTypeDesc').val(data.txtProdTypeDesc);
       $('#btn-save').val("update");
-      $('#add_prodcateg').modal('show');
+      $('#add_prodtype').modal('show');
 
     }) 
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
     console.log(id)
-    $('#del_prodcateg').modal('show');
+    $('#del_prodtype').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -51,7 +51,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "DELETE",
-      url: '/admin/maintenance/product-category/' + id,
+      url: '/admin/maintenance/product-type/' + id,
       dataType: "json",
       success: function (data) {
         console.log(data);
@@ -60,7 +60,7 @@ $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         table.row($("#id" + id)).remove().draw();
 
-        $('#del_prodcateg').modal('hide');
+        $('#del_prodtype').modal('hide');
 
         toastr.options = {
           "closeButton": false,
@@ -80,7 +80,7 @@ $(document).ready(function() {
           "hideMethod": "slideUp"
         }
 
-        toastr.error("Successfully Deleted Product Category Record");
+        toastr.error("Successfully Deleted Product Type Record");
       },
       error: function (data) {
         console.log(url + '/' + id);
@@ -111,12 +111,12 @@ $(document).ready(function() {
 
   $('#btn-add').on('click', function(event) {
     $('#title').text('Add New Product Category');
-    $('#prodcateg-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formProdCateg').trigger("reset");
+    $('#prodtype-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formProdType').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_prodcateg').modal('show');
+    $('#add_prodtype').modal('show');
 
   }); 
 
@@ -135,7 +135,7 @@ $(document).ready(function() {
     //   txtProdCategDesc: $('#txtProdCategDesc').val()
     // };
 
-    var formData = $("#formProdCateg").serialize();
+    var formData = $("#formProdType").serialize();
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
@@ -162,7 +162,7 @@ $(document).ready(function() {
       "hideMethod": "slideUp"
     }
 
-    toastr.info("Successfully Updated Product Category Record");
+    toastr.info("Successfully Updated Product Type Record");
   }
 
   $.ajax({
@@ -173,13 +173,13 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intProdCategID +  "></tr>")
+      var row = $("<tr id=id" + data.intProdTypeID +  "></tr>")
       .append(
-          "<td>" + data.strProdCategName + "</td>" +
-          "<td>" + data.txtProdCategDesc + "</td>" +
+          "<td>" + data.strProdTypeName + "</td>" +
+          "<td>" + data.txtProdTypeDesc + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intProdCategID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProdCategID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intProdTypeID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProdTypeID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -205,16 +205,16 @@ $(document).ready(function() {
             "hideMethod": "slideUp"
           }
 
-          toastr.success("Successfully Added a New Product Category Record");
+          toastr.success("Successfully Added a New Product Type Record");
       } 
       else { 
-          table.row($("#id"+data.intProdCategID)).remove();
+          table.row($("#id"+data.intProdTypeID)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formProdCateg').trigger("reset");
-      $('#add_prodcateg').modal('hide')
+      $('#formProdType').trigger("reset");
+      $('#add_prodtype').modal('hide')
 
   }).fail(function(data) {
       console.log('Error:', data);

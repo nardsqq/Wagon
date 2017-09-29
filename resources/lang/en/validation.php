@@ -117,7 +117,7 @@ return [
     'attributes' => [
         'strProdName' => 'Product Name',
         'strProdHandle' => 'Product Handle',
-        'strProdCategName' => 'Product Category',
+        'strProdTypeName' => 'Product Type',
         'intProdCateg' => 'Product Category',
         'intProdProdCateID' => 'Product Category',
     ],

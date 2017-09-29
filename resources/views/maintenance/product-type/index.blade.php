@@ -20,12 +20,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Product Category</li>
+        <li>Product Type</li>
       </ol>
     </div>
   </section>
 
-  @include('maintenance.product-category.modal')
+  @include('maintenance.product-type.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -35,22 +35,22 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Product Categories</i> here.</strong>
+            <strong>Manage <i>Product Types</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Product Category</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Product Type</button>
               </div>
               <div class="panel-title">
-                <h4>Product Category</h4>
+                <h4>Product Type</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.product-category.table')
+                @include('maintenance.product-type.table')
               </div>
             </div>
           </div>
@@ -70,5 +70,5 @@
     })
   </script>
 
-  <script src="{{ asset('/js/ajax/product-category-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/product-type-ajax.js/') }}"></script>
 @endsection

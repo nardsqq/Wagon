@@ -194,8 +194,8 @@ $(document).ready(function() {
       url: url + "-table",
       dataType: 'html',
       success:function(data) {
-        $('#dataTable').DataTable();
-        $('#dataTable').html(data);
+        $('#table-container').html(data).fadeIn(300);
+        // $('#dataTable').dataTable();
       }
     })
   } // function loadTable() {}
