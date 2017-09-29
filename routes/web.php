@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin'], function() {
     // Product Building and Inventory
     Route::resource('product-type', 'ProdTypeController');
     Route::get('product-type-table', 'ProdTypeController@table');
+    
     Route::resource('brand', 'BrandController');
     Route::resource('product', 'ProductController');
     Route::resource('product-build', 'ItemController');

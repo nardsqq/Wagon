@@ -16,7 +16,7 @@ class ServiceArea extends Model
 	public $timestamps = false;
 
 	public function servtypes() 
-  {
-    return $this->belongsTo('App\ServiceType', 'intSA_ServType_ID');
-  }
+	{
+    	return $this->belongsTo('App\ServiceType', 'intSA_ServType_ID');
+	}
 }

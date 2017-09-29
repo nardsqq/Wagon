@@ -10,19 +10,14 @@ class Product extends Model
     use SoftDeletes;
 
     protected $table = 'tblProduct';
-    protected $fillable = ['intP_ProdCateg_ID', 'strProdName', 'txtProdDesc'];
+    protected $fillable = ['intP_ProdType_ID', 'strProdName', 'txtProdDesc', 'intProdCateg'];
     protected $primaryKey = 'intProdID';
     protected $dates = ['deleted_at'];
     public $timestamps = false;
 
-    public function prodcategs() 
+    public function prodtypes() 
     {
-      return $this->belongsTo('App\ProductCategory', 'intP_ProdCateg_ID');
-    }
-
-    public function attribs() 
-    {
-      return $this->belongsToMany('App\Attribute', 'tblFeatureSet', 'intFS_Prod_ID', 'intFS_Attrib_ID');
+      return $this->belongsTo('App\ProductType', 'intP_ProdType_ID');
     }
 
     public function items()
@@ -31,7 +26,7 @@ class Product extends Model
     }
 
     public static $rules = [
-      'strProdName' => 'required|unique_with:tblproduct, intP_ProdCateg_ID, strProdHandle',
-      'intP_ProdCateg_ID' => 'required'
+      'strProdName' => 'required|unique_with:tblproduct, intP_ProdType_ID',
+      'intP_ProdType_ID' => 'required'
     ];
 }

@@ -1,22 +1,25 @@
-<table id="dataTable" class="table table-bordered table-hover table-condensed" style="visibility: hidden;" width="100%">
+<table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Category</th>
-      <th>Name</th>
+      <th>Product Category</th>
+      <th>Product Type</th>
+      <th>Product</th>
+      <th>Description</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody id="product-list">
+  <tbody id="prod-list">
     @foreach ($products as $product)
-    <tr id="id{{$product->intProdID}}">
-        <td>{{ $product->prodcategs->strProdCategName }}</td>
+      <tr id="id{{ $product->intProdID }}">
+        <td>{{ $product->strProdCateg }}</td>
+        <td>{{ $product->prodtypes->strProdTypeName }}</td>
         <td>{{ $product->strProdName }}</td>
+        <td>{{ $product->txtProdDesc }}</td>
         <td class="text-center">
-            <a href="{{ route('product.show', $product->intProdID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
-            <a href="{{ route('product.edit', $product->intProdID) }}" class="btn btn-info btn-sm btn-detail"><i class='fa fa-edit'></i>&nbsp; Edit</a>
+            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $product->intProdID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $product->intProdID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
-    </tr>
+      </tr>
     @endforeach
   </tbody>
 </table>

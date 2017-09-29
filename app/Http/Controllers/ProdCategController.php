@@ -38,6 +38,7 @@ class ProdCategController extends Controller
     {
         if ($request->ajax()) {
             $this->validate($request, ProductCategory::$rules);
+            
             $prodcateg = new ProductCategory;
             $prodcateg ->strProdCategName = trim(ucwords($request->strProdCategName));
             $prodcateg ->txtProdCategDesc = trim(ucfirst($request->txtProdCategDesc));

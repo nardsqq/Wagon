@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ProductCategory;
-use App\Attribute;
+use App\ProductType;
 use App\Product;
 
 class ProductController extends Controller
@@ -17,11 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $prodcategs = ProductCategory::orderBy('strProdCategName')->get();
-        $attribs = Attribute::orderBy('strAttribName')->get();
+        $prodtypes = ProductType::orderBy('strProdTypeName')->get();
         $products = Product::orderBy('strProdName')->get();
 
-        return view('maintenance.product.index')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
+        return view('maintenance.product.index')->with('products', $products)->with('prodtypes', $prodtypes);
     }
 
     /**
@@ -31,11 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $prodcategs = ProductCategory::orderBy('strProdCategName')->get();
-        $attribs = Attribute::orderBy('strAttribName')->get();
+        $prodtypes = ProductType::orderBy('strProdTypeName')->get();
         $products = Product::orderBy('strProdName')->get();
 
-        return view('maintenance.product.create')->with('products', $products)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
+        return view('maintenance.product.create')->with('products', $products)->with('prodtypes', $prodtypes);
     }
 
     /**
@@ -46,16 +43,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Product::$rules);
-        $product = new Product;
-        $product->intP_ProdCateg_ID = $request->intP_ProdCateg_ID;
-        $product->strProdName = trim(ucwords($request->strProdName));
-        $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+        if($request->ajax()) {
+            $this->validate($request, Product::$rules);
 
-        $product->save();
-        $product->attribs()->sync($request->intFeatSetID, false);
+            $prodtype = ProductType::find($request->intP_ProdType_ID);
+            $product = new Product;
 
-        return redirect()->route('product.index');
+            $product->prodtypes()->associate($prodtype);
+            $product->strProdCateg = trim(ucwords($request->strProdCateg));
+            $product->strProdName = trim(ucwords($request->strProdName));
+            $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+
+            $product->save();
+            return response()->json($product);
+        } else {
+            return redirect(route('product.index'));
+        }
     }
 
     /**
@@ -66,9 +69,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        
-        return view('maintenance.product.show')->with('product', $product);
+        //
     }
 
     /**
@@ -80,10 +81,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $prodcategs = ProductCategory::pluck('strProdCategName', 'intProdCategID');
-        $attribs = Attribute::pluck('strAttribName', 'intAttribID');
-
-        return view('maintenance.product.edit')->with('product', $product)->with('prodcategs', $prodcategs)->with('attribs', $attribs);
+        return response()->json($product);
     }
 
     /**
@@ -95,16 +93,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $prodcateg = ProductCategory::find($request->intP_ProdCateg_ID);
-        $product = Product::findOrFail($id);
-        $product->prodcategs()->associate($prodcateg);
-        $product->strProdName = trim($request->strProdName);
-        $product->txtProdDesc = trim($request->txtProdDesc);
+        if($request->ajax()) {
+            $this->validate($request, Product::$rules);
 
-        $product->save();
-        $product->attribs()->sync($request->intFeatSetID);
+            $prodtype = ProductType::find($request->intP_ProdType_ID);
+            $product = Product::findOrFail($id);
 
-        return redirect(route('product.index'));
+            $product->prodtypes()->associate($prodtype);
+            $product->strProdCateg = trim(ucwords($request->strProdCateg));
+            $product->strProdName = trim(ucwords($request->strProdName));
+            $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+
+            $product->save();
+            return response()->json($product);
+        } else {
+            return redirect(route('product.index'));
+        }
     }
 
     /**

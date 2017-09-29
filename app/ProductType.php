@@ -17,7 +17,7 @@ class ProductType extends Model
 
   	public function products() 
   	{
-  		return $this->hasMany('App\Product', 'intP_ProdType_ID');
+  		return $this->hasMany('App\Product');
   	}
 
   	public static $rules = [
