@@ -58,7 +58,6 @@
                 <li class="{{ Request::is('admin/maintenance/vehicle-type') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/vehicle-type') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
                 </li>
-  							<li><a href="#"><i class="fa fa-circle fa-fw"></i>&nbsp; Specifications</a></li>
                 <li class="{{ Request::is('admin/maintenance/vehicle') ? "active" : "" }}">
                   <a href="{{ url('/admin/maintenance/vehicle') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Vehicle</a>
                 </li>
