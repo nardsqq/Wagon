@@ -1,5 +1,4 @@
 @extends('main')
-
 @section('content')
 
  <header id="header">
@@ -7,9 +6,6 @@
       <div class="row">
         <div class="col-md-10">
           <h1><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Maintenance</h1>
-        </div>
-        <div class="col-md-2">
-
         </div>
       </div>
     </div>
@@ -35,24 +31,24 @@
     <div class="container animated fadeIn">
       <div class="row">
         <div class="col-md-12">
+          <div class="alert alert-success alert-white rounded">
+            <div class="icon">
+              <i class="fa fa-info-circle"></i>
+            </div>
+            <strong>Manage <i>Personnel Records</i> here.</strong>
+            <br>
+            <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
+          </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <a href="{{ route('personnel.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add New Personnel</a>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Personnel Record</button>
               </div>
               <div class="panel-title">
-                <h4>Product Build</h4>
+                <h4>Personnel</h4>
               </div>
             </div>
             <div class="panel-body">
-              <div class="alert alert-success alert-white rounded">
-                <div class="icon">
-                  <i class="fa fa-info-circle"></i>
-                </div>
-                <strong>Manage <i>Personnel</i> here.</strong>
-                <br>
-                <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
-              </div>
               <div id="table-container">
                 @include('maintenance.personnel.table')
               </div>
@@ -75,5 +71,4 @@
   </script>
 
   <script src="{{ asset('/js/ajax/personnel-ajax.js/') }}"></script>
-
 @endsection

@@ -8,6 +8,13 @@ use App\Role;
 
 class PersonnelController extends Controller
 {
+    public function table()
+    {
+        $personnels = Personnel::orderBy('intPersID')->get();
+        $roles = Role::orderBy('strRoleName')->get();
+
+        return view('maintenance.personnel.table')->with('personnels', $personnels)->with('roles', $roles);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,10 +35,7 @@ class PersonnelController extends Controller
      */
     public function create()
     {
-        $personnels = Personnel::orderBy('intPersID')->get();
-        $roles = Role::orderBy('strRoleName')->get();
-
-        return view('maintenance.personnel.create')->with('personnels', $personnels)->with('roles', $roles);
+        //
     }
 
     /**
@@ -42,16 +46,24 @@ class PersonnelController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Personnel::$rules);
-        $personnel = new Personnel;
-        $personnel->intPers_Role_ID = $request->intPers_Role_ID;
-        $personnel->strPersFName = trim(ucwords($request->strPersFName));
-        $personnel->strPersMName = trim($request->strPersMName);
-        $personnel->strPersLName = trim(ucwords($request->strPersLName));
+        if($request->ajax()) {
+            $this->validate($request, Personnel::$rules);
 
-        $personnel->save();
+            $role = Role::find($request->intPers_Role_ID);
+            $personnel = new Personnel;
 
-        return redirect()->route('personnel.index');
+            $personnel->roles()->associate($role);
+            $personnel->strPersEmpType = $request->strPersEmpType;
+            $personnel->strPersFName = trim(ucwords($request->strPersFName));
+            $personnel->strPersMName = trim(ucfirst($request->strPersMName));
+            $personnel->strPersLName = trim(ucwords($request->strPersLName));
+            $personnel->strPersMobNo = $request->strPersMobNo;
+
+            $personnel->save();
+            return response()->json($personnel);
+        } else {
+            return redirect(route('personnel.index'));
+        }
     }
 
     /**
@@ -62,9 +74,7 @@ class PersonnelController extends Controller
      */
     public function show($id)
     {
-        $personnel = Personnel::findOrFail($id);
-        
-        return view('maintenance.personnel.show')->with('personnel', $personnel);
+        //
     }
 
     /**
@@ -76,9 +86,7 @@ class PersonnelController extends Controller
     public function edit($id)
     {
         $personnel = Personnel::findOrFail($id);
-        $roles = Role::pluck('strRoleName', 'intRoleID');
-
-        return view('maintenance.personnel.edit')->with('personnel', $personnel)->with('roles', $roles);
+        return response()->json($personnel);
     }
 
     /**
@@ -90,16 +98,23 @@ class PersonnelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Role::find($request->intPers_Role_ID);
-        $personnel = Personnel::findOrFail($id);
-        $personnel->roles()->associate($role);
-        $personnel->strPersFName = trim($request->strPersFName);
-        $personnel->strPersMName = trim($request->strPersMName);
-        $personnel->strPersLName = trim($request->strPersLName);
-    
-        $personnel->save();
+        if($request->ajax()) {
 
-        return redirect(route('personnel.index'));
+            $role = Role::find($request->intPers_Role_ID);
+            $personnel = Personnel::findOrFail($id);
+
+            $personnel->roles()->associate($role);
+            $personnel->strPersEmpType = $request->strPersEmpType;
+            $personnel->strPersFName = trim(ucwords($request->strPersFName));
+            $personnel->strPersMName = trim(ucfirst($request->strPersMName));
+            $personnel->strPersLName = trim(ucwords($request->strPersLName));
+            $personnel->strPersMobNo = $request->strPersMobNo;
+
+            $personnel->save();
+            return response()->json($personnel);
+        } else {
+            return redirect(route('personnel.index'));
+        }
     }
 
     /**
@@ -108,7 +123,7 @@ class PersonnelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         if ($request->ajax()) {
             $del = [];
