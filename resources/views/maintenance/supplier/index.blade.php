@@ -20,12 +20,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Product</li>
+        <li>Supplier Information</li>
       </ol>
     </div>
   </section>
 
-  @include('maintenance.product.modal')
+  @include('maintenance.mode-of-payment.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -35,22 +35,22 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Products</i> here.</strong>
+            <strong>Manage <i>Supplier Information</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Product</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Supplier Record</button>
               </div>
               <div class="panel-title">
-                <h4>Product</h4>
+                <h4>Supplier Information</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.product.table')
+                @include('maintenance.supplier.table')
               </div>
             </div>
           </div>
@@ -70,5 +70,5 @@
     })
   </script>
 
-  <script src="{{ asset('/js/ajax/product-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/supplier-ajax.js/') }}"></script>
 @endsection
