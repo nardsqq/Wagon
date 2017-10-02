@@ -48,15 +48,14 @@
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
 								<h1>{{ $supplier->strSuppName }}</h1>
-			               		<hr>
-								<p class="lead">{{ $supplier->strSuppContactNum }}</p>
+								<p class="lead">{{ $supplier->strSuppAddLotNo }} {{ $supplier->strSuppAddStBldg }}, {{ $supplier->strSuppAddBrgy }}, {{ $supplier->strSuppAddCity }}</p>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
 									<dl>
-									  <dt>Address </dt>
-									  <dd>{{ $supplier->strSuppAddLotNo }} {{ $supplier->strSuppAddStBldg }}, {{ $supplier->strSuppAddBrgy }}, {{ $supplier->strSuppAddCity }}</dd>
+									  <dt>Supplier Contact Detail</dt>
+									  <dd>{{ $supplier->strSuppContactNum }}</dd>
 									</dl>
 
 									<dl>
