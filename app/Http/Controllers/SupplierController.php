@@ -41,7 +41,26 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->ajax()) {
+            $this->validate($request, Supplier::$rules);
+
+            $supplier = new Supplier;
+
+            $supplier->strSuppName = trim(ucwords($request->strSuppName));
+            $supplier->strSuppContactNum = trim($request->strSuppContactNum);
+            $supplier->strSuppAddLotNo = trim($request->strSuppAddLotNo);
+            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
+            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
+            $supplier->strSuppAddBrgy = trim(ucwords($request->strSuppAddBrgy));
+            $supplier->strSuppAddCity = trim(ucwords($request->strSuppAddCity));
+            $supplier->strSuppContactPers = trim(ucwords($request->strSuppContactPers));
+            $supplier->strSuppContactPersNum = trim($request->strSuppContactPersNum);
+
+            $supplier->save();
+            return response()->json($supplier);
+        } else {
+            return redirect(route('supplier.index'));
+        }
     }
 
     /**
@@ -52,7 +71,8 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        return view('maintenance.supplier.show')->with('supplier', $supplier);
     }
 
     /**
@@ -63,7 +83,8 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        return response()->json($supplier);
     }
 
     /**
@@ -75,7 +96,25 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->ajax()) {
+
+            $supplier = Supplier::findOrFail($id);
+
+            $supplier->strSuppName = trim(ucwords($request->strSuppName));
+            $supplier->strSuppContactNum = trim($request->strSuppContactNum);
+            $supplier->strSuppAddLotNo = trim($request->strSuppAddLotNo);
+            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
+            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
+            $supplier->strSuppAddBrgy = trim(ucwords($request->strSuppAddBrgy));
+            $supplier->strSuppAddCity = trim(ucwords($request->strSuppAddCity));
+            $supplier->strSuppContactPers = trim(ucwords($request->strSuppContactPers));
+            $supplier->strSuppContactPersNum = trim($request->strSuppContactPersNum);
+
+            $supplier->save();
+            return response()->json($supplier);
+        } else {
+            return redirect(route('supplier.index'));
+        }
     }
 
     /**
@@ -84,8 +123,16 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $supplier = Supplier::destroy($del);
+
+            return response()->json($supplier);
+        } else {
+            return redirect(route('supplier.index'));
+        }
     }
 }

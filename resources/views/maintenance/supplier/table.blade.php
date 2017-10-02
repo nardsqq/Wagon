@@ -16,6 +16,7 @@
         <td>{{ $supplier->strSuppContactPers }}</td>
         <td>{{ $supplier->strSuppContactPersNum }}</td>
         <td class="text-center">
+            <a href="{{ route('supplier.show', $supplier->intSuppID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
             <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $supplier->intSuppID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $supplier->intSuppID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>

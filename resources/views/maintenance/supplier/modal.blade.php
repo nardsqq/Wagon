@@ -61,10 +61,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-info" id="supp-modal-header-info">
-        <h4 id="title">Edit Mode Of Payment Record</h4>
+        <h4 id="title">Edit Supplier Record</h4>
       </div>
       <div class="modal-body">
-        <form id="formEditMode">
+        <form id="formEditSupp">
           <div class="form-group">
             {!! Form::label('strSuppName', 'Supplier Name') !!}
             {!! Form::text('strSuppName', null, ['id' => 'strSuppName', 'class' => 'form-control']) !!}

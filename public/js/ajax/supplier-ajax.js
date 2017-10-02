@@ -27,6 +27,13 @@ $(document).ready(function() {
         var formEditSupp = $('#formEditSupp');
 
         formEditSupp.find('#strSuppName').val(data.strSuppName);
+        formEditSupp.find('#strSuppAddLotNo').val(data.strSuppAddLotNo);
+        formEditSupp.find('#strSuppAddStBldg').val(data.strSuppAddStBldg);
+        formEditSupp.find('#strSuppAddBrgy').val(data.strSuppAddBrgy);
+        formEditSupp.find('#strSuppAddCity').val(data.strSuppAddCity);
+        formEditSupp.find('#strSuppContactNum').val(data.strSuppContactNum);
+        formEditSupp.find('#strSuppContactPers').val(data.strSuppContactPers);
+        formEditSupp.find('#strSuppContactPersNum').val(data.strSuppContactPersNum);
 
         $('#edit_supp').modal('show');
       }
@@ -195,7 +202,6 @@ $(document).ready(function() {
       dataType: 'html',
       success:function(data) {
         $('#dataTable').html(data).fadeIn(300);
-        // $('#dataTable').dataTable();
       }
     })
   } // function loadTable() {}
