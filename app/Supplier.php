@@ -29,7 +29,7 @@ class Supplier extends Model
 
     public static $rules = [
       'strSuppName' => 'required|max:45|unique:tblSupplier',
-      'strSuppContactNum' = > 'required',
-      'strSuppContactPers' => 'required'
+      'strSuppContactNum' => 'required',
+      'strSuppContactPers' => 'required',
     ];
 }

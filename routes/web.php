@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin'], function() {
     
 
     // Product Building and Inventory
+    Route::resource('supplier', 'SupplierController');
+    Route::get('supplier-table', 'SupplierController@table');
+
     Route::resource('product-type', 'ProdTypeController');
     Route::get('product-type-table', 'ProdTypeController@table');
     

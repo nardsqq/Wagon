@@ -1,5 +1,5 @@
 <div class="modal fade" id="add_supp" role="dialog">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="supp-modal-header">
         <h4 id="title">Add New Supplier Record</h4>
@@ -11,14 +11,39 @@
             {!! Form::text('strSuppName', null, ['id' => 'strSuppName', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-          <div class="col-xs-6 m-t-10">
+          <div class="form-group">
+            {!! Form::label('strSuppContactNum', 'Contact Number') !!}
+            {!! Form::text('strSuppContactNum', null, ['id' => 'strSuppContactNum', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
             {!! Form::label('strSuppAddLotNo', 'Lot Number') !!}
             {!! Form::text('strSuppAddLotNo', null, ['id' => 'strSuppAddLotNo', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-          <div class="col-xs-6 m-t-10">
+          <div class="form-group">
             {!! Form::label('strSuppAddStBldg', 'Street or Building Name') !!}
             {!! Form::text('strSuppAddStBldg', null, ['id' => 'strSuppAddStBldg', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppAddBrgy', 'Baranggay') !!}
+            {!! Form::text('strSuppAddBrgy', null, ['id' => 'strSuppAddBrgy', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppAddCity', 'City or Province') !!}
+            {!! Form::text('strSuppAddCity', null, ['id' => 'strSuppAddCity', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppContactPers', 'Contact Person') !!}
+            {!! Form::text('strSuppContactPers', null, ['id' => 'strSuppContactPers', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppContactPersNum', 'Associate Contact Details') !!}
+            {!! Form::text('strSuppContactPersNum', null, ['id' => 'strSuppContactPersNum', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         {!! Form::close() !!}
@@ -41,8 +66,43 @@
       <div class="modal-body">
         <form id="formEditMode">
           <div class="form-group">
-            {!! Form::label('strMODName', 'Mode of Payment') !!}
-            {!! Form::text('strMODName', null, ['id' => 'strModName', 'class' => 'form-control']) !!}
+            {!! Form::label('strSuppName', 'Supplier Name') !!}
+            {!! Form::text('strSuppName', null, ['id' => 'strSuppName', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppContactNum', 'Contact Number') !!}
+            {!! Form::text('strSuppContactNum', null, ['id' => 'strSuppContactNum', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppAddLotNo', 'Lot Number') !!}
+            {!! Form::text('strSuppAddLotNo', null, ['id' => 'strSuppAddLotNo', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppAddStBldg', 'Street or Building Name') !!}
+            {!! Form::text('strSuppAddStBldg', null, ['id' => 'strSuppAddStBldg', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppAddBrgy', 'Baranggay') !!}
+            {!! Form::text('strSuppAddBrgy', null, ['id' => 'strSuppAddBrgy', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppAddCity', 'City or Province') !!}
+            {!! Form::text('strSuppAddCity', null, ['id' => 'strSuppAddCity', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppContactPers', 'Contact Person') !!}
+            {!! Form::text('strSuppContactPers', null, ['id' => 'strSuppContactPers', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strSuppContactPersNum', 'Associate Contact Details') !!}
+            {!! Form::text('strSuppContactPersNum', null, ['id' => 'strSuppContactPersNum', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>

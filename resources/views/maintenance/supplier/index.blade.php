@@ -25,7 +25,7 @@
     </div>
   </section>
 
-  @include('maintenance.mode-of-payment.modal')
+  @include('maintenance.supplier.modal')
 
   <section id="main">
     <div class="container animated fadeIn">

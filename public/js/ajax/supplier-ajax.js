@@ -24,11 +24,11 @@ $(document).ready(function() {
       type: 'GET',
       url: url + '/' + id + '/edit',
       success: function(data) {
-        var formEditMode = $('#formEditMode');
+        var formEditSupp = $('#formEditSupp');
 
-        formEditMode.find('#strModName').val(data.strMODName);
+        formEditSupp.find('#strSuppName').val(data.strSuppName);
 
-        $('#edit_mode').modal('show');
+        $('#edit_supp').modal('show');
       }
     })
 
@@ -37,8 +37,8 @@ $(document).ready(function() {
   $('#btn-update').on('click', function(e) {
     e.preventDefault();
 
-    var data = $('#formEditMode').serialize();
-    var url = '/admin/maintenance/mode-of-payment/';
+    var data = $('#formEditSupp').serialize();
+    var url = '/admin/maintenance/supplier/';
     var type = "PUT";
 
     $.ajax({
@@ -47,8 +47,8 @@ $(document).ready(function() {
       data: data,
       dataType: 'json'
     }).done(function(data) {
-      $('#formEditMode').trigger('reset');
-      $('#edit_mode').modal('hide');
+      $('#formSupp').trigger('reset');
+      $('#edit_supp').modal('hide');
       loadTable();
     })
   });
@@ -57,7 +57,7 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
     console.log(id)
-    $('#del_mode').modal('show');
+    $('#del_supp').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "DELETE",
-      url: '/admin/maintenance/mode-of-payment/' + id,
+      url: '/admin/maintenance/supplier/' + id,
       dataType: "json",
       success: function (data) {
         console.log(data);
@@ -79,7 +79,7 @@ $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         table.row($("#id" + id)).remove().draw();
 
-        $('#del_mode').modal('hide');
+        $('#del_supp').modal('hide');
 
         toastr.options = {
           "closeButton": false,
@@ -99,7 +99,7 @@ $(document).ready(function() {
           "hideMethod": "slideUp"
         }
 
-        toastr.error("Successfully Deleted Mode Of Payment Record");
+        toastr.error("Successfully Deleted Supplier Record");
         loadTable();
       },
       error: function (data) {
@@ -130,13 +130,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Mode Of Payment');
-    $('#mode-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formMode').trigger("reset");
+    $('#title').text('Add New Supplier Record');
+    $('#supp-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formSupp').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_mode').modal('show');
+    $('#add_supp').modal('show');
 
   }); 
 
@@ -150,9 +150,9 @@ $(document).ready(function() {
     console.log(e);
 
     var state = $('#btn-save').val();
-    var method = $('#formMode').attr('method');
-    var url = $('#formMode').attr('action');
-    var formData = $('#formMode').serialize();
+    var method = $('#formSupp').attr('method');
+    var url = $('#formSupp').attr('action');
+    var formData = $('#formSupp').serialize();
 
     $.ajax({
       type: method,
@@ -160,7 +160,7 @@ $(document).ready(function() {
       data: formData,
       success:function(data) {
         console.log(data);
-        $('#add_mode').modal('hide');
+        $('#add_supp').modal('hide');
         loadTable();
       
         if (state == "add") { 
@@ -182,7 +182,7 @@ $(document).ready(function() {
             "hideMethod": "slideUp"
           }
 
-          toastr.success("Successfully Added a New Mode Of Payment Record");
+          toastr.success("Successfully Added a New Supplier Record");
         } 
       }
     })
@@ -194,7 +194,7 @@ $(document).ready(function() {
       url: url + "-table",
       dataType: 'html',
       success:function(data) {
-        $('#table-container').html(data).fadeIn(300);
+        $('#dataTable').html(data).fadeIn(300);
         // $('#dataTable').dataTable();
       }
     })
