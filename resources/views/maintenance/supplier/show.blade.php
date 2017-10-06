@@ -38,9 +38,6 @@
 		        <div class="col-md-12">
 		          	<div class="panel panel-default">
 			            <div class="panel-heading clearfix">
-			              	<div class="btn-group pull-right">
-			              		<a href="{{ route('supplier.index') }}" class="btn btn-success">Return to Supplier Record List</a>
-			              	</div>
 			              <div class="panel-title">
 			                <h4>View Supplier Record</h4>
 			              </div>
@@ -72,7 +69,9 @@
 
 									<div class="row">
 										<div class="col-sm-12">
-											<button class="btn btn-info btn-block btn-detail open-modal" value="{{ $supplier->intSuppID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+											<a href="{{ route('supplier.index') }}" class="btn btn-block btn-default">
+												<i class='fa fa-chevron-left'></i>&nbsp; Return to Supplier Record List
+											</a>
 										</div>
 									</div>
 
