@@ -13,14 +13,14 @@ class Supplier extends Model
 
     protected $fillable = 
     [
-    'strSuppName', 
-    'strSuppAddLotNo', 
-    'strSuppAddStBldg', 
-    'strSuppAddBrgy',
-    'strSuppAddCity',
-    'strSuppContactNum',
-    'strSuppContactPers',
-    'strSuppContactPersNum'
+        'strSuppName', 
+        'strSuppAddLotNo', 
+        'strSuppAddStBldg', 
+        'strSuppAddBrgy',
+        'strSuppAddCity',
+        'strSuppContactNum',
+        'strSuppContactPers',
+        'strSuppContactPersNum'
     ];
 
     protected $primaryKey = 'intSuppID';

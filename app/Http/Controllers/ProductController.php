@@ -93,7 +93,6 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         if($request->ajax()) {
-            $this->validate($request, Product::$rules);
 
             $prodtype = ProductType::find($request->intP_ProdType_ID);
             $product = Product::findOrFail($id);

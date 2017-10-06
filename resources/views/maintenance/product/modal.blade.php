@@ -12,7 +12,7 @@
               <option value="General">General</option>
               <option value="Consumables">Consumables</option>
               <option value="Machineries">Machineries</option>
-              <option value="Tools and Equipment">Tools and Equipment</option>
+              <option value="Equipment">Equipment</option>
             </select>
           </div>
           <div class="form-group">

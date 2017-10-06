@@ -25,8 +25,9 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#intP_ProdType_ID').val(data.intP_ProdType_ID);
       $('#strProdCateg').val(data.strProdCateg);
+      console.log(data.strProdCateg);
+      $('#intP_ProdType_ID').val(data.intP_ProdType_ID);
       $('#strProdName').val(data.strProdName);
       $('#txtProdDesc').val(data.txtProdDesc);
       $('#btn-save').val("update");
