@@ -1,23 +1,24 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Role</th>
-      <th>Regulation</th>
-      <th>Full Name</th>
-      <th>Mobile Number</th>
+      <th>Type</th>
+      <th>Model</th>
+      <th>Plate Number</th>
+      <th>VIN</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
   <tbody id="prod-list">
-    @foreach ($personnels as $personnel)
-      <tr id="id{{ $personnel->intPersID }}">
-        <td>{{ $personnel->roles->strRoleName }}</td>
-        <td>{{ $personnel->strPersEmpType }}</td>
-        <td>{{ $personnel->strPersLName }}, {{ $personnel->strPersFName }} {{ $personnel->strPersMName }}</td>
-        <td>{{ $personnel->strPersMobNo }}</td>
+    @foreach ($vehicles as $vehicle)
+      <tr id="id{{ $vehicle->intVehiID }}">
+        <td>{{ $vehicle->vehitypes->strVehiTypeName }}</td>
+        <td>{{ $vehicle->strVehiModel }}</td>
+        <td>{{ $vehicle->strVehiPlateNumber }}</td>
+        <td>{{ $vehicle->strVehiVIN }}</td>
         <td class="text-center">
-            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $personnel->intPersID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-            <button class="btn btn-danger btn-sm btn-delete" value="{{ $personnel->intPersID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+          <a href="{{ route('vehicle.show', $vehicle->intVehiID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
+          <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $vehicle->intVehiID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+          <button class="btn btn-danger btn-sm btn-delete" value="{{ $vehicle->intVehiID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
       </tr>
     @endforeach

@@ -44,6 +44,8 @@ Route::group(['prefix' => 'admin'], function() {
 
     // Transportation
     Route::resource('vehicle-type', 'VehicleTypeController');
+    Route::resource('vehicle', 'VehicleController');
+    Route::get('vehicle-table', 'VehicleController@table');
 
     // Payment
     Route::resource('base-price', 'BasePriceController');

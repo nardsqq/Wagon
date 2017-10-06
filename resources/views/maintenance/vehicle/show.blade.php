@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '- Supplier Details')
+@section('title', '- Vehicle Details')
 
 @section('content')
 	<header id="header">
@@ -25,12 +25,10 @@
 		    <ol class="breadcrumb">
 		        <li>Admin</li>
 		        <li>Maintenance</li>
-		      	<li>Supplier Record</li>
+		      	<li>Vehicle Record</li>
 		    </ol>
 	   	</div>
 	</section>
-
-	@include('maintenance.supplier.modal')
 
     <section id="main">
     	<div class="container animated fadeIn">
@@ -38,41 +36,40 @@
 		        <div class="col-md-12">
 		          	<div class="panel panel-default">
 			            <div class="panel-heading clearfix">
-			              	<div class="btn-group pull-right">
-			              		<a href="{{ route('supplier.index') }}" class="btn btn-success">Return to Supplier Record List</a>
-			              	</div>
 			              <div class="panel-title">
-			                <h4>View Supplier Record</h4>
+			                <h4>View Vehicle Record</h4>
 			              </div>
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h1>{{ $supplier->strSuppName }}</h1>
-								<p class="lead">{{ $supplier->strSuppAddLotNo }} {{ $supplier->strSuppAddStBldg }}, {{ $supplier->strSuppAddBrgy }}, {{ $supplier->strSuppAddCity }}</p>
+								<h1>{{ $vehicle->vehitypes->strVehiTypeName }} Type - {{ $vehicle->strVehiModel }}</h1>
+								<p class="lead">{{ $vehicle->strVehiPlateNumber }}</p>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
 									<dl>
-									  <dt>Supplier Contact Detail</dt>
-									  <dd>{{ $supplier->strSuppContactNum }}</dd>
+									  <dt>Vehicle Identification Number</dt>
+									  <dd>{{ $vehicle->strVehiVIN }}</dd>
 									</dl>
 
 									<dl>
-									   <dt>Contact Person (Supplier Associate)</dt>
-									   <dd>{{ $supplier->strSuppContactPers }}</dd>
+									   <dt>Net Capacity</dt>
+									   <dd>{{ $vehicle->intVehiNetCapacity }}</dd>
 									</dl>
 
 									<dl>
-									   <dt>Associate Contact Details</dt>
-									   <dd>{{ $supplier->strSuppContactPersNum }}</dd>
+									   <dt>Gross Weight</dt>
+									   <dd>{{ $vehicle->intVehiGrossweight }} lbs.</dd>
 									</dl>
 
 									<hr>
 
 									<div class="row">
 										<div class="col-sm-12">
-											<button class="btn btn-info btn-block btn-detail open-modal" value="{{ $supplier->intSuppID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+											<a href="{{ route('vehicle.index') }}" class="btn btn-block btn-default">
+												<i class='fa fa-chevron-left'></i>&nbsp; Return to Vehicle Record List
+											</a>
 										</div>
 									</div>
 
@@ -87,5 +84,5 @@
 @endsection
 
 @section('scripts')
-	<script src="{{ asset('/js/ajax/supplier-ajax.js/') }}"></script>
+	<script src="{{ asset('/js/ajax/vehicle-ajax.js/') }}"></script>
 @endsection

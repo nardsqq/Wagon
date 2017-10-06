@@ -15,6 +15,11 @@ class VehicleType extends Model
     protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
+    public function vehicles() 
+    {
+      return $this->hasMany('App\Vehicle');
+    }
+
   	public static $rules = [
         'strVehiTypeName' => 'required|min:2|unique:tblVehicleType|max:45|regex:/^[a-z ,.\'-]+$/i',
         'txtVehiTypeDesc' => 'min:2|max:50|regex:/^[a-z ,.\'-]+$/i'

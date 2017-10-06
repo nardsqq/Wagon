@@ -36,7 +36,7 @@
           </div>
           <div class="form-group">
             {!! Form::label('intVehiGrossWeight', 'Gross Weight') !!}
-            {!! Form::text('intVehiGrossWeight', null, ['id' => 'intVehiGrossWeight', 'class' => 'form-control', 'required min' => '1.00']) !!}
+            {!! Form::number('intVehiGrossWeight', null, ['id' => 'intVehiGrossWeight', 'class' => 'form-control', 'required min' => '1.00']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         {!! Form::close() !!}
@@ -44,6 +44,58 @@
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
         <button id="btn-save" value="add" class="modal-btn btn btn-success pull-right">Submit</button>
+        <input type="hidden" id="link_id" name="link_id" value="0">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="edit_vehi" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-info" id="vehi-modal-header">
+        <h4 id="title">Edit Vehicle Record</h4>
+      </div>
+      <div class="modal-body">
+        <form id="formEditVehi">
+          <div class="form-group">
+            {!! Form::label('intV_VehiType_ID', 'Vehicle Type') !!}
+            <select name="intV_VehiType_ID" id="intV_VehiType_ID" class="form-control">
+              @foreach($vehitypes as $vehitype)
+                <option value="{{ $vehitype->intVehiTypeID }}">{{ $vehitype->strVehiTypeName }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            {!! Form::label('strVehiModel', 'Vehicle Model') !!}
+            {!! Form::text('strVehiModel', null, ['id' => 'strVehiModel', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strVehiPlateNumber', 'Plate Number') !!}
+            {!! Form::text('strVehiPlateNumber', null, ['id' => 'strVehiPlateNumber', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strVehiVIN', 'VIN') !!}
+            {!! Form::text('strVehiVIN', null, ['id' => 'strVehiVIN', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('intVehiNetCapacity', 'Net Capacity') !!}
+            {!! Form::number('intVehiNetCapacity', null, ['id' => 'intVehiNetCapacity', 'class' => 'form-control', 'required min' => '1.00']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('intVehiGrossWeight', 'Gross Weight') !!}
+            {!! Form::number('intVehiGrossWeight', null, ['id' => 'intVehiGrossWeight', 'class' => 'form-control', 'required min' => '1.00']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button id="btn-update" value="update" class="modal-btn btn btn-info pull-right">Update</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
