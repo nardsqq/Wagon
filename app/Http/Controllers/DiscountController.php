@@ -40,8 +40,8 @@ class DiscountController extends Controller
         if ($request->ajax()) {
             $this->validate($request, Discount::$rules);
             $disc = new Discount;
-            $disc ->strDiscName = trim(ucwords($request->strDiscName));
-            $disc ->decDiscValue = trim(ucfirst($request->decDiscValue));
+            $disc->strDiscName = trim(ucwords($request->strDiscName));
+            $disc->decDiscValue = trim($request->decDiscValue);
             $disc->save();
             
             return response()->json($disc);

@@ -12,9 +12,12 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            <label for="decDiscValue">Value</label>
-            <input type="number" name="decDiscValue" id="decDiscValue" class="form-control" required min="01.00">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <label for="decDiscValue">Rate</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+              <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="decDiscValue" id="decDiscValue" required min = "01.00">
+              <span class="input-group-addon">%</span>
+            </div>
           </div>
         </form>
       </div>

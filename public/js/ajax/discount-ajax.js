@@ -170,7 +170,7 @@ $(document).ready(function() {
       var row = $("<tr id=id" + data.intDiscID +  "></tr>")
       .append(
           "<td>" + data.strDiscName + "</td>" +
-          "<td>" + data.decDiscValue + "</td>" +
+          "<td>" + data.decDiscValue + " %" + "</td>" +
           "<td class='text-center'>" +
           "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intDiscID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
           "<button class='btn btn-danger btn-sm btn-delete' value="+data.intDiscID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
