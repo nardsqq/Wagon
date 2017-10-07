@@ -60,7 +60,7 @@
 
 									<dl>
 									   <dt>Gross Weight</dt>
-									   <dd>{{ $vehicle->intVehiGrossweight }} lbs.</dd>
+									   <dd>{{ $vehicle->intVehiGrossWeight }} lbs.</dd>
 									</dl>
 
 									<hr>
