@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-10">
-          <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Transactions</h1>
+          <h1><i class="fa fa-bar-chart" aria-hidden="true"></i>Transactions</h1>
         </div>
         <div class="col-md-2">
 
@@ -27,6 +27,9 @@
       </ol>
     </div>
   </section>
+
+
+  @include('transactions.vehicle-request.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -60,4 +63,16 @@
     </div>
    
   </section>
+@endsection
+
+@section('scripts')
+
+  <!-- Delay table load until everything else is loaded -->
+  <script>
+    $(window).on('load', function(){
+        $('#dataTable').removeAttr('style');
+    })
+  </script>
+
+  <script src="{{ asset('/js/ajax/transactions/vehicle-request-ajax.js/') }}"></script>
 @endsection

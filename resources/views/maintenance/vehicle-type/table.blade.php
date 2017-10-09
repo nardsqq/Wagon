@@ -1,3 +1,4 @@
+
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
