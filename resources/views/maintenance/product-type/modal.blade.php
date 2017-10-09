@@ -7,6 +7,15 @@
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/product-type', 'method' => 'POST', 'id' => 'formProdType']) !!}
           <div class="form-group">
+            {!! Form::label('strProdCateg', 'Product Category') !!}
+            <select name="strProdCateg" id="strProdCateg" class="form-control">
+              <option value="General">General</option>
+              <option value="Consumables">Consumables</option>
+              <option value="Machineries">Machineries</option>
+              <option value="Equipment">Equipment</option>
+            </select>
+          </div>
+          <div class="form-group">
             {!! Form::label('strProdTypeName', 'Product Type') !!}
             {!! Form::text('strProdTypeName', null, ['id' => 'strProdTypeName', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

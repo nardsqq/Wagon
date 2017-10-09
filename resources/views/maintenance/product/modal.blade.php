@@ -7,15 +7,6 @@
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/product', 'method' => 'POST', 'id' => 'formProd']) !!}
           <div class="form-group">
-            {!! Form::label('strProdCateg', 'Product Category') !!}
-            <select name="strProdCateg" id="strProdCateg" class="form-control">
-              <option value="General">General</option>
-              <option value="Consumables">Consumables</option>
-              <option value="Machineries">Machineries</option>
-              <option value="Equipment">Equipment</option>
-            </select>
-          </div>
-          <div class="form-group">
             {!! Form::label('intP_ProdType_ID', 'Product Type') !!}
             <select name="intP_ProdType_ID" id="intP_ProdType_ID" class="form-control">
               @foreach ($prodtypes as $prodtype)

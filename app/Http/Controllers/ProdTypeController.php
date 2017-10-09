@@ -44,8 +44,9 @@ class ProdTypeController extends Controller
         if ($request->ajax()) {
             $this->validate($request, ProductType::$rules);
             $prodtype = new ProductType;
-            $prodtype ->strProdTypeName = trim(ucwords($request->strProdTypeName));
-            $prodtype ->txtProdTypeDesc = trim(ucfirst($request->txtProdTypeDesc));
+            $prodtype->strProdCateg = $request->strProdCateg;
+            $prodtype->strProdTypeName = trim(ucwords($request->strProdTypeName));
+            $prodtype->txtProdTypeDesc = trim(ucfirst($request->txtProdTypeDesc));
             $prodtype->save();
             
             return response()->json($prodtype);

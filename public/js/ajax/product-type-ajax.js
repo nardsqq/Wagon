@@ -25,6 +25,7 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
+      $('#strProdCateg').val(data.strProdCateg);
       $('#strProdTypeName').val(data.strProdTypeName);
       $('#txtProdTypeDesc').val(data.txtProdTypeDesc);
       $('#btn-save').val("update");
@@ -175,6 +176,7 @@ $(document).ready(function() {
 
       var row = $("<tr id=id" + data.intProdTypeID +  "></tr>")
       .append(
+          "<td>" + data.strProdCateg + "</td>" +
           "<td>" + data.strProdTypeName + "</td>" +
           "<td>" + data.txtProdTypeDesc + "</td>" +
           "<td class='text-center'>" +

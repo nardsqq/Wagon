@@ -1,6 +1,7 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
+      <th>Category</th>
       <th>Product Type</th>
       <th>Description</th>
       <th class="text-center">Actions</th>
@@ -9,6 +10,7 @@
   <tbody id="prodtype-list">
     @foreach ($prodtypes as $prodtype)
     <tr id="id{{$prodtype->intProdTypeID}}">
+        <td>{{ $prodtype->strProdCateg }}</td>
         <td>{{ $prodtype->strProdTypeName }}</td>
         <td>{{ $prodtype->txtProdTypeDesc }}</td>
         <td class="text-center">

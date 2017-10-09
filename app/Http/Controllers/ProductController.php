@@ -49,7 +49,6 @@ class ProductController extends Controller
             $product = new Product;
 
             $product->prodtypes()->associate($prodtype);
-            $product->strProdCateg = trim(ucwords($request->strProdCateg));
             $product->strProdName = trim(ucwords($request->strProdName));
             $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
 
@@ -98,7 +97,6 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
 
             $product->prodtypes()->associate($prodtype);
-            $product->strProdCateg = trim(ucwords($request->strProdCateg));
             $product->strProdName = trim(ucwords($request->strProdName));
             $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
 

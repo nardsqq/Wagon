@@ -1,7 +1,6 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Product Category</th>
       <th>Product Type</th>
       <th>Product</th>
       <th>Description</th>
@@ -11,7 +10,6 @@
   <tbody id="prod-list">
     @foreach ($products as $product)
       <tr id="id{{ $product->intProdID }}">
-        <td>{{ $product->strProdCateg }}</td>
         <td>{{ $product->prodtypes->strProdTypeName }}</td>
         <td>{{ $product->strProdName }}</td>
         <td>{{ $product->txtProdDesc }}</td>
