@@ -85,7 +85,8 @@ class VariantController extends Controller
      */
     public function show($id)
     {
-        //
+        $variant = Variant::findOrFail($id);
+        return view('maintenance.product-variant.show')->with('variant', $variant);
     }
 
     /**

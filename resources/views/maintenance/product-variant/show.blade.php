@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '- Supplier Details')
+@section('title', '- Variant Details')
 
 @section('content')
 	<header id="header">
@@ -25,7 +25,7 @@
 		    <ol class="breadcrumb">
 		        <li>Admin</li>
 		        <li>Maintenance</li>
-		      	<li>Supplier Record</li>
+		      	<li>Product Variant Record</li>
 		    </ol>
 	   	</div>
 	</section>
@@ -39,46 +39,38 @@
 		          	<div class="panel panel-default">
 			            <div class="panel-heading clearfix">
 			              <div class="panel-title">
-			                <h4>View Supplier Record</h4>
+			                <h4>View Product Variant Record</h4>
 			              </div>
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h1>{{ $supplier->strSuppName }}</h1>
-								<p class="lead">{{ $supplier->strSuppAddLotNo }} {{ $supplier->strSuppAddStBldg }}, {{ $supplier->strSuppAddBrgy }}, {{ $supplier->strSuppAddCity }}</p>
-								<ul>
-									@foreach($supplier->variants as $variant)
-										<li>	
-											{{ $variant->brands->strBrandName }} {{ $variant->products->strProdName }} {{ $variant->strVarModel }} - Re-Stock Level: {{ $variant->intVarReStockLevel }}
-										</li>
-									@endforeach
-								</ul>
-								
+								<h2>{{ $variant->brands->strBrandName }} {{ $variant->products->strProdName }} {{ $variant->strVarModel }}</h2>
+								<hr>
+								<p class="lead">Description: {{ $variant->txtVarDesc }}</p>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
 									<dl>
-									  <dt>Supplier Contact Detail</dt>
-									  <dd>{{ $supplier->strSuppContactNum }}</dd>
+									  <dt>Supplied by</dt>
+									  <dd>{{ $variant->supps()->count() }} Supplier(s)</dd>
+									</dl>
+									<dl>
+									  <dt>Re-Stock Level</dt>
+									  <dd>{{ $variant->intVarReStockLevel }}</dd>
 									</dl>
 
 									<dl>
-									   <dt>Contact Person (Supplier Associate)</dt>
-									   <dd>{{ $supplier->strSuppContactPers }}</dd>
-									</dl>
-
-									<dl>
-									   <dt>Associate Contact Details</dt>
-									   <dd>{{ $supplier->strSuppContactPersNum }}</dd>
+									   <dt>Handle</dt>
+									   <dd>{{ $variant->strVarHandle }}</dd>
 									</dl>
 
 									<hr>
 
 									<div class="row">
 										<div class="col-sm-12">
-											<a href="{{ route('supplier.index') }}" class="btn btn-block btn-default">
-												<i class='fa fa-chevron-left'></i>&nbsp; Return to Supplier Record List
+											<a href="{{ route('product-variant.index') }}" class="btn btn-block btn-default">
+												<i class='fa fa-chevron-left'></i>&nbsp; Return to Product Variant Record List
 											</a>
 										</div>
 									</div>
