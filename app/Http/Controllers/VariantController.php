@@ -3,9 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Variant;
+use App\Product;
+use App\Supplier;
+use App\Brand;
 
 class VariantController extends Controller
 {
+    public function table()
+    {
+        $suppliers = Supplier::orderBy('strSuppName')->get();
+        $brands = Brand::orderBy('strBrandName')->get();
+        $products = Product::orderBy('strProdName')->get();
+        $variants = Variant::orderBy('strVarModel')->get();
+
+        return view('maintenance.product-variant.table')->with('suppliers', $suppliers)->with('brands', $brands)->with('products', $products)->with('variants', $variants);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +27,12 @@ class VariantController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::orderBy('strSuppName')->get();
+        $brands = Brand::orderBy('strBrandName')->get();
+        $products = Product::orderBy('strProdName')->get();
+        $variants = Variant::orderBy('strVarModel')->get();
+
+        return view('maintenance.product-variant.index')->with('suppliers', $suppliers)->with('brands', $brands)->with('products', $products)->with('variants', $variants);
     }
 
     /**

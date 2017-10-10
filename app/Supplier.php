@@ -27,6 +27,11 @@ class Supplier extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = false;
 
+    public function variants()
+    {
+      return $this->hasMany('App\Variant', 'intV_Supp_ID');
+    }
+
     public static $rules = [
       'strSuppName' => 'required|max:45|unique:tblSupplier',
       'strSuppContactNum' => 'required',

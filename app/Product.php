@@ -20,9 +20,9 @@ class Product extends Model
       return $this->belongsTo('App\ProductType', 'intP_ProdType_ID');
     }
 
-    public function items()
+    public function variants()
     {
-        return $this->hasMany('App\Item', 'intI_Prod_ID');
+        return $this->hasMany('App\Variant', 'intV_Prod_ID');
     }
 
     public static $rules = [

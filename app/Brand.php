@@ -15,9 +15,9 @@ class Brand extends Model
   	protected $dates = ['deleted_at'];
   	public $timestamps = false;
 
-    public function items()
+    public function variants()
     {
-      return $this->hasMany('App\Item', 'intI_Brand_ID');
+      return $this->hasMany('App\Variant', 'intV_Brand_ID');
     }
 
   	public static $rules = [
