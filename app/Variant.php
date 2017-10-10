@@ -10,8 +10,8 @@ class Variant extends Model
     use SoftDeletes;
 
     protected $table = 'tblVariant';
-    protected $fillable = ['intV_Supp_ID', 'strProdName', 'txtProdDesc'];
-    protected $primaryKey = 'intProdID';
+    protected $fillable = ['intV_Supp_ID', 'intV_Brand_ID', 'intV_Prod_ID', 'strVarModel', 'strVarHandle', 'intVarReStockLevel', 'txtVarDesc'];
+    protected $primaryKey = 'intVarID';
     protected $dates = ['deleted_at'];
     public $timestamps = false;
 
@@ -31,7 +31,7 @@ class Variant extends Model
     }
 
     public static $rules = [
-      'strProdName' => 'required|max:45|unique:tblproduct',
-      'intP_ProdType_ID' => 'required'
+      'strVarModel' => 'required|max:45|unique:tblVariant',
+      'intVarReStockLevel' => 'required'
     ];
 }

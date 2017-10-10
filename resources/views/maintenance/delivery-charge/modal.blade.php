@@ -16,7 +16,7 @@
             <input type="number" id="decDelCharWeight" name="decDelCharWeight" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45"  required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-             <div class="form-group">
+          <div class="form-group">
             <label for="decDelCharRate">Rate</label>
             <input type="number" id="decDelCharRate" name="decDelCharRate" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" step="00.01" min="00.01" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

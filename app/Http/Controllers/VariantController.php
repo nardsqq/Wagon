@@ -53,7 +53,28 @@ class VariantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->ajax()) {
+            $this->validate($request, Variant::$rules);
+
+            $supplier = Supplier::find($request->intV_Supp_ID);
+            $brand = Brand::find($request->intV_Brand_ID);
+            $product = Product::find($request->intV_Prod_ID);
+
+            $variant = new Variant;
+
+            $variant->supps()->associate($supplier);
+            $variant->brands()->associate($brand);
+            $variant->products()->associate($product);
+            $variant->strVarModel = trim(ucwords($request->strVarModel));
+            $variant->strVarHandle = trim(ucwords($request->strVarHandle));
+            $variant->intVarReStockLevel = trim($request->intVarReStockLevel);
+            $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
+
+            $variant->save();
+            return response()->json($variant);
+        } else {
+            return redirect(route('product-variant.index'));
+        }
     }
 
     /**

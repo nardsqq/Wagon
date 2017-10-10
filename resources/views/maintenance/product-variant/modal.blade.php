@@ -45,6 +45,11 @@
             </div>
           </div>
           <div class="form-group m-t-10">
+            <label for="intVarReStockLevel">Stock Re-Order Level</label>
+            <input type="number" id="intVarReStockLevel" name="intVarReStockLevel" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45"  min="01.00" required>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group m-t-10">
             {!! Form::label('txtVarDesc', 'Description') !!}
             {!! Form::textarea('txtVarDesc', null, ['id' => 'txtVarDesc', 'class' => 'form-control resize', 'rows' => '5']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
