@@ -46,6 +46,14 @@
 			               	<div class="col-md-8">
 								<h1>{{ $supplier->strSuppName }}</h1>
 								<p class="lead">{{ $supplier->strSuppAddLotNo }} {{ $supplier->strSuppAddStBldg }}, {{ $supplier->strSuppAddBrgy }}, {{ $supplier->strSuppAddCity }}</p>
+								<ul>
+									@foreach($supplier->variants as $variant)
+										<li>	
+											{{ $variant->brands->strBrandName }} {{ $variant->strVarModel }} - Re-Stock Level: {{ $variant->intVarReStockLevel }}
+										</li>
+									@endforeach
+								</ul>
+								
 							</div>
 							<div class="col-md-4">
 
@@ -83,8 +91,4 @@
 	        </div>
     	</div>
 	</section>
-@endsection
-
-@section('scripts')
-	<script src="{{ asset('/js/ajax/supplier-ajax.js/') }}"></script>
 @endsection

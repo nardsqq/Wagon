@@ -31,8 +31,8 @@ $(document).ready(function() {
         formEditVar.find('#intV_Prod_ID').val(data.intV_Prod_ID);
         formEditVar.find('#strVarModel').val(data.strVarModel);
         formEditVar.find('#strVarHandle').val(data.strVarHandle);
+        formEditVar.find('#intVarReStockLevel').val(data.intVarReStockLevel);
         formEditVar.find('#txtVarDesc').val(data.txtVarDesc);
-        formEditVar.find('#intReStockLevel').val(data.intReStockLevel);
 
         $('#edit_prodvar').modal('show');
       }

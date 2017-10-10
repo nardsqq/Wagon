@@ -66,7 +66,7 @@
 </div>
 
 <div class="modal fade" id="edit_prodvar" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header modal-header-info" id="prodvar-modal-header">
         <h4 id="title">Edit Product Variant</h4>
@@ -81,7 +81,7 @@
               @endforeach
             </select>
           </div>
-          <div class="row">
+          <div class="row m-t-10">
             <div class="col-xs-6">
               {!! Form::label('intV_Brand_ID', 'Brand') !!}
               <select name="intV_Brand_ID" id="intV_Brand_ID" class="form-control">
@@ -99,7 +99,7 @@
               </select>
             </div>
           </div>
-          <div class="row">
+          <div class="row m-t-10">
             <div class="col-xs-6">
               {!! Form::label('strVarModel', 'Product Model') !!}
               {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
@@ -110,11 +110,16 @@
               {!! Form::text('strVarHandle', null, ['id' => 'strVarHandle', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
-            <div class="form-group">
-              {!! Form::label('txtVarDesc', 'Description') !!}
-              {!! Form::textarea('txtVarDesc', null, ['id' => 'txtVarDesc', 'class' => 'form-control', 'row' => '5']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
+          </div>
+          <div class="form-group m-t-10">
+            <label for="intVarReStockLevel">Stock Re-Order Level</label>
+            <input type="number" id="intVarReStockLevel" name="intVarReStockLevel" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45"  min="01.00" required>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group m-t-10">
+            {!! Form::label('txtVarDesc', 'Description') !!}
+            {!! Form::textarea('txtVarDesc', null, ['id' => 'txtVarDesc', 'class' => 'form-control resize', 'rows' => '5']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form> 
       </div>

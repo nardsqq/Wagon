@@ -96,7 +96,8 @@ class VariantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $variant = Variant::findOrFail($id);
+        return response()->json($variant);
     }
 
     /**
@@ -108,7 +109,27 @@ class VariantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->ajax()) {
+
+            $supplier = Supplier::find($request->intV_Supp_ID);
+            $brand = Brand::find($request->intV_Brand_ID);
+            $product = Product::find($request->intV_Prod_ID);
+
+            $variant = Variant::findOrFail($id);
+
+            $variant->supps()->associate($supplier);
+            $variant->brands()->associate($brand);
+            $variant->products()->associate($product);
+            $variant->strVarModel = trim(ucwords($request->strVarModel));
+            $variant->strVarHandle = trim(ucwords($request->strVarHandle));
+            $variant->intVarReStockLevel = trim($request->intVarReStockLevel);
+            $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
+
+            $variant->save();
+            return response()->json($variant);
+        } else {
+            return redirect(route('product-variant.index'));
+        }
     }
 
     /**
@@ -117,8 +138,16 @@ class VariantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $variant = Variant::destroy($del);
+
+            return response()->json($variant);
+        } else {
+            return redirect(route('product-variant.index'));
+        }
     }
 }
