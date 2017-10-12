@@ -25,6 +25,9 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
                 </li>
+                 <li>
+                  <a href="{{ url('/admin/maintenance/unit-of-measurement') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; UOM</a>
+                </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                 </li>

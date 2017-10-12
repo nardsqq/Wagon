@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('product-type-table', 'ProdTypeController@table');
     
     Route::resource('brand', 'BrandController');
+    Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
     Route::resource('product', 'ProductController');
     Route::resource('product-variant', 'VariantController');
     Route::get('product-variant-table', 'VariantController@table');
