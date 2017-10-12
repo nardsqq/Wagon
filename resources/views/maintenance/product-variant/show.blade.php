@@ -46,15 +46,11 @@
 			               	<div class="col-md-8">
 								<h2>{{ $variant->brands->strBrandName }} {{ $variant->products->strProdName }} {{ $variant->strVarModel }}</h2>
 								<hr>
-								<p class="lead">Description: {{ $variant->txtVarDesc }}</p>
+								<p class="lead">{{ $variant->txtVarDesc }}</p>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
-									<dl>
-									  <dt>Supplied by</dt>
-									  <dd>{{ $variant->supps()->count() }} Supplier(s)</dd>
-									</dl>
 									<dl>
 									  <dt>Re-Stock Level</dt>
 									  <dd>{{ $variant->intVarReStockLevel }}</dd>

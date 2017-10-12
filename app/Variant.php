@@ -20,11 +20,6 @@ class Variant extends Model
       return $this->belongsTo('App\Product', 'intV_Prod_ID');
     }
 
-    public function supps() 
-    {
-      return $this->belongsTo('App\Supplier', 'intV_Supp_ID');
-    }
-
     public function brands() 
     {
       return $this->belongsTo('App\Brand', 'intV_Brand_ID');

@@ -26,7 +26,6 @@ $(document).ready(function() {
       success: function(data) {
         var formEditVar = $('#formEditVar');
 
-        formEditVar.find('#intV_Supp_ID').val(data.intV_Supp_ID);
         formEditVar.find('#intV_Brand_ID').val(data.intV_Brand_ID);
         formEditVar.find('#intV_Prod_ID').val(data.intV_Prod_ID);
         formEditVar.find('#strVarModel').val(data.strVarModel);

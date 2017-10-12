@@ -1,7 +1,6 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Supplier</th>
       <th class="text-center">Brand</th>
       <th class="text-center">Product</th>
       <th class="text-center">Model</th>
@@ -12,7 +11,6 @@
   <tbody id="prodvar-list">
     @foreach ($variants as $variant)
       <tr id="id{{ $variant->intVarID }}">
-        <td>{{ $variant->supps->strSuppName }}</td>
         <td class="text-center">{{ $variant->brands->strBrandName }}</td>
         <td class="text-center">{{ $variant->products->strProdName }}</td>
         <td class="text-center">{{ $variant->strVarModel }}</td>

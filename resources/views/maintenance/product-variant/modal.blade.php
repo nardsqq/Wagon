@@ -6,14 +6,6 @@
       </div>
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/product-variant', 'method' => 'POST', 'id' => 'formProdVar']) !!}
-          <div class="form-group">
-            {!! Form::label('intV_Supp_ID', 'Supplier') !!}
-            <select name="intV_Supp_ID" id="intV_Supp_ID" class="form-control">
-              @foreach ($suppliers as $supplier)
-                <option value="{{ $supplier->intSuppID }}">{{ $supplier->strSuppName }}</option>
-              @endforeach
-            </select>
-          </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
               {!! Form::label('intV_Brand_ID', 'Brand') !!}
@@ -73,14 +65,6 @@
       </div>
       <div class="modal-body">
         <form id="formEditVar">
-          <div class="form-group">
-            {!! Form::label('intV_Supp_ID', 'Supplier') !!}
-            <select name="intV_Supp_ID" id="intV_Supp_ID" class="form-control">
-              @foreach ($suppliers as $supplier)
-                <option value="{{ $supplier->intSuppID }}">{{ $supplier->strSuppName }}</option>
-              @endforeach
-            </select>
-          </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
               {!! Form::label('intV_Brand_ID', 'Brand') !!}
