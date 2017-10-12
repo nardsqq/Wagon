@@ -17,7 +17,7 @@
                 <li class="divider"></li>
   							<li class="dropdown-header">Assets</li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/supplier') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Supplier</a>
+                  <a href="{{ url('/admin/maintenance/supplier') }}"><i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i>&nbsp; Supplier</a>
                 </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/product-type') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Product Type</a>
