@@ -74,7 +74,8 @@ class UOMController extends Controller
      */
     public function edit($id)
     {
-        //
+        $uom = UOM::findOrFail($id);
+        return response()->json($uom);
     }
 
     /**
@@ -86,7 +87,18 @@ class UOMController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->ajax()) {
+
+            $uom = UOM::findOrFail($id);
+
+            $uom->strUOMUnit = trim(ucwords($request->strUOMUnit));
+            $uom->strUOMUnitName = trim($request->strUOMUnitName);
+
+            $uom->save();
+            return response()->json($uom);
+        } else {
+            return redirect(route('unit-of-measurement.index'));
+        }
     }
 
     /**
@@ -95,8 +107,16 @@ class UOMController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $uom = UOM::destroy($del);
+
+            return response()->json($uom);
+        } else {
+            return redirect(route('uom.index'));
+        }
     }
 }
