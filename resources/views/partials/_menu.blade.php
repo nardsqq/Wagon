@@ -25,14 +25,14 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
                 </li>
-                 <li>
-                  <a href="{{ url('/admin/maintenance/unit-of-measurement') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; UOM</a>
-                </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                 </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/product-variant') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Variant</a>
+                </li>
+                <li>
+                  <a href="{{ url('/admin/maintenance/unit-of-measurement') }}"><i class="fa fa-pie-chart fa-fw" aria-hidden="true"></i>&nbsp; Unit of Measurement</a>
                 </li>
   						</ul>
   					</li>

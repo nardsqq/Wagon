@@ -12,6 +12,7 @@ class SupplierController extends Controller
         $suppliers = Supplier::orderBy('strSuppName')->get();
         return view('maintenance.supplier.table')->with('suppliers', $suppliers);
     }
+    
     /**
      * Display a listing of the resource.
      *

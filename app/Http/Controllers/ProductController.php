@@ -28,10 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $prodtypes = ProductType::orderBy('strProdTypeName')->get();
-        $products = Product::orderBy('strProdName')->get();
-
-        return view('maintenance.product.create')->with('products', $products)->with('prodtypes', $prodtypes);
+        //
     }
 
     /**
