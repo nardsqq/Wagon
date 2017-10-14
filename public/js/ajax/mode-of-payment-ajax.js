@@ -194,7 +194,7 @@ $(document).ready(function() {
       url: url + "-table",
       dataType: 'html',
       success:function(data) {
-        $('#table-container').html(data).fadeIn(300);
+        $('#dataTable').html(data).fadeIn(300);
         // $('#dataTable').dataTable();
       }
     })
