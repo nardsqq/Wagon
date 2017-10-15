@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ServiceArea;
 use App\ServiceType;
+use App\ServiceChecklist;
+use App\ServiceStep;
 
 class ServiceAreaController extends Controller
 {
@@ -46,6 +48,16 @@ class ServiceAreaController extends Controller
             $servarea->strServAreaName = trim(ucwords($request->strServAreaName));
             $servarea->txtServAreaDesc = trim(ucwords($request->txtServAreaDesc));
             $servarea->save();
+            
+            foreach($request->strServStepDesc as $step){
+                ServiceChecklist::create([
+                    'intSCL_ServArea_ID' => $servarea->intServAreaID,
+                    'intSCL_ServStep_ID' => ServiceStep::create([
+                        'strServStepDesc' => trim($step) 
+                    ])->intServStepID,
+                ]);
+            }
+
             return response()->json($servarea);
         } else {
             return redirect(route('service-area.index'));
