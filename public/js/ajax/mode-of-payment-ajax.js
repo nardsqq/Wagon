@@ -159,32 +159,30 @@ $(document).ready(function() {
       url: url,
       data: formData,
       success:function(data) {
-        if($('#formDepartment').parsley().isValid()) {
-          console.log(data);
-          $('#add_mode').modal('hide');
-          loadTable();
-        
-          if (state == "add") { 
-            toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": true,
-              "progressBar": true,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": true,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "slideDown",
-              "hideMethod": "slideUp"
-            }
-
-            toastr.success("Successfully Added a New Mode Of Payment Record");
+        console.log(data);
+        $('#add_mode').modal('hide');
+        loadTable();
+      
+        if (state == "add") { 
+          toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
           }
+
+          toastr.success("Successfully Added a New Mode Of Payment Record");
         }
       }
     })
