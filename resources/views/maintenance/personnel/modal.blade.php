@@ -6,22 +6,24 @@
       </div>
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/personnel', 'method' => 'POST', 'id' => 'formPers']) !!}
-          <div class="form-group">
-            {!! Form::label('intPers_Role_ID', 'Role') !!}
-            <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
-              @foreach($roles as $role)
-                <option value="{{ $role->intRoleID }}">{{ $role->strRoleName }}</option>
-              @endforeach
-            </select>
+          <div class="row">
+            <div class="col-xs-6">
+              {!! Form::label('intPers_Role_ID', 'Role') !!}
+              <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
+                @foreach($roles as $role)
+                  <option value="{{ $role->intRoleID }}">{{ $role->strRoleName }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-xs-6">
+              {!! Form::label('strPersEmpType', 'Employee Type') !!}
+              <select name="strPersEmpType" id="strPersEmpType" class="form-control">
+                <option value="Regular">Regular</option>
+                <option value="Contractual">Contractual</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            {!! Form::label('strPersEmpType', 'Employee Type') !!}
-            <select name="strPersEmpType" id="strPersEmpType" class="form-control">
-              <option value="Regular">Regular</option>
-              <option value="Contractual">Contractual</option>
-            </select>
-          </div>
-          <div class="form-group">
+          <div class="form-group m-t-10">
             {!! Form::label('strPersFName', 'First Name') !!}
             {!! Form::text('strPersFName', null, ['id' => 'strPersFName', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -46,6 +48,62 @@
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
         <button id="btn-save" value="add" class="modal-btn btn btn-success pull-right">Submit</button>
+        <input type="hidden" id="link_id" name="link_id" value="0">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="edit_pers" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-info" id="pers-modal-header-info">
+        <h4 id="title">Edit Personnel Record</h4>
+      </div>
+      <div class="modal-body">
+        <form id="formEditPers">
+          <div class="row">
+            <div class="col-xs-6">
+              {!! Form::label('intPers_Role_ID', 'Role') !!}
+              <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
+                @foreach($roles as $role)
+                  <option value="{{ $role->intRoleID }}">{{ $role->strRoleName }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-xs-6">
+              {!! Form::label('strPersEmpType', 'Employee Type') !!}
+              <select name="strPersEmpType" id="strPersEmpType" class="form-control">
+                <option value="Regular">Regular</option>
+                <option value="Contractual">Contractual</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group m-t-10">
+            {!! Form::label('strPersFName', 'First Name') !!}
+            {!! Form::text('strPersFName', null, ['id' => 'strPersFName', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strPersMName', 'Middle Name') !!}
+            {!! Form::text('strPersMName', null, ['id' => 'strPersMName', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strPersLName', 'Last Name') !!}
+            {!! Form::text('strPersLName', null, ['id' => 'strPersLName', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('strPersMobNo', 'Mobile Number') !!}
+            {!! Form::text('strPersMobNo', null, ['id' => 'strPersMobNo', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button id="btn-update" value="update" class="modal-btn btn btn-info pull-right">Update</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>

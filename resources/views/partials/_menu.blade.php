@@ -49,10 +49,10 @@
                 </li>
   							<li class="dropdown-header">Services</li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/service-type') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Type</a>
+                  <a href="{{ url('/admin/maintenance/service-type') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Service Type</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/service-area') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Service Area</a>
+                  <a href="{{ url('/admin/maintenance/service-area') }}"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Service Area</a>
                 </li>
   						</ul>
   					</li>
@@ -70,13 +70,13 @@
   							<li class="divider"></li>
   							<li class="dropdown-header">Payment</li>
   							<li>
-                  <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
+                  <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Mode Of Payment</a>
+                  <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Mode Of Payment</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/delivery-charge') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Delivery Charge</a>
+                  <a href="{{ url('/admin/maintenance/delivery-charge') }}"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Delivery Charge</a>
                 </li>
   						</ul>
   					</li>

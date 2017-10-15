@@ -6,36 +6,55 @@ $(document).ready(function() {
   });
 
   $('#add_pers').on('hide.bs.modal', function() {
-        $('#formPers').trigger('reset');
-    });
+    $('#formPers').trigger('reset');
+  });
 
   var url = "/admin/maintenance/personnel";
   var id = '';
+
+  loadTable();
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Personnel Record');
-    $('#pers-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
-    $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
-    $.get(url + '/' + link_id + '/edit', function (data) {
-      console.log(url + '/' + link_id + '/edit');
-      console.log(data);
+    $.ajax({
+      type: 'GET',
+      url: url + '/' + id + '/edit',
+      success: function(data) {
+        var formEditPers = $('#formEditPers');
 
-      $('#intPers_Role_ID').val(data.intPers_Role_ID);
-      $('#strPersEmpType').val(data.strPersEmpType);
-      $('#strPersFName').val(data.strPersFName);
-      $('#strPersMName').val(data.strPersMName);
-      $('#strPersLName').val(data.strPersLName);
-      $('#strPersMobNo').val(data.strPersMobNo);
-      $('#btn-save').val("update");
-      $('#add_pers').modal('show');
+        formEditPers.find('#strPersEmpType').val(data.strPersEmpType);
+        formEditPers.find('#strPersFName').val(data.strPersFName);
+        formEditPers.find('#strPersMName').val(data.strPersMName);
+        formEditPers.find('#strPersLName').val(data.strPersLName);
+        formEditPers.find('#strPersMobNo').val(data.strPersMobNo);
 
-    }) 
+        $('#edit_pers').modal('show');
+      }
+    })
 
+  });
+
+  $('#btn-update').on('click', function(e) {
+    e.preventDefault();
+
+    var data = $('#formEditPers').serialize();
+    var url = '/admin/maintenance/personnel/';
+    var type = "PUT";
+
+    $.ajax({
+      type: type,
+      url: url + id,
+      data: data,
+      dataType: 'json'
+    }).done(function(data) {
+      $('#formEditPers').trigger('reset');
+      $('#edit_pers').modal('hide');
+      loadTable();
+    })
   });
 
   $(document).on('click', '.btn-delete', function() {
@@ -85,6 +104,7 @@ $(document).ready(function() {
         }
 
         toastr.error("Successfully Deleted Personnel Record");
+        loadTable();
       },
       error: function (data) {
         console.log(url + '/' + id);
@@ -114,7 +134,7 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Personnel Record');
+    $('#title').text('Add New Mode Of Payment');
     $('#pers-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formPers').trigger("reset");
     $('#btn-save').text('Submit');
@@ -133,66 +153,21 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    // var formData = {
-    //   _token: $('input[name=_token]').val(),
-    //   strProdCategName: $('#strProdCategName').val(),
-    //   txtProdCategDesc: $('#txtProdCategDesc').val()
-    // };
-
-    var formData = $("#formPers").serialize();
     var state = $('#btn-save').val();
-    var type = "POST";
-    var my_url = url;
+    var method = $('#formPers').attr('method');
+    var url = $('#formPers').attr('action');
+    var formData = $('#formPers').serialize();
 
-  if (state == "update") {
-    type = "PUT";
-    my_url += '/' + id;
-
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": true,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": true,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "slideDown",
-      "hideMethod": "slideUp"
-    }
-
-    toastr.info("Successfully Updated Personnel Record");
-  }
-
-  $.ajax({
-    type: type,
-    url: my_url,
-    data: formData,
-    dataType: 'json'
-  }).done(function(data) {
-      console.log(data);
-
-      var row = $("<tr id=id" + data.intPersID +  "></tr>")
-      .append(
-          "<td>" + data.roles.strRoleName + "</td>" +
-          "<td>" + data.strPersEmpType + "</td>" +
-          "<td>" + data.strPersLName + "," + " " + data.strPersFName + " " + data.strPersMName + "</td>" +
-          "<td>" + data.strPersMobNo + "</td>" +
-          "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intPersID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intPersID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
-          "</td>"
-      );
-
-      var table = $('#dataTable').DataTable();
+    $.ajax({
+      type: method,
+      url: url,
+      data: formData,
+      success:function(data) {
+        console.log(data);
+        $('#add_pers').modal('hide');
+        loadTable();
       
-      if (state == "add") { 
-          table.row.add(row).draw();
+        if (state == "add") { 
           toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -212,24 +187,22 @@ $(document).ready(function() {
           }
 
           toastr.success("Successfully Added a New Personnel Record");
-      } 
-      else { 
-          table.row($("#id"+data.intPersID)).remove();
-          table.row.add(row).draw();
+        } 
       }
-      // $("[data-toggle='toggle']").bootstrapToggle('destroy');
-      // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formPers').trigger("reset");
-      $('#add_pers').modal('hide')
-
-  }).fail(function(data) {
-      console.log('Error:', data);
-      toastr.options = {"preventDuplicates": true}
-      var errors = data.responseJSON;
-
-      for (i in errors){
-          toastr.warning(errors[i]+'\n','VALIDATION ERROR', {timeOut: 2000});
-      }
-    });
+    })
   }); // $$("#btn-save").on('click', function (e) {});
+
+  function loadTable() {
+    $.ajax({
+      type: 'get',
+      url: url + "-table",
+      dataType: 'html',
+      success:function(data) {
+        console.log(url);
+        console.log(data);
+        $('#dataTable').html(data).fadeIn(300);
+        // $('#dataTable').dataTable();
+      }
+    })
+  } // function loadTable() {}
 }); // $(document).ready(function() {});

@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin'], function() {
     // Personnel
     Route::resource('role', 'RoleController');
     Route::resource('personnel', 'PersonnelController');
+    Route::get('personnel-table', 'PersonnelController@table');
 
     // Services
     Route::resource('service-type', 'ServiceTypeController');
