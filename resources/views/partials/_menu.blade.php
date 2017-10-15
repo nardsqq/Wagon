@@ -70,9 +70,6 @@
   							<li class="divider"></li>
   							<li class="dropdown-header">Payment</li>
   							<li>
-                  <a href="{{ url('/admin/maintenance/base-price') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Base Price</a>
-                </li>
-  							<li>
                   <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-circle fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
                 </li>
                 <li>
