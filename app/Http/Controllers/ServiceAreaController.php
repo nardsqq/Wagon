@@ -83,7 +83,7 @@ class ServiceAreaController extends Controller
      */
     public function edit($id)
     {
-        $servarea = ServiceArea::findOrFail($id);
+        $servarea = ServiceArea::with('steps')->findOrFail($id);
         return response()->json($servarea);
     }
 

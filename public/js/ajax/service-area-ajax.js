@@ -7,6 +7,7 @@ $(document).ready(function() {
 
   $('#add_servarea').on('hide.bs.modal', function() {
         $('#formServArea').trigger('reset');
+        removeStep();
     });
 
   var url = "/admin/maintenance/service-area";
@@ -33,6 +34,9 @@ $(document).ready(function() {
             $('#intSA_ServType_ID').val(data.intSA_ServType_ID);
             $("input[name=strServAreaName]").val(data.strServAreaName);
             $('#txtServAreaDesc').val(data.txtServAreaDesc);
+            _.forEach(data.steps, function(step){
+                addStep(step.intServStepID, step.strServStepDesc);
+            });
             $('#btn-save').val("update");
             $('#add_servarea').modal('show');
         },
@@ -123,8 +127,8 @@ $(document).ready(function() {
       $('#btn-save').text('Submit');
       $('#btn-save').val("add");
       $('.modal-btn').addClass('btn-success').removeClass('btn-info');
+      addStep();
       $('#add_servarea').modal('show');
-
     }); 
 
     $("#btn-save").on('click', function (e) {
@@ -248,8 +252,6 @@ $(document).ready(function() {
         }
     });
   }); // $$("#btn-save").on('click', function (e) {});
-
-  addStep();
 }); // $(document).ready(function() {});
 // Steps 
 function addStep(stepId='', stepDesc=''){
@@ -265,7 +267,11 @@ function addStep(stepId='', stepDesc=''){
         </div>
     `);
 }
-function removeStep(step){
+function removeStep(step = -1){
+    if(step === -1){
+        $('#step-list .step').remove();
+        return;
+    }
     $('#step-list .step[data-step='+step+']').remove();
     _.forEach($('#step-list .step').get(), function(value, key){ 
         let index = key + 1; 
