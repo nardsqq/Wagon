@@ -36,13 +36,21 @@ class DeliveryChargeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, DeliveryCharge::$rules);
-        $delchar = new DeliveryCharge;
-        $delchar ->strDelCharName = trim(ucwords($request->strDelCharName));
-        $delchar ->decDelCharRate = trim(ucwords($request->decDelCharRate));
-        $delchar->save();
+        if($request->ajax()) {
+            $this->validate($request, DeliveryCharge::$rules);
+
+            $delchar = new DeliveryCharge;
+
+            $delchar ->strDelCharName = trim(ucwords($request->strDelCharName));
+            $delchar ->decDelCharRate = trim(ucwords($request->decDelCharRate));
+
+            $delchar->save();
+            
+            return response()->json($delchar);
+        } else {
+            return redirect(route('delivery-charge.index'));
+        }
         
-        return response()->json($delchar);
     }
 
     /**
@@ -77,12 +85,18 @@ class DeliveryChargeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $delchar = DeliveryCharge::findOrFail($id);
-        $delchar ->strDelCharName = trim($request->strDelCharName);
-        $delchar ->decDelCharRate = trim($request->decDelCharRate);
-        $delchar->save();
-        
-        return response()->json($delchar);
+        if($request->ajax()) {
+            $delchar = DeliveryCharge::findOrFail($id);
+
+            $delchar ->strDelCharName = trim(ucwords($request->strDelCharName));
+            $delchar ->decDelCharRate = trim(ucwords($request->decDelCharRate));
+
+            $delchar->save();
+            
+            return response()->json($delchar);
+        } else {
+            return redirect(route('delivery-charge.index'));
+        }
     }
 
     /**
@@ -93,10 +107,14 @@ class DeliveryChargeController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $del = [];
-        $request->has('values') ? $del = $request->values : array_push($del, $id);
-        $delchar = DeliveryCharge::destroy($del);
+        if($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $delchar = DeliveryCharge::destroy($del);
 
-        return response()->json($delchar);
+            return response()->json($delchar);
+        } else {
+            return redirect(route('delivery-charge.index'));
+        }
     }
 }
