@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'], function() {
 
     // Client
     Route::resource('client', 'ClientController');
+    Route::get('client-table', 'ClientController@table');
 
     // Temporary Routes
     Route::get('quotation', 'RouteController@quotation');

@@ -1,13 +1,13 @@
 @extends('main')
 
-@section('title', '- Client View')
+@section('title', '- Client Details')
 
 @section('content')
 	<header id="header">
 	    <div class="container">
 	      <div class="row">
 	        <div class="col-md-10">
-	          <h1><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Maintenance</h1>
+	          <h1><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Transactions</h1>
 	        </div>
 	        <div class="col-md-2">
 
@@ -24,12 +24,13 @@
 	    <div class="container animated fadeIn">
 		    <ol class="breadcrumb">
 		        <li>Admin</li>
-		        <li>Maintenance</li>
-		      	<li>Product</li>
-		      	<li>View Client</li>
+		        <li>Transactions</li>
+		      	<li>Client Record</li>
 		    </ol>
 	   	</div>
 	</section>
+
+	@include('maintenance.supplier.modal')
 
     <section id="main">
     	<div class="container animated fadeIn">
@@ -37,77 +38,52 @@
 		        <div class="col-md-12">
 		          	<div class="panel panel-default">
 			            <div class="panel-heading clearfix">
-			              	<div class="btn-group pull-right">
-			              		<a href="{{ route('client.index') }}" class="btn btn-success">Return to Client List</a>
-			              	</div>
 			              <div class="panel-title">
-			                <h4>View Client Record</h4>
+			                <h4>View Supplier "{{ $client->strClientName }}" Record</h4>
 			              </div>
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h1>{{ $client->strClientName }} - 0 Active Quotation(s)</h1>
-								<p class="lead">{{ $client->strClientAddLotNum }} {{ $client->strClientAddStreet }}, {{ $client->strClientAddBrgy }}, {{ $client->strClientAddCity }}, {{ $client->strClientAddProv }}</p>
-
-								<hr>
-
-								<div id="table-container">
-					               	<table id="dataTable" class="table table-bordered table-hover table-condensed" width="100%">
-									  <thead>
-									    <tr>
-									      <th>Quotations</th>
-									      <th class="text-center">Status</th>
-									      <th class="text-center">Action</th>
-									    </tr>
-									  </thead>
-									  <tbody>
-									    <tr>
-									        <td>RFQCODSAMPLE01</td>
-									        <td class="text-center">
-									        	<span class="label label-success"><i class="fa fa-check fa-fw" aria-hidden="true"></i>&nbsp; Active</span>
-									        </td>
-									        <td class="text-center">
-									        	<button class="btn btn-default btn-sm"><i class='fa fa-circle-o'></i>&nbsp; View</button>
-									        </td>
-									    </tr>
-									  </tbody>
-									</table>
-					            </div>
+								<h1>{{ $client->strClientName }}</h1>
+								<h3>TIN: {{ $client->strClientTIN }}</h3>
+								<p class="lead">
+									{{ $client->strClientAddLotNum }}
+									{{ $client->strClientAddStreet }}, 
+									{{ $client->strClientAddBrgy }}, 
+									{{ $client->strClientAddCity }}, 
+									{{ $client->strClientAddProv }}
+								</p>
 							</div>
-							
 							<div class="col-md-4">
 
 								<div class="well">
 									<dl>
-									  <dt>Mobile Number </dt>
-									  <dd>{{ $client->strClientTIN }}</dd>
-									</dl>
-
-									<dl>
-									  <dt>Mobile Number </dt>
-									  <dd>{{ $client->strClientMobile }}</dd>
-									</dl>
-
-									<dl>
-									  <dt>Telephone Number </dt>
+									  <dt>Telephone Number</dt>
 									  <dd>{{ $client->strClientTelephone }}</dd>
 									</dl>
 
 									<dl>
-									  <dt>Email Address</dt>
-									  <dd>{{ $client->strClientEmailAddress }}</dd>
+									   <dt>FAX Number</dt>
+									   <dd>{{ $client->strClientFax }}</dd>
 									</dl>
 
 									<dl>
-									  <dt>FAX Number </dt>
-									  <dd>{{ $client->strClientFax }}</dd>
+									   <dt>Mobile Number</dt>
+									   <dd>{{ $client->strClientMobile }}</dd>
+									</dl>
+
+									<dl>
+									   <dt>Email Address</dt>
+									   <dd>{{ $client->strClientEmailAddress }}</dd>
 									</dl>
 
 									<hr>
 
 									<div class="row">
 										<div class="col-sm-12">
-											{!! Html::linkRoute('client.edit', 'Edit Client Record', array($client->intClientID), array('class' => 'btn btn-primary btn-block')) !!}
+											<a href="{{ route('client.index') }}" class="btn btn-block btn-default">
+												<i class='fa fa-chevron-left'></i>&nbsp; Return to Client Record List
+											</a>
 										</div>
 									</div>
 

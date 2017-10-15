@@ -7,6 +7,11 @@ use App\Client;
 
 class ClientController extends Controller
 {
+    public function table()
+    {
+        $clients = Client::orderBy('strClientName')->get();
+        return view('transactions.client.table')->with('clients', $clients);
+    }
 
     /**
      * Display a listing of the resource.
@@ -26,10 +31,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-       
-        $clients = Client::orderBy('strClientName')->get();
-
-        return view('transactions.client.create')->with('clients', $clients);
+        //
     }
 
     /**
@@ -40,24 +42,29 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Client::$rules);
-        $client = new Client;
-        $client->strClientName = trim($request->strClientName);
-        $client->strClientAddLotNum = trim($request->strClientAddLotNum);
-        $client->strClientAddStreet = trim($request->strClientAddStreet);
-        $client->strClientAddBrgy = trim($request->strClientAddBrgy);
-        $client->strClientAddCity = trim($request->strClientAddCity);
-        $client->strClientAddProv = trim($request->strClientAddProv);
-        $client->strClientTelephone = trim($request->strClientTelephone);
-        $client->strClientFax = trim($request->strClientFax);
-        $client->strClientMobile = trim($request->strClientMobile);
-        $client->strClientEmailAddress = trim($request->strClientEmailAddress);
-        $client->strClientTIN = trim($request->strClientTIN);
+        if($request->ajax()) {
+            $this->validate($request, Client::$rules);
+
+            $client = new Client;
+
+            $client->strClientName = trim($request->strClientName);
+            $client->strClientTIN = trim($request->strClientTIN);
+            $client->strClientAddLotNum = trim($request->strClientAddLotNum);
+            $client->strClientAddStreet = trim($request->strClientAddStreet);
+            $client->strClientAddBrgy = trim($request->strClientAddBrgy);
+            $client->strClientAddCity = trim($request->strClientAddCity);
+            $client->strClientAddProv = trim($request->strClientAddProv);
+            $client->strClientTelephone = trim($request->strClientTelephone);
+            $client->strClientFax = trim($request->strClientFax);
+            $client->strClientMobile = trim($request->strClientMobile);
+            $client->strClientEmailAddress = trim($request->strClientEmailAddress);
       
+            $client->save();
+            return response()->json($client);
 
-        $client->save();
-
-        return redirect()->route('client.index');
+        } else {
+            return redirect()->route('client.index');
+        }
     }
 
     /**
@@ -69,7 +76,6 @@ class ClientController extends Controller
     public function show($id)
     {
         $client = Client::findOrFail($id);
-        
         return view('transactions.client.show')->with('client', $client);
     }
 
@@ -82,8 +88,7 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = Client::findOrFail($id);
-
-        return view('transactions.client.edit')->with('client', $client);
+        return response()->json($client);
     }
 
     /**
@@ -95,23 +100,28 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::findOrFail($id);
-        $client->strClientName = trim($request->strClientName);
-        $client->strClientAddLotNum = trim($request->strClientAddLotNum);
-        $client->strClientAddStreet = trim($request->strClientAddStreet);
-        $client->strClientAddBrgy = trim($request->strClientAddBrgy);
-        $client->strClientAddCity = trim($request->strClientAddCity);
-        $client->strClientAddProv = trim($request->strClientAddProv);
-        $client->strClientTelephone = trim($request->strClientTelephone);
-        $client->strClientFax = trim($request->strClientFax);
-        $client->strClientMobile = trim($request->strClientMobile);
-        $client->strClientEmailAddress = trim($request->strClientEmailAddress);
-        $client->strClientTIN = trim($request->strClientTIN);
+        if($request->ajax()) {
 
+            $client = Client::findOrFail($id);
 
-        $client->save();
+            $client->strClientName = trim($request->strClientName);
+            $client->strClientTIN = trim($request->strClientTIN);
+            $client->strClientAddLotNum = trim($request->strClientAddLotNum);
+            $client->strClientAddStreet = trim($request->strClientAddStreet);
+            $client->strClientAddBrgy = trim($request->strClientAddBrgy);
+            $client->strClientAddCity = trim($request->strClientAddCity);
+            $client->strClientAddProv = trim($request->strClientAddProv);
+            $client->strClientTelephone = trim($request->strClientTelephone);
+            $client->strClientFax = trim($request->strClientFax);
+            $client->strClientMobile = trim($request->strClientMobile);
+            $client->strClientEmailAddress = trim($request->strClientEmailAddress);
+      
+            $client->save();
+            return response()->json($client);
 
-        return redirect(route('client.index'));
+        } else {
+            return redirect()->route('client.index');
+        }
     }
 
     /**
@@ -122,10 +132,14 @@ class ClientController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        if($request->ajax()) {
             $del = [];
             $request->has('values') ? $del = $request->values : array_push($del, $id);
             $client = Client::destroy($del);
 
             return response()->json($client);
+        } else {
+            return redirect()->route('client.index');
+        }
     }
 }

@@ -134,7 +134,7 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Mode Of Payment');
+    $('#title').text('Add New Personnel Record');
     $('#pers-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formPers').trigger("reset");
     $('#btn-save').text('Submit');

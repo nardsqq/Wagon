@@ -5,11 +5,11 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_mode').on('hide.bs.modal', function() {
-    $('#formMode').trigger('reset');
+  $('#add_client').on('hide.bs.modal', function() {
+    $('#formClient').trigger('reset');
   });
 
-  var url = "/admin/maintenance/mode-of-payment";
+  var url = "/admin/transactions/client";
   var id = '';
 
   loadTable();
@@ -24,11 +24,21 @@ $(document).ready(function() {
       type: 'GET',
       url: url + '/' + id + '/edit',
       success: function(data) {
-        var formEditMode = $('#formEditMode');
+        var formEditClient = $('#formEditClient');
 
-        formEditMode.find('#strModName').val(data.strMODName);
+        formEditClient.find('#strClientName').val(data.strClientName);
+        formEditClient.find('#strClientTIN').val(data.strClientTIN);
+        formEditClient.find('#strClientAddLotNum').val(data.strClientAddLotNum);
+        formEditClient.find('#strClientAddStreet').val(data.strClientAddStreet);
+        formEditClient.find('#strClientAddBrgy').val(data.strClientAddBrgy);
+        formEditClient.find('#strClientAddCity').val(data.strClientAddCity);
+        formEditClient.find('#strClientAddProv').val(data.strClientAddProv);
+        formEditClient.find('#strClientTelephone').val(data.strClientTelephone);
+        formEditClient.find('#strClientFax').val(data.strClientFax);
+        formEditClient.find('#strClientMobile').val(data.strClientMobile);
+        formEditClient.find('#strClientEmailAddress').val(data.strClientEmailAddress);
 
-        $('#edit_mode').modal('show');
+        $('#edit_client').modal('show');
       }
     })
 
@@ -37,8 +47,8 @@ $(document).ready(function() {
   $('#btn-update').on('click', function(e) {
     e.preventDefault();
 
-    var data = $('#formEditMode').serialize();
-    var url = '/admin/maintenance/mode-of-payment/';
+    var data = $('#formEditClient').serialize();
+    var url = '/admin/transactions/client/';
     var type = "PUT";
 
     $.ajax({
@@ -47,8 +57,8 @@ $(document).ready(function() {
       data: data,
       dataType: 'json'
     }).done(function(data) {
-      $('#formEditMode').trigger('reset');
-      $('#edit_mode').modal('hide');
+      $('#formEditClient').trigger('reset');
+      $('#edit_client').modal('hide');
       loadTable();
     })
   });
@@ -57,7 +67,7 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
     console.log(id)
-    $('#del_mode').modal('show');
+    $('#del_client').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -70,7 +80,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "DELETE",
-      url: '/admin/maintenance/mode-of-payment/' + id,
+      url: '/admin/transactions/client/' + id,
       dataType: "json",
       success: function (data) {
         console.log(data);
@@ -79,7 +89,7 @@ $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         table.row($("#id" + id)).remove().draw();
 
-        $('#del_mode').modal('hide');
+        $('#del_client').modal('hide');
 
         toastr.options = {
           "closeButton": false,
@@ -99,7 +109,7 @@ $(document).ready(function() {
           "hideMethod": "slideUp"
         }
 
-        toastr.error("Successfully Deleted Mode Of Payment Record");
+        toastr.error("Successfully Deleted Client Record");
         loadTable();
       },
       error: function (data) {
@@ -130,13 +140,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Mode Of Payment');
-    $('#mode-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formMode').trigger("reset");
+    $('#title').text('Add Client Record');
+    $('#client-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formClient').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_mode').modal('show');
+    $('#add_client').modal('show');
 
   }); 
 
@@ -150,42 +160,40 @@ $(document).ready(function() {
     console.log(e);
 
     var state = $('#btn-save').val();
-    var method = $('#formMode').attr('method');
-    var url = $('#formMode').attr('action');
-    var formData = $('#formMode').serialize();
+    var method = $('#formClient').attr('method');
+    var url = $('#formClient').attr('action');
+    var formData = $('#formClient').serialize();
 
     $.ajax({
       type: method,
       url: url,
       data: formData,
       success:function(data) {
-        if($('#formDepartment').parsley().isValid()) {
-          console.log(data);
-          $('#add_mode').modal('hide');
-          loadTable();
-        
-          if (state == "add") { 
-            toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": true,
-              "progressBar": true,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": true,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "slideDown",
-              "hideMethod": "slideUp"
-            }
-
-            toastr.success("Successfully Added a New Mode Of Payment Record");
+        console.log(data);
+        $('#add_client').modal('hide');
+        loadTable();
+      
+        if (state == "add") { 
+          toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
           }
-        }
+
+          toastr.success("Successfully Added a New Client Record");
+        } 
       }
     })
   }); // $$("#btn-save").on('click', function (e) {});
