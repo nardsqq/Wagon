@@ -24,6 +24,15 @@
             <textarea class="form-control resize" rows="5" id="txtServAreaDesc" name="txtServAreaDesc"></textarea>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
+
+          <!-- STEPS -->
+          
+          <div class="form-group">
+            <label>Steps</label>
+            <button id="btn-add-step" onclick="addStep()" type="button" class="btn btn-sm btn-success pull-right">New Step</button>
+          </div>
+          <div id="step-list"></div>
+
         </form>
       </div>
       <div class="modal-footer">

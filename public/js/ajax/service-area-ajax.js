@@ -248,4 +248,33 @@ $(document).ready(function() {
         }
     });
   }); // $$("#btn-save").on('click', function (e) {});
+
+  addStep();
 }); // $(document).ready(function() {});
+// Steps 
+function addStep(stepId='', stepDesc=''){
+    let step = 1 + $('#step-list .step').get().length;
+
+    $('#step-list').append(`
+        <div class="form-group step" data-step="`+step+`">
+            <label for="strServStepDesc`+step+`" class="col-md-2">Step `+step+`</label>
+            <div class="col-md-10 input-group">
+            <input id="strServStepDesc`+step+`" type="text" class="form-control" name="strServStepDesc[`+stepId+`]" value="`+stepDesc+`">
+            <span class="input-group-addon" title="Remove Step" onclick="removeStep(`+step+`)"><i class="fa fa-remove text-danger"></i></span>
+            </div>
+        </div>
+    `);
+}
+function removeStep(step){
+    $('#step-list .step[data-step='+step+']').remove();
+    _.forEach($('#step-list .step').get(), function(value, key){ 
+        let index = key + 1; 
+        if($(value).attr('data-step') !== index){
+            $(value).attr('data-step', index);
+            $(value).find('label').first().attr('for', 'strServStepDesc'+index);
+            $(value).find('label').first()[0].textContent = "Step "+ index;
+            $(value).find('input').first().attr('id', 'strServStepDesc'+index);            
+            $(value).find('span.input-group-addon').attr('onclick', 'removeStep('+index+')');
+        }
+    });
+}
