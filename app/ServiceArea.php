@@ -21,6 +21,6 @@ class ServiceArea extends Model
 	}
 
 	public function steps(){
-		return $this->hasManyThrough('App\ServiceStep','App\ServiceChecklist','intSCL_ServArea_ID','intServStepID', 'intServAreaID');
+		return $this->belongsToMany('App\ServiceStep','tblServiceChecklist',  'intSCL_ServArea_ID', 'intSCL_ServStep_ID','intServAreaID');
 	}
 }

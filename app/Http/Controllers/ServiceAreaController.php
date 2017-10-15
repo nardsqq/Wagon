@@ -103,6 +103,19 @@ class ServiceAreaController extends Controller
             $servarea->strServAreaName = trim($request->strServAreaName);
             $servarea->txtServAreaDesc = trim($request->txtServAreaDesc);
             $servarea->save();
+
+            foreach($request->strServStepDesc as $stepId => $stepDesc){
+                echo $stepId;
+                ServiceChecklist::firstOrCreate([
+                    'intSCL_ServArea_ID' => $servarea->intServAreaID,
+                    'intSCL_ServStep_ID' => ServiceStep::updateOrCreate([
+                        'intServStepID' => $stepId
+                    ],[
+                        'strServStepDesc' => trim($stepDesc) 
+                    ])->intServStepID,
+                ]);
+            }
+
             return response()->json($servarea);
         } else {
             return redirect(route('service-area.index'));

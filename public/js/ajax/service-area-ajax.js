@@ -22,7 +22,7 @@ $(document).ready(function() {
     $('#servarea-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
-
+    removeStep();
     $.ajax({
         type: "GET",
         url: url + '/' + id + '/edit',
