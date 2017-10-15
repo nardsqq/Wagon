@@ -7,13 +7,8 @@
       <div class="modal-body">
         <form id="formDelChar">
           <div class="form-group">
-            <label for="strDelCharName">Delivery Charge</label>
+            <label for="strDelCharName">Location</label>
             <input type="text" id="strDelCharName" name="strDelCharName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-             <div class="form-group">
-            <label for="decDelCharWeight">Weight</label>
-            <input type="number" id="decDelCharWeight" name="decDelCharWeight" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45"  required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
@@ -21,7 +16,6 @@
             <input type="number" id="decDelCharRate" name="decDelCharRate" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" step="00.01" min="00.01" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-          
         </form>
       </div>
       <div class="modal-footer">

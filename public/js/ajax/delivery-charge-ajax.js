@@ -26,7 +26,6 @@ $(document).ready(function() {
       console.log(data);
 
       $('#strDelCharName').val(data.strDelCharName);
-      $('#decDelCharWeight').val(data.decDelCharWeight);
       $('#decDelCharRate').val(data.decDelCharRate);
       $('#btn-save').val("update");
       $('#add_delchar').modal('show');
@@ -177,7 +176,6 @@ $(document).ready(function() {
       var row = $("<tr id=id" + data.intDelCharID +  "></tr>")
       .append(
           "<td>" + data.strDelCharName + "</td>" +
-          "<td>" + data.decDelCharWeight + "</td>" +
           "<td>" + data.decDelCharRate + "</td>" +
           "<td class='text-center'>" +
           "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intDelCharID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
@@ -224,7 +222,7 @@ $(document).ready(function() {
       var errors = data.responseJSON;
 
       for (i in errors){
-          toastr.warning(errors[i]+'\n','DUPLICATE', {timeOut: 2000});
+          toastr.warning(errors[i]+'\n','VALIDATION ERROR', {timeOut: 2000});
       }
     });
   }); // $$("#btn-save").on('click', function (e) {});

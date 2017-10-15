@@ -39,7 +39,6 @@ class DeliveryChargeController extends Controller
         $this->validate($request, DeliveryCharge::$rules);
         $delchar = new DeliveryCharge;
         $delchar ->strDelCharName = trim(ucwords($request->strDelCharName));
-        $delchar ->decDelCharWeight = trim(ucwords($request->decDelCharWeight));
         $delchar ->decDelCharRate = trim(ucwords($request->decDelCharRate));
         $delchar->save();
         
@@ -80,7 +79,6 @@ class DeliveryChargeController extends Controller
     {
         $delchar = DeliveryCharge::findOrFail($id);
         $delchar ->strDelCharName = trim($request->strDelCharName);
-        $delchar ->decDelCharWeight = trim($request->decDelCharWeight);
         $delchar ->decDelCharRate = trim($request->decDelCharRate);
         $delchar->save();
         
