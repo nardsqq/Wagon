@@ -12,7 +12,7 @@ class VehicleRequest extends Model
     protected $table = 'tblVehicleRequest';
     protected $fillable = ['intVR_Pers_ID' ,'strVehiReqLocation', 'datDeparture', 'datEstReturn', 'txtVehiReqPurpose'];
     protected $primaryKey = 'intVehiReqID';
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'datDeparture', 'datEstReturn'];
     public $timestamps = false;
 
     public function pers() 

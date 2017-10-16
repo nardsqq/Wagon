@@ -66,11 +66,5 @@
 @endsection
 
 @section('scripts')
-
-  <script>
-    $('#datDeparture').datepicker();
-    $('#datEstReturn').datepicker();
-  </script>
-
   <script src="{{ asset('/js/ajax/transactions/vehicle-request-ajax.js/') }}"></script>
 @endsection

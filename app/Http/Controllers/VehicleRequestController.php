@@ -53,8 +53,8 @@ class VehicleRequestController extends Controller
 
             $vehireq->pers()->associate($personnel);
             $vehireq->strVehiReqLocation = trim(ucwords($request->strVehiReqLocation));
-            $vehireq->datDeparture = trim($request->datDeparture);
-            $vehireq->datEstReturn = trim($request->datEstReturn);
+            $vehireq->datDeparture = $request->datDeparture;
+            $vehireq->datEstReturn = $request->datEstReturn;
             $vehireq->txtVehiReqPurpose = trim(ucfirst($request->txtVehiReqPurpose));
 
             $vehireq->save();

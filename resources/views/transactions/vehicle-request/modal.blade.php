@@ -20,14 +20,25 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
+            <div class="form-group">
             {!! Form::label('datDeparture', 'Date of Departure') !!}
-            {!! Form::text('datDeparture', null, ['id' => 'datDeparture', 'class' => 'form-control', 'placeholder' => 'mm/dd/yyyy']) !!}
+            {!!Form::date('datDeparture', ( isset($vehireq->datDeparture) ? $vehireq->datDeparture : \Carbon\Carbon::now()->format('Y-m-d') ), array(
+            'class'=>'form-control',
+            'id' => 'datDeparture', 'min'=> \Carbon\Carbon::now()->format('Y-m-d'),
+            'name' => 'datDeparture',
+            'placeholder' => 'mm/dd/yyyy'
+            )); !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
           </div>
           <div class="form-group">
             {!! Form::label('datEstReturn', 'Estimated Date of Return') !!}
-            {!! Form::text('datEstReturn', null, ['id' => 'datEstReturn', 'class' => 'form-control', 'placeholder' => 'mm/dd/yyyy']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {!!Form::date('datEstReturn', ( isset($vehireq->datEstReturn) ? $vehireq->datEstReturn : \Carbon\Carbon::now()->format('Y-m-d') ), array(
+            'class'=>'form-control',
+            'id' => 'datEstReturn', 'min'=> \Carbon\Carbon::now()->format('Y-m-d'),
+            'name' => 'datEstReturn',
+            'placeholder' => 'mm/dd/yyyy'
+            )); !!}
           </div>
           <div class="form-group">
             {!! Form::label('txtVehiReqPurpose', 'Purpose of Request') !!}
@@ -56,7 +67,9 @@
           <div class="form-group">
             {!! Form::label('intVR_Pers_ID', 'Requesting Personnel') !!}
             <select name="intVR_Pers_ID" id="intVR_Pers_ID" class="form-control">
-              <option value="tyron">Tyron delos Reyes</option>
+              @foreach($personnels as $personnel)
+                <option value="{{ $personnel->intPersID }}">{{ $personnel->strPersFName }} {{ $personnel->strPersMName }} {{ $personnel->strPersLName }}</option>
+              @endforeach
             </select>
           </div>
           <div class="form-group">
@@ -65,14 +78,25 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
+            <div class="form-group">
             {!! Form::label('datDeparture', 'Date of Departure') !!}
-            {!! Form::text('datDeparture', null, ['id' => 'datDeparture', 'class' => 'form-control', 'placeholder' => 'mm/dd/yyyy']) !!}
+            {!!Form::date('datDeparture', ( isset($vehireq->datDeparture) ? $vehireq->datDeparture : \Carbon\Carbon::now()->format('Y-m-d') ), array(
+            'class'=>'form-control',
+            'id' => 'datDeparture', 'min'=> \Carbon\Carbon::now()->format('Y-m-d'),
+            'name' => 'datDeparture',
+            'placeholder' => 'mm/dd/yyyy'
+            )); !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
           </div>
           <div class="form-group">
             {!! Form::label('datEstReturn', 'Estimated Date of Return') !!}
-            {!! Form::text('datEstReturn', null, ['id' => 'datEstReturn', 'class' => 'form-control', 'placeholder' => 'mm/dd/yyyy']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {!!Form::date('datEstReturn', ( isset($vehireq->datEstReturn) ? $vehireq->datEstReturn : \Carbon\Carbon::now()->format('Y-m-d') ), array(
+            'class'=>'form-control',
+            'id' => 'datEstReturn', 'min'=> \Carbon\Carbon::now()->format('Y-m-d'),
+            'name' => 'datEstReturn',
+            'placeholder' => 'mm/dd/yyyy'
+            )); !!}
           </div>
           <div class="form-group">
             {!! Form::label('txtVehiReqPurpose', 'Purpose of Request') !!}

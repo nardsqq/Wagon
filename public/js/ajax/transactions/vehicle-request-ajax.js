@@ -51,6 +51,7 @@ $(document).ready(function() {
       data: data,
       dataType: 'json'
     }).done(function(data) {
+      console.log(data);
       $('#formEditVehiReq').trigger('reset');
       $('#edit_vehireq').modal('hide');
       loadTable();
@@ -164,7 +165,7 @@ $(document).ready(function() {
       data: formData,
       success:function(data) {
         console.log(data);
-        $('#add_client').modal('hide');
+        $('#add_vehireq').modal('hide');
         loadTable();
       
         if (state == "add") { 
