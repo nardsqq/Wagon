@@ -17,9 +17,10 @@
             {{ $vehireq->pers->strPersLName }}
           </td>
           <td class="text-center">{{ $vehireq->strVehiReqLocation }}</td>
-          <td class="text-center">{{ date('M j, Y h:ia', strtotime($vehireq->datDeparture)) }}</td>
-          <td class="text-center">{{ date('M j, Y h:ia', strtotime($vehireq->datEstReturn)) }}</td>
+          <td class="text-center">{{ $vehireq->datDeparture->format('M. d, Y') }}</td>
+          <td class="text-center">{{ $vehireq->datEstReturn->format('M. d, Y') }}</td>
           <td class="text-center">
+            <a class="btn btn-primary btn-sm" target="_blank" href="{{ route('vehicle-request-report', ['id' => $vehireq->intVehiReqID]) }}"><i class='fa fa-file-pdf-o'></i>&nbsp; Export PDF</a>
             <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $vehireq->intVehiReqID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $vehireq->intVehiReqID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
           </td>

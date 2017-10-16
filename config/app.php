@@ -180,6 +180,7 @@ return [
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

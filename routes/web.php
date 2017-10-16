@@ -54,7 +54,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('vehicle-table', 'VehicleController@table');
 
     // Payment
-    Route::resource('base-price', 'BasePriceController');
     Route::resource('discount', 'DiscountController');
 
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
@@ -80,6 +79,7 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::resource('vehicle-request', 'VehicleRequestController');
     Route::get('vehicle-request-table', 'VehicleRequestController@table');
+    Route::name('vehicle-request-report')->get('vehicle-request-report/{id}', 'PDFController@vehireq');
 
     Route::get('official-business', 'RouteController@ob');
     Route::get('gate-pass', 'RouteController@gp');
