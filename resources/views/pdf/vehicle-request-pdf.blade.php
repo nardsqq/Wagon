@@ -30,6 +30,9 @@
         .border{
             border: 1px solid black;
         }
+        .space {
+            padding: 1px;
+        }
         .text-center{
             text-align: center;
         }
@@ -60,34 +63,38 @@
     </style>
 <body>
     <div style="float:left">
-        <center><h2>TAITECH MARINE SALES AND SERVICES CORPORATION - VEHICLE REQUEST</h2></center>
+        <center><h1>TAITECH MARINE SALES AND SERVICES CORPORATION VEHICLE REQUEST FORM</h1></center>
         <br>
     </div>
+    <br>
+    <br>
+    <h2>REQUESTING PERSONNEL: <span style="float: right;">{{ $vehireq->pers->strPersLName }}, {{ $vehireq->pers->strPersFName }} {{ $vehireq->pers->strPersMName }}</span></h2>
+    <h2>CONTACT DETAIL: <span style="float: right;">{{ $vehireq->pers->strPersMobNo }}</span></h2>
+    <br>
     <table width="100%">
         <thead>
             <tr>
-                <th class="text-center">Requesting Personnel</th>
                 <th class="text-center">Travel Destination</th>
                 <th class="text-center">Date of Departure</th>
-                <th class="text-center">Date of Return</th>
+                <th class="text-center">Estimated Date of Return</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="text-center">{{ $vehireq->pers->strPersFName }} {{ $vehireq->pers->strPersMName }} {{ $vehireq->pers->strPersLName }}</td>
                 <td class="text-center">{{ $vehireq->strVehiReqLocation }}</td>
                 <td class="text-center">{{ $vehireq->datDeparture->format('M. d, Y') }}</td>
                 <td class="text-center">{{ $vehireq->datEstReturn->format('M. d, Y') }}</td>
             </tr>
         </tbody>
     </table>
-    <div class="footer">
-        <div class="col-md-6">
-            Please return by: {{ $vehireq->datEstReturn->format('M. d, Y') }}<br>
-            Approved by &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ______________________<br> 
+    <br>
+    <div>
+        <h2>Reason or Purpose of Request:</h2>
+        <div class="border">
+            <h4 class="text-center">{{ $vehireq->txtVehiReqPurpose }}</h4>
         </div>
-        <br>
-        <br><br>
+    </div>
+    <div class="footer">
     </div>
 </body>
 </html>
