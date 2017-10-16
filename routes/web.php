@@ -77,7 +77,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('sales-order', 'RouteController@salesorder');
     Route::get('job-order', 'RouteController@joborder');
     Route::get('invoice', 'RouteController@invoice');
-    Route::get('vehicle-request', 'RouteController@vehireq');
+
+    Route::resource('vehicle-request', 'VehicleRequestController');
+    Route::get('vehicle-request-table', 'VehicleRequestController@table');
+
     Route::get('official-business', 'RouteController@ob');
     Route::get('gate-pass', 'RouteController@gp');
 

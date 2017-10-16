@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\VehicleRequest;
+use App\Personnel;
 
 class VehicleRequestController extends Controller
 {
+    public function table()
+    {
+        $personnels = Personnel::orderBy('intPersID')->get();
+        $vehireqs = VehicleRequest::all();
+        return view('transactions.vehicle-request.table')->with('vehireqs', $vehireqs)->with('personnels', $personnels);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +22,9 @@ class VehicleRequestController extends Controller
      */
     public function index()
     {
+        $personnels = Personnel::orderBy('intPersID')->get();
         $vehireqs = VehicleRequest::all();
-        return view('maintenance.vehicle-request.index')->with('vehireqs', $vehireqs);
+        return view('transactions.vehicle-request.index')->with('vehireqs', $vehireqs)->with('personnels', $personnels);
     }
 
     /**
@@ -39,8 +48,10 @@ class VehicleRequestController extends Controller
         if ($request->ajax()) {
             $this->validate($request, VehicleRequest::$rules);
 
+            $personnel = Personnel::find($request->intVR_Pers_ID);
             $vehireq = new VehicleRequest;
 
+            $vehireq->pers()->associate($personnel);
             $vehireq->strVehiReqLocation = trim(ucwords($request->strVehiReqLocation));
             $vehireq->datDeparture = trim($request->datDeparture);
             $vehireq->datEstReturn = trim($request->datEstReturn);
@@ -87,8 +98,11 @@ class VehicleRequestController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->ajax()) {
+            
+            $personnel = Personnel::find($request->intVR_Pers_ID);
             $vehireq = VehicleRequest::findOrFail($id);
 
+            $vehireq->pers()->associate($personnel);
             $vehireq->strVehiReqLocation = trim($request->strVehiReqLocation);
             $vehireq->datDeparture = trim($request->datDeparture);
             $vehireq->datEstReturn = trim($request->datEstReturn);

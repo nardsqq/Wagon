@@ -51,11 +51,6 @@ class RouteController extends Controller
       return view('transactions.invoice.index');
     }
 
-    public function vehireq()
-    {
-      return view('transactions.vehicle-request.index');
-    }
-
     public function ob()
     {
       return view('transactions.official-business.index');
