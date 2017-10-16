@@ -78,6 +78,8 @@
       $.fn.modal.Constructor.prototype.enforceFocus = function() {};
       $('#prodsearch').select2();
       $('#servsearch').select2();
+      $('#intClientCompID').select2();
+      $('#intAgentID').select2();
     })
   </script>
 

@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('client-table', 'ClientController@table');
 
     // Temporary Routes
-    Route::get('quotation', 'RouteController@quotation');
+    Route::resource('quotation', 'QuotationController');
     Route::get('sales-order', 'RouteController@salesorder');
     Route::get('job-order', 'RouteController@joborder');
     Route::get('invoice', 'RouteController@invoice');

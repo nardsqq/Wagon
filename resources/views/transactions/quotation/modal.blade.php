@@ -10,9 +10,9 @@
             <div class="col-xs-6">
               <label for="intClientCompID">Company Name (Client)</label>
               <select name="intClientCompID" id="intClientCompID" class="form-control">
-                  <option>Maine Marine China, Inc.</option>
-                  <option>Bright Maritime Corporation</option>
-                  <option>2GO Group, Inc.</option>
+                @foreach ($clients as $client)
+                  <option value="{{$client->intClientID}}">{{ $client->strClientName }}</option>
+                @endforeach
               </select>
             </div>
             <div class="col-xs-6">
@@ -23,8 +23,8 @@
           </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
-              <label for="intClientCompID">Agent Name</label>
-              <select name="intClientCompID" id="intClientCompID" class="form-control">
+              <label for="intAgentID">Agent Name</label>
+              <select name="intAgentID" id="intAgentID" class="form-control">
                   <option>Junelle M. Lim</option>
                   <option>Xandra Faye Subiera</option>
                   <option>Alvin D. Caparas</option>
