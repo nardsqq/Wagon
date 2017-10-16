@@ -20,12 +20,12 @@
           </div>
           <div class="form-group">
             {!! Form::label('datDeparture', 'Date of Departure') !!}
-            {!! Form::date('datDeparture', null, ['id' => 'datDeparture', 'class' => 'form-control']) !!}
+            {!! Form::text('datDeparture', null, ['id' => 'datDeparture', 'class' => 'form-control', 'placeholder' => 'mm/dd/yyyy']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
             {!! Form::label('datEstReturn', 'Estimated Date of Return') !!}
-            {!! Form::date('datEstReturn', null, ['id' => 'datEstReturn', 'class' => 'form-control']) !!}
+            {!! Form::text('datEstReturn', null, ['id' => 'datEstReturn', 'class' => 'form-control', 'placeholder' => 'mm/dd/yyyy']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
