@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductSpecification extends Model
+class Dimension extends Model
 {
     protected $table = 'tblDimension';
 	protected $primaryKey = 'intDimenID';

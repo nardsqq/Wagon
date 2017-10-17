@@ -204,3 +204,34 @@ $(document).ready(function() {
     })
   } // function loadTable() {}
 }); // $(document).ready(function() {});
+
+// Steps 
+function addAttrib(attribId='', attribDesc=''){
+    let attrib = 1 + $('#attrib-list .attrib').get().length;
+
+    $('#attrib-list').append(`
+        <div class="form-group attrib" data-step="`+attrib+`">
+            <div class="col-md-12 input-group">
+            <input id="strDimenValue`+attrib+`" type="text" class="form-control" name="strDimenValue[`+attribId+`]" value="`+attribDesc+`">
+            <span class="input-group-addon" title="Remove Attribute" onclick="removeAttrib(`+attrib+`)"><i class="fa fa-remove text-danger"></i></span>
+            </div>
+        </div>
+    `);
+}
+function removeAttrib(attrib = -1){
+    if(attrib === -1){
+        $('#attrib-list .attrib').remove();
+        return;
+    }
+    $('#attrib-list .attrib[data-step='+attrib+']').remove();
+    _.forEach($('#attrib-list .attrib').get(), function(value, key){ 
+        let index = key + 1; 
+        if($(value).attr('data-step') !== index){
+            $(value).attr('data-step', index);
+            $(value).find('label').first().attr('for', 'strDimenValue'+index);
+            $(value).find('label').first()[0].textContent = "Attribute "+ index;
+            $(value).find('input').first().attr('id', 'strDimenValue'+index);            
+            $(value).find('span.input-group-addon').attr('onclick', 'removeAttrib('+index+')');
+        }
+    });
+}

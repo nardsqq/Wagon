@@ -25,8 +25,8 @@ class Variant extends Model
       return $this->belongsTo('App\Brand', 'intV_Brand_ID');
     }
 
-    public function specs(){
-      return $this->belongsToMany('App\ProductSpecification','tblDimension',  'intSCL_ServArea_ID', 'intSCL_ServStep_ID','intServAreaID');
+    public function dimensions(){
+      return $this->belongsToMany('App\Dimension','tblDimensionSet',  'intDS_Var_ID', 'intDS_Dim_ID', 'intVarID');
     }
 
     public static $rules = [

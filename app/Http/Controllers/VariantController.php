@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Variant;
 use App\Product;
 use App\Brand;
+use App\Dimension;
+use App\DimensionSet;
+use App\UOM;
 
 class VariantController extends Controller
 {
@@ -66,6 +69,16 @@ class VariantController extends Controller
             $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
 
             $variant->save();
+
+            foreach($request->strDimenValue as $attrib){
+                DimensionSet::create([
+                    'intDS_Var_ID' => $variant->intVarID,
+                    'intDS_Dim_ID' => Dimension::create([
+                        'strDimenValue' => trim($attrib) 
+                    ])->intDimenID,
+                ]);
+            }
+
             return response()->json($variant);
         } else {
             return redirect(route('product-variant.index'));
