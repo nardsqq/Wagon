@@ -136,7 +136,7 @@
             },
             f_brands(){
                 return _.filter(this.brands, (brand)=>{
-                    return _.includes(this.product.variants, function(o) { return o.intVBrandID === brand.intBrandID; })
+                    return _.includes(_.map(this.product.variants, _.property('intV_Brand_ID')), brand.intBrandID);
                 });
             },
             subtotal(){

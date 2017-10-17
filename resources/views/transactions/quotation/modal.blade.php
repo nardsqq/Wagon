@@ -173,10 +173,10 @@
           </div>
           <hr>
           <div>
-            <h4>SUBTOTAL: <small>@{{ subtotal.toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</small></h4>
-            <h4>TAX RATE: <small>0.00</small></h4>
+            <h4>TOTAL: <small>@{{ subtotal.toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</small></h4>
+            <!--h4>TAX RATE: <small>0.00</small></h4>
             <h4>SALES TAX:  <small>0.00</small></h4>
-            <h4>OTHER:  <small>-</small></h4>
+            <h4>OTHER:  <small>-</small></h4-->
           </div>
       </div>
       <div class="modal-footer">
