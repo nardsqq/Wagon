@@ -31,9 +31,6 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/product-variant') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Variant</a>
                 </li>
-                <li>
-                  <a href="{{ url('/admin/maintenance/unit-of-measurement') }}"><i class="fa fa-pie-chart fa-fw" aria-hidden="true"></i>&nbsp; Unit of Measurement</a>
-                </li>
   						</ul>
   					</li>
   					<li class="col-sm-4">
