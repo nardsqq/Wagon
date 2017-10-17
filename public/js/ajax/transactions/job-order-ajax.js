@@ -11,6 +11,10 @@ $(document).ready(function() {
 			dataType: "json",
 			success: function (data) {
 				console.log(data);
+				$('#checklist-container').text('');
+				_.forEach(data.steps, function(steps, service){
+					addServiceChecklist(service, steps);
+				});
 				$('#checklist_modal').modal('show');
 			},
 			error: function (data) {
@@ -20,7 +24,23 @@ $(document).ready(function() {
 	})
 })
 
-function addService(value, steps){
-	var container = $('#checklist-container');
-	
+function addServiceChecklist(service, steps){
+	var serviceContainer = document.createElement('div')
+		serviceContainer.innerText = service;
+	_.forEach(steps, (step) => {
+		$(serviceContainer).append(`
+			<div>
+				<label>
+					<input `+ (step.intStepStatus == 1 ? 'checked':'') +`  
+						title="`+step.strServStepDesc+`" 
+						type="checkbox"
+						name="step[`+step.intCheckID+`]" 
+						value="`+step.intCheckID+`"
+					>
+						&nbsp;`+step.strServStepDesc+`</label>
+			</div>
+		`);
+	});
+	$('#checklist-container').append(serviceContainer);
+
 }
