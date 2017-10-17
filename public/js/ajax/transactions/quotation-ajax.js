@@ -154,11 +154,11 @@ $(document).ready(function() {
 
     var state = $('#btn-save').val();
     var method = $('#formQuotation').attr('method');
-    var url = $('#formQuotation').attr('action');
+    //  var url = $('#formQuotation').attr('action');
     var formData = $('#formQuotation').serialize();
 
     $.ajax({
-      type: 'POST',
+      type: method,
       url: url,
       data: formData,
       success:function(data) {
