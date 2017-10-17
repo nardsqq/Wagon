@@ -31,9 +31,6 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/product-variant') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Variant</a>
                 </li>
-                <li>
-                  <a href="{{ url('/admin/maintenance/unit-of-measurement') }}"><i class="fa fa-pie-chart fa-fw" aria-hidden="true"></i>&nbsp; Unit of Measurement</a>
-                </li>
   						</ul>
   					</li>
   					<li class="col-sm-4">
@@ -92,6 +89,9 @@
                 <li class="dropdown-main-header"><center>Preliminary Procedures</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Request for Quotation</li>
+                <li>
+                  <a href="{{ url('/admin/transactions/stock-control') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Stock Control</a>
+                </li>
                 <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
                 </li>
@@ -123,12 +123,6 @@
                 <li class="dropdown-header">Requisition for Transport</li>
                 <li class="{{ Request::is('admin/transactions/vehicle-request') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/vehicle-request') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Requests</a>
-                </li>
-                <li class="{{ Request::is('admin/transactions/official-business') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/official-business') }}"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>&nbsp; Official Business</a>
-                </li>
-                <li class="{{ Request::is('admin/transactions/gate-pass') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/gate-pass') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Gate Pass Records</a>
                 </li>
               </ul>
             </li>

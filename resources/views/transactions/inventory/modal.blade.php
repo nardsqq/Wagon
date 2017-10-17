@@ -1,46 +1,53 @@
-<div class="modal fade" id="add_pers" role="dialog">
+<div class="modal fade" id="add_stock" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-success" id="pers-modal-header">
+      <div class="modal-header modal-header-success" id="stock-modal-header">
         <h4 id="title">Add New Personnel Record</h4>
       </div>
       <div class="modal-body">
-        {!! Form::open(['url' => '/admin/maintenance/personnel', 'method' => 'POST', 'id' => 'formPers']) !!}
+        {!! Form::open(['url' => '/admin/transactions/stock-control', 'method' => 'POST', 'id' => 'formStock']) !!}
+          <div class="form-group">
+            {!! Form::label('strEntryType', 'Entry Type') !!}
+            <select name="strEntryType" id="strEntryType" class="form-control">
+              <option value="Exchange Item">Exchange Item</option>
+              <option value="Ordered Product">Ordered Product</option>
+            </select>
+          </div>
           <div class="row">
             <div class="col-xs-6">
-              {!! Form::label('intPers_Role_ID', 'Role') !!}
-              <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
-                @foreach($roles as $role)
-                  <option value="{{ $role->intRoleID }}">{{ $role->strRoleName }}</option>
-                @endforeach
-              </select>
+                <label for="strPONumber">Purchase Order Reference</label>
+                <input type="text" id="strPONumber" name="strPONumber" class="form-control">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strPersEmpType', 'Employee Type') !!}
-              <select name="strPersEmpType" id="strPersEmpType" class="form-control">
-                <option value="Regular">Regular</option>
-                <option value="Contractual">Contractual</option>
-              </select>
+              {!! Form::label('dtmAcquisition', 'Date of Acquisition') !!}
+              {!! Form::date('dtmAcquisition', \Carbon\Carbon::now()->format('Y-m-d'), array('id' => 'dtmAcquisition', 'class' => 'form-control')); !!}
             </div>
           </div>
           <div class="form-group m-t-10">
-            {!! Form::label('strPersFName', 'First Name') !!}
-            {!! Form::text('strPersFName', null, ['id' => 'strPersFName', 'class' => 'form-control']) !!}
+            {!! Form::label('intS_Supp_ID', 'Supplier') !!}
+            <select name="intS_Supp_ID" id="intS_Supp_ID" class="form-control">
+              @foreach($suppliers as $supplier)
+                <option value="{{ $supplier->intSuppID }}">{{ $supplier->strSuppName }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            {!! Form::label('intS_Var_ID', 'Product Variant') !!}
+            <select name="intS_Var_ID" id="intS_Var_ID" class="form-control">
+              @foreach($variants as $variant)
+                <option value="{{ $variant->intVarID }}">{{  $variant->brands->strBrandName }} {{ $variant->products->strProdName }} - {{ $variant->strVarModel }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="intQuantity">Quantity</label>
+            <input type="number" id="intQuantity" name="intQuantity" class="form-control">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            {!! Form::label('strPersMName', 'Middle Name') !!}
-            {!! Form::text('strPersMName', null, ['id' => 'strPersMName', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strPersLName', 'Last Name') !!}
-            {!! Form::text('strPersLName', null, ['id' => 'strPersLName', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strPersMobNo', 'Mobile Number') !!}
-            {!! Form::text('strPersMobNo', null, ['id' => 'strPersMobNo', 'class' => 'form-control']) !!}
+            <label for="decInventCost">Inventory Cost</label>
+            <input type="number" id="decInventCost" name="decInventCost" class="form-control">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         {!! Form::close() !!}
@@ -54,49 +61,56 @@
   </div>
 </div>
 
-<div class="modal fade" id="edit_pers" role="dialog">
+<div class="modal fade" id="edit_stock" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-info" id="pers-modal-header-info">
-        <h4 id="title">Edit Personnel Record</h4>
+      <div class="modal-header modal-header-info" id="stock-modal-header-info">
+        <h4 id="title">Edit Stock Record</h4>
       </div>
       <div class="modal-body">
-        <form id="formEditPers">
+        <form id="formEditStock">
+          <div class="form-group">
+            {!! Form::label('strEntryType', 'Entry Type') !!}
+            <select name="strEntryType" id="strEntryType" class="form-control">
+              <option value="Exchange Item">Exchange Item</option>
+              <option value="Ordered Product">Ordered Product</option>
+            </select>
+          </div>
           <div class="row">
             <div class="col-xs-6">
-              {!! Form::label('intPers_Role_ID', 'Role') !!}
-              <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
-                @foreach($roles as $role)
-                  <option value="{{ $role->intRoleID }}">{{ $role->strRoleName }}</option>
-                @endforeach
-              </select>
+                <label for="strPONumber">Purchase Order Reference</label>
+                <input type="text" id="strPONumber" name="strPONumber" class="form-control">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strPersEmpType', 'Employee Type') !!}
-              <select name="strPersEmpType" id="strPersEmpType" class="form-control">
-                <option value="Regular">Regular</option>
-                <option value="Contractual">Contractual</option>
-              </select>
+              {!! Form::label('dtmAcquisition', 'Date of Acquisition') !!}
+              {!! Form::date('dtmAcquisition', \Carbon\Carbon::now()->format('Y-m-d'), array('id' => 'dtmAcquisition', 'class' => 'form-control')); !!}
             </div>
           </div>
           <div class="form-group m-t-10">
-            {!! Form::label('strPersFName', 'First Name') !!}
-            {!! Form::text('strPersFName', null, ['id' => 'strPersFName', 'class' => 'form-control']) !!}
+            {!! Form::label('intS_Supp_ID', 'Supplier') !!}
+            <select name="intS_Supp_ID" id="intS_Supp_ID" class="form-control">
+              @foreach($suppliers as $supplier)
+                <option value="{{ $supplier->intSuppID }}">{{ $supplier->strSuppName }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            {!! Form::label('intS_Var_ID', 'Product Variant') !!}
+            <select name="intS_Var_ID" id="intS_Var_ID" class="form-control">
+              @foreach($variants as $variant)
+                <option value="{{ $variant->intVarID }}">{{  $variant->brands->strBrandName }} {{ $variant->products->strProdName }} - {{ $variant->strVarModel }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="intQuantity">Quantity</label>
+            <input type="number" id="intQuantity" name="intQuantity" class="form-control">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            {!! Form::label('strPersMName', 'Middle Name') !!}
-            {!! Form::text('strPersMName', null, ['id' => 'strPersMName', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strPersLName', 'Last Name') !!}
-            {!! Form::text('strPersLName', null, ['id' => 'strPersLName', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strPersMobNo', 'Mobile Number') !!}
-            {!! Form::text('strPersMobNo', null, ['id' => 'strPersMobNo', 'class' => 'form-control']) !!}
+            <label for="decInventCost">Inventory Cost</label>
+            <input type="number" id="decInventCost" name="decInventCost" class="form-control">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>
@@ -110,10 +124,10 @@
   </div>
 </div>
 
-<div class="modal fade" id="del_pers">
+<div class="modal fade" id="del_stock">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-danger" id="pers-del-modal-header">
+      <div class="modal-header modal-header-danger" id="stock-del-modal-header">
         <center><h4 id="title">Delete Personnel Record</h4></center>
       </div>
       <div class="modal-body">

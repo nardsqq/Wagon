@@ -68,6 +68,9 @@ Route::group(['prefix' => 'admin'], function() {
 
   	Route::get('/', 'RouteController@transactions');
 
+    Route::resource('stock-control', 'StockController');
+    Route::get('stock-control-table', 'StockController@table');
+
     // Client
     Route::resource('client', 'ClientController');
     Route::get('client-table', 'ClientController@table');

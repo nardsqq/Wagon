@@ -15,6 +15,7 @@ class PersonnelController extends Controller
 
         return view('maintenance.personnel.table')->with('personnels', $personnels)->with('roles', $roles);
     }
+    
     /**
      * Display a listing of the resource.
      *
