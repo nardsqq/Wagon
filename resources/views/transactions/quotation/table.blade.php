@@ -1,36 +1,24 @@
-<table id="dataTable" class="table table-bordered table-hover">
+<table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
-      <th>Quotation Number</th>
-      <th class="text-center">Client</th>
-      <th class="text-center">Agent</th>
-      <th class="text-center">Date Prepared</th>
-      <th class="text-center">Valid Until</th>
+      <th>Client</th>
+      <th>Client Associate</th>
+      <th>Location</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>100</td>
-      <td class="text-center">Maine Marine China, Inc.</td>
-      <th class="text-center">Junelle M. Lim</th>
-      <th class="text-center">09/12/2017</th>
-      <th class="text-center">03/12/2018</th>
-      <td class="text-center">
-          <button class="btn btn-default btn-sm"><i class='fa fa-circle-o'></i>&nbsp; View</button>
-          <button class="btn btn-info btn-sm"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-      </td>
-    </tr>
-    <tr>
-      <td>101</td>
-      <td class="text-center">Bright Maritime Corporation</td>
-      <th class="text-center">Xandra Faye Subiera</th>
-      <th class="text-center">08/28/2017</th>
-      <th class="text-center">02/28/2018</th>
-      <td class="text-center">
-          <button class="btn btn-default btn-sm"><i class='fa fa-circle-o'></i>&nbsp; View</button>
-          <button class="btn btn-info btn-sm"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-      </td>
-    </tr>
+  <tbody id="quotation">
+    @foreach ($quotations as $quotation)
+      <tr id="id{{ $quotation->intQuotHeadID }}">
+        <td>{{ $quotation->client->strClientName }}</td>
+        <td>{{ $quotation->strClientAssoc }}</td>
+        <td>{{ $quotation->strQuotHeadLocation }}</td>
+        <td class="text-center">
+          <a href="{{ route('quotation.show', $quotation->intQuotHeadID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
+          <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $quotation->intQuotHeadID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+          <button class="btn btn-danger btn-sm btn-delete" value="{{ $quotation->intQuotHeadID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+        </td>
+      </tr>
+    @endforeach
   </tbody>
 </table>
