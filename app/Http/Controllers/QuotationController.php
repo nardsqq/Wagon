@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Quotation;
+use App\QuotationProduct;
+use App\QuotationService;
 use App\Client;
 use App\Personnel;
 use App\ProductType;
@@ -62,17 +64,39 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         if($request->ajax()) {
-            $this->validate($request, Quotation::$rules);
+            // $this->validate($request, Quotation::$rules);
 
             $quotation = new Quotation;
 
-            $quotation->intQH_Client_ID = trim($request->intQH_Client_ID);
-            $quotation->strClientAssoc = trim($request->strClientAssoc);
+            $quotation->intQH_Client_ID = trim($request->intClientID);
+            $quotation->intQH_Pers_ID = trim($request->intQH_Pers_ID);
             $quotation->strQuotHeadLocation = trim($request->strQuotHeadLocation);
-        
-      
+            $quotation->dtmQuotHeadDateTime = $request->dtmQuotHeadDateTime;
             $quotation->save();
+
+            if($request->has('products')){
+                for($i=0; $i<count($request->products); $i++){
+                    QuotationProduct::create([
+                        'intQDP_QuotH_ID' => $quotation->intQuotHeadID,
+                        'intQDP_Prod_ID' => $request->products[$i],
+                        'decQuotDPUnitPrice' => $request->price[$i],
+                        'intQuotDPQuantity' => $request->qty[$i],
+                    ]);
+                }
+            }
+
+            if($request->has('services')){
+                for($i=0; $i<count($request->services); $i++){
+                    QuotationService::create([
+                        'intQDS_QuotH_ID' => $quotation->intQuotHeadID,
+                        'intQDS_ServArea_ID' => $request->services[$i],
+                        'decQuotDSPrice' => $request->serviceprice[$i],
+                    ]);
+                }
+            }
+
             return response()->json($quotation);
 
         } else {

@@ -4,8 +4,8 @@
       <div class="modal-header modal-header-primary" id="quotation-modal-header">
         <h4 id="title">Create Quotation</h4>
       </div>
+      <form id="formQuotation">
       <div class="modal-body">
-        <form id="formQuotation">
           <div class="row">
     
             <div class="col-xs-6">
@@ -33,10 +33,10 @@
           </div>
           <div class="row m-t-10">
               <div class="col-xs-6">
-                <label for="intPersID">Agent</label>
-                <select name="intPersID" id="intPersID" class="form-control">
-                  @foreach ($clients as $client)
-                    <option value="{{$client->intClientID}}">{{ $client->strClientName }}</option>
+                <label for="intQH_Pers_ID">Agent</label>
+                <select name="intQH_Pers_ID" id="intQH_Pers_ID" class="form-control">
+                  @foreach ($personnels as $person)
+                    <option value="{{$person->intPersID}}">{{ $person->strPersFName }} {{ $person->strPersLName }}</option>
                   @endforeach
                 </select>
               </div>
@@ -46,7 +46,6 @@
            
             
           </div>
-        </form>
         <hr>
         <div class="btn-group" role="group" aria-label="...">
           <a href="#" class="btn btn-primary" id="btn-prod" @click="isProduct = true">Products</a>
@@ -100,7 +99,7 @@
              </div>
 
               <div class="col-xs-6">
-                <button class="btn btn-success pull-right m-t-30" @click="addProduct">Add Product</button>
+                <button type="button"  class="btn btn-success pull-right m-t-30" @click="addProduct">Add Product</button>
               </div>
             </div><!--end row-->
 
@@ -127,7 +126,7 @@
                   <td class="text-center"><input type="number" min="0" v-model.number="product.price" name="price[]"></td>
                   <td class="text-center">@{{ (product.qty * product.price).toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</td>
                   <td class="text-center">
-                      <button @click="removeProduct(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
+                      <button type="button"  @click="removeProduct(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
                   </td>
                 </tr>
               </tbody>
@@ -143,7 +142,7 @@
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </div>
                 <div class="col-xs-6">
-                  <button class="btn btn-success pull-right m-t-30" @click="addService">Add Service</button>
+                  <button type="button"  class="btn btn-success pull-right m-t-30" @click="addService">Add Service</button>
                 </div>
               </div>
               <table class="table table-hover table-condensed table-bordered table-responsive">
@@ -164,7 +163,7 @@
                     </td>
                     <td class="text-center"><input type="number" min="0" v-model.number="service.price" name="serviceprice[]"></td>
                     <td class="text-center">
-                        <button @click="removeService(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
+                        <button type="button"  @click="removeService(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
                     </td>
                   </tr>
                 </tbody>
@@ -180,8 +179,8 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-        <button id="btn-save" value="add" class="modal-btn btn btn-primary pull-right">Submit</button>
+        <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button type="button"  id="btn-save" value="add" class="modal-btn btn btn-primary pull-right">Submit</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
@@ -205,11 +204,14 @@
           </h5>
         </center>
       </div>
+      </form>
       <div class="modal-footer">
-        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
-        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Brand</button>
+        <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
+        <button type="button"  id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Brand</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
   </div>
 </div>
+
+        
