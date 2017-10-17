@@ -58,6 +58,19 @@
         </div>
       </div>
     </div>
+  @include('transactions.job-order.checklist-modal')
    
   </section>
+@endsection
+
+@section('scripts')
+
+  <!-- Delay table load until everything else is loaded -->
+  <script>
+    $(window).on('load', function(){
+        $('#dataTable').removeAttr('style');
+    })
+  </script>
+
+  <script src="{{ asset('/js/ajax/transactions/job-order-ajax.js/') }}"></script>
 @endsection

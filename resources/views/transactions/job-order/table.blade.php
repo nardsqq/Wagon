@@ -27,6 +27,7 @@
         <span class="label label-danger"><i class="fa fa-times fa-fw" aria-hidden="true"></i>&nbsp; Inactive</span>
       </td>
       <td class="text-center">
+          <button class="btn btn-default btn-sm btn-detail btn-checklist"><i class='fa fa-book'></i>&nbsp; Checklist</button>
           <button class="btn btn-info btn-sm btn-detail open-modal"><i class='fa fa-book'></i>&nbsp; View</button>
           <button class="btn btn-warning btn-sm btn-detail open-modal"><i class='fa fa-edit'></i>&nbsp; Edit</button>
           <button class="btn btn-danger btn-sm btn-delete"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>

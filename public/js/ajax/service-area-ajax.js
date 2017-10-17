@@ -7,6 +7,7 @@ $(document).ready(function() {
 
   $('#add_servarea').on('hide.bs.modal', function() {
         $('#formServArea').trigger('reset');
+        removeStep();
     });
 
   var url = "/admin/maintenance/service-area";
@@ -21,7 +22,7 @@ $(document).ready(function() {
     $('#servarea-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
-
+    removeStep();
     $.ajax({
         type: "GET",
         url: url + '/' + id + '/edit',
@@ -33,6 +34,9 @@ $(document).ready(function() {
             $('#intSA_ServType_ID').val(data.intSA_ServType_ID);
             $("input[name=strServAreaName]").val(data.strServAreaName);
             $('#txtServAreaDesc').val(data.txtServAreaDesc);
+            _.forEach(data.steps, function(step){
+                addStep(step.intServStepID, step.strServStepDesc);
+            });
             $('#btn-save').val("update");
             $('#add_servarea').modal('show');
         },
@@ -123,8 +127,8 @@ $(document).ready(function() {
       $('#btn-save').text('Submit');
       $('#btn-save').val("add");
       $('.modal-btn').addClass('btn-success').removeClass('btn-info');
+      addStep();
       $('#add_servarea').modal('show');
-
     }); 
 
     $("#btn-save").on('click', function (e) {
@@ -249,3 +253,34 @@ $(document).ready(function() {
     });
   }); // $$("#btn-save").on('click', function (e) {});
 }); // $(document).ready(function() {});
+// Steps 
+function addStep(stepId='', stepDesc=''){
+    let step = 1 + $('#step-list .step').get().length;
+
+    $('#step-list').append(`
+        <div class="form-group step" data-step="`+step+`">
+            <label for="strServStepDesc`+step+`" class="col-md-2">Step `+step+`</label>
+            <div class="col-md-10 input-group">
+            <input id="strServStepDesc`+step+`" type="text" class="form-control" name="strServStepDesc[`+stepId+`]" value="`+stepDesc+`">
+            <span class="input-group-addon" title="Remove Step" onclick="removeStep(`+step+`)"><i class="fa fa-remove text-danger"></i></span>
+            </div>
+        </div>
+    `);
+}
+function removeStep(step = -1){
+    if(step === -1){
+        $('#step-list .step').remove();
+        return;
+    }
+    $('#step-list .step[data-step='+step+']').remove();
+    _.forEach($('#step-list .step').get(), function(value, key){ 
+        let index = key + 1; 
+        if($(value).attr('data-step') !== index){
+            $(value).attr('data-step', index);
+            $(value).find('label').first().attr('for', 'strServStepDesc'+index);
+            $(value).find('label').first()[0].textContent = "Step "+ index;
+            $(value).find('input').first().attr('id', 'strServStepDesc'+index);            
+            $(value).find('span.input-group-addon').attr('onclick', 'removeStep('+index+')');
+        }
+    });
+}

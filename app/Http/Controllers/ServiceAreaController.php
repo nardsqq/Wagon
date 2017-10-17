@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ServiceArea;
 use App\ServiceType;
+use App\ServiceChecklist;
+use App\ServiceStep;
 
 class ServiceAreaController extends Controller
 {
@@ -46,6 +48,16 @@ class ServiceAreaController extends Controller
             $servarea->strServAreaName = trim(ucwords($request->strServAreaName));
             $servarea->txtServAreaDesc = trim(ucwords($request->txtServAreaDesc));
             $servarea->save();
+            
+            foreach($request->strServStepDesc as $step){
+                ServiceChecklist::create([
+                    'intSCL_ServArea_ID' => $servarea->intServAreaID,
+                    'intSCL_ServStep_ID' => ServiceStep::create([
+                        'strServStepDesc' => trim($step) 
+                    ])->intServStepID,
+                ]);
+            }
+
             return response()->json($servarea);
         } else {
             return redirect(route('service-area.index'));
@@ -71,7 +83,7 @@ class ServiceAreaController extends Controller
      */
     public function edit($id)
     {
-        $servarea = ServiceArea::findOrFail($id);
+        $servarea = ServiceArea::with('steps')->findOrFail($id);
         return response()->json($servarea);
     }
 
@@ -91,6 +103,27 @@ class ServiceAreaController extends Controller
             $servarea->strServAreaName = trim($request->strServAreaName);
             $servarea->txtServAreaDesc = trim($request->txtServAreaDesc);
             $servarea->save();
+
+     
+            // Remove Steps 
+            $remove_checklist = ServiceChecklist::where('intSCL_ServArea_ID',$servarea->intServAreaID)
+                ->whereNotIn('intSCL_ServStep_ID', array_keys($request->strServStepDesc?:[]))
+                ->pluck('intSCL_ServStep_ID');
+            ServiceStep::whereIn('intServStepID', $remove_checklist)->delete();
+            ServiceChecklist::whereIn('intSCL_ServStep_ID', $remove_checklist)->delete();
+
+            // Update / Save steps
+            foreach($request->strServStepDesc as $stepId => $stepDesc){
+                ServiceChecklist::firstOrCreate([
+                    'intSCL_ServArea_ID' => $servarea->intServAreaID,
+                    'intSCL_ServStep_ID' => ServiceStep::updateOrCreate([
+                        'intServStepID' => $stepId
+                    ],[
+                        'strServStepDesc' => trim($stepDesc) 
+                    ])->intServStepID,
+                ]);
+            }
+
             return response()->json($servarea);
         } else {
             return redirect(route('service-area.index'));

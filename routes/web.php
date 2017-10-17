@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('vehicle-table', 'VehicleController@table');
 
     // Payment
+    Route::resource('base-price', 'BasePriceController');
     Route::resource('discount', 'DiscountController');
 
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
@@ -71,10 +72,15 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('client', 'ClientController');
     Route::get('client-table', 'ClientController@table');
 
+    // Job Order
+    Route::get('job-order', 'RouteController@joborder');
+    Route::get('job-order/{id}/checklist', 'JobOrderController@getChecklist');
+    Route::put('job-order/{id}/checklist', 'JobOrderController@updateChecklist');
+
+
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');
     Route::get('sales-order', 'RouteController@salesorder');
-    Route::get('job-order', 'RouteController@joborder');
     Route::get('invoice', 'RouteController@invoice');
 
     Route::resource('vehicle-request', 'VehicleRequestController');

@@ -19,4 +19,8 @@ class ServiceArea extends Model
 	{
     	return $this->belongsTo('App\ServiceType', 'intSA_ServType_ID');
 	}
+
+	public function steps(){
+		return $this->belongsToMany('App\ServiceStep','tblServiceChecklist',  'intSCL_ServArea_ID', 'intSCL_ServStep_ID','intServAreaID');
+	}
 }
