@@ -20,6 +20,15 @@
 // Parsley
 @import "node_modules/parsleyjs/src/parsley";
 
+// jQuery Date-Picker
+@import "node_modules/jquery-ui/themes/base/datepicker";
+
+// Spinkit
+@import "node_modules/spinkit/scss/spinkit";
+
+// Please-Wait
+@import "node_modules/please-wait/src/please-wait";
+
 // Helpers
 @import "helpers";
 

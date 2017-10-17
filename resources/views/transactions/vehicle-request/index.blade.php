@@ -66,13 +66,5 @@
 @endsection
 
 @section('scripts')
-
-  <!-- Delay table load until everything else is loaded -->
-  <script>
-    $(window).on('load', function(){
-        $('#dataTable').removeAttr('style');
-    })
-  </script>
-
   <script src="{{ asset('/js/ajax/transactions/vehicle-request-ajax.js/') }}"></script>
 @endsection

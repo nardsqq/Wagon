@@ -10,11 +10,15 @@ class VehicleRequest extends Model
     use SoftDeletes;
 
     protected $table = 'tblVehicleRequest';
-    protected $fillable = ['strVehiReqLocation', 'datDeparture','datEstReturn', 'txtVehiReqPurpose'];
+    protected $fillable = ['intVR_Pers_ID' ,'strVehiReqLocation', 'datDeparture', 'datEstReturn', 'txtVehiReqPurpose'];
     protected $primaryKey = 'intVehiReqID';
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'datDeparture', 'datEstReturn'];
     public $timestamps = false;
-s
+
+    public function pers() 
+    {
+      return $this->belongsTo('App\Personnel', 'intVR_Pers_ID');
+    }
 
     public static $rules = [
         'strVehiReqLocation' => 'required',

@@ -10,4 +10,5 @@
     <!-- Core Stylesheets -->
     <link rel="stylesheet" href="{{ asset('/DataTables/datatables.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/toastr-master/build/toastr.min.css') }}">

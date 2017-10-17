@@ -14,6 +14,7 @@ const { mix } = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .scripts([
+    'public/js/please-wait.js',
     'public/js/jquery/jquery-3.1.1.min.js',
     'public/js/jquery-ui.min.js',
     'public/js/bootstrap/bootstrap.min.js',
