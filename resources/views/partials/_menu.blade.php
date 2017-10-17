@@ -92,6 +92,9 @@
                 <li class="dropdown-main-header"><center>Preliminary Procedures</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Request for Quotation</li>
+                <li>
+                  <a href="{{ url('/admin/transactions/stock-control') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Stock Control</a>
+                </li>
                 <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
                 </li>

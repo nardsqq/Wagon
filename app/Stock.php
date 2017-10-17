@@ -14,13 +14,13 @@ class Stock extends Model
 	protected $dates = ['deleted_at'];
 	public $timestamps = false;
 
-	public function variants() 
-    {
-      return $this->belongsTo('App\Variant', 'intS_Var_ID');
-    }
+  public function variants() 
+  {
+    return $this->belongsTo('App\Variant', 'intS_Var_ID');
+  }
 
-    public function suppliers() 
-    {
-      return $this->belongsTo('App\Supplier', 'intS_Supp_ID');
-    }
+  public function suppliers() 
+  {
+    return $this->belongsTo('App\Supplier', 'intS_Supp_ID');
+  }
 }
