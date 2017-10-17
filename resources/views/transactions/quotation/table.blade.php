@@ -14,7 +14,6 @@
         <td>{{ $quotation->strClientAssoc }}</td>
         <td>{{ $quotation->strQuotHeadLocation }}</td>
         <td class="text-center">
-          <a href="{{ route('quotation.show', $quotation->intQuotHeadID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
           <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $quotation->intQuotHeadID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
           <button class="btn btn-danger btn-sm btn-delete" value="{{ $quotation->intQuotHeadID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>

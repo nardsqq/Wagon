@@ -187,19 +187,19 @@
   </div>
 </div>
 
-<div class="modal fade" id="del_brand">
+<div class="modal fade" id="del_quote">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-header-danger" id="brand-del-modal-header">
-        <center><h4 id="title">Delete Brand Record</h4></center>
+      <div class="modal-header modal-header-danger" id="quote-del-modal-header">
+        <center><h4 id="title">Cancel Quotation</h4></center>
       </div>
       <div class="modal-body">
         <center>
           <h5>
             <b>
-              You are about to delete this Brand data and all its contents. 
+              You are about to cancel this Quotation record and all its contents. 
               <br>
-              This action cannot be undone. Delete Brand?
+              This action cannot be undone. Cancel Quotation?
             </b>
           </h5>
         </center>
@@ -207,7 +207,7 @@
       </form>
       <div class="modal-footer">
         <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
-        <button type="button"  id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Brand</button>
+        <button type="button"  id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Cancel Quotation</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>

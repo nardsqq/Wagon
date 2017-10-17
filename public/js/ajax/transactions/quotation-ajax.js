@@ -60,7 +60,7 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
     console.log(id)
-    $('#del_quotation').modal('show');
+    $('#del_quote').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -82,7 +82,7 @@ $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         table.row($("#id" + id)).remove().draw();
 
-        $('#del_quotation').modal('hide');
+        $('#del_quote').modal('hide');
 
         toastr.options = {
           "closeButton": false,
@@ -102,7 +102,7 @@ $(document).ready(function() {
           "hideMethod": "slideUp"
         }
 
-        toastr.error("Successfully Deleted Quotation Record");
+        toastr.error("Successfully Cancelled Quotation");
         loadTable();
       },
       error: function (data) {
