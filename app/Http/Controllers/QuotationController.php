@@ -35,12 +35,12 @@ class QuotationController extends Controller
         $products = Product::all();
         $brands = Brand::all();
         $dimensions = [];//Dimensions::all();
-        $service_types = ServiceType::all();
+        // $service_types = ServiceType::all();
         $service_areas = ServiceArea::all();
         return view('transactions.quotation.index', compact(
             'quotations', 'clients', 'personnels', 
             'product_types', 'products', 'brands', 'dimensions',
-            'service_types', 'service_areas'
+            'service_areas'
         ));
     }
 

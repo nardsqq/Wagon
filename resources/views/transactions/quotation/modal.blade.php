@@ -77,7 +77,7 @@
 
             <div class="row m-t-10">
               <div class="col-xs-6">
-                <label for="prodsearch">Product Search</label>
+                <label for="prodsearch">Product</label>
                 <select v-model="product" class="form-control">
                   <option :value="prod" v-for="(prod,index) in prodtype.products" :key="index">@{{prod.strProdName}}</option>
                 </select>
@@ -134,31 +134,37 @@
               </table>
             </div>
             <div id="content-b"  v-show="!isProduct">
-              <div class="row">
+              <div class="row m-t-10 m-b-10">
                 <div class="col-xs-6">
-                  <label for="servsearch">Service Search</label>
-                  <select id="servsearch" class="form-control">
-                      <option>Ship Single GENSET Repair</option>
-                      <option>GENSET Installation</option>
-                      <option>Ship Equipment Overhauling</option>
+                  <label for="servsearch">Service</label>
+                  <select v-model="service" class="form-control">
+                    <option :value="serv" v-for="(serv,index) in service_areas" :key="index">@{{serv.strServAreaName}}</option>
                   </select>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </div>
+                <div class="col-xs-6">
+                  <button class="btn btn-success pull-right m-t-30" @click="addService">Add Service</button>
                 </div>
               </div>
               <table class="table table-hover table-condensed table-bordered table-responsive">
                 <thead>
                   <tr>
+                    <th class="text-center">#</th>
                     <th class="text-center">Service</th>
                     <th class="text-center">Service Fee</th>
                     <th class="text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-center">Ship Equipment Overhauling</td>
-                    <td class="text-center"><input type="text" name="test2"></td>
+                  <tr v-for="(service, index) in services" :key="index">
+                    <td class="text-center">@{{ index + 1 }}</td>
                     <td class="text-center">
-                        <button class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
+                      <input hidden readonly name="services[]" :value="service.intServAreaID">
+                      @{{ service.strServAreaName }}
+                    </td>
+                    <td class="text-center"><input type="number" min="0" v-model.number="service.price" name="serviceprice[]"></td>
+                    <td class="text-center">
+                        <button @click="removeService(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
                     </td>
                   </tr>
                 </tbody>
