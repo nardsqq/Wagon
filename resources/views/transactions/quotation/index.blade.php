@@ -76,20 +76,22 @@
   <script>
     $(document).on('ready', function() {
       $.fn.modal.Constructor.prototype.enforceFocus = function() {};
-      $('#prodsearch').select2();
+      
+      $('#intClientID').select2();
+      $('#intPersID').select2();
+      {{--  $('#prodsearch').select2();
       $('#category').select2();
       $('#dimension').select2();
       $('#intProdTypeID').select2();
       $('#intProdID').select2();
       $('#intBrandID').select2();
       $('#servsearch').select2();
-      $('#intClientID').select2();
-      $('#strClientAssoc').select2();
-      $('#strQuotHeadLocation').select2();
+      $('#strQuotHeadLocation').select2();  --}}
     })
   </script>
 
   <script src="{{ asset('/js/ajax/transactions/quotation-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/vue.js/') }}"></script>
 
   <script type="text/javascript">
     $(document).ready(function () {
@@ -97,16 +99,66 @@
       $('#btn-prod').click(function () {
         $(this).addClass('btn-primary').removeClass('btn-default');
         $('#btn-serv').removeClass('btn-primary').addClass('btn-default');
-        $('#display-area').html($('#content-a').html());
+        //$('#display-area').html($('#content-a').html());
       });
       
       $('#btn-serv').click(function () {
         $(this).addClass('btn-primary').removeClass('btn-default');
         $('#btn-prod').removeClass('btn-primary').addClass('btn-default');
-        $('#display-area').html($('#content-b').html());
+       // $('#display-area').html($('#content-b').html());
       });
       
     });
+    
+
+    new Vue({
+        el: '#add_quotation',
+        data: {
+            categories: ['General','Consumables', 'Machineries', 'Equipment'],
+            category: 'General', 
+            prodtypes: {!! $product_types !!},
+            prodtype: {},
+            product: {},
+            brands: {!! $brands !!},
+            brand: {},
+            products: [],
+            dimensions: [],
+            dimension: {},
+            services: [],
+            qty:0,
+            isProduct: true,
+        },
+        computed: {
+            f_prodtypes(){
+                return _.filter(this.prodtypes, (type)=>{
+                    return type.strProdCateg === this.category;
+                });
+            },
+            f_brands(){
+                return _.filter(this.brands, (brand)=>{
+                    return _.includes(this.product.variants, function(o) { return o.intVBrandID === brand.intBrandID; })
+                });
+            },
+            subtotal(){
+                var sum = 0;
+                _.forEach(this.products, function(p){ console.log(p); sum += (p.qty * p.price); });
+
+                return sum;
+            }
+        },
+        methods: {
+            addProduct(){
+                // validate
+                var product = Object.assign({}, this.product);
+                $.extend(product, { price: 0 });
+                $.extend(product, { qty: this.qty });
+                this.products.push(product);
+            },
+            removeProduct(index){
+                this.products.splice(index, 1);
+            }
+        }
+    })
   </script>
 
 @endsection

@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Quotation;
+use App\Client;
+use App\Personnel;
+use App\ProductType;
+use App\Product;
+use App\Brand;
+// use App\Dimensions;
+use App\ServiceType;
+use App\ServiceArea;
 
 class QuotationController extends Controller 
 {
@@ -21,7 +29,19 @@ class QuotationController extends Controller
     public function index()
     {
         $quotations = Quotation::all();
-        return view('transactions.quotation.index')->with('quotations', $quotations);
+        $clients = Client::all();
+        $personnels = Personnel::all();
+        $product_types = ProductType::with('products.variants.brands')->get();
+        $products = Product::all();
+        $brands = Brand::all();
+        $dimensions = [];//Dimensions::all();
+        $service_types = ServiceType::all();
+        $service_areas = ServiceArea::all();
+        return view('transactions.quotation.index', compact(
+            'quotations', 'clients', 'personnels', 
+            'product_types', 'products', 'brands', 'dimensions',
+            'service_types', 'service_areas'
+        ));
     }
 
     /**
