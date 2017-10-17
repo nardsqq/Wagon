@@ -122,9 +122,9 @@
             brands: {!! $brands !!},
             brand: {},
             products: [],
-            dimensions: [],
-            dimension: {},
+            service_areas: {!! $service_areas !!},
             services: [],
+            service: {},
             qty:0,
             isProduct: true,
         },
@@ -136,13 +136,13 @@
             },
             f_brands(){
                 return _.filter(this.brands, (brand)=>{
-                    return _.includes(this.product.variants, function(o) { return o.intVBrandID === brand.intBrandID; })
+                    return _.includes(_.map(this.product.variants, _.property('intV_Brand_ID')), brand.intBrandID);
                 });
             },
             subtotal(){
                 var sum = 0;
-                _.forEach(this.products, function(p){ console.log(p); sum += (p.qty * p.price); });
-
+                _.forEach(this.products, function(p){ sum += (p.qty * p.price); });
+                _.forEach(this.services, function(s){ sum += (s.price); });
                 return sum;
             }
         },
@@ -156,6 +156,15 @@
             },
             removeProduct(index){
                 this.products.splice(index, 1);
+            },
+            addService(){
+                // validate
+                var service = Object.assign({}, this.service);
+                $.extend(service, { price: 0 });
+                this.services.push(service);
+            },
+            removeService(index){
+                this.services.splice(index, 1);
             }
         }
     })

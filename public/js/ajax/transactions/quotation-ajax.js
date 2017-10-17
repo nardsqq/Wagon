@@ -158,7 +158,7 @@ $(document).ready(function() {
     var formData = $('#formQuotation').serialize();
 
     $.ajax({
-      type: method,
+      type: 'POST',
       url: url,
       data: formData,
       success:function(data) {
