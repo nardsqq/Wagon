@@ -4,7 +4,7 @@
       <div class="modal-header modal-header-primary" id="quotation-modal-header">
         <h4 id="title">Create Quotation</h4>
       </div>
-      <form id="formQuotation">
+      <form id="formQuotation" method="POST">
       <div class="modal-body">
           <div class="row">
     
