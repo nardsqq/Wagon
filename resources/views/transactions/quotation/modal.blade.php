@@ -41,15 +41,7 @@
           </div>
           <div class="row m-t-10">
            
-            <div class="col-xs-6">
-              <label for="servsearch">Service Search</label>
-              <select name="servsearch" id="servsearch" class="form-control">
-                  <option>Ship Single GENSET Repair</option>
-                  <option>GENSET Installation</option>
-                  <option>Ship Equipment Overhauling</option>
-              </select>
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
+            
           </div>
         </form>
         <hr>
@@ -74,49 +66,6 @@
                 </select>
               </div>
               <div class="col-xs-6">
-                <label for="intProdTypeID">Type</label>
-                <select name="intProdTypeID" id="intProdTypeID" class="form-control">
-                  @foreach ($quotations as $quotation)
-                    <option value="{{$prodtype->intProdTypeID}}">{{ $prodtype->intProdTypeID }}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div><!--end row-->
-
-            <div class="row m-t-10">
-             
-              <div class="col-xs-6">
-                <label for="intProdID">Item</label>
-                <select name="intProdID" id="intProdID" class="form-control">
-                  @foreach ($quotations as $quotation)
-                    <option value="{{$product->intProdID}}">{{ $product->intProdID }}</option>
-                  @endforeach
-                </select>
-              </div>
-              <div class="col-xs-6">
-                <label for="intBrandID">Brand</label>
-                <select name="intBrandID" id="intBrandID" class="form-control">
-                  @foreach ($quotations as $quotation)
-                    <option value="{{$brand->intBrandID}}">{{ $brand->intBrandID }}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div><!--end row-->
-
-            <div class="row m-t-10">
-              
-              <div class="col-xs-12">
-                <label for="dimension">Dimensions</label>
-                <select name="dimension" id="dimension" class="form-control">
-                  @foreach ($quotations as $quotation)
-                    <option value="{{$brand->dimension}}">{{ $brand->dimension }}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div><!--end row-->
-
-            <div class="row m-t-10">
-              <div class="col-xs-6">
                 <label for="category">Category</label>
                   <select name="category" id="category" class="form-control">
                     <option>Consumables</option>
@@ -125,9 +74,50 @@
                     <option>Equipment</option>
                   </select>
               </div>
+            </div><!--end row-->
+
+            <div class="row m-t-10">
               <div class="col-xs-6">
-                <label for="decDelCharRate">Quantity</label>
-                <input type="number" id="decDelCharRate" name="decDelCharRate" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" step="01" min="01" required>
+                <label for="intProdTypeID">Type</label>
+                <select name="intProdTypeID" id="intProdTypeID" class="form-control">
+                  @foreach ($quotations as $quotation)
+                    <option value="{{$prodtype->intProdTypeID}}">{{ $prodtype->intProdTypeID }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-xs-6">
+                <label for="intProdID">Item</label>
+                <select name="intProdID" id="intProdID" class="form-control">
+                  @foreach ($quotations as $quotation)
+                    <option value="{{$product->intProdID}}">{{ $product->intProdID }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div><!--end row-->
+
+            <div class="row m-t-10">
+               <div class="col-xs-6">
+                <label for="intBrandID">Brand</label>
+                <select name="intBrandID" id="intBrandID" class="form-control">
+                  @foreach ($quotations as $quotation)
+                    <option value="{{$brand->intBrandID}}">{{ $brand->intBrandID }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-xs-6">
+                <label for="dimension">Dimensions</label>
+                <select name="dimension" id="dimension" class="form-control">
+                  @foreach ($quotations as $quotation)
+                    <option value="{{$brand->dimension}}">{{ $brand->dimension }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div><!--end row-->
+            
+            <div class="row m-t-10">
+              <div class="col-xs-6">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" step="01" min="01" required>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
              </div>
             </div><!--end row-->
@@ -157,6 +147,17 @@
               </table>
             </div>
             <div id="content-b">
+              <div class="row">
+                <div class="col-xs-6">
+                  <label for="servsearch">Service Search</label>
+                  <select name="servsearch" id="servsearch" class="form-control">
+                      <option>Ship Single GENSET Repair</option>
+                      <option>GENSET Installation</option>
+                      <option>Ship Equipment Overhauling</option>
+                  </select>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </div>
+              </div>
               <table class="table table-hover table-condensed table-bordered table-responsive">
                 <thead>
                   <tr>
