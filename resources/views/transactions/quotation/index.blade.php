@@ -77,6 +77,9 @@
     $(document).on('ready', function() {
       $.fn.modal.Constructor.prototype.enforceFocus = function() {};
       $('#prodsearch').select2();
+      $('#intProdTypeID').select2();
+      $('#intProdID').select2();
+      $('#intBrandID').select2();
       $('#servsearch').select2();
       $('#intClientID').select2();
       $('#strClientAssoc').select2();
