@@ -47,6 +47,15 @@
 								<h2>{{ $variant->brands->strBrandName }} {{ $variant->products->strProdName }} {{ $variant->strVarModel }}</h2>
 								<hr>
 								<p class="lead">{{ $variant->txtVarDesc }}</p>
+								<p class="lead"> Specification:</p>
+									@foreach($variant->dimensions as $dimension)
+										<ul>
+											<li>
+												{{ $dimension->strDimenValue }}
+											</li>
+										</ul>
+									@endforeach
+
 							</div>
 							<div class="col-md-4">
 
