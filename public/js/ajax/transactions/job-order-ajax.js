@@ -7,7 +7,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		$.ajax({
 			type: "GET",
-			url: url + '/' + 1 + '/checklist',
+			url: url + '/' + id + '/checklist',
 			dataType: "json",
 			success: function (data) {
 				console.log(data);
@@ -21,7 +21,26 @@ $(document).ready(function() {
 			  console.log(data);
 			},
 		});
-	})
+	});
+
+	$("#btn-checklist").on('click', function(e){
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		var formData = $("#checklist_modal form").serialize();
+		var id = $(this).val();
+		e.preventDefault();
+		$.ajax({
+			type: 'PUT',
+			url: url + '/' + id + '/checklist',
+			data: formData,
+			dataType: 'json'
+		}).done(function(data) {
+			console.log(data);
+		});
+	});
 })
 
 function addServiceChecklist(service, steps){
@@ -42,5 +61,4 @@ function addServiceChecklist(service, steps){
 		`);
 	});
 	$('#checklist-container').append(serviceContainer);
-
 }

@@ -75,6 +75,7 @@ Route::group(['prefix' => 'admin'], function() {
     // Job Order
     Route::get('job-order', 'RouteController@joborder');
     Route::get('job-order/{id}/checklist', 'JobOrderController@getChecklist');
+    Route::put('job-order/{id}/checklist', 'JobOrderController@updateChecklist');
 
 
     // Temporary Routes

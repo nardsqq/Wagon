@@ -23,4 +23,24 @@ class JobOrderController extends Controller
             'steps' => $steps
         ]);
     }
+
+    public function updateChecklist(Request $request, $id){
+        $jobOrder = JobOrder::findOrFail($id);
+        if($request->has('step')){
+            foreach($jobOrder->checklist as $step){
+                $new_status = array_key_exists($step->intCheckID, $request->step) ? 1 : 0;
+                if($step->intStepStatus != $new_status){
+                    $step->update([
+                        'intStepStatus' => $new_status
+                    ]);
+                }
+            }
+            if(count($jobOrder->checklist) == $jobOrder->checklist()->where('intStepStatus', 1)->count()){
+                // Completed All Steps
+            }
+        }
+        return response()->json([
+            'checklist' => $jobOrder->checklist
+        ]);
+    }
 }
