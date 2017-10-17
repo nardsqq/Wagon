@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Client;
+use App\Quotation;
 
 class QuotationController extends Controller
 {
+    public function table()
+    {
+        $quotation = Quotation::all();
+        return view('transactions.quotation.table')->with('quotations', $quotations);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +20,8 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $clients = Client::orderBy('strClientName')->get();
-        return view('transactions.quotation.index')->with('clients', $clients);
+        $quotation = Quotation::all();
+        return view('transactions.quotation.index')->with('quotations', $quotations);
     }
 
     /**
@@ -36,7 +42,22 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->ajax()) {
+            $this->validate($request, Quotation::$rules);
+
+            $quotation = new Quotation;
+
+            $quotation->strClientName = trim($request->strClientName);
+            $quotation->strClientAssoc = trim($request->strClientAssoc);
+            $quotation->strQuotHeadLocation = trim($request->strQuotHeadLocation);
+        
+      
+            $quotation->save();
+            return response()->json($quotation);
+
+        } else {
+            return redirect()->route('quotation.index');
+        }
     }
 
     /**
@@ -47,7 +68,8 @@ class QuotationController extends Controller
      */
     public function show($id)
     {
-        //
+        $quotation = Quotation::findOrFail($id);
+        return view('transactions.quotation.show')->with('quotation', $quotation);
     }
 
     /**
@@ -58,7 +80,8 @@ class QuotationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quotation = Quotation::findOrFail($id);
+        return response()->json($quotation);
     }
 
     /**
@@ -70,7 +93,21 @@ class QuotationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->ajax()) {
+
+            $quotation = Quotation::findOrFail($id);
+
+            $quotation->strClientName = trim($request->strClientName);
+            $quotation->strClientAssoc = trim($request->strClientAssoc);
+            $quotation->strQuotHeadLocation = trim($request->strQuotHeadLocation);
+        
+      
+            $quotation->save();
+            return response()->json($quotation);
+
+        } else {
+            return redirect()->route('quotation.index');
+        }
     }
 
     /**
@@ -79,8 +116,16 @@ class QuotationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $quotation = Quotation::destroy($del);
+
+            return response()->json($quotation);
+        } else {
+            return redirect()->route('quotation.index');
+        }
     }
 }

@@ -7,35 +7,32 @@
       <div class="modal-body">
         <form id="formQuotation">
           <div class="row">
+    
             <div class="col-xs-6">
-              <label for="intClientCompID">Company Name (Client)</label>
+              <label for="intClientCompID">Company Name/ Client</label>
               <select name="intClientCompID" id="intClientCompID" class="form-control">
                 @foreach ($clients as $client)
                   <option value="{{$client->intClientID}}">{{ $client->strClientName }}</option>
                 @endforeach
               </select>
             </div>
+             <div class="col-xs-6">
+              <label for="strClientAssoc">Client Associate Name</label>
+              <select name="strClientAssoc" id="strClientAssoc" class="form-control">
+                @foreach ($quotations as $quotation)
+                  <option value="{{$quotation->strClientAssoc}}">{{ $quotation->strClientAssoc }}</option>
+                @endforeach
+              </select>
+            </div>
             <div class="col-xs-6">
-              <label for="strClientAsscName">Client Associate Name</label>
-              <input type="text" name="strClientAsscName" id="strClientAsscName" class="form-control">
+              <label for="strQuotHeadLocation">Location</label>
+              <input type="text" name="strQuotHeadLocation" id="strQuotHeadLocation" class="form-control">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
           <div class="row m-t-10">
-            <div class="col-xs-6">
-              <label for="intAgentID">Agent Name</label>
-              <select name="intAgentID" id="intAgentID" class="form-control">
-                  <option>Junelle M. Lim</option>
-                  <option>Xandra Faye Subiera</option>
-                  <option>Alvin D. Caparas</option>
-                  <option>Tyron delos Reyes</option>
-              </select>
-            </div>
-            <div class="col-xs-6">
-              <label for="strClientAsscName">P.O. Number</label>
-              <input type="text" name="strClientAsscName" id="strClientAsscName" class="form-control">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
+          
+            
           </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
