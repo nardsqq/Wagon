@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Stock;
+use App\Supplier;
+use App\Variant;
 
 class StockController extends Controller
 {
