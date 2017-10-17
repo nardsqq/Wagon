@@ -46,6 +46,11 @@
             {!! Form::textarea('txtVarDesc', null, ['id' => 'txtVarDesc', 'class' => 'form-control resize', 'rows' => '5']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
+          <div class="form-group">
+            <label>Product Specification</label>
+            <button id="btn-add-attrib" onclick="addAttrib()" type="button" class="btn btn-sm btn-success pull-right">Add Attribute</button>
+          </div>
+          <div id="attrib-list"></div>
         {!! Form::close() !!}
       </div>
       <div class="modal-footer">

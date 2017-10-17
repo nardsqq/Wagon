@@ -20,12 +20,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Unit of Measurement</li>
+        <li>Personnel</li>
       </ol>
     </div>
   </section>
 
-  @include('maintenance.unit-of-measurement.modal')
+  @include('maintenance.personnel.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -35,22 +35,22 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Units of Measurement</i> here.</strong>
+            <strong>Manage <i>Personnel Records</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Unit of Measurement</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Personnel Record</button>
               </div>
               <div class="panel-title">
-                <h4>Unit of Measurement</h4>
+                <h4>Personnel</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.unit-of-measurement.table')
+                @include('maintenance.personnel.table')
               </div>
             </div>
           </div>
@@ -70,5 +70,5 @@
     })
   </script>
 
-  <script src="{{ asset('/js/ajax/unit-of-measurement-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/personnel-ajax.js/') }}"></script>
 @endsection

@@ -25,6 +25,10 @@ class Variant extends Model
       return $this->belongsTo('App\Brand', 'intV_Brand_ID');
     }
 
+    public function dimensions(){
+      return $this->belongsToMany('App\Dimension','tblDimensionSet',  'intDS_Var_ID', 'intDS_Dim_ID', 'intVarID');
+    }
+
     public static $rules = [
       'strVarModel' => 'required|max:45',
       'intVarReStockLevel' => 'required'

@@ -104,7 +104,6 @@ class ServiceAreaController extends Controller
             $servarea->txtServAreaDesc = trim($request->txtServAreaDesc);
             $servarea->save();
 
-     
             // Remove Steps 
             $remove_checklist = ServiceChecklist::where('intSCL_ServArea_ID',$servarea->intServAreaID)
                 ->whereNotIn('intSCL_ServStep_ID', array_keys($request->strServStepDesc?:[]))
