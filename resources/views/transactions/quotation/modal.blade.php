@@ -1,7 +1,7 @@
-<div class="modal fade" id="add_quote" role="dialog">
+<div class="modal fade" id="add_quotation" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header modal-header-primary" id="quote-modal-header">
+      <div class="modal-header modal-header-primary" id="quotation-modal-header">
         <h4 id="title">Create Quotation</h4>
       </div>
       <div class="modal-body">
@@ -9,9 +9,9 @@
           <div class="row">
     
             <div class="col-xs-6">
-              <label for="intClientCompID">Company Name/ Client</label>
-              <select name="intClientCompID" id="intClientCompID" class="form-control">
-                @foreach ($clients as $client)
+              <label for="intClientID">Company Name/ Client</label>
+              <select name="intClientID" id="intClientID" class="form-control">
+                @foreach ($quotations as $quotation)
                   <option value="{{$client->intClientID}}">{{ $client->strClientName }}</option>
                 @endforeach
               </select>
@@ -27,6 +27,11 @@
             <div class="col-xs-6">
               <label for="strQuotHeadLocation">Location</label>
               <input type="text" name="strQuotHeadLocation" id="strQuotHeadLocation" class="form-control">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
+            <div class="col-xs-6">
+              <label for="dtmQuotHeadDateTime">Date</label>
+              <input type="date" name="dtmQuotHeadDateTime" id="dtmQuotHeadDateTime" class="form-control">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
@@ -65,6 +70,15 @@
         </div>
         <div style="display: none;">
           <div id="content-a">
+            <div class="col-xs-6">
+              <label for="intClientID">Category</label>
+              <select name="intClientID" id="intClientID" class="form-control">
+                @foreach ($quotations as $quotation)
+                  <option value="{{$client->intClientID}}">{{ $client->strClientName }}</option>
+                @endforeach
+              </select>
+            </div>
+
             <table class="table table-hover table-condensed table-bordered table-responsive">
               <thead>
                 <tr>

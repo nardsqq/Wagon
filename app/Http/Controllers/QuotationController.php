@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Quotation;
 
-class QuotationController extends Controller
+class QuotationController extends Controller 
 {
     public function table()
     {
-        $quotation = Quotation::all();
+        $quotations = Quotation::all();
         return view('transactions.quotation.table')->with('quotations', $quotations);
     }
 
@@ -20,7 +20,7 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $quotation = Quotation::all();
+        $quotations = Quotation::all();
         return view('transactions.quotation.index')->with('quotations', $quotations);
     }
 
@@ -47,7 +47,7 @@ class QuotationController extends Controller
 
             $quotation = new Quotation;
 
-            $quotation->strClientName = trim($request->strClientName);
+            $quotation->intQH_Client_ID = trim($request->intQH_Client_ID);
             $quotation->strClientAssoc = trim($request->strClientAssoc);
             $quotation->strQuotHeadLocation = trim($request->strQuotHeadLocation);
         
@@ -97,7 +97,7 @@ class QuotationController extends Controller
 
             $quotation = Quotation::findOrFail($id);
 
-            $quotation->strClientName = trim($request->strClientName);
+            $quotation->intQH_Client_ID = trim($request->intQH_Client_ID);
             $quotation->strClientAssoc = trim($request->strClientAssoc);
             $quotation->strQuotHeadLocation = trim($request->strQuotHeadLocation);
         

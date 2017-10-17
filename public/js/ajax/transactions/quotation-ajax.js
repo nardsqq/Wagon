@@ -26,10 +26,10 @@ $(document).ready(function() {
       success: function(data) {
         var formEditQuotation = $('#formEditQuotation');
 
-        formEditQuotation.find('#strClientName').val(data.strClientName);
+        formEditQuotation.find('#intQH_Client_ID').val(data.intQH_Client_ID);
         formEditQuotation.find('#strClientAssoc').val(data.strClientAssoc);
         formEditQuotation.find('#strQuotHeadLocation').val(data.strQuotHeadLocation);
-       
+        
 
         $('#edit_quotation').modal('show');
       }
