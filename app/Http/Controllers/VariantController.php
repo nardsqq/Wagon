@@ -105,7 +105,7 @@ class VariantController extends Controller
      */
     public function edit($id)
     {
-        $variant = Variant::findOrFail($id);
+        $variant = Variant::with('dimensions')->findOrFail($id);
         return response()->json($variant);
     }
 
@@ -133,6 +133,7 @@ class VariantController extends Controller
             $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
 
             $variant->save();
+
             return response()->json($variant);
         } else {
             return redirect(route('product-variant.index'));

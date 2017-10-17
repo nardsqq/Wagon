@@ -19,6 +19,7 @@ $(document).ready(function() {
     id = link_id;
 
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
+    removeAttrib();
 
     $.ajax({
       type: 'GET',
