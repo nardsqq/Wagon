@@ -13,7 +13,7 @@
   				<ul class="dropdown-menu dropdown-menu-large row">
   					<li class="col-sm-4">
   						<ul>
-                <li class="dropdown-main-header"><center>Itemization and Inventory</center></li>
+                <li class="dropdown-main-header"><center>Supplier and Product Building</center></li>
                 <li class="divider"></li>
   							<li class="dropdown-header">Assets</li>
                 <li>
@@ -35,7 +35,7 @@
   					</li>
   					<li class="col-sm-4">
   						<ul>
-                <li class="dropdown-main-header"><center>Job Appointments and Services</center></li>
+                <li class="dropdown-main-header"><center>Personnel and Services</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Workforce</li>
                 <li>
@@ -55,7 +55,7 @@
   					</li>
   					<li class="col-sm-4">
   						<ul>
-                <li class="dropdown-main-header"><center>Logistics and Payments</center></li>
+                <li class="dropdown-main-header"><center>Logistics and Payment</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Transportation</li>
                 <li>
@@ -86,17 +86,20 @@
           <ul class="dropdown-menu dropdown-menu-large row">
             <li class="col-sm-4">
               <ul>
-                <li class="dropdown-main-header"><center>Preliminary Procedures</center></li>
+                <li class="dropdown-main-header"><center>Inventory</center></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Request for Quotation</li>
+                <li class="dropdown-header">Stock and Deliveries</li>
                 <li>
-                  <a href="{{ url('/admin/transactions/stock-control') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Stock Control</a>
+                  <a href="{{ url('/admin/transactions/stocks') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Stocks</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
+                <li>
+                  <a href="{{ url('/admin/transactions/receive-deliveries') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Receive Deliveries</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Quotation</a>
+                <li>
+                  <a href="{{ url('/admin/transactions/deductions') }}"><i class="fa fa-level-down fa-fw" aria-hidden="true"></i>&nbsp; Deductions</a>
+                </li>
+                <li>
+                  <a href="{{ url('/admin/transactions/return-deliveries') }}"><i class="fa fa-mail-forward fa-fw" aria-hidden="true"></i>&nbsp; Return Deliveries</a>
                 </li>
               </ul>
             </li>
@@ -105,11 +108,17 @@
                 <li class="dropdown-main-header"><center>Orders Phase</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Placing a Job or Sales Order</li>
+                <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
+                </li>
+                <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Quotation</a>
+                </li>
                 <li class="{{ Request::is('admin/transactions/sales-order') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/sales-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Sales Orders</a>
+                  <a href="{{ url('/admin/transactions/sales-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Sales Order</a>
                 </li>
                 <li class="{{ Request::is('admin/transactions/job-order') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/job-order') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Job Orders</a>
+                  <a href="{{ url('/admin/transactions/job-order') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Job Order</a>
                 </li>
                 <li class="{{ Request::is('admin/transactions/invoice') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/invoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>

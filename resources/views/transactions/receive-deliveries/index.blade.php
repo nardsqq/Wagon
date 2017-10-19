@@ -20,10 +20,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Stocks</li>
+        <li>Receive Deliveries</li>
       </ol>
     </div>
   </section>
+
+  @include('maintenance.receive-deliveries.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -33,19 +35,22 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>View <i>Stocks</i> here.</strong>
+            <strong>Manage <i>Mode of Payments</i> here.</strong>
             <br>
-            <small>View <i>Stock Status</i> and <i>Products</i>.</small>
+            <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
+              <div class="btn-group pull-right">
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Receive Delivery</button>
+              </div>
               <div class="panel-title">
-                <h4>Stocks</h4>
+                <h4>Receive Deliveries</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('transactions.inventory.table')
+                @include('maintenance.receive-deliveries.table')
               </div>
             </div>
           </div>
@@ -65,5 +70,5 @@
     })
   </script>
 
-  <script src="{{ asset('/js/ajax/transactions/inventory-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/transactions/receive-delivery-ajax.js/') }}"></script>
 @endsection

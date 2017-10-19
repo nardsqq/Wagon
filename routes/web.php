@@ -36,9 +36,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('product-variant', 'VariantController');
     Route::get('product-variant-table', 'VariantController@table');
 
-    Route::resource('unit-of-measurement', 'UOMController');
-    Route::get('unit-of-measurement-table', 'UOMController@table');
-
     // Personnel
     Route::resource('role', 'RoleController');
     Route::resource('personnel', 'PersonnelController');
@@ -54,9 +51,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('vehicle-table', 'VehicleController@table');
 
     // Payment
-    Route::resource('base-price', 'BasePriceController');
-    Route::resource('discount', 'DiscountController');
-
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
     Route::get('mode-of-payment-table', 'ModeOfPaymentController@table');
 
@@ -68,8 +62,8 @@ Route::group(['prefix' => 'admin'], function() {
 
   	Route::get('/', 'RouteController@transactions');
 
-    Route::resource('stock-control', 'StockController');
-    Route::get('stock-control-table', 'StockController@table');
+    Route::resource('stocks', 'StockController');
+    Route::get('stocks-table', 'StockController@table');
 
     // Client
     Route::resource('client', 'ClientController');
