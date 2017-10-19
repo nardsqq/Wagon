@@ -24,6 +24,11 @@
               </select>
             </div>
           </div>
+          <div class="form-group m-t-10">
+            {!! Form::label('strVarPartNum', 'Part Number') !!}
+            {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
               {!! Form::label('strVarModel', 'Product Model') !!}
@@ -87,6 +92,11 @@
                 @endforeach
               </select>
             </div>
+          </div>
+          <div class="form-group m-t-10">
+            {!! Form::label('strVarPartNum', 'Part Number') !!}
+            {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="row m-t-10">
             <div class="col-xs-6">

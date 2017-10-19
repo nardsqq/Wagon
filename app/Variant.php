@@ -10,7 +10,7 @@ class Variant extends Model
     use SoftDeletes;
 
     protected $table = 'tblVariant';
-    protected $fillable = ['intV_Supp_ID', 'intV_Brand_ID', 'intV_Prod_ID', 'strVarModel', 'strVarHandle', 'intVarReStockLevel', 'txtVarDesc'];
+    protected $fillable = ['intV_Supp_ID', 'intV_Brand_ID', 'intV_Prod_ID', 'strVarPartNum','strVarModel', 'strVarHandle', 'intVarReStockLevel', 'txtVarDesc'];
     protected $primaryKey = 'intVarID';
     protected $dates = ['deleted_at'];
     public $timestamps = false;

@@ -1,6 +1,7 @@
 <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
   <thead>
     <tr>
+      <th class="text-center">Part Number</th>
       <th class="text-center">Brand</th>
       <th class="text-center">Product</th>
       <th class="text-center">Model</th>
@@ -11,6 +12,7 @@
   <tbody id="prodvar-list">
     @foreach ($variants as $variant)
       <tr id="id{{ $variant->intVarID }}">
+        <td class="text-center">{{ $variant->strVarPartNum }}</td>
         <td class="text-center">{{ $variant->brands->strBrandName }}</td>
         <td class="text-center">{{ $variant->products->strProdName }}</td>
         <td class="text-center">{{ $variant->strVarModel }}</td>

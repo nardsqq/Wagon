@@ -60,6 +60,12 @@
 							<div class="col-md-4">
 
 								<div class="well">
+
+									<dl>
+									   <dt>Part Number</dt>
+									   <dd>{{ $variant->strVarPartNum }}</dd>
+									</dl>
+
 									<dl>
 									  <dt>Re-Stock Level</dt>
 									  <dd>{{ $variant->intVarReStockLevel }}</dd>
