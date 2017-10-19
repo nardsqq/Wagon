@@ -70,14 +70,19 @@ class VariantController extends Controller
 
             $variant->save();
 
-            foreach($request->strDimenValue as $attrib){
-                DimensionSet::create([
-                    'intDS_Var_ID' => $variant->intVarID,
-                    'intDS_Dim_ID' => Dimension::create([
-                        'strDimenValue' => trim($attrib) 
-                    ])->intDimenID,
-                ]);
+            if ($request->strDimenValue != null) {
+                foreach($request->strDimenValue as $attrib){
+                    DimensionSet::create([
+                        'intDS_Var_ID' => $variant->intVarID,
+                        'intDS_Dim_ID' => Dimension::create([
+                            'strDimenValue' => trim($attrib) 
+                        ])->intDimenID,
+                    ]);
+                }
+            } else {
+                //throw exception here
             }
+                
 
             return response()->json($variant);
         } else {
