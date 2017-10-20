@@ -96,6 +96,7 @@
         <tr>
           <td class="text-center"><button type="button" @click="removeItem()" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button></td>
           <td class="text-center">@{{ index + 1 }}</td>
+          <td class="text-center">@{{ item.strVarPartNum }}</td>
           <td class="text-center">
             <input hidden readonly name="items[]" :value="item.intVarID">
             @{{ item.full_detail }}
@@ -107,7 +108,7 @@
             <input type="number" min="0" v-model.number="qty" class="form-control" name="qty[]">
           </td>
           <td class="text-center">
-            <input name="inventory_cost[]" readonly :value="inventory_cost">
+            <input type="text" name="inventory_cost[]" readonly :value="inventory_cost" class="form-control">
             <span>Current Inventory Cost: @{{ item.decInventoryCost }}</span>
           </td>
         </tr>
@@ -119,26 +120,17 @@
       data: {
         selected: [],
         item: {},
+        variants: {!! $variants !!}
       },
       computed: {
         total(){
             var sum = 0;
-            _.forEach(this.$children.itemLine, function(p){ sum += (p.total); });
+            if(this.$children.length > 0)
+              _.forEach(this.$children, function(p){ sum += (p.total); });
             return sum;
         }
       }, 
-      mounted(){
-        this.$on('remove-item', (e) => { this.removeSelected(e.index);} );
-      },
       methods: {
-        addProduct(){
-            // validate
-            var item = Object.assign({}, this.item);
-            $.extend(item, { price: 0 });
-            $.extend(item, { qty: 0 });
-            $.extend(item, { total: 0 });
-            this.products.push(item);
-        },
         removeSelected(index){
             this.selected.splice(index, 1);
         },

@@ -13,8 +13,8 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('dtmAcquisition', 'Date') !!}
-              {!! Form::date('dtmAcquisition', \Carbon\Carbon::now()->format('Y-m-d'), array('id' => 'dtmAcquisition', 'class' => 'form-control')); !!}
+              {!! Form::label('intRecDelDtmRec', 'Date') !!}
+              {!! Form::date('intRecDelDtmRec', \Carbon\Carbon::now()->format('Y-m-d'), array('id' => 'intRecDelDtmRec', 'class' => 'form-control')); !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
@@ -33,35 +33,31 @@
               Select items to receive:
             </label>
             <div class="col-lg-9">
-              <select name="variants[]" id="variants" v-model="selected" class="form-control">
-                @foreach($variants as $variant)
-                <option value="{{ $variant }}">{{ $variant->full_detail }}</option>
-                @endforeach
+              <select name="variants[]" id="variants" multiple v-model="selected" class="form-control">
+                <option v-for="(variant, index) in variants" :key="index" :value="variant">@{{ variant.full_detail }}</option>
               </select>
             </div>
           </div>
 
           <div class="col-lg-12">
-              <table class="table table-hover table-condensed table-bordered table-responsive">
-                <thead>
-                  <tr>
-                    <th class="text-center"></th>
-                    <th class="text-center">#</th>
-                    <th class="text-center">Part No</th>
-                    <th class="text-center">Item Name</th>
-                    <th class="text-center">Total Cost</th>
-                    <th class="text-center">Quantity</th>
-                    <th class="text-center">Inventory Cost per Item</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <template>
-                    <item-line :item="item" :index="index" v-for="(item, index) in selected" :key="index"></item-line>
-                  </template>
-                </tbody>
-              </table>
-            </div>
-          </div>
+            <table class="table table-hover table-condensed table-bordered table-responsive">
+              <thead>
+                <tr>
+                  <th class="text-center"></th>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Part No</th>
+                  <th class="text-center">Item Name</th>
+                  <th class="text-center">Total Cost</th>
+                  <th class="text-center">Quantity</th>
+                  <th class="text-center">Inventory Cost per Item</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template>
+                  <item-line :item="item" :index="index" v-for="(item, index) in selected" :key="index" @remove-item="removeSelected(index)"></item-line>
+                </template>
+              </tbody>
+            </table>
           <hr>
           <div>
             <h4>TOTAL: <small>@{{ total.toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</small></h4>

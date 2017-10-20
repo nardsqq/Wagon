@@ -23,5 +23,7 @@ class ReceiveHeader extends Model
       return $this->belongsTo('App\Supplier', 'intRD_Supp_ID');
     }
 
-    
+    public function getTotalAttribute(){
+      return $this->details()->sum('intRecDelDetQty');
+    }
 }

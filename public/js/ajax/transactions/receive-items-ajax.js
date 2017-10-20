@@ -24,6 +24,55 @@ $(document).ready(function() {
 
   }); 
 
+  $("#btn-save").on('click', function (e) {
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    e.preventDefault();
+    console.log(e);
+
+    var state = $('#btn-save').val();
+    var method = $('#formReceive').attr('method');
+     var url = $('#formReceive').attr('action');
+    var formData = $('#formReceive').serialize();
+
+    $.ajax({
+      type: method,
+      url: url,
+      data: formData,
+      success:function(data) {
+        console.log(data);
+        $('#add_rec').modal('hide');
+        loadTable();
+      
+        if (state == "add") { 
+          toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+          }
+
+          // pakiedit nalang
+          toastr.success("Successfully Completed Transaction");
+        } 
+      }
+    });
+  });
+
   function loadTable() {
     $.ajax({
       type: 'get',

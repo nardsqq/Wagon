@@ -9,14 +9,16 @@
     </tr>
   </thead>
   <tbody id="mode-list">
-    <tr id="#">
-        <td>REFNUMBER001</td>
-        <td>Sample Supplier</td>
-        <td>October 21, 2017</td>
-        <td>0</td>
+    @foreach($headers as $header)
+    <tr id="id{{$header->intRecDelID}}">
+        <td>{{$header->intRecDelPONum}}</td>
+        <td>{{$header->supplier->strSuppName}}</td>
+        <td>{{ $header->intRecDelDtmRec->format('F d, Y')}}</td>
+        <td>{{$header->total}}</td>
         <td class="text-center">
             <a href="#" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; Details</a>
         </td>
     </tr>
+    @endforeach
   </tbody>
 </table>

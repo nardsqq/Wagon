@@ -20,7 +20,8 @@ class ReceiveDeliveryController extends Controller
     {
         $suppliers = Supplier::all();
         $variants = Variant::all();
-        return view('transactions.receive-items.index', compact('suppliers', 'variants'));
+        $headers = ReceiveHeader::all();
+        return view('transactions.receive-items.index', compact('headers','suppliers', 'variants'));
     }
 
     /**
@@ -57,17 +58,17 @@ class ReceiveDeliveryController extends Controller
 
         $header->intRecDelPONum = trim($request->intRecDelPONum);
         $header->intRecDelDtmRec = $request->intRecDelDtmRec;
-        $header->intRD_Supp_ID = $request->intRD_Supp_ID;
+        $header->intRD_Supp_ID = $request->intS_Supp_ID;
         $header->save();
 
-        if($request->has('variants')){
-            for($i=0; $i<count($request->variants); $i++){
+        if($request->has('items')){
+            for($i=0; $i<count($request->items); $i++){
                 ReceiveDetail::create([
                     'intRDD_Head_ID' => $header->intRecDelID,
-                    'intRDD_Var_ID' => $request->variants[$i],
-                    'intRecDelDetQty' => $request->price[$i],
+                    'intRDD_Var_ID' => $request->items[$i],
+                    'intRecDelDetQty' => $request->total[$i],
                     'decInventoryCost' => $request->qty[$i],
-                    'decTotalCost' => $request->total[$i],
+                    'decTotalCost' => $request->inventory_cost[$i],
                 ]);
             }
         }
