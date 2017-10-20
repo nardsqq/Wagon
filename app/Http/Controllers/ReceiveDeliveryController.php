@@ -66,9 +66,9 @@ class ReceiveDeliveryController extends Controller
                 ReceiveDetail::create([
                     'intRDD_Head_ID' => $header->intRecDelID,
                     'intRDD_Var_ID' => $request->items[$i],
-                    'intRecDelDetQty' => $request->total[$i],
-                    'decInventoryCost' => $request->qty[$i],
-                    'decTotalCost' => $request->inventory_cost[$i],
+                    'decTotalCost' => $request->total[$i],
+                    'intRecDelDetQty'=> $request->qty[$i],
+                    'decInventoryCost' => $request->inventory_cost[$i],
                 ]);
             }
         }
