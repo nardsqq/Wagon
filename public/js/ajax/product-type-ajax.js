@@ -111,7 +111,7 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Product Category');
+    $('#title').text('Add New Product Type');
     $('#prodtype-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formProdType').trigger("reset");
     $('#btn-save').text('Submit');

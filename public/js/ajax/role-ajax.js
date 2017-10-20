@@ -16,7 +16,7 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Product Type');
+    $('#title').text('Edit Role');
     $('#role-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
@@ -110,7 +110,7 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Product Category');
+    $('#title').text('Add New Role');
     $('#role-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formRole').trigger("reset");
     $('#btn-save').text('Submit');

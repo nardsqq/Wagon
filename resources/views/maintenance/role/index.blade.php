@@ -35,7 +35,7 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Product Types</i> here.</strong>
+            <strong>Manage <i>Roles</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
           </div>

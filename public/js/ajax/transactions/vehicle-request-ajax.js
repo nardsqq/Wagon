@@ -135,7 +135,7 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add Client Record');
+    $('#title').text('Add Vehicle Request Record');
     $('#vehireq-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formVehiReq').trigger("reset");
     $('#btn-save').text('Submit');
