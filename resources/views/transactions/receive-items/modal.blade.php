@@ -54,7 +54,7 @@
               </thead>
               <tbody>
                 <template>
-                  <item-line :item="item" :index="index" v-for="(item, index) in selected" :key="item.intVarID" @remove-item="removeSelected(index)"></item-line>
+                  <item-line :item="item" :index="index" v-for="(item, index) in selected" :key="item.intVarID" @change-value="getTotal()" @remove-item="removeSelected(index)"></item-line>
                 </template>
               </tbody>
             </table>

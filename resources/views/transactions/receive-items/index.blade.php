@@ -84,6 +84,7 @@
       },
       computed: {
         inventory_cost: function(){
+          this.$emit('change-value');
           return this.total / this.qty;
         }
       },
@@ -119,9 +120,10 @@
       el: '#add_rec',
       data: {
         selected: [],
-        variants: {!! $variants !!}
+        variants: {!! $variants !!},
+        total: 0,
       },
-      computed: {
+      {{--  computed: {
         total(){
             var sum = 0;
             console.log(this.selected);
@@ -131,11 +133,27 @@
             });
             return sum;
         }
-      }, 
+      },   --}}
       methods: {
         removeSelected(index){
             this.selected.splice(index, 1);
         },
+        getTotal(){
+          var sum = 0;
+          console.log(this.selected);
+          _.forEach(this.$children, function(p){ 
+            sum += (p.total); 
+            console.log(sum, p.total);
+          });
+          this.total = sum;
+          return sum;
+        }
+      },
+      watch: {
+        selected: function(s){
+          if(this.selected.length < 1)
+            this.total = 0;
+        }
       }
     })
   </script>
