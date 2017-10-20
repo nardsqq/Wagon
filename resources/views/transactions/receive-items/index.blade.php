@@ -25,7 +25,7 @@
     </div>
   </section>
 
-  @include('maintenance.receive-deliveries.modal')
+  @include('transactions.receive-items.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -50,7 +50,7 @@
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.receive-deliveries.table')
+                @include('transactions.receive-items.table')
               </div>
             </div>
           </div>
@@ -70,5 +70,5 @@
     })
   </script>
 
-  <script src="{{ asset('/js/ajax/transactions/receive-delivery-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/transactions/receive-items-ajax.js/') }}"></script>
 @endsection

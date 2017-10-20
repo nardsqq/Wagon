@@ -51,13 +51,8 @@ class RouteController extends Controller
       return view('transactions.invoice.index');
     }
 
-    public function ob()
+    public function receive()
     {
-      return view('transactions.official-business.index');
-    }
-
-    public function gp()
-    {
-      return view('transactions.gate-pass.index');
+      return view('transactions.receive-items.index');
     }
 }

@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin'], function() {
 
 
     // Temporary Routes
+    Route::get('receive-items', 'RouteController@receive');
     Route::resource('quotation', 'QuotationController');
     Route::name('quotation-report')->get('quotation-report/{id}', 'PDFController@quote');
     Route::get('quotation-table', 'QuotationController@table');
