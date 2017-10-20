@@ -64,4 +64,27 @@
         $('#dataTable').removeAttr('style');
     })
   </script>
+  <script type="text/javascript">
+    function search(){
+      $.ajaxSetup({
+        headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      }); 
+      $.ajax({
+        type: 'post',
+        url: '/admin/queries/service-area-search',
+        data: {
+            'intSA_ServType_ID':$('#intSA_ServType_ID').val(),
+            'strServAreaName':$('#strServAreaName').val(),
+            'txtServAreaDesc':$('#txtServAreaDesc').val(),
+        },
+        success: function(data){
+
+            $('#serv-list').html(data)
+        }
+      });
+    }
+  </script>
+
 @endsection

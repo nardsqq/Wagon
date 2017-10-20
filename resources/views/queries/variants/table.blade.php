@@ -17,6 +17,10 @@
       {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
     </div>
   </div>
+  <br>
+  <div class="row">
+    <button type="button" id="go" onclick="search()" class="btn btn-success col-xs-12" name="button">GO</button>
+  </div>
 </form>
 
 <hr>
@@ -39,4 +43,3 @@
       </tr>
   </tbody>
 </table>
-

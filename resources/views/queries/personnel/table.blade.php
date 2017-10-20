@@ -18,11 +18,8 @@
   </div>
   <div class="row m-t-10">
     <div class="col-xs-4">
-      {!! Form::label('strPersFName', 'First Name') !!}
-      <select name="strPersFName" id="strPersFName" class="form-control">
-        <option value="Regular">Regular</option>
-        <option value="Contractual">Contractual</option>
-      </select>
+      {!! Form::label('strPersMName', 'First Name') !!}
+      {!! Form::text('strPersMName', null, ['id' => 'strPersFName', 'class' => 'form-control']) !!}
     </div>
     <div class="col-xs-4">
       {!! Form::label('strPersMName', 'Middle Name') !!}
@@ -31,6 +28,12 @@
     <div class="col-xs-4">
       {!! Form::label('strPersLName', 'Last Name') !!}
       {!! Form::text('strPersLName', null, ['id' => 'strPersLName', 'class' => 'form-control']) !!}
+    </div>
+  </div>
+  <div class="row">
+    <br>
+    <div class="col-xs-12">
+      <button type="button" id="go" onclick="search()" class="btn btn-success col-xs-12" name="button">GO</button>
     </div>
   </div>
 </form>
@@ -55,4 +58,3 @@
       </tr>
   </tbody>
 </table>
-

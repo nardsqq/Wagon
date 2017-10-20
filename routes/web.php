@@ -21,7 +21,7 @@ Route::group(['prefix' => 'admin'], function() {
   Route::group(['prefix' => 'maintenance'], function() {
 
   	Route::get('/', 'RouteController@maintenance');
-    
+
 
     // Product Building and Inventory
     Route::resource('supplier', 'SupplierController');
@@ -29,10 +29,10 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::resource('product-type', 'ProdTypeController');
     Route::get('product-type-table', 'ProdTypeController@table');
-    
+
     Route::resource('brand', 'BrandController');
     Route::resource('product', 'ProductController');
-    
+
     Route::resource('product-variant', 'VariantController');
     Route::get('product-variant-table', 'VariantController@table');
 
@@ -95,9 +95,12 @@ Route::group(['prefix' => 'admin'], function() {
   });
 
 Route::group(['prefix' => 'queries'], function() {
-    Route::get('personnel', 'RouteController@perz');
+    Route::get('personnel', 'Query@index');
+    Route::post('personnel-search', 'Query@search');
     Route::get('service-area', 'RouteController@servz');
+    Route::post('service-area-search', 'Query@searchservice');
     Route::get('product-variant', 'RouteController@varz');
+    Route::post('product-variant-search', 'Query@varzsearch');
 });
 
 });
