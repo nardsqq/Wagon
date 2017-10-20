@@ -101,3 +101,10 @@ Route::group(['prefix' => 'queries'], function() {
 });
 
 });
+
+//<------------- Earl :D  ----------------> ///
+
+Route::get('salesreport','ReportsController@index');
+Route::get('salesreport-pdf','ReportsController@salesReportPDF');
+
+// <----------------- end Earrl ---------------> //
