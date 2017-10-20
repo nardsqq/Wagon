@@ -51,10 +51,10 @@
   </thead>
   <tbody id="prod-list">
       <tr id="">
-        <td>Data</td>
-        <td>Data</td>
-        <td>Data</td>
-        <td>Data</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
   </tbody>
 </table>

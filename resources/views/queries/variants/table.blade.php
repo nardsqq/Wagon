@@ -36,10 +36,10 @@
   </thead>
   <tbody id="serv-list">
       <tr id="">
-        <td>Data</td>
-        <td>Data</td>
-        <td>Data</td>
-        <td>Data</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
   </tbody>
 </table>
