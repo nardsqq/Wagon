@@ -93,13 +93,7 @@
                   <a href="{{ url('/admin/transactions/stocks') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Stocks</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/transactions/receive-deliveries') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Receive Deliveries</a>
-                </li>
-                <li>
-                  <a href="{{ url('/admin/transactions/deductions') }}"><i class="fa fa-level-down fa-fw" aria-hidden="true"></i>&nbsp; Deductions</a>
-                </li>
-                <li>
-                  <a href="{{ url('/admin/transactions/return-deliveries') }}"><i class="fa fa-mail-forward fa-fw" aria-hidden="true"></i>&nbsp; Return Deliveries</a>
+                  <a href="{{ url('/admin/transactions/receive-items') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Receive Items</a>
                 </li>
               </ul>
             </li>
@@ -139,7 +133,14 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-question fa-fw" aria-hidden="true"></i>&nbsp; Queries</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-question fa-fw" aria-hidden="true"></i>&nbsp; Queries <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a></li>
+            <li><a href="#"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Services</a></li>
+            <li><a href="#"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Variants</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i>&nbsp; Reports <span class="caret"></span></a>
           <ul class="dropdown-menu">

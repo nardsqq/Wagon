@@ -5,7 +5,7 @@
         <h4 id="title">Add New Brand</h4>
       </div>
       <div class="modal-body">
-        <form id="formBrand">
+        <form id="formBrand" data-parsley-validate>
           <div class="form-group">
             <label for="strBrandName">Brand Name</label>
             <input type="text" id="strBrandName" name="strBrandName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
