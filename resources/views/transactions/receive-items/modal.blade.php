@@ -54,7 +54,7 @@
               </thead>
               <tbody>
                 <template>
-                  <item-line :item="item" :index="index" v-for="(item, index) in selected" :key="index" @remove-item="removeSelected(index)"></item-line>
+                  <item-line :item="item" :index="index" v-for="(item, index) in selected" :key="item.intVarID" @remove-item="removeSelected(index)"></item-line>
                 </template>
               </tbody>
             </table>
@@ -69,7 +69,7 @@
         {!! Form::close() !!}
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-default pull-left" data-dismiss="modal" @click="selected = []" >Cancel</button>
         <button id="btn-save" value="add" class="modal-btn btn btn-success pull-right">Submit</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>

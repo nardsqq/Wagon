@@ -56,7 +56,7 @@ class ReceiveDeliveryController extends Controller
     {
         $header = new ReceiveHeader;
 
-        $header->intRecDelPONum = trim($request->intRecDelPONum);
+        $header->intRecDelPONum = trim($request->strPONumber);
         $header->intRecDelDtmRec = $request->intRecDelDtmRec;
         $header->intRD_Supp_ID = $request->intS_Supp_ID;
         $header->save();

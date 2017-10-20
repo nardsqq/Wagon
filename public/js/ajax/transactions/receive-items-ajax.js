@@ -45,6 +45,7 @@ $(document).ready(function() {
       success:function(data) {
         console.log(data);
         $('#add_rec').modal('hide');
+        receive_vue.selected = [];
         loadTable();
       
         if (state == "add") { 

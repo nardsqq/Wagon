@@ -78,7 +78,7 @@
       props: ['item', 'index'],
       data() {
         return {
-          qty: 0,
+          qty: 1,
           total: 0,
         }
       },
@@ -115,18 +115,20 @@
       `
     };
     Vue.component('item-line', itemLine)
-    new Vue({
+    var receive_vue = new Vue({
       el: '#add_rec',
       data: {
         selected: [],
-        item: {},
         variants: {!! $variants !!}
       },
       computed: {
         total(){
             var sum = 0;
-            if(this.$children.length > 0)
-              _.forEach(this.$children, function(p){ sum += (p.total); });
+            console.log(this.selected);
+            _.forEach(this.$children, function(p){ 
+              sum += (p.total); 
+              console.log(sum, p.total);
+            });
             return sum;
         }
       }, 
