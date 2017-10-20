@@ -60,4 +60,9 @@ class RouteController extends Controller
     {
       return view('queries.personnel.index');
     }
+
+    public function servz()
+    {
+      return view('queries.service-area.index');
+    }
 }
