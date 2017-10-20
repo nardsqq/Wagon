@@ -11,22 +11,24 @@
     </tr>
   </thead>
   <tbody id="stock-list">
+    @foreach($variants as $variant)
     <tr id="#">
-        <td>PARTNUMSAMPLE001</td>
+        <td>{{$variant->strVarPartNum}}</td>
         <td class="text-center">Supplier Name</td>
-        <td class="text-center">Brand Product Name - Product Model</td>
-        <td class="text-center">10</td>
+        <td class="text-center">{{$variant->brands->strVarPartNumBrand}} - {{ $variant->strVarModel}}</td>
+        <td class="text-center">{{$variant->intVarReStockLevel}}</td>
         <td class="text-center">0</td>
-        {{-- @if($stock->intQuantity > $stock->variants->intVarReStockLevel)
+        @if($variant->intVarQty > $variant->intVarReStockLevel)
           <td class="text-center"><span class="label label-default">Normal</span></td>
-        @elseif($stock->intQuantity <= $stock->variants->intVarReStockLevel && $stock->intQuantity > 0)
+        @elseif($variant->intVarQty <= $stock->intVarReStockLevel && $variant->intVarReStockLevel > 0)
           <td class="text-center"><span class="label label-warning">Needs Re-Stock</span></td>
-        @elseif($stock->intQuantity == 0) --}}
+        @elseif($variant->intVarQty == 0)
           <td class="text-center"><span class="label label-danger">Out of Stock</span></td>
-        {{-- @endif --}}
+        @endif
         <td class="text-center">
           <a href="#" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; Details</a>
         </td>
     </tr>
+    @endforeach
   </tbody>
 </table>
