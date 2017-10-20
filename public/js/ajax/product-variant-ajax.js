@@ -13,6 +13,7 @@ $(document).ready(function() {
   var id = '';
 
   loadTable();
+  computeRetailPrice();
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
@@ -34,6 +35,7 @@ $(document).ready(function() {
         formEditVar.find('#strVarHandle').val(data.strVarHandle);
         formEditVar.find('#intVarReStockLevel').val(data.intVarReStockLevel);
         formEditVar.find('#txtVarDesc').val(data.txtVarDesc);
+
 
         $('#edit_prodvar').modal('show');
       }
@@ -206,6 +208,20 @@ $(document).ready(function() {
     })
   } // function loadTable() {}
 }); // $(document).ready(function() {});
+
+  function computeRetailPrice() {
+    var mp = parseFloat($('input[name=decMarkedUpPrice]').val());
+    var ic = parseFloat($('input[name=decInventoryCost]').val());
+    $('input[name=retailPrice]').val((mp + ic).toFixed(2));
+  }
+
+  $('input[name=decMarkedUpPrice], input[name=decInventoryCost]').on('blur', function(e) {
+    computeRetailPrice();
+  });
+
+  $('#retailPrice').focusin(function(){
+    computeRetailPrice();
+  });
 
 // Steps 
 function addAttrib(attribId='', attribDesc=''){
