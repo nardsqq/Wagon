@@ -40,6 +40,7 @@ class Variant extends Model
     }
 
     public function getCurrentStockAttribute(){
-      return \DB::table('tblRecDelDetails')->selectRaw("SUM(intRecDelDetQty) as stock")->where('intRDD_Var_ID', $this->intVarID)->groupBy('intrdd_var_id')->pluck('stock')->first() ?: 0;
+      return 
+        (\DB::table('tblRecDelDetails')->selectRaw("SUM(intRecDelDetQty) as stock")->where('intRDD_Var_ID', $this->intVarID)->groupBy('intrdd_var_id')->pluck('stock')->first() ?: 0) - (\DB::table('tblSODetailsProduct')->selectRaw("SUM(intQuotDPQuantity) as stock")->where('intSODP_Var_ID', $this->intVarID)->groupBy('intSODP_Var_ID')->pluck('stock')->first() ?: 0);
     }
 }
