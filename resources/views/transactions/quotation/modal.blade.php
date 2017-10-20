@@ -27,7 +27,7 @@
             </div>
             <div class="col-xs-6">
               <label for="dtmQuotHeadDateTime">Date</label>
-              <input type="date" name="dtmQuotHeadDateTime" id="dtmQuotHeadDateTime" class="form-control">
+              <input type="date" name="dtmQuotHeadDateTime" id="dtmQuotHeadDateTime" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
@@ -93,8 +93,8 @@
                     <input hidden readonly name="products[]" :value="product.intVarID">
                     @{{ product.full_detail }}
                   </td>
-                  <td class="text-center"><input type="number" min="0" v-model.number="product.qty" name="qty[]"></td>
-                  <td class="text-center"><input type="number" min="0" v-model.number="product.price" name="price[]"></td>
+                  <td class="text-center"><input class="form-control" type="number" min="0" v-model.number="product.qty" name="qty[]"></td>
+                  <td class="text-center"><input class="form-control" type="number" min="0" v-model.number="product.price" name="price[]"></td>
                   <td class="text-center">@{{ (product.qty * product.price).toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</td>
                   <td class="text-center">
                       <button type="button"  @click="removeProduct(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
