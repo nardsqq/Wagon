@@ -5,17 +5,16 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_vehireq').on('hide.bs.modal', function() {
-    $('#formVehiReq').trigger('reset');
+  $('#add_rec').on('hide.bs.modal', function() {
+    $('#formReceive').trigger('reset');
   });
 
-  var url = "/admin/transactions/vehicle-request";
+  var url = "/admin/transactions/receive-items";
   var id = '';
 
   loadTable(); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add Client Record');
     $('#rec-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formReceive').trigger("reset");
     $('#btn-save').text('Submit');
