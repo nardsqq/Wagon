@@ -38,4 +38,8 @@ class Variant extends Model
     public function getFullDetailAttribute(){
       return $this->products->strProdName.' '.$this->brands->strBrandName.' '.$this->strVarModel.' '.$this->strVarPartNum;
     }
+
+    public function getCurrentStockAttribute(){
+      return \DB::table('tblRecDelDetails')->selectRaw("SUM(intRecDelDetQty) as stock")->where('intRDD_Var_ID', $this->intVarID)->groupBy('intrdd_var_id')->pluck('stock')->first() ?: 0;
+    }
 }
