@@ -28,7 +28,7 @@ class Quotation extends Model
 
     public function products()
     {
-      return $this->hasMany('App\QuotationProduct', 'intQDS_QuotH_ID');
+      return $this->hasMany('App\QuotationProduct', 'intQDP_QuotH_ID');
     }
 
     public function client(){
@@ -42,10 +42,10 @@ class Quotation extends Model
     public function getTypeAttribute(){
         $types = ['Product', 'Service', 'Product & Service'];
         $index = 0;
-        if($this->services !== null && $this->products === null){
-            $index = 0;
-        } else if($this->services === null && $this->products !== null){
+        if($this->services->count() > 0 && $this->products->count() <= 0){
             $index = 1;
+        } else if($this->services->count() <= 0 && $this->products->count() > 0){
+            $index = 0;
         } else {
             $index = 2;
         }
