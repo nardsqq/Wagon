@@ -65,4 +65,9 @@ class RouteController extends Controller
     {
       return view('queries.service-area.index');
     }
+
+    public function varz()
+    {
+      return view('queries.variants.index');
+    }
 }
