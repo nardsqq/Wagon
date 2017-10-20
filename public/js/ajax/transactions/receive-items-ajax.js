@@ -14,6 +14,20 @@ $(document).ready(function() {
 
   loadTable(); 
 
+  $('#table-container').on('click', '.show-details',function(e){
+    $.ajax({
+      type: 'get',
+      url: url + '/' + $(this).data('id'),
+      dataType: 'html',
+      success:function(data)
+      {
+        $('#show-details').html(data);
+        $('#show-details').modal('show');
+      }
+    });
+  });
+
+
   $('#btn-add').on('click', function(event) {
     $('#rec-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formReceive').trigger("reset");

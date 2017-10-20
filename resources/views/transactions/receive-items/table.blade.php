@@ -16,7 +16,7 @@
         <td>{{ $header->intRecDelDtmRec->format('F d, Y')}}</td>
         <td>{{$header->details->count() }}</td>
         <td class="text-center">
-            <a href="#" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; Details</a>
+            <a href="#" data-id="{{$header->intRecDelID}}" class="btn btn-sm btn-default show-details"><i class='fa fa-circle-o'></i>&nbsp; Details</a>
         </td>
     </tr>
     @endforeach

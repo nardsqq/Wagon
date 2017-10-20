@@ -83,7 +83,7 @@ class ReceiveDeliveryController extends Controller
     public function show($id)
     {
         $header = ReceiveHeader::findOrFail($id);
-        return view('transaction.receive-item.show', compact('header'));
+        return view('transactions.receive-items.show', compact('header'));
     }
 
     /**

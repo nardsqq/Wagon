@@ -16,4 +16,8 @@ class ReceiveDetail extends Model
     public function header(){
         return $this->belongsTo('App\ReceiveHeader', 'intRDD_Head_ID');
     }
+
+    public function variant(){
+        return $this->belongsTo('App\Variant', 'intRDD_Var_ID');
+    }
 }

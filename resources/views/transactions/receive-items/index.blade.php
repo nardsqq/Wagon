@@ -26,6 +26,7 @@
   </section>
 
   @include('transactions.receive-items.modal')
+  <div class="modal-dialog modal-lg" id="show-details"></div>
 
   <section id="main">
     <div class="container animated fadeIn">
