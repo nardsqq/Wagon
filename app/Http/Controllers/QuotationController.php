@@ -8,11 +8,7 @@ use App\QuotationProduct;
 use App\QuotationService;
 use App\Client;
 use App\Personnel;
-use App\ProductType;
-use App\Product;
-use App\Brand;
-// use App\Dimensions;
-use App\ServiceType;
+use App\Variant;
 use App\ServiceArea;
 
 class QuotationController extends Controller 
@@ -33,15 +29,11 @@ class QuotationController extends Controller
         $quotations = Quotation::all();
         $clients = Client::all();
         $personnels = Personnel::all();
-        $product_types = ProductType::with('products.variants.brands')->get();
-        $products = Product::all();
-        $brands = Brand::all();
-        $dimensions = [];//Dimensions::all();
-        // $service_types = ServiceType::all();
+        $variants = Variant::all();
         $service_areas = ServiceArea::all();
         return view('transactions.quotation.index', compact(
             'quotations', 'clients', 'personnels', 
-            'product_types', 'products', 'brands', 'dimensions',
+            'variants', 
             'service_areas'
         ));
     }
@@ -72,6 +64,7 @@ class QuotationController extends Controller
 
             $quotation->intQH_Client_ID = trim($request->intClientID);
             $quotation->intQH_Pers_ID = trim($request->intQH_Pers_ID);
+            $quotation->strClientAssoc = trim($request->strClientAssoc);
             $quotation->strQuotHeadLocation = trim($request->strQuotHeadLocation);
             $quotation->dtmQuotHeadDateTime = $request->dtmQuotHeadDateTime;
             $quotation->save();
@@ -80,7 +73,7 @@ class QuotationController extends Controller
                 for($i=0; $i<count($request->products); $i++){
                     QuotationProduct::create([
                         'intQDP_QuotH_ID' => $quotation->intQuotHeadID,
-                        'intQDP_Prod_ID' => $request->products[$i],
+                        'intQDP_Var_ID' => $request->products[$i],
                         'decQuotDPUnitPrice' => $request->price[$i],
                         'intQuotDPQuantity' => $request->qty[$i],
                     ]);

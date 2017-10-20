@@ -114,54 +114,48 @@
     new Vue({
         el: '#add_quotation',
         data: {
-            categories: ['General','Consumables', 'Machineries', 'Equipment'],
-            category: 'General', 
-            prodtypes: {!! $product_types !!},
-            prodtype: {},
-            product: {},
-            brands: {!! $brands !!},
-            brand: {},
+            product: {!! $variants->count() > 0 ? $variants->first() : null !!},
             products: [],
+            variants: {!! $variants !!},
             service_areas: {!! $service_areas !!},
             services: [],
             service: {},
-            qty:0,
             isProduct: true,
         },
         computed: {
-            f_prodtypes(){
-                return _.filter(this.prodtypes, (type)=>{
-                    return type.strProdCateg === this.category;
-                });
-            },
-            f_brands(){
-                return _.filter(this.brands, (brand)=>{
-                    return _.includes(_.map(this.product.variants, _.property('intV_Brand_ID')), brand.intBrandID);
-                });
-            },
             subtotal(){
                 var sum = 0;
                 _.forEach(this.products, function(p){ sum += (p.qty * p.price); });
                 _.forEach(this.services, function(s){ sum += (s.price); });
                 return sum;
+            },
+            f_variants: function(){
+               return _.filter(this.variants, (variant)=>{
+                    return !_.find(this.products, {'intVarID': variant.intVarID});
+                }); 
             }
         },
         methods: {
             addProduct(){
                 // validate
-                var product = Object.assign({}, this.product);
-                $.extend(product, { price: 0 });
-                $.extend(product, { qty: this.qty });
-                this.products.push(product);
+                if(!_.isEmpty(this.product)){
+                  var product = Object.assign({}, this.product);
+                  $.extend(product, { price: 0 });
+                  $.extend(product, { qty: 1 });
+                  this.products.push(product);
+                  this.product = this.f_variants.length > 0 ? this.f_variants[0] : null;
+                }
             },
             removeProduct(index){
                 this.products.splice(index, 1);
             },
             addService(){
                 // validate
-                var service = Object.assign({}, this.service);
-                $.extend(service, { price: 0 });
-                this.services.push(service);
+                if(!_.isEmpty(this.service)){
+                  var service = Object.assign({}, this.service);
+                  $.extend(service, { price: 0 });
+                  this.services.push(service);
+                }
             },
             removeService(index){
                 this.services.splice(index, 1);

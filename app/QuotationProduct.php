@@ -20,7 +20,7 @@ class QuotationProduct extends Model
         return $this->belongsTo('App\Quotation', 'intQDP_QuotH_ID');
     }
 
-    public function product(){
-        return $this->belongsTo('App\Product', 'intQDP_Prod_ID');
+    public function variant(){
+        return $this->belongsTo('App\Variant', 'intQDP_Var_ID');
     }
 }

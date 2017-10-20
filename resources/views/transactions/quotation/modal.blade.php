@@ -4,8 +4,8 @@
       <div class="modal-header modal-header-primary" id="quotation-modal-header">
         <h4 id="title">Create Quotation</h4>
       </div>
+      <form id="formQuotation" method="POST">
       <div class="modal-body">
-        <form id="formQuotation">
           <div class="row">
     
             <div class="col-xs-6">
@@ -33,10 +33,10 @@
           </div>
           <div class="row m-t-10">
               <div class="col-xs-6">
-                <label for="intPersID">Agent</label>
-                <select name="intPersID" id="intPersID" class="form-control">
-                  @foreach ($clients as $client)
-                    <option value="{{$client->intClientID}}">{{ $client->strClientName }}</option>
+                <label for="intQH_Pers_ID">Agent</label>
+                <select name="intQH_Pers_ID" id="intQH_Pers_ID" class="form-control">
+                  @foreach ($personnels as $person)
+                    <option value="{{$person->intPersID}}">{{ $person->strPersFName }} {{ $person->strPersLName }}</option>
                   @endforeach
                 </select>
               </div>
@@ -46,7 +46,6 @@
            
             
           </div>
-        </form>
         <hr>
         <div class="btn-group" role="group" aria-label="...">
           <a href="#" class="btn btn-primary" id="btn-prod" @click="isProduct = true">Products</a>
@@ -60,47 +59,18 @@
           <div id="content-a"  v-show="isProduct">
 
             <div class="row m-t-10">
-              <div class="col-xs-6">
-                <label for="category">Category</label>
-                  <select v-model="category" id="category" class="form-control">
-                    <option v-for="(cat,index) in categories" :key="index">@{{cat}}</option>
+              <div class="form-group">
+                <label class="col-lg-3">
+                  Product:
+                </label>
+                <div class="col-lg-7">
+                  <select v-model="product" name="product" class="form-control">
+                    <option v-for="(variant, index) in f_variants" :key="variant.intVarID" :value="variant">@{{ variant.full_detail }}</option>
                   </select>
-              </div>
-              
-              <div class="col-xs-6">
-                <label for="intProdTypeID">Type</label>
-                <select v-model="prodtype" class="form-control">
-                  <option :value="ptype" v-for="(ptype,index) in f_prodtypes" :key="index">@{{ptype.strProdTypeName}}</option>
-                </select>
-              </div>
-            </div><!--end row-->
-
-            <div class="row m-t-10">
-              <div class="col-xs-6">
-                <label for="prodsearch">Product Search</label>
-                <select v-model="product" class="form-control">
-                  <option :value="prod" v-for="(prod,index) in prodtype.products" :key="index">@{{prod.strProdName}}</option>
-                </select>
-              </div>
-              
-               <div class="col-xs-6">
-                <label for="intBrandID">Brand</label>
-                <select v-model="brand" class="form-control">
-                  <option :value="br" v-for="(br,index) in f_brands" :key="index">@{{br.strBrandName}}</option>
-                </select>
-              </div>
-            </div><!--end row-->
-
-            <div class="row m-t-10">
-
-              <div class="col-xs-6">
-                <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" v-model.number="qty" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" step="01" min="01" required>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-             </div>
-
-              <div class="col-xs-6">
-                <button class="btn btn-success pull-right m-t-30" @click="addProduct">Add Product</button>
+                </div>
+                <div class="col-lg-2">
+                  <button type="button" class="btn btn-success pull-right m-t-30" @click="addProduct">Add Product</button>
+                </div>
               </div>
             </div><!--end row-->
 
@@ -120,45 +90,51 @@
                 <tr v-for="(product, index) in products" :key="index">
                   <td class="text-center">@{{ index + 1 }}</td>
                   <td class="text-center">
-                    <input hidden readonly name="products[]" :value="product.intProdID">
-                    @{{ product.strProdName }}
+                    <input hidden readonly name="products[]" :value="product.intVarID">
+                    @{{ product.full_detail }}
                   </td>
                   <td class="text-center"><input type="number" min="0" v-model.number="product.qty" name="qty[]"></td>
                   <td class="text-center"><input type="number" min="0" v-model.number="product.price" name="price[]"></td>
                   <td class="text-center">@{{ (product.qty * product.price).toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</td>
                   <td class="text-center">
-                      <button @click="removeProduct(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
+                      <button type="button"  @click="removeProduct(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
                   </td>
                 </tr>
               </tbody>
               </table>
             </div>
             <div id="content-b"  v-show="!isProduct">
-              <div class="row">
+              <div class="row m-t-10 m-b-10">
                 <div class="col-xs-6">
-                  <label for="servsearch">Service Search</label>
-                  <select id="servsearch" class="form-control">
-                      <option>Ship Single GENSET Repair</option>
-                      <option>GENSET Installation</option>
-                      <option>Ship Equipment Overhauling</option>
+                  <label for="servsearch">Service</label>
+                  <select v-model="service" class="form-control">
+                    <option :value="serv" v-for="(serv,index) in service_areas" :key="index">@{{serv.strServAreaName}}</option>
                   </select>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </div>
+                <div class="col-xs-6">
+                  <button type="button"  class="btn btn-success pull-right m-t-30" @click="addService">Add Service</button>
                 </div>
               </div>
               <table class="table table-hover table-condensed table-bordered table-responsive">
                 <thead>
                   <tr>
+                    <th class="text-center">#</th>
                     <th class="text-center">Service</th>
                     <th class="text-center">Service Fee</th>
                     <th class="text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-center">Ship Equipment Overhauling</td>
-                    <td class="text-center"><input type="text" name="test2"></td>
+                  <tr v-for="(service, index) in services" :key="index">
+                    <td class="text-center">@{{ index + 1 }}</td>
                     <td class="text-center">
-                        <button class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
+                      <input hidden readonly name="services[]" :value="service.intServAreaID">
+                      @{{ service.strServAreaName }}
+                    </td>
+                    <td class="text-center"><input type="number" min="0" v-model.number="service.price" name="serviceprice[]"></td>
+                    <td class="text-center">
+                        <button type="button"  @click="removeService(index)" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button>
                     </td>
                   </tr>
                 </tbody>
@@ -167,15 +143,15 @@
           </div>
           <hr>
           <div>
-            <h4>SUBTOTAL: <small>@{{ subtotal.toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</small></h4>
-            <h4>TAX RATE: <small>0.00</small></h4>
+            <h4>TOTAL: <small>@{{ subtotal.toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2}) }}</small></h4>
+            <!--h4>TAX RATE: <small>0.00</small></h4>
             <h4>SALES TAX:  <small>0.00</small></h4>
-            <h4>OTHER:  <small>-</small></h4>
+            <h4>OTHER:  <small>-</small></h4-->
           </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-        <button id="btn-save" value="add" class="modal-btn btn btn-primary pull-right">Submit</button>
+        <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button type="button"  id="btn-save" value="add" class="modal-btn btn btn-primary pull-right">Submit</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
@@ -199,9 +175,10 @@
           </h5>
         </center>
       </div>
+      </form>
       <div class="modal-footer">
-        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
-        <button id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Brand</button>
+        <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Cancel, Keep Data</button>
+        <button type="button"  id="btn-del-confirm" value="add" class="modal-btn btn btn-danger pull-right">Confirm, Delete Brand</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>
