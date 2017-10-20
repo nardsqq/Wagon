@@ -36,7 +36,7 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong> Manage your <i>Client's Sales Orders</i> here.</strong>
+            <strong> Manage your <i>Sales Orders</i> here.</strong>
             <br>
             <small>Add and manage <i><b>Sales Order</b></i>.</small>
           </div>  
@@ -60,4 +60,8 @@
     </div>
    
   </section>
+@endsection
+
+@section('scripts')
+  <script src="{{ asset('/js/ajax/transactions/sales-order-ajax.js/') }}"></script>
 @endsection

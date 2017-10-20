@@ -1,11 +1,11 @@
-<div class="modal fade" id="add_quotation" role="dialog">
+<div class="modal fade" id="add_so" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header modal-header-primary" id="quotation-modal-header">
+      <div class="modal-header modal-header-primary" id="so-modal-header">
         <h4 id="title">Create Quotation</h4>
       </div>
       <div class="modal-body">
-        <form id="formQuotation">
+        <form id="formSO">
           <div class="row">
     
             <div class="col-xs-6">
