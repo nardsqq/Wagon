@@ -2,7 +2,6 @@
   <thead>
     <tr>
       <th>Part Number</th>
-      <th class="text-center">Supplier</th>
       <th class="text-center">Product</th>
       <th class="text-center">Re-Stock Level</th>
       <th class="text-center">Quantity</th>
@@ -14,7 +13,6 @@
     @foreach($variants as $variant)
     <tr id="#">
         <td>{{$variant->strVarPartNum}}</td>
-        <td class="text-center">Supplier Name</td>
         <td class="text-center">{{$variant->brands->strVarPartNumBrand}} - {{ $variant->strVarModel}}</td>
         <td class="text-center">{{$variant->intVarReStockLevel}}</td>
         <td class="text-center">{{ $variant->intVarQty }}</td>
