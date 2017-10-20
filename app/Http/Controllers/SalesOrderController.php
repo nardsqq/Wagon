@@ -16,7 +16,8 @@ class SalesOrderController extends Controller
      */
     public function index()
     {
-        //
+        $headers = SalesOrder::all();
+        return view('transactions.sales-order.index', compact('headers'));
     }
 
     /**
@@ -58,6 +59,8 @@ class SalesOrderController extends Controller
                 ]);
             }
         }
+
+        return response()->redirect('sales-order.index');
     }
 
     /**
