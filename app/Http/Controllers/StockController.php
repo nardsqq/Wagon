@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Stock;
+
 use App\Supplier;
 use App\Variant;
 
@@ -13,9 +13,8 @@ class StockController extends Controller
     {
         $variants = Variant::orderBy('strVarModel')->get();
         $suppliers = Supplier::orderBy('strSuppName')->get();
-        $stocks = Stock::orderBy('strPONumber')->get();
 
-        return view('transactions.inventory.table')->with('variants', $variants)->with('suppliers', $suppliers)->with('stocks', $stocks);
+        return view('transactions.inventory.table')->with('variants', $variants)->with('suppliers', $suppliers);
     }
 
     /**
@@ -27,9 +26,8 @@ class StockController extends Controller
     {
         $variants = Variant::orderBy('strVarModel')->get();
         $suppliers = Supplier::orderBy('strSuppName')->get();
-        $stocks = Stock::orderBy('strPONumber')->get();
 
-        return view('transactions.inventory.index')->with('variants', $variants)->with('suppliers', $suppliers)->with('stocks', $stocks);
+        return view('transactions.inventory.index')->with('variants', $variants)->with('suppliers', $suppliers);
     }
 
     /**
@@ -50,25 +48,7 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->ajax()) {
-
-            $variant = Variant::find($request->intS_Var_ID);
-            $supplier = Supplier::find($request->intS_Supp_ID);
-            $stock = new Stock;
-
-            $stock->variants()->associate($variant);
-            $stock->suppliers()->associate($supplier);
-            $stock->strEntryType = $request->strEntryType;
-            $stock->strPONumber = $request->strPONumber;
-            $stock->intQuantity = $request->intQuantity;
-            $stock->decInventCost = $request->decInventCost;
-            $stock->dtmAcquisition = $request->dtmAcquisition;
-
-            $stock->save();
-            return response()->json($stock);
-        } else {
-            return redirect(route('stock.index'));
-        }
+        //
     }
 
     /**
