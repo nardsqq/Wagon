@@ -78,11 +78,15 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('receive-items', 'ReceiveDeliveryController');
     Route::get('receive-items-table', 'ReceiveDeliveryController@table');
 
+    // Sales Order
+    Route::resource('sales-order', 'SalesOrderController');
+    Route::get('sales-order-table', 'SalesOrderController@table');
+
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');
     Route::name('quotation-report')->get('quotation-report/{id}', 'PDFController@quote');
     Route::get('quotation-table', 'QuotationController@table');
-    Route::get('sales-order', 'RouteController@salesorder');
+    // Route::get('sales-order', 'RouteController@salesorder');
     Route::get('invoice', 'RouteController@invoice');
 
     Route::resource('vehicle-request', 'VehicleRequestController');

@@ -64,4 +64,5 @@
 
 @section('scripts')
   <script src="{{ asset('/js/ajax/transactions/sales-order-ajax.js/') }}"></script>
+
 @endsection

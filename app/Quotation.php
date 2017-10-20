@@ -12,6 +12,7 @@ class Quotation extends Model
     protected $table = 'tblQuotationHeader';
     protected $guarded = [];
     protected $primaryKey = 'intQuotHeadID';
+    protected $dates = ['dtmQuotHeadDateTime'];
     public $timestamps = false;
 
     public static $rules = [
