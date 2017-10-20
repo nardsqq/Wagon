@@ -94,4 +94,8 @@ Route::group(['prefix' => 'admin'], function() {
 
   });
 
+Route::group(['prefix' => 'queries'], function() {
+    Route::get('personnel', 'RouteController@perz');
+});
+
 });

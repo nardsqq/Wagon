@@ -55,4 +55,9 @@ class RouteController extends Controller
     {
       return view('transactions.receive-items.index');
     }
+
+    public function perz()
+    {
+      return view('queries.personnel.index');
+    }
 }
