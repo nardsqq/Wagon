@@ -13,6 +13,7 @@ class Variant extends Model
     protected $fillable = ['intV_Supp_ID', 'intV_Brand_ID', 'intV_Prod_ID', 'strVarPartNum','strVarModel', 'strVarHandle', 'intVarReStockLevel', 'txtVarDesc'];
     protected $primaryKey = 'intVarID';
     protected $dates = ['deleted_at'];
+    protected $appends = ['full_detail'];
     public $timestamps = false;
 
     public function products() 
@@ -33,4 +34,8 @@ class Variant extends Model
       'strVarModel' => 'required|max:45',
       'intVarReStockLevel' => 'required'
     ];
+
+    public function getFullDetailAttribute(){
+      return $this->products->strProdName.' '.$this->brands->strBrandName.' '.$this->strVarModel.' '.$this->strVarPartNum;
+    }
 }

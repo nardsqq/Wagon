@@ -74,9 +74,11 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('job-order/{id}/checklist', 'JobOrderController@getChecklist');
     Route::put('job-order/{id}/checklist', 'JobOrderController@updateChecklist');
 
+    // Receive Deliveries
+    Route::resource('receive-items', 'ReceiveDeliveryController');
+    Route::get('receive-items-table', 'ReceiveDeliveryController@table');
 
     // Temporary Routes
-    Route::get('receive-items', 'RouteController@receive');
     Route::resource('quotation', 'QuotationController');
     Route::name('quotation-report')->get('quotation-report/{id}', 'PDFController@quote');
     Route::get('quotation-table', 'QuotationController@table');

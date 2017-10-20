@@ -71,4 +71,78 @@
   </script>
 
   <script src="{{ asset('/js/ajax/transactions/receive-items-ajax.js/') }}"></script>
+  
+  <script src="{{ asset('/js/vue.js/') }}"></script>
+  <script>
+    var itemLine = {
+      props: ['item', 'index'],
+      data() {
+        return {
+          qty: 0,
+          total: 0,
+        }
+      },
+      computed: {
+        inventory_cost: function(){
+          return this.total / this.qty;
+        }
+      },
+      methods: {
+        removeItem: function(){
+          this.$emit('remove-item', this.index);
+        }
+      },
+      template: `
+        <tr>
+          <td class="text-center"><button type="button" @click="removeItem()" class="btn btn-danger btn-xs"><i class='fa fa-times'></i></button></td>
+          <td class="text-center">@{{ index + 1 }}</td>
+          <td class="text-center">
+            <input hidden readonly name="items[]" :value="item.intVarID">
+            @{{ item.full_detail }}
+          </td>
+          <td class="text-center">
+            <input type="number" min="0" v-model.number="total" class="form-control" name="total[]">
+          </td>
+          <td class="text-center">
+            <input type="number" min="0" v-model.number="qty" class="form-control" name="qty[]">
+          </td>
+          <td class="text-center">
+            <input name="inventory_cost[]" readonly :value="inventory_cost">
+            <span>Current Inventory Cost: @{{ item.decInventoryCost }}</span>
+          </td>
+        </tr>
+      `
+    };
+    Vue.component('item-line', itemLine)
+    new Vue({
+      el: '#add_rec',
+      data: {
+        selected: [],
+        item: {},
+      },
+      computed: {
+        total(){
+            var sum = 0;
+            _.forEach(this.$children.itemLine, function(p){ sum += (p.total); });
+            return sum;
+        }
+      }, 
+      mounted(){
+        this.$on('remove-item', (e) => { this.removeSelected(e.index);} );
+      },
+      methods: {
+        addProduct(){
+            // validate
+            var item = Object.assign({}, this.item);
+            $.extend(item, { price: 0 });
+            $.extend(item, { qty: 0 });
+            $.extend(item, { total: 0 });
+            this.products.push(item);
+        },
+        removeSelected(index){
+            this.selected.splice(index, 1);
+        },
+      }
+    })
+  </script>
 @endsection
