@@ -14,7 +14,7 @@
         <td>{{$header->intRecDelPONum}}</td>
         <td>{{$header->supplier->strSuppName}}</td>
         <td>{{ $header->intRecDelDtmRec->format('F d, Y')}}</td>
-        <td>{{$header->details->count() }}</td>
+        <td>{{ $header->details->count() }}</td>
         <td class="text-center">
             <a href="#" data-id="{{$header->intRecDelID}}" class="btn btn-sm btn-default show-details"><i class='fa fa-circle-o'></i>&nbsp; Details</a>
         </td>
