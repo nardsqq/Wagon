@@ -1,0 +1,36 @@
+<form>
+  <div class="row">
+    <div class="col-xs-4">
+      {!! Form::label('intSA_ServType_ID', 'Service Type') !!}
+      {!! Form::text('intSA_ServType_ID', null, ['id' => 'intSA_ServType_ID', 'class' => 'form-control']) !!}
+    </div>
+    <div class="col-xs-4">
+      {!! Form::label('strServAreaName', 'Service') !!}
+      {!! Form::text('strServAreaName', null, ['id' => 'strServAreaName', 'class' => 'form-control']) !!}
+    </div>
+    <div class="col-xs-4">
+      {!! Form::label('txtServAreaDesc', 'Description') !!}
+      {!! Form::text('txtServAreaDesc', null, ['id' => 'txtServAreaDesc', 'class' => 'form-control']) !!}
+    </div>
+  </div>
+</form>
+
+<hr>
+
+<table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
+  <thead>
+    <tr>
+      <th>Service Type</th>
+      <th>Service Area</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody id="serv-list">
+      <tr id="">
+        <td>Data</td>
+        <td>Data</td>
+        <td>Data</td>
+      </tr>
+  </tbody>
+</table>
+
