@@ -64,4 +64,29 @@
         $('#dataTable').removeAttr('style');
     })
   </script>
+  <script type="text/javascript">
+    function search(){
+      $.ajaxSetup({
+        headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      }); 
+      $.ajax({
+        type: 'post',
+        url: '/admin/queries/personnel-search',
+        data: {
+            'strPersEmpType':$('#strPersEmpType').val(),
+            'intPers_Role_ID':$('#intPers_Role_ID').val(),
+            'strPersMobNo':$('#strPersMobNo').val(),
+            'strPersFName':$('#strPersFName').val(),
+            'strPersMName':$('#strPersMName').val(),
+            'strPersLName':$('#strPersLName').val(),
+        },
+        success: function(data){
+
+            $('#prod-list').html(data)
+        }
+      });
+    }
+  </script>
 @endsection

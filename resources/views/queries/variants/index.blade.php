@@ -64,4 +64,27 @@
         $('#dataTable').removeAttr('style');
     })
   </script>
+<script type="text/javascript">
+  function search(){
+    $.ajaxSetup({
+      headers: {
+       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
+    $.ajax({
+      type: 'post',
+      url: '/admin/queries/product-variant-search',
+      data: {
+          'strVarPartNum':$('#strVarPartNum').val(),
+          'intV_Brand_ID':$('#intV_Brand_ID').val(),
+          'intV_Prod_ID':$('#intV_Prod_ID').val(),
+          'strVarModel':$('#strVarModel').val(),
+      },
+      success: function(data){
+
+          $('#serv-list').html(data)
+      }
+    });
+  }
+</script>
 @endsection
