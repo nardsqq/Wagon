@@ -20,7 +20,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Receive Deliveries</li>
+        <li>Receive Items</li>
       </ol>
     </div>
   </section>
@@ -35,17 +35,17 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Mode of Payments</i> here.</strong>
+            <strong>Manage <i>Item Receiving</i> here.</strong>
             <br>
-            <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
+            <small>View Details of <i>Item Received</i>.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Receive Delivery</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Receive Item(s)</button>
               </div>
               <div class="panel-title">
-                <h4>Receive Deliveries</h4>
+                <h4>Receive Items</h4>
               </div>
             </div>
             <div class="panel-body">
