@@ -24,20 +24,15 @@
               </select>
             </div>
           </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('strVarPartNum', 'Part Number') !!}
-            {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
-              {!! Form::label('strVarModel', 'Product Model') !!}
-              {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
+              {!! Form::label('strVarPartNum', 'Part Number') !!}
+              {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strVarHandle', 'Handle') !!}
-              {!! Form::text('strVarHandle', null, ['id' => 'strVarHandle', 'class' => 'form-control']) !!}
+              {!! Form::label('strVarModel', 'Product Model') !!}
+              {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
@@ -53,18 +48,8 @@
           </div>
           <hr>
           <div class="form-group m-t-10">
-            {!! Form::label('devInventoryCost', 'Inventory Cost (Php)') !!}
-            {!! Form::number('devInventoryCost', null, ['id' => 'devInventoryCost', 'class' => 'form-control resize', 'placeholder' => '0.00']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('decMarkedUpPrice', 'Markup Price (Php)') !!}
-            {!! Form::number('decMarkedUpPrice', null, ['id' => 'decMarkedUpPrice', 'class' => 'form-control resize', 'placeholder' => '0.00']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('retailPrice', 'Computed Price (Php)') !!}
-            {!! Form::number('retailPrice', null, ['id' => 'retailPrice', 'class' => 'form-control resize', 'rows' => '0.00']) !!}
+            {!! Form::label('decInventoryCost', 'Inventory Cost (Php)') !!}
+            {!! Form::number('decInventoryCost', null, ['id' => 'decInventoryCost', 'class' => 'form-control resize', 'placeholder' => '0.00']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <hr>
@@ -110,20 +95,15 @@
               </select>
             </div>
           </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('strVarPartNum', 'Part Number') !!}
-            {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
-              {!! Form::label('strVarModel', 'Product Model') !!}
-              {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
+              {!! Form::label('strVarPartNum', 'Part Number') !!}
+              {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strVarHandle', 'Handle') !!}
-              {!! Form::text('strVarHandle', null, ['id' => 'strVarHandle', 'class' => 'form-control']) !!}
+              {!! Form::label('strVarModel', 'Product Model') !!}
+              {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
@@ -140,17 +120,7 @@
           <hr>
           <div class="form-group m-t-10">
             {!! Form::label('decInventoryCost', 'Inventory Cost (Php)') !!}
-            {!! Form::number('decInventoryCost', null, ['id' => 'decInventoryCost', 'class' => 'form-control', 'placeholder' => '0.00']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('decMarkedUpPrice', 'Markup Price (Php)') !!}
-            {!! Form::number('decMarkedUpPrice', null, ['id' => 'decMarkedUpPrice', 'class' => 'form-control', 'placeholder' => '0.00']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('retailPrice', 'Computed Price (Php)') !!}
-            {!! Form::number('retailPrice', null, ['id' => 'retailPrice', 'class' => 'form-control', 'placeholder' => '0.00', 'readonly', 'disabled']) !!}
+            {!! Form::number('decInventoryCost', null, ['id' => 'decInventoryCost', 'class' => 'form-control resize', 'placeholder' => '0.00']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form> 
