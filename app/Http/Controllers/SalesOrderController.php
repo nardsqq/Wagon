@@ -20,6 +20,11 @@ class SalesOrderController extends Controller
         return view('transactions.sales-order.index', compact('headers'));
     }
 
+    public function table()
+    {
+        $headers = SalesOrder::all();
+        return view('transactions.sales-order.table', compact('headers'));
+    }
     /**
      * Show the form for creating a new resource.
      *
