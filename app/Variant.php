@@ -32,7 +32,8 @@ class Variant extends Model
 
     public static $rules = [
       'strVarModel' => 'required|max:45',
-      'intVarReStockLevel' => 'required'
+      'intVarReStockLevel' => 'required',
+      'strVarPartNum' => 'required|max:45|unique:tblVariant',
     ];
 
     public function getFullDetailAttribute(){

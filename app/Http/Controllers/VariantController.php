@@ -65,9 +65,9 @@ class VariantController extends Controller
             $variant->products()->associate($product);
             $variant->strVarPartNum = trim(ucwords($request->strVarPartNum));
             $variant->strVarModel = trim(ucwords($request->strVarModel));
-            $variant->strVarHandle = trim(ucwords($request->strVarHandle));
             $variant->intVarReStockLevel = trim($request->intVarReStockLevel);
             $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
+            $variant->decInventoryCost = $request->decInventoryCost;
 
             $variant->save();
 
@@ -135,9 +135,9 @@ class VariantController extends Controller
             $variant->products()->associate($product);
             $variant->strVarPartNum = trim(ucwords($request->strVarPartNum));
             $variant->strVarModel = trim(ucwords($request->strVarModel));
-            $variant->strVarHandle = trim(ucwords($request->strVarHandle));
             $variant->intVarReStockLevel = trim($request->intVarReStockLevel);
             $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
+            $variant->decInventoryCost = $request->decInventoryCost;
 
             $variant->save();
 

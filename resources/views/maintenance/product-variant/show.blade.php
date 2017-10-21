@@ -72,8 +72,8 @@
 									</dl>
 
 									<dl>
-									   <dt>Handle</dt>
-									   <dd>{{ $variant->strVarHandle }}</dd>
+									   <dt>Inventory Cost</dt>
+									   <dd>{{ $variant->decInventoryCost }}</dd>
 									</dl>
 
 									<hr>

@@ -15,7 +15,7 @@
 @endsection
 
 @section('report_title')
-	Sales Reports
+	Stocks Report
 @endsection
 
 @section('content')

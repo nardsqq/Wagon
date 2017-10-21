@@ -35,6 +35,7 @@ $(document).ready(function() {
         formEditVar.find('#strVarHandle').val(data.strVarHandle);
         formEditVar.find('#intVarReStockLevel').val(data.intVarReStockLevel);
         formEditVar.find('#txtVarDesc').val(data.txtVarDesc);
+        formEditVar.find('#decInventoryCost').val(data.decInventoryCost);
 
 
         $('#edit_prodvar').modal('show');

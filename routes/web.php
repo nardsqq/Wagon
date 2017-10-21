@@ -111,7 +111,7 @@ Route::group(['prefix' => 'queries'], function() {
 
 //<------------- Earl :D  ----------------> ///
 
-Route::get('stocks-report','ReportsController@index');
-Route::get('stocks-report-pdf','ReportsController@salesReportPDF');
+Route::get('salesreport','ReportsController@index');
+Route::get('salesreport-pdf','ReportsController@salesReportPDF');
 
 // <----------------- end Earrl ---------------> //
