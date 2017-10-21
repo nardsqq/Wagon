@@ -34,7 +34,10 @@ class SalesOrderController extends Controller
     {
         if($request->has('quotation')){
             $quote = Quotation::with('products.variant')->findOrFail($request->quotation);
+            if($quote->intQuotHeadStatus === 1)
             return view('transactions.sales-order.modal', compact('quote'));
+            else
+            return back();
         }
     }
 
@@ -65,7 +68,11 @@ class SalesOrderController extends Controller
             }
         }
 
-        return response()->redirect('sales-order.index');
+        $quotation = Quotation::findOrFail($request->intSO_QuotH_ID);
+        $quotation->intQuotHeadStatus = 0;
+        $quotation->save();
+
+        return redirect()->route('sales-order.index');
     }
 
     /**

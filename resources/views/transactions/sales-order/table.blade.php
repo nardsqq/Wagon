@@ -13,7 +13,11 @@
       <td>{{ $so->strSalesOrderCPONumber }}</td>
       <td class="text-center">{{ $so->quote->client->strClientName }}</td>
       <td class="text-center">
-        <span class="label label-danger"><i class="fa fa-times fa-fw" aria-hidden="true"></i>&nbsp; Inactive</span>
+        @if($so->intSalesOrderStatus === 1)
+        <span class="label label-info"><i class="fa fa-times fa-fw" aria-hidden="true"></i>&nbsp; Pending</span>
+        @else
+        <span class="label label-success"><i class="fa fa-check fa-fw" aria-hidden="true"></i>&nbsp; Complete</span>
+        @endif
       </td>
       <td class="text-center">
           <button class="btn btn-info btn-sm btn-detail open-modal"><i class='fa fa-book'></i>&nbsp; View</button>
