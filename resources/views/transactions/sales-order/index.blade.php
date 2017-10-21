@@ -38,12 +38,12 @@
             </div>
             <strong> Manage your <i>Sales Orders</i> here.</strong>
             <br>
-            <small>Add and manage <i><b>Sales Order</b></i>.</small>
+            <small>Manage <i><b>Sales Order</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;New Sales Order</button>
+                <!--button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;New Sales Order</button-->
               </div>
               <div class="panel-title">
                 <h4>Sales Orders</h4>
