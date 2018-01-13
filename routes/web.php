@@ -54,6 +54,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('mode-of-payment', 'ModeOfPaymentController');
     Route::get('mode-of-payment-table', 'ModeOfPaymentController@table');
 
+    // Discount
+    Route::resource('discount', 'DiscountController');
+
     Route::resource('delivery-charge', 'DeliveryChargeController');
 
   });
@@ -81,6 +84,9 @@ Route::group(['prefix' => 'admin'], function() {
     // Sales Order
     Route::resource('sales-order', 'SalesOrderController');
     Route::get('sales-order-table', 'SalesOrderController@table');
+
+    // Purchase Order
+    Route::get('purchase-order', 'RouteController@purchaseorder');
 
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');
@@ -111,7 +117,7 @@ Route::group(['prefix' => 'queries'], function() {
 
 //<------------- Earl :D  ----------------> ///
 
-Route::get('salesreport','ReportsController@index');
-Route::get('salesreport-pdf','ReportsController@salesReportPDF');
+Route::get('stocks-report','ReportsController@index');
+Route::get('stocks-report-pdf','ReportsController@salesReportPDF');
 
 // <----------------- end Earrl ---------------> //

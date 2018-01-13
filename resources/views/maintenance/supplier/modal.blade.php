@@ -42,15 +42,17 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('strSuppContactPers', 'Contact Person') !!}
-            {!! Form::text('strSuppContactPers', null, ['id' => 'strSuppContactPers', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strSuppContactPersNum', 'Associate Contact Details') !!}
-            {!! Form::text('strSuppContactPersNum', null, ['id' => 'strSuppContactPersNum', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <div class="row m-t-10">
+            <div class="col-xs-6">
+              {!! Form::label('strSuppContactPers', 'Contact Person') !!}
+              {!! Form::text('strSuppContactPers', null, ['id' => 'strSuppContactPers', 'class' => 'form-control']) !!}
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
+            <div class="col-xs-6">
+              {!! Form::label('strSuppContactPersNum', 'Associate Contact Number') !!}
+              {!! Form::text('strSuppContactPersNum', null, ['id' => 'strSuppContactPersNum', 'class' => 'form-control']) !!}
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
           </div>
         {!! Form::close() !!}
       </div>

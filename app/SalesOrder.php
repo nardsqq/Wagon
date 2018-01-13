@@ -21,4 +21,5 @@ class SalesOrder extends Model
         return $this->belongsTo('App\Quotation', 'intSO_QuotH_ID');
     }
 
+    // {{ $so->quote->client->strClientName }}
 }

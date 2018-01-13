@@ -147,7 +147,6 @@ $(document).ready(function() {
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
     $('#add_client').modal('show');
-
   }); 
 
   $("#btn-save").on('click', function (e) {

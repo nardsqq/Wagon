@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="disc-modal-header">
-        <h4 id="title">Add New Discount</h4>
+        <h4 id="modal-title">Add New Discount</h4>
       </div>
       <div class="modal-body">
         <form id="formDisc">

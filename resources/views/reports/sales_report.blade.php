@@ -35,7 +35,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="date-range-form" method="GET" action="{{ url('/DispositionReports-pdf') }}">
+        <form id="date-range-form" method="GET" action="{{ url('/stocks-report-pdf') }}">
           <div class="col-md-6">
             <div class="form-group">
               <label>Starts From:</label>

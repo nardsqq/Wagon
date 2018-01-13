@@ -16,8 +16,8 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('.modal-title').text('Edit Discount Data');
-    $('#discount-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#modal-title').text('Edit Discount Record');
+    $('#disc-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -109,8 +109,8 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('.modal-title').text('Add New Vehicle Type');
-    $('#discount-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#modal-title').text('Add New Discount');
+    $('#disc-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formDisc').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");

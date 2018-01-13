@@ -55,26 +55,26 @@
   					</li>
   					<li class="col-sm-4">
   						<ul>
-                <li class="dropdown-main-header"><center>Logistics and Payment</center></li>
+                <li class="dropdown-main-header"><center>Payment Terms</center></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Transportation</li>
+                {{-- <li class="dropdown-header">Transportation</li>
                 <li>
                   <a href="{{ url('/admin/maintenance/vehicle-type') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
                 </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/vehicle') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Vehicle</a>
                 </li>
-  							<li class="divider"></li>
-  							<li class="dropdown-header">Payment</li>
+  							<li class="divider"></li> --}}
+  							<li class="dropdown-header">Terms</li>
   							<li>
                   <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Mode Of Payment</a>
+                  <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Mode of Payment</a>
                 </li>
-                <li>
+                {{-- <li>
                   <a href="{{ url('/admin/maintenance/delivery-charge') }}"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Delivery Charge</a>
-                </li>
+                </li> --}}
   						</ul>
   					</li>
   				</ul>
@@ -99,20 +99,23 @@
             </li>
             <li class="col-sm-4">
               <ul>
-                <li class="dropdown-main-header"><center>Orders Phase</center></li>
+                <li class="dropdown-main-header"><center>Orders</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Placing a Job or Sales Order</li>
                 <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Quotation</a>
+                <li class="{{ Request::is('admin/transactions/purchase-order') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/purchase-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Purchase Order</a>
                 </li>
+                {{-- <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Quotation</a>
+                </li> --}}
                 <li class="{{ Request::is('admin/transactions/sales-order') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/sales-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Sales Order</a>
                 </li>
                 <li class="{{ Request::is('admin/transactions/job-order') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/job-order') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Job Order</a>
+                  <a href="{{ url('/admin/transactions/job-order') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Job Order</a>
                 </li>
                 <li class="{{ Request::is('admin/transactions/invoice') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/invoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
@@ -121,11 +124,17 @@
             </li>
             <li class="col-sm-4">
               <ul>
-                <li class="dropdown-main-header"><center>Logistics</center></li>
+                <li class="dropdown-main-header"><center>Services</center></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Requisition for Transport</li>
-                <li class="{{ Request::is('admin/transactions/vehicle-request') ? "active" : "" }}">
+                <li class="dropdown-header">Service and Delivery</li>
+                {{-- <li class="{{ Request::is('admin/transactions/vehicle-request') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/vehicle-request') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Requests</a>
+                </li> --}}
+                <li class="{{ Request::is('admin/transactions/delivery') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/delivery') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Delivery</a>
+                </li>
+                <li class="{{ Request::is('admin/transactions/deployment') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/deployment') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Deployment</a>
                 </li>
               </ul>
             </li>

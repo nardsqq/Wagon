@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-	public function index()
-	{
-	  return redirect()->route('admin.dashboard');
-	}
+  	public function index()
+  	{
+  	  return redirect()->route('admin.dashboard');
+  	}
 
     public function admin()
     {
@@ -34,6 +34,11 @@ class RouteController extends Controller
     public function quotation()
     {
       return view('transactions.quotation.index');
+    }
+
+    public function purchaseorder()
+    {
+      return view('transactions.purchase-order.index');
     }
 
     public function salesorder()
