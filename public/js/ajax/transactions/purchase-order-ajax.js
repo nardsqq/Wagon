@@ -10,7 +10,6 @@ $(document).ready(function() {
   });
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Purchase Order');
     $('#po-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
     $('#formClient').trigger("reset");
     $('#btn-save').text('Submit');

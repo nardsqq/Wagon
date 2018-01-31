@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Purchase Orders</li>
+        <li>Order Processing</li>
       </ol>
     </div>
   </section>
@@ -38,17 +38,17 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong> Manage your <i>Purchase Orders</i> here.</strong>
+            <strong> Manage your <i>Orders</i> here.</strong>
             <br>
-            <small>Manage <i><b>Purchase Order</b></i>.</small>
+            <small>Create, Refund or Cancel an <i><b> Order</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square fa-fw"></i>&nbsp;New Purchase Order</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square fa-fw"></i>&nbsp;Process Order</button>
               </div>
               <div class="panel-title">
-                <h4>Purchase Orders</h4>
+                <h4>Orders</h4>
               </div>
             </div>
             <div class="panel-body">

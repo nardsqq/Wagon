@@ -105,8 +105,8 @@
                 <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/purchase-order') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/purchase-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Purchase Order</a>
+                <li class="{{ Request::is('admin/transactions/process-order') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/process-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Process Order</a>
                 </li>
                 {{-- <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Quotation</a>
