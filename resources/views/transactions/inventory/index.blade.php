@@ -20,10 +20,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Stocks</li>
+        <li>Inventory Monitoring</li>
       </ol>
     </div>
   </section>
+
+  @include('transactions.inventory.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -33,14 +35,19 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>View <i>Stocks</i> here.</strong>
+            <strong>Monitor your <i>Stocks</i> here.</strong>
             <br>
-            <small>View <i>Stock Status</i> and <i>Products</i>.</small>
+            <small>Replenish, Adjust or Mornitor your <i>Stocks</i> here</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
+              <div class="btn-group pull-right">
+                <button type="button" id="btn-add" class="btn btn-primary">
+                <i class="fa fa-check-circle fa-fw"></i>
+                &nbsp; Select Items Below Reorder Point</button>
+              </div>
               <div class="panel-title">
-                <h4>Stocks</h4>
+                <h4>Inventory Monitoring</h4>
               </div>
             </div>
             <div class="panel-body">

@@ -24,7 +24,9 @@
           <td class="text-center"><span class="label label-danger">Out of Stock</span></td>
         @endif
         <td class="text-center">
-          <a href="#" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; Details</a>
+          <button class="btn btn-details btn-sm btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</button>
+          <button class="btn btn-replenish btn-sm btn-success"><i class="fa fa-refresh fa-fw"></i>&nbsp; Replenish</button>
+          <button class="btn btn-adjust btn-sm btn-info"><i class="fa fa-sort fa-fw"></i></i>&nbsp; Adjust</button>
         </td>
     </tr>
     @endforeach

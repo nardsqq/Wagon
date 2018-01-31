@@ -88,13 +88,13 @@
               <ul>
                 <li class="dropdown-main-header"><center>Inventory</center></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Stock and Deliveries</li>
+                <li class="dropdown-header">Adjust and Replenish Stocks</li>
                 <li>
                   <a href="{{ url('/admin/transactions/stocks') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Stocks</a>
                 </li>
-                <li>
+                {{-- <li>
                   <a href="{{ url('/admin/transactions/receive-items') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Receive Items</a>
-                </li>
+                </li> --}}
               </ul>
             </li>
             <li class="col-sm-4">

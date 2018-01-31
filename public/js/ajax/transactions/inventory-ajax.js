@@ -14,6 +14,21 @@ $(document).ready(function() {
 
   loadTable();
 
+  $(document).on('click', '.btn-replenish', function() {
+    console.log("Success")
+    $('#replenish').modal('show');
+  });
+
+  $(document).on('click', '.btn-adjust', function() {
+    console.log("Success")
+    $('#adjust').modal('show');
+  });
+
+  $(document).on('click', '.btn-details', function() {
+    console.log("Success")
+    $('#details').modal('show');
+  });
+
   function loadTable() {
     $.ajax({
       type: 'get',
