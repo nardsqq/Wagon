@@ -35,7 +35,7 @@ class CreateReplenishTable extends Migration
     public function down()
     {
         Schema::table('tbl_replenish', function (Blueprint $table) {
-            $table->dropForeign(['int_supplier_id_fkp']);
+            $table->dropForeign(['int_supplier_id_fk']);
         });
 
         Schema::dropIfExists('tbl_replenish');
