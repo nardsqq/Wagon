@@ -13,11 +13,15 @@ class CreateTblSpecs extends Migration
      */
     public function up()
     {
-		Schema::create('tbl_specs', function (Blueprint $table) {
-			$table->increments('int_specs_id');
-			$table->string('str_specs_name', 45);
-			$table->string('ste_specs_uom', 45);
-		});
+
+			Schema::create('tbl_specs', function (Blueprint $table) {
+				$table->increments('int_specs_id');
+				$table->string('str_specs_name', 45);
+				$table->string('ste_specs_uom', 45)->nullable();
+				$table->timestamps();
+                $table->softdeletes();
+			});
+
     }
 
     /**
