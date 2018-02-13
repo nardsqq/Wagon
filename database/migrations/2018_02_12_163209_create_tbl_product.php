@@ -11,23 +11,24 @@ class CreateTblProduct extends Migration
      *
      * @return void
      */
-		public function up()
- 		{
- 		 Schema::create('tbl_product', function (Blueprint $table) {
- 			 $table->increments('int_product_id');
- 			 $table->string('str_product_name', 45);
-			 $table->timestamps();
-       $table->softdeletes();
- 		 });
- 		}
+    public function up()
+	{
+        Schema::create('tbl_product', function (Blueprint $table) {
+            $table->increments('int_product_id');
+            $table->string('str_product_name', 45);
+            
+            $table->timestamps();
+            $table->softdeletes();
+        });
+	}
 
- 		/**
- 		 * Reverse the migrations.
- 		 *
- 		 * @return void
- 		 */
- 		public function down()
- 		{
- 		 Schema::dropIfExists('tbl_product');
- 		}
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+	   Schema::dropIfExists('tbl_product');
+	}
 }

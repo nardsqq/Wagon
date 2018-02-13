@@ -11,23 +11,24 @@ class CreateTblBrand extends Migration
      *
      * @return void
      */
-		 public function up()
-     {
- 			Schema::create('tbl_brand', function (Blueprint $table) {
- 				$table->increments('int_brand_id');
- 				$table->string('str_brand_name', 45);
-				$table->timestamps();
-        $table->softdeletes();
- 			});
-     }
+	public function up()
+    {
+        Schema::create('tbl_brand', function (Blueprint $table) {
+            $table->increments('int_brand_id');
+            $table->string('str_brand_name', 45);
+            
+            $table->timestamps();
+            $table->softdeletes();
+        });
+    }
 
-     /**
+    /**
       * Reverse the migrations.
       *
       * @return void
-      */
-     public function down()
-     {
- 			Schema::dropIfExists('tbl_brand');
-     }
+    */
+    public function down()
+    {
+		Schema::dropIfExists('tbl_brand');
+    }
 }
