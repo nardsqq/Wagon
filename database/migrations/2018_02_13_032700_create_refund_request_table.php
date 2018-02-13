@@ -20,6 +20,7 @@ class CreateRefundRequestTable extends Migration
             $table->string('str_status', 45);
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_rr_invoice_id_fk')
                   ->references('int_invoice_id')

@@ -20,6 +20,7 @@ class CreateInvoiceSignatureTable extends Migration
             $table->string('str_signed_by', 45);
             
             $table->timestamps();
+            $table->softdeletes();
 
             // Kailangan ko pa i-confirm kay Tyron if user input yung "date signed"
             // Timestamps muna for the meantime (created_at)

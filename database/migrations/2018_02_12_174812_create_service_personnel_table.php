@@ -20,6 +20,7 @@ class CreateServicePersonnelTable extends Migration
             $table->text('txt_remarks');
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_schedule_id_fk')
                   ->references('int_sched_id')

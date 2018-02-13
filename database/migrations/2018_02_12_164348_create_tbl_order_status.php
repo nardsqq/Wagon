@@ -19,6 +19,7 @@ class CreateTblOrderStatus extends Migration
             $table->string('str_status', 45);
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_orstat_order_id_fk')
                   ->references('int_order_id')

@@ -20,6 +20,7 @@ class CreateServiceSchedTable extends Migration
             $table->date('dat_end');
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_ss_service_order_id_fk')
                   ->references('int_service_order_id')

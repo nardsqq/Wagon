@@ -20,6 +20,7 @@ class CreateServiceMaterialsTable extends Migration
             $table->tinyInteger('int_acqui_type');
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_sm_service_order_id_fk')
                   ->references('int_service_order_id')

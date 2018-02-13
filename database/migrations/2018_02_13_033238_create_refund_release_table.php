@@ -20,6 +20,7 @@ class CreateRefundReleaseTable extends Migration
             $table->date('dat_date_received');
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_rs_refund_request_id_fk')
                   ->references('int_refund_request_id')
