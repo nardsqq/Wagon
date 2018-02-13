@@ -20,7 +20,7 @@
                   <a href="{{ url('/admin/maintenance/supplier') }}"><i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i>&nbsp; Supplier</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/product-type') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Product Type</a>
+                  <a href="{{ url('/admin/maintenance/specification') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Specification</a>
                 </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>

@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('product-type', 'ProdTypeController');
     Route::get('product-type-table', 'ProdTypeController@table');
 
+    Route::resource('specification', 'SpecsController');
     Route::resource('brand', 'BrandController');
     Route::resource('product', 'ProductController');
 
