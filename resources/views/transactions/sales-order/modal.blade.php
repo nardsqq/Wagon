@@ -45,8 +45,8 @@
                     <div class="row">
 
                       <div class="col-xs-6">
-                        <label for="intClientID">Company Name/Client</label>
-                        <h3>{{ $quote->client->strClientName }}</h3>
+                        <label for="int_client_id">Company Name/Client</label>
+                        <h3>{{ $quote->client->str_client_name }}</h3>
                       </div>
                     <div class="col-xs-6">
                       <label for="strClientAssoc">Client PO Number</label>

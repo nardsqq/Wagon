@@ -11,7 +11,7 @@
   <tbody id="quotation">
     @foreach ($quotations as $quotation)
       <tr id="id{{ $quotation->intQuotHeadID }}">
-        <td>{{ $quotation->client->strClientName }}</td>
+        <td>{{ $quotation->client->str_client_name }}</td>
         <td>{{ $quotation->strQuotHeadLocation }}</td>
         <td>{{ $quotation->dtmQuotHeadDateTime }}</td>
         <td>

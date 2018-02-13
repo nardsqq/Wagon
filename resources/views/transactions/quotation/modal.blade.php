@@ -9,10 +9,10 @@
           <div class="row">
     
             <div class="col-xs-6">
-              <label for="intClientID">Company Name/Client</label>
-              <select name="intClientID" id="intClientID" class="form-control">
+              <label for="int_client_id">Company Name/Client</label>
+              <select name="int_client_id" id="int_client_id" class="form-control">
                 @foreach ($clients as $client)
-                  <option value="{{$client->intClientID}}">{{ $client->strClientName }}</option>
+                  <option value="{{$client->int_client_id}}">{{ $client->str_client_name }}</option>
                 @endforeach
               </select>
             </div>

@@ -62,7 +62,7 @@ class QuotationController extends Controller
 
             $quotation = new Quotation;
 
-            $quotation->intQH_Client_ID = trim($request->intClientID);
+            $quotation->intQH_Client_ID = trim($request->int_client_id);
             $quotation->intQH_Pers_ID = trim($request->intQH_Pers_ID);
             $quotation->strClientAssoc = trim($request->strClientAssoc);
             $quotation->strQuotHeadLocation = trim($request->strQuotHeadLocation);

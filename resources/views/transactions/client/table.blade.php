@@ -9,20 +9,16 @@
   </thead>
   <tbody id="client-list">
     @foreach ($clients as $client)
-      <tr id="id{{ $client->intClientID }}">
-        <td>{{ $client->strClientName }}</td>
-        <td>{{ $client->strClientTIN }}</td>
+      <tr id="id{{ $client->int_client_id }}">
+        <td>{{ $client->str_client_name }}</td>
+        <td>{{ $client->str_client_tin }}</td>
         <td>
-          {{ $client->strClientAddLotNum }}, 
-          {{ $client->strClientAddStreet }}, 
-          {{ $client->strClientAddBrgy }},
-          {{ $client->strClientAddCity }},
-          {{ $client->strClientAddProv }},
+          {{ $client->txt_client_address }}
         </td>
         <td class="text-center">
-            <a href="{{ route('client.show', $client->intClientID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
-            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $client->intClientID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-            <button class="btn btn-danger btn-sm btn-delete" value="{{ $client->intClientID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+            <a href="{{ route('client.show', $client->int_client_id) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
+            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $client->int_client_id }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <button class="btn btn-danger btn-sm btn-delete" value="{{ $client->int_client_id }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
       </tr>
     @endforeach

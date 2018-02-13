@@ -9,7 +9,7 @@ class ClientController extends Controller
 {
     public function table()
     {
-        $clients = Client::orderBy('strClientName')->get();
+        $clients = Client::orderBy('str_client_name')->get();
         return view('transactions.client.table')->with('clients', $clients);
     }
 
@@ -20,7 +20,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::orderBy('strClientName')->get();
+        $clients = Client::orderBy('str_client_name')->get();
         return view('transactions.client.index')->with('clients', $clients);
     }
 
@@ -47,17 +47,11 @@ class ClientController extends Controller
 
             $client = new Client;
 
-            $client->strClientName = trim($request->strClientName);
-            $client->strClientTIN = trim($request->strClientTIN);
-            $client->strClientAddLotNum = trim($request->strClientAddLotNum);
-            $client->strClientAddStreet = trim($request->strClientAddStreet);
-            $client->strClientAddBrgy = trim($request->strClientAddBrgy);
-            $client->strClientAddCity = trim($request->strClientAddCity);
-            $client->strClientAddProv = trim($request->strClientAddProv);
-            $client->strClientTelephone = trim($request->strClientTelephone);
-            $client->strClientFax = trim($request->strClientFax);
-            $client->strClientMobile = trim($request->strClientMobile);
-            $client->strClientEmailAddress = trim($request->strClientEmailAddress);
+            $client->str_client_name = trim($request->str_client_name);
+            $client->str_client_person = trim($request->str_client_person);
+            $client->txt_client_address = trim($request->txt_client_address);
+            $client->str_client_landmark = trim($request->str_client_landmark);
+            $client->str_client_tin = trim($request->str_client_tin);
       
             $client->save();
             return response()->json($client);
@@ -104,17 +98,11 @@ class ClientController extends Controller
 
             $client = Client::findOrFail($id);
 
-            $client->strClientName = trim($request->strClientName);
-            $client->strClientTIN = trim($request->strClientTIN);
-            $client->strClientAddLotNum = trim($request->strClientAddLotNum);
-            $client->strClientAddStreet = trim($request->strClientAddStreet);
-            $client->strClientAddBrgy = trim($request->strClientAddBrgy);
-            $client->strClientAddCity = trim($request->strClientAddCity);
-            $client->strClientAddProv = trim($request->strClientAddProv);
-            $client->strClientTelephone = trim($request->strClientTelephone);
-            $client->strClientFax = trim($request->strClientFax);
-            $client->strClientMobile = trim($request->strClientMobile);
-            $client->strClientEmailAddress = trim($request->strClientEmailAddress);
+            $client->str_client_name = trim($request->str_client_name);
+            $client->str_client_person = trim($request->str_client_person);
+            $client->txt_client_address = trim($request->txt_client_address);
+            $client->str_client_landmark = trim($request->str_client_landmark);
+            $client->str_client_tin = trim($request->str_client_tin);
       
             $client->save();
             return response()->json($client);

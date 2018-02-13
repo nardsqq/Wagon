@@ -39,28 +39,28 @@
 		          	<div class="panel panel-default">
 			            <div class="panel-heading clearfix">
 			              <div class="panel-title">
-			                <h4>View Supplier "{{ $client->strClientName }}" Record</h4>
+			                <h4>View Client "{{ $client->str_client_name }}" Record</h4>
 			              </div>
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h1>{{ $client->strClientName }}</h1>
-								<h3>TIN: {{ $client->strClientTIN }}</h3>
+								<h1>{{ $client->str_client_name }}</h1>
+								<h3>TIN: {{ $client->str_client_tin }}</h3>
 								<p class="lead">
-									{{ $client->strClientAddLotNum }}
-									{{ $client->strClientAddStreet }}, 
-									{{ $client->strClientAddBrgy }}, 
-									{{ $client->strClientAddCity }}, 
-									{{ $client->strClientAddProv }}
+									{{ $client->txt_client_address }}
 								</p>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
+								{{-- [note: wait for contact detail model]
+									@foreach($client->contact_details as $contact)
 									<dl>
-									  <dt>Telephone Number</dt>
-									  <dd>{{ $client->strClientTelephone }}</dd>
+									  <dt>{{ $contact->str_contact_type }}</dt>
+									  <dd>{{ $contact->str_contact_detail }}</dd>
 									</dl>
+									@endforeach 
+								--}}
 
 									<dl>
 									   <dt>FAX Number</dt>
@@ -76,7 +76,7 @@
 									   <dt>Email Address</dt>
 									   <dd>{{ $client->strClientEmailAddress }}</dd>
 									</dl>
-
+									
 									<hr>
 
 									<div class="row">

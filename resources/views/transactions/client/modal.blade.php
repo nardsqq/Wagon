@@ -8,64 +8,32 @@
         {!! Form::open(['url' => '/admin/transactions/client', 'method' => 'POST', 'id' => 'formClient']) !!}
           <div class="row">
             <div class="col-xs-6">
-              {!! Form::label('strClientName', 'Client Name') !!}
-              {!! Form::text('strClientName', null, ['id' => 'strClientName', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_name', 'Client Name') !!}
+              {!! Form::text('str_client_name', null, ['id' => 'str_client_name', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strClientTIN', 'Taxpayer Identification Number') !!}
-              {!! Form::text('strClientTIN', null, ['id' => 'strClientTIN', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_person', 'Client Person (?)') !!}
+              {!! Form::text('str_client_person', null, ['id' => 'str_client_person', 'class' => 'form-control']) !!}
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
+          </div>
+          <div class="row m-t-10">
+            <div class="col-xs-12">
+              {!! Form::label('txt_client_address', 'Address') !!}
+              {!! Form::textarea('txt_client_address', null, ['id' => 'txt_client_address', 'class' => 'form-control', 'rows' => 7]) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
-              {!! Form::label('strClientAddLotNum', 'Lot Number') !!}
-              {!! Form::text('strClientAddLotNum', null, ['id' => 'strClientAddLotNum', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_landmark', 'Landmark') !!}
+              {!! Form::text('str_client_landmark', null, ['id' => 'str_client_landmark', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strClientAddStreet', 'Street or Building Name') !!}
-              {!! Form::text('strClientAddStreet', null, ['id' => 'strClientAddStreet', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('strClientAddBrgy', 'District or Baranggay') !!}
-            {!! Form::text('strClientAddBrgy', null, ['id' => 'strClientAddBrgy', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strClientAddCity', 'City or Municipality') !!}
-            {!! Form::text('strClientAddCity', null, ['id' => 'strClientAddCity', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strClientAddProv', 'Province or Region') !!}
-            {!! Form::text('strClientAddProv', null, ['id' => 'strClientAddProv', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strClientTelephone', 'Telephone Number') !!}
-              {!! Form::text('strClientTelephone', null, ['id' => 'strClientTelephone', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strClientFax', 'FAX') !!}
-              {!! Form::text('strClientFax', null, ['id' => 'strClientFax', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strClientMobile', 'Mobile Number') !!}
-              {!! Form::text('strClientMobile', null, ['id' => 'strClientMobile', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strClientEmailAddress', 'Email Address') !!}
-              {!! Form::text('strClientEmailAddress', null, ['id' => 'strClientEmailAddress', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_tin', 'Taxpayer Identification Number') !!}
+              {!! Form::text('str_client_tin', null, ['id' => 'str_client_tin', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div> 
@@ -90,64 +58,32 @@
         <form id="formEditClient">
           <div class="row">
             <div class="col-xs-6">
-              {!! Form::label('strClientName', 'Client Name') !!}
-              {!! Form::text('strClientName', null, ['id' => 'strClientName', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_name', 'Client Name') !!}
+              {!! Form::text('str_client_name', null, ['id' => 'str_client_name', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strClientTIN', 'Taxpayer Identification Number') !!}
-              {!! Form::text('strClientTIN', null, ['id' => 'strClientTIN', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_person', 'Client Person (?)') !!}
+              {!! Form::text('str_client_person', null, ['id' => 'str_client_person', 'class' => 'form-control']) !!}
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
+          </div>
+          <div class="row m-t-10">
+            <div class="col-xs-12">
+              {!! Form::label('txt_client_address', 'Address') !!}
+              {!! Form::textarea('txt_client_address', null, ['id' => 'txt_client_address', 'class' => 'form-control', 'rows' => 7]) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
           <div class="row m-t-10">
             <div class="col-xs-6">
-              {!! Form::label('strClientAddLotNum', 'Lot Number') !!}
-              {!! Form::text('strClientAddLotNum', null, ['id' => 'strClientAddLotNum', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_landmark', 'Landmark') !!}
+              {!! Form::text('str_client_landmark', null, ['id' => 'str_client_landmark', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strClientAddStreet', 'Street or Building Name') !!}
-              {!! Form::text('strClientAddStreet', null, ['id' => 'strClientAddStreet', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('strClientAddBrgy', 'District or Baranggay') !!}
-            {!! Form::text('strClientAddBrgy', null, ['id' => 'strClientAddBrgy', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strClientAddCity', 'City or Municipality') !!}
-            {!! Form::text('strClientAddCity', null, ['id' => 'strClientAddCity', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strClientAddProv', 'Province or Region') !!}
-            {!! Form::text('strClientAddProv', null, ['id' => 'strClientAddProv', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strClientTelephone', 'Telephone Number') !!}
-              {!! Form::text('strClientTelephone', null, ['id' => 'strClientTelephone', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strClientFax', 'FAX') !!}
-              {!! Form::text('strClientFax', null, ['id' => 'strClientFax', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strClientMobile', 'Mobile Number') !!}
-              {!! Form::text('strClientMobile', null, ['id' => 'strClientMobile', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strClientEmailAddress', 'Email Address') !!}
-              {!! Form::text('strClientEmailAddress', null, ['id' => 'strClientEmailAddress', 'class' => 'form-control']) !!}
+              {!! Form::label('str_client_tin', 'Taxpayer Identification Number') !!}
+              {!! Form::text('str_client_tin', null, ['id' => 'str_client_tin', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div> 

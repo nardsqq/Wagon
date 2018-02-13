@@ -26,17 +26,11 @@ $(document).ready(function() {
       success: function(data) {
         var formEditClient = $('#formEditClient');
 
-        formEditClient.find('#strClientName').val(data.strClientName);
-        formEditClient.find('#strClientTIN').val(data.strClientTIN);
-        formEditClient.find('#strClientAddLotNum').val(data.strClientAddLotNum);
-        formEditClient.find('#strClientAddStreet').val(data.strClientAddStreet);
-        formEditClient.find('#strClientAddBrgy').val(data.strClientAddBrgy);
-        formEditClient.find('#strClientAddCity').val(data.strClientAddCity);
-        formEditClient.find('#strClientAddProv').val(data.strClientAddProv);
-        formEditClient.find('#strClientTelephone').val(data.strClientTelephone);
-        formEditClient.find('#strClientFax').val(data.strClientFax);
-        formEditClient.find('#strClientMobile').val(data.strClientMobile);
-        formEditClient.find('#strClientEmailAddress').val(data.strClientEmailAddress);
+        formEditClient.find('#str_client_name').val(data.str_client_name);
+        formEditClient.find('#str_client_person').val(data.str_client_person);
+        formEditClient.find('#txt_client_address').val(data.txt_client_address);
+        formEditClient.find('#str_client_landmark').val(data.str_client_landmark);
+        formEditClient.find('#str_client_tin').val(data.str_client_tin);
 
         $('#edit_client').modal('show');
       }

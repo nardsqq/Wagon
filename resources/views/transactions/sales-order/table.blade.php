@@ -11,7 +11,7 @@
     @foreach($headers as $so)
     <tr>
       <td>{{ $so->strSalesOrderCPONumber }}</td>
-      <td class="text-center">{{ $so->quote->client->strClientName }}</td>
+      <td class="text-center">{{ $so->quote->client->str_client_name }}</td>
       <td class="text-center">
         @if($so->intSalesOrderStatus === 1)
         <span class="label label-info"><i class="fa fa-times fa-fw" aria-hidden="true"></i>&nbsp; Pending</span>

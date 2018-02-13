@@ -69,7 +69,7 @@
     </div>
     <br>
     <br>
-    <h2>CLIENT: <span style="float: right;">{{ $quote->client->strClientName }}</span></h2>
+    <h2>CLIENT: <span style="float: right;">{{ $quote->client->str_client_name }}</span></h2>
     <h2>ADDRESS: <span style="float: right;">{{ $quote->client->strClientAddLotNum }}, {{ $quote->client->strClientAddStreet }}, {{ $quote->client->strClientAddBrgy }}, {{ $quote->client->strClientAddCity }}, {{ $quote->client->strClientAddProv }}</span></h2>
     <br>
     <table width="100%">

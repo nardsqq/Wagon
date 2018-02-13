@@ -9,13 +9,16 @@ class Client extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'tblClient';
-    protected $fillable = ['strClientName', 'strClientAddLotNum', 'strClientAddStreet', 'strClientAddBrgy', 'strClientAddCity', 'strClientAddProv', 'strClientTelephone', 'strClientFax', 'strClientMobile', 'strClientEmailAddress', 'strClientTIN'];
-    protected $primaryKey = 'intClientID';
-    protected $dates = ['deleted_at'];
-    public $timestamps = false;
+    protected $table = 'tbl_client';
+    protected $primaryKey = 'int_client_id';
+    protected $guarded = [];
+
+    // public function contact_details()
+    // {
+    //     return $this->hasMany('App\ContactDetail', 'int_cd_client_id');
+    // }
 
     public static $rules = [
-      'strClientName' => 'required',
+      'str_client_name' => 'required',
     ];
 }
