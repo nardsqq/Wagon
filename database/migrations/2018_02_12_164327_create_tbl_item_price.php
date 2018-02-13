@@ -19,6 +19,7 @@ class CreateTblItemPrice extends Migration
             $table->double('dbl_price', 11, 2);
          
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_ip_item_id_fk')
                   ->references('int_item_id')

@@ -23,6 +23,7 @@ class CreateRefundRequestSignatureTable extends Migration
             // $table->date('dat_date_signed');
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_rrsig_refund_request_id_fk')
                   ->references('int_refund_request_id')

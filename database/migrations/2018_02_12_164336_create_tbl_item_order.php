@@ -21,6 +21,7 @@ class CreateTblItemOrder extends Migration
             $table->text('txt_remarks')->nullable();
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_io_order_id_fk')
                   ->references('int_order_id')

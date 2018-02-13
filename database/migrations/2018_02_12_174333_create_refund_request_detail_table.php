@@ -21,6 +21,7 @@ class CreateRefundRequestDetailTable extends Migration
             $table->string('str_condition', 45);
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_rrdet_refund_request_id_fk')
                   ->references('int_refund_request_id')

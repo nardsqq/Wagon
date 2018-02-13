@@ -20,6 +20,7 @@ class CreateDeliverySignatureTable extends Migration
             $table->string('str_signed_by', 45);
             
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_delsig_delivery_id_fk')
                   ->references('int_delivery_id')

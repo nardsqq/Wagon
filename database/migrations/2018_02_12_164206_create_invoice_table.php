@@ -19,6 +19,7 @@ class CreateInvoiceTable extends Migration
             $table->double('dbl_total_amount', 11, 2);
             
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_invoice_order_id_fk')
                   ->references('int_order_id')

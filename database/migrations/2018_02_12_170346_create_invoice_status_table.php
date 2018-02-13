@@ -19,6 +19,7 @@ class CreateInvoiceStatusTable extends Migration
             $table->string('str_status', 45);
             
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_instat_invoice_id_fk')
                   ->references('int_invoice_id')

@@ -20,6 +20,7 @@ class CreateReplenishTable extends Migration
             $table->date('dat_date_received');
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_supplier_id_fk')
                   ->references('int_supplier_id')

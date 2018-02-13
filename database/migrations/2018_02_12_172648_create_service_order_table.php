@@ -21,6 +21,7 @@ class CreateServiceOrderTable extends Migration
             $table->string('str_status', 45);
             
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_so_order_id_fk')
                   ->references('int_order_id')

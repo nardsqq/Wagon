@@ -20,6 +20,7 @@ class CreateContactDetailTable extends Migration
             $table->string('str_contact_detail', 45);
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_cd_client_id_fk')
                   ->references('int_client_id')

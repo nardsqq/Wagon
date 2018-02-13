@@ -21,6 +21,7 @@ class CreatePaymentTable extends Migration
             $table->string('str_received_by', 45);
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_paym_invoice_id_fk')
                   ->references('int_invoice_id')

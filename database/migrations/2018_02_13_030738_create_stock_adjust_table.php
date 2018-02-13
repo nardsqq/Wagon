@@ -21,6 +21,7 @@ class CreateStockAdjustTable extends Migration
             $table->text('txt_reason');
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_sa_item_id_fk')
                   ->references('int_service_order_id')

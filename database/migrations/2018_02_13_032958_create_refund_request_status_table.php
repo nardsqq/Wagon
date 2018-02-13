@@ -19,6 +19,7 @@ class CreateRefundRequestStatusTable extends Migration
             $table->string('str_status', 45);
 
             $table->timestamps();
+            $table->softdeletes();
 
             $table->foreign('int_rrstat_refund_request_id_fk')
                   ->references('int_refund_request_id')
