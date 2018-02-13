@@ -15,7 +15,7 @@ class VariantController extends Controller
     public function table()
     {
         $brands = Brand::orderBy('str_brand_name')->get();
-        $products = Product::orderBy('strProdName')->get();
+        $products = Product::orderBy('str_product_name')->get();
         $variants = Variant::orderBy('strVarModel')->get();
 
         return view('maintenance.product-variant.table')->with('brands', $brands)->with('products', $products)->with('variants', $variants);
@@ -29,7 +29,7 @@ class VariantController extends Controller
     public function index()
     {
         $brands = Brand::orderBy('str_brand_name')->get();
-        $products = Product::orderBy('strProdName')->get();
+        $products = Product::orderBy('str_product_name')->get();
         $variants = Variant::orderBy('strVarModel')->get();
 
         return view('maintenance.product-variant.index')->with('brands', $brands)->with('products', $products)->with('variants', $variants);

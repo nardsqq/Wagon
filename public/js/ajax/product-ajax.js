@@ -25,9 +25,7 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#intP_ProdType_ID').val(data.intP_ProdType_ID);
-      $('#strProdName').val(data.strProdName);
-      $('#txtProdDesc').val(data.txtProdDesc);
+      $('#str_product_name').val(data.str_product_name);
       $('#btn-save').val("update");
       $('#add_prod').modal('show');
 
@@ -174,14 +172,12 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intProdID +  "></tr>")
+      var row = $("<tr id=id" + data.int_product_id +  "></tr>")
       .append(
-          "<td>" + data.prodtypes.strProdTypeName + "</td>" +
-          "<td>" + data.strProdName + "</td>" +
-          "<td>" + data.txtProdDesc + "</td>" +
+          "<td>" + data.str_product_name + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intProdID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intProdID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_product_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.int_product_id+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -210,7 +206,7 @@ $(document).ready(function() {
           toastr.success("Successfully Added a New Product Record");
       } 
       else { 
-          table.row($("#id"+data.intProdID)).remove();
+          table.row($("#id"+data.int_product_id)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');

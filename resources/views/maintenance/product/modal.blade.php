@@ -7,21 +7,9 @@
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/product', 'method' => 'POST', 'id' => 'formProd']) !!}
           <div class="form-group">
-            {!! Form::label('intP_ProdType_ID', 'Product Type') !!}
-            <select name="intP_ProdType_ID" id="intP_ProdType_ID" class="form-control">
-              @foreach ($prodtypes as $prodtype)
-                <option value="{{$prodtype->intProdTypeID}}">{{ $prodtype->strProdTypeName }}</option>
-              @endforeach
-            </select>
-          </div>
-          <div class="form-group">
-            {!! Form::label('strProdName', 'Product Name') !!}
-            {!! Form::text('strProdName', null, ['id' => 'strProdName', 'class' => 'form-control']) !!}
+            {!! Form::label('str_product_name', 'Product Name') !!}
+            {!! Form::text('str_product_name', null, ['id' => 'str_product_name', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('txtProdDesc', 'Description') !!}
-            {!! Form::textarea('txtProdDesc', null, ['id' => 'txtProdDesc', 'class' => 'form-control resize', 'rows' => '5']) !!}
           </div>
         {!! Form::close() !!}
       </div>

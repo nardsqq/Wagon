@@ -44,7 +44,7 @@
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h2>{{ $variant->brands->str_brand_name }} {{ $variant->products->strProdName }} {{ $variant->strVarModel }}</h2>
+								<h2>{{ $variant->brands->str_brand_name }} {{ $variant->products->str_product_name }} {{ $variant->strVarModel }}</h2>
 								<hr>
 								<p class="lead">{{ $variant->txtVarDesc }}</p>
 								<p class="lead"> Specification:</p>

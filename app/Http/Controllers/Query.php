@@ -66,13 +66,13 @@ class Query extends Controller
 
     public function varzsearch(Request $req){
       try {
-        $all = DB::table('tblproduct')
-        ->join('tblvariant', 'tblvariant.intV_Prod_ID', '=', 'tblproduct.intProdID')
-        ->join('tblbrand', 'tblbrand.int_brand_id', '=', 'tblvariant.intV_Brand_ID')
-        ->select('tblvariant.strVarPartNum as partnum','tblbrand.str_brand_name as brand', 'tblproduct.strProdName as product','tblvariant.strVarModel as model')
+        $all = DB::table('tbl_product')
+        ->join('tblvariant', 'tblvariant.intV_Prod_ID', '=', 'tbl_product.int_product_id')
+        ->join('tbl_brand', 'tbl_brand.int_brand_id', '=', 'tblvariant.intV_Brand_ID')
+        ->select('tblvariant.strVarPartNum as partnum','tbl_brand.str_brand_name as brand', 'tbl_product.str_product_name as product','tblvariant.strVarModel as model')
         ->where('tblvariant.strVarPartNum', 'LIKE', "%$req->strVarPartNum%")
-        ->where('tblbrand.str_brand_name', 'LIKE', "%$req->intV_Brand_ID%")
-        ->where('tblproduct.strProdName', 'LIKE', "%$req->intV_Prod_ID%")
+        ->where('tbl_brand.str_brand_name', 'LIKE', "%$req->intV_Brand_ID%")
+        ->where('tbl_product.str_product_name', 'LIKE', "%$req->intV_Prod_ID%")
         ->where('tblvariant.strVarModel', 'LIKE', "%$req->strVarModel%")
         ->get();
       } catch (Exception $e) {

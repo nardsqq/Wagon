@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ProductType;
 use App\Product;
 
 class ProductController extends Controller
@@ -15,10 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $prodtypes = ProductType::orderBy('strProdTypeName')->get();
-        $products = Product::orderBy('strProdName')->get();
+        $products = Product::orderBy('str_product_name')->get();
 
-        return view('maintenance.product.index')->with('products', $products)->with('prodtypes', $prodtypes);
+        return view('maintenance.product.index')->with('products', $products);
     }
 
     /**
@@ -42,12 +40,9 @@ class ProductController extends Controller
         if($request->ajax()) {
             $this->validate($request, Product::$rules);
 
-            $prodtype = ProductType::find($request->intP_ProdType_ID);
             $product = new Product;
 
-            $product->prodtypes()->associate($prodtype);
-            $product->strProdName = trim(ucwords($request->strProdName));
-            $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
+            $product->str_product_name = trim(ucwords($request->str_product_name));
 
             $product->save();
             return response()->json($product);
@@ -90,13 +85,10 @@ class ProductController extends Controller
     {
         if($request->ajax()) {
 
-            $prodtype = ProductType::find($request->intP_ProdType_ID);
             $product = Product::findOrFail($id);
 
-            $product->prodtypes()->associate($prodtype);
-            $product->strProdName = trim(ucwords($request->strProdName));
-            $product->txtProdDesc = trim(ucfirst($request->txtProdDesc));
-
+            $product->str_product_name = trim(ucwords($request->str_product_name));
+            
             $product->save();
             return response()->json($product);
         } else {

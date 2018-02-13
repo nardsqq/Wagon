@@ -9,24 +9,16 @@ class Product extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'tblProduct';
-    protected $fillable = ['intP_ProdType_ID', 'strProdName', 'txtProdDesc'];
-    protected $primaryKey = 'intProdID';
-    protected $dates = ['deleted_at'];
-    public $timestamps = false;
+    protected $table = 'tbl_product';
+    protected $guarded = [];
+    protected $primaryKey = 'int_product_id';
 
-    public function prodtypes() 
-    {
-      return $this->belongsTo('App\ProductType', 'intP_ProdType_ID');
-    }
-
-    public function variants()
-    {
-        return $this->hasMany('App\Variant', 'intV_Prod_ID');
-    }
+    // public function items()
+    // {
+    //     return $this->hasMany('App\Item', 'int_product_id');
+    // }
 
     public static $rules = [
-      'strProdName' => 'required|max:45|unique:tblproduct',
-      'intP_ProdType_ID' => 'required'
+      'str_product_name' => 'required|max:45|unique:tbl_product'
     ];
 }

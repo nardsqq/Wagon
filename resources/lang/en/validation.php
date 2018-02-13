@@ -115,7 +115,7 @@ return [
     */
 
     'attributes' => [
-        'strProdName' => 'Product Name',
+        'str_product_name' => 'Product Name',
         'strProdTypeName' => 'Product Type',
         'strProdCateg' => 'Product Category',
         'strServTypeName' => 'Service Type',

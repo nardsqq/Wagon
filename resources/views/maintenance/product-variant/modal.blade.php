@@ -19,7 +19,7 @@
               {!! Form::label('intV_Prod_ID', 'Product') !!}
               <select name="intV_Prod_ID" id="intV_Prod_ID" class="form-control">
                 @foreach ($products as $product)
-                  <option value="{{ $product->intProdID }}">{{ $product->strProdName }}</option>
+                  <option value="{{ $product->int_product_id }}">{{ $product->str_product_name }}</option>
                 @endforeach
               </select>
             </div>
@@ -90,7 +90,7 @@
               {!! Form::label('intV_Prod_ID', 'Product') !!}
               <select name="intV_Prod_ID" id="intV_Prod_ID" class="form-control">
                 @foreach ($products as $product)
-                  <option value="{{ $product->intProdID }}">{{ $product->strProdName }}</option>
+                  <option value="{{ $product->int_product_id }}">{{ $product->str_product_name }}</option>
                 @endforeach
               </select>
             </div>
