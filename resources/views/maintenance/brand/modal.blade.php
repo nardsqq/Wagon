@@ -7,13 +7,8 @@
       <div class="modal-body">
         <form id="formBrand" data-parsley-validate>
           <div class="form-group">
-            <label for="strBrandName">Brand Name</label>
-            <input type="text" id="strBrandName" name="strBrandName" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            <label for="txtBrandDesc">Description</label>
-            <textarea class="form-control resize" rows="5" id="txtBrandDesc"></textarea>
+            <label for="str_brand_name">Brand Name</label>
+            <input type="text" id="str_brand_name" name="str_brand_name" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>

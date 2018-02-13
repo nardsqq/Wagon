@@ -7,21 +7,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Brand extends Model
 {
-	  use SoftDeletes;
+    use SoftDeletes;
 
-  	protected $table = 'tblBrand';
-  	protected $fillable = ['strBrandName', 'txtBrandDesc'];
-  	protected $primaryKey = 'intBrandID';
-  	protected $dates = ['deleted_at'];
-  	public $timestamps = false;
+  	protected $table = 'tbl_brand';
+  	protected $primaryKey = 'int_brand_id';
+    protected $guarded = [];
 
-    public function variants()
-    {
-      return $this->hasMany('App\Variant', 'intV_Brand_ID');
-    }
+    // public function items()
+    // {
+    //     return $this->hasMany('App\Item', 'int_brand_id');
+    // }
 
   	public static $rules = [
-        'strBrandName' => 'required|min:2|unique:tblBrand|max:45|regex:/^[a-z ,.\'-]+$/i',
-      	'txtBrandDesc' => 'min:2|max:50|regex:/^[a-z ,.\'-]+$/i'
+        'str_brand_name' => 'required|min:2|unique:tbl_brand|max:45|regex:/^[a-z ,.\'-]+$/i'
     ];
 }

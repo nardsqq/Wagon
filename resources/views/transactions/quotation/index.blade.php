@@ -83,7 +83,7 @@
       $('#dimension').select2();
       $('#intProdTypeID').select2();
       $('#intProdID').select2();
-      $('#intBrandID').select2();
+      $('#int_brand_id').select2();
       $('#servsearch').select2();
       $('#strQuotHeadLocation').select2();  --}}
     })

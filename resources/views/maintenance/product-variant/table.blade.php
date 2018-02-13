@@ -13,7 +13,7 @@
     @foreach ($variants as $variant)
       <tr id="id{{ $variant->intVarID }}">
         <td class="text-center">{{ $variant->strVarPartNum }}</td>
-        <td class="text-center">{{ $variant->brands->strBrandName }}</td>
+        <td class="text-center">{{ $variant->brands->str_brand_name }}</td>
         <td class="text-center">{{ $variant->products->strProdName }}</td>
         <td class="text-center">{{ $variant->strVarModel }}</td>
         <td class="text-center">{{ $variant->intVarReStockLevel }}</td>

@@ -14,7 +14,7 @@ class VariantController extends Controller
 {
     public function table()
     {
-        $brands = Brand::orderBy('strBrandName')->get();
+        $brands = Brand::orderBy('str_brand_name')->get();
         $products = Product::orderBy('strProdName')->get();
         $variants = Variant::orderBy('strVarModel')->get();
 
@@ -28,7 +28,7 @@ class VariantController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('strBrandName')->get();
+        $brands = Brand::orderBy('str_brand_name')->get();
         $products = Product::orderBy('strProdName')->get();
         $variants = Variant::orderBy('strVarModel')->get();
 

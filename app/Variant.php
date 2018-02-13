@@ -37,7 +37,7 @@ class Variant extends Model
     ];
 
     public function getFullDetailAttribute(){
-      return $this->products->strProdName.' '.$this->brands->strBrandName.' '.$this->strVarModel.' '.$this->strVarPartNum;
+      return $this->products->strProdName.' '.$this->brands->str_brand_name.' '.$this->strVarModel.' '.$this->strVarPartNum;
     }
 
     public function getCurrentStockAttribute(){

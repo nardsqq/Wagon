@@ -14,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('strBrandName')->get();
+        $brands = Brand::orderBy('str_brand_name')->get();
         return view('maintenance.brand.index')->with('brands', $brands);
     }
 
@@ -39,8 +39,7 @@ class BrandController extends Controller
         if ($request->ajax()) {
             $this->validate($request, Brand::$rules);
             $brand = new Brand;
-            $brand ->strBrandName = trim(ucfirst($request->strBrandName));
-            $brand ->txtBrandDesc = trim(ucfirst($request->txtBrandDesc));
+            $brand ->str_brand_name = trim(ucfirst($request->str_brand_name));
             $brand->save();
 
             return response()->json($brand);
@@ -84,8 +83,7 @@ class BrandController extends Controller
     {
         if ($request->ajax()) {
             $brand = Brand::findOrFail($id);
-            $brand ->strBrandName = trim($request->strBrandName);
-            $brand ->txtBrandDesc = trim($request->txtBrandDesc);
+            $brand ->str_brand_name = trim($request->str_brand_name);
             $brand->save();
             
             return response()->json($brand);
