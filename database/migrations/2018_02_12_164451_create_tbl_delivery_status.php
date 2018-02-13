@@ -14,15 +14,15 @@ class CreateTblDeliveryStatus extends Migration
 	public function up()
 	{
 		Schema::create('tbl_delivery_status', function (Blueprint $table) {
-		$table->increments('int_delivery_status_id');
-		$table->unsignedInteger('int_delstat_delivery_id_fk');
-		$table->string('str_status', 45);
+			$table->increments('int_delivery_status_id');
+			$table->unsignedInteger('int_delstat_delivery_id_fk');
+			$table->string('str_status', 45);
 
-		$table->timestamps();
+			$table->timestamps();
 
-		$table->foreign('int_delstat_delivery_id_fk')
-			->references('int_delivery_id')
-			->on('tbl_delivery');
+			$table->foreign('int_delstat_delivery_id_fk')
+				->references('int_delivery_id')
+				->on('tbl_delivery');
 		});
 	}
 

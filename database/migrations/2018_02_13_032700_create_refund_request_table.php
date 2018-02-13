@@ -35,7 +35,7 @@ class CreateRefundRequestTable extends Migration
      */
     public function down()
     {
-        Schema::table('tbl_refund_request' function (Blueprint $table) {
+        Schema::table('tbl_refund_request', function (Blueprint $table) {
             $table->dropForeign(['int_rr_invoice_id_fk']);
         });
 

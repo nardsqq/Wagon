@@ -25,7 +25,7 @@ class CreateServiceOrderTable extends Migration
 
             $table->foreign('int_so_order_id_fk')
                   ->references('int_order_id')
-                  ->on('tbl_oder');
+                  ->on('tbl_order');
 
             $table->foreign('int_so_service_id_fk')
                   ->references('int_service_id')
