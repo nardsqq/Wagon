@@ -9,39 +9,33 @@ class Variant extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'tblVariant';
-    protected $fillable = ['intV_Supp_ID', 'intV_Brand_ID', 'intV_Prod_ID', 'strVarPartNum','strVarModel', 'strVarHandle', 'intVarReStockLevel', 'txtVarDesc'];
-    protected $primaryKey = 'intVarID';
-    protected $dates = ['deleted_at'];
-    protected $appends = ['full_detail'];
-    public $timestamps = false;
+    protected $table = 'tbl_variation';
+    protected $guarded = [];
+    protected $primaryKey = 'int_var_id';
 
-    public function products() 
+    public function product() 
     {
-      return $this->belongsTo('App\Product', 'intV_Prod_ID');
+      return $this->belongsTo('App\Product', 'int_prod_id_fk');
     }
 
-    public function brands() 
-    {
-      return $this->belongsTo('App\Brand', 'intV_Brand_ID');
+    public function specs(){
+      return $this->hasMany('App\Specs', 'int_spec_var_id_fk');
     }
 
-    public function dimensions(){
-      return $this->belongsToMany('App\Dimension','tblDimensionSet',  'intDS_Var_ID', 'intDS_Dim_ID', 'intVarID');
+    public function stocks(){
+      return $this->hasMany('App\Stock', 'int_stock_var_id_fk');
+    }
+
+    public function prices(){
+      return $this->hasMany('App\Price', 'int_ip_var_id_fk');
     }
 
     public static $rules = [
-      'strVarModel' => 'required|max:45',
-      'intVarReStockLevel' => 'required',
-      'strVarPartNum' => 'required|max:45|unique:tblVariant',
+      'int_prod_id_fk' => 'required'
     ];
 
-    public function getFullDetailAttribute(){
-      return $this->products->str_product_name.' '.$this->brands->str_brand_name.' '.$this->strVarModel.' '.$this->strVarPartNum;
-    }
-
-    public function getCurrentStockAttribute(){
-      return 
-        (\DB::table('tblRecDelDetails')->selectRaw("SUM(intRecDelDetQty) as stock")->where('intRDD_Var_ID', $this->intVarID)->groupBy('intrdd_var_id')->pluck('stock')->first() ?: 0) - (\DB::table('tblSODetailsProduct')->selectRaw("SUM(intQuotDPQuantity) as stock")->where('intSODP_Var_ID', $this->intVarID)->groupBy('intSODP_Var_ID')->pluck('stock')->first() ?: 0);
-    }
+    // public function getCurrentStockAttribute(){
+    //   return 
+    //     (\DB::table('tblRecDelDetails')->selectRaw("SUM(intRecDelDetQty) as stock")->where('intRDD_Var_ID', $this->intVarID)->groupBy('intrdd_var_id')->pluck('stock')->first() ?: 0) - (\DB::table('tblSODetailsProduct')->selectRaw("SUM(intQuotDPQuantity) as stock")->where('intSODP_Var_ID', $this->intVarID)->groupBy('intSODP_Var_ID')->pluck('stock')->first() ?: 0);
+    // }
 }

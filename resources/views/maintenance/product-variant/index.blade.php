@@ -25,9 +25,10 @@
     </div>
   </section>
 
-  @include('maintenance.product-variant.modal')
-
   <section id="main">
+    
+    @include('maintenance.product-variant.modal')
+
     <div class="container animated fadeIn">
       <div class="row">
         <div class="col-md-12">
@@ -62,12 +63,20 @@
 @endsection
 
 @section('scripts')
-
+  <script src="{{ asset('/js/vue.js/') }}"></script>
   <!-- Delay table load until everything else is loaded -->
   <script>
     $(window).on('load', function(){
         $('#dataTable').removeAttr('style');
     })
+
+    new Vue({
+      el: '#main',
+      data: {
+        products: {!! json_encode($products) !!},
+        product: {!! json_encode($products->first() ?: []) !!}
+      }
+    });
   </script>
 
   <script src="{{ asset('/js/ajax/product-variant-ajax.js/') }}"></script>

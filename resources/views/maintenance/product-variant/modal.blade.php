@@ -8,56 +8,40 @@
         {!! Form::open(['url' => '/admin/maintenance/product-variant', 'method' => 'POST', 'id' => 'formProdVar']) !!}
           <div class="row m-t-10">
             <div class="col-xs-6">
-              {!! Form::label('intV_Brand_ID', 'Brand') !!}
-              <select name="intV_Brand_ID" id="intV_Brand_ID" class="form-control">
-                @foreach ($brands as $brand)
-                  <option value="{{ $brand->int_brand_id }}">{{ $brand->str_brand_name }}</option>
-                @endforeach
+              {!! Form::label('int_prod_id_fk', 'Product') !!}
+              <input type="hidden" name="product_id" :value="product.int_product_id">
+              <select name="int_prod_id_fk" id="int_prod_id_fk" class="form-control" v-model="product">
+                  <option v-for="product in products" :key="product.int_product_id" :value="product">@{{ product.str_product_name }}</option>
               </select>
             </div>
-            <div class="col-xs-6">
-              {!! Form::label('intV_Prod_ID', 'Product') !!}
-              <select name="intV_Prod_ID" id="intV_Prod_ID" class="form-control">
-                @foreach ($products as $product)
-                  <option value="{{ $product->int_product_id }}">{{ $product->str_product_name }}</option>
-                @endforeach
-              </select>
-            </div>
-          </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strVarPartNum', 'Part Number') !!}
-              {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strVarModel', 'Product Model') !!}
-              {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="form-group m-t-10">
-            <label for="intVarReStockLevel">Stock Re-Order Level</label>
-            <input type="number" id="intVarReStockLevel" name="intVarReStockLevel" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45"  min="01.00" required>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('txtVarDesc', 'Description') !!}
-            {!! Form::textarea('txtVarDesc', null, ['id' => 'txtVarDesc', 'class' => 'form-control resize', 'rows' => '5']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <hr>
-          <div class="form-group m-t-10">
-            {!! Form::label('decInventoryCost', 'Inventory Cost (Php)') !!}
-            {!! Form::number('decInventoryCost', null, ['id' => 'decInventoryCost', 'class' => 'form-control resize', 'placeholder' => '0.00']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <hr>
           <div class="form-group">
             <label>Product Specification</label>
             <button id="btn-add-attrib" onclick="addAttrib()" type="button" class="btn btn-sm btn-success pull-right">Add Attribute</button>
           </div>
-          <div id="attrib-list"></div>
+          <div  style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+            <div class="row m-t-10" v-for="specs in product.prod_attribs" :key="specs.int_prod_attrib_id">
+                <div class="col-xs-3">
+                  <input type="hidden" :value="specs.int_prod_attrib_id">
+                  <label :for="'str_spec_constant['+specs.int_prod_attrib_id+']'">@{{ specs.attribute.str_attrib_name }}</label>
+                </div>
+                <div class="col-xs-9">
+                  <input type="text" :name="'str_spec_constant['+specs.int_prod_attrib_id+']'" :id="'str_spec_constant['+specs.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45">
+                </div>
+            </div>  
+          </div>
+          <hr>
+          <div class="row m-t-10">
+            <div class="col-xs-6">
+                {!! Form::label('quantity', 0, 'Quantity') !!}
+                {{ Form::number('quantity', 0, ['class'=>'form-control'])}}
+            </div>
+              <div class="col-xs-6">
+                {!! Form::label('price', 'Unit Price') !!}
+                {{ Form::number('price', 0, ['class'=>'form-control'])}}
+              </div>
+            </div>
         {!! Form::close() !!}
       </div>
       <div class="modal-footer">
@@ -78,22 +62,7 @@
       <div class="modal-body">
         <form id="formEditVar">
           <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('intV_Brand_ID', 'Brand') !!}
-              <select name="intV_Brand_ID" id="intV_Brand_ID" class="form-control">
-                @foreach ($brands as $brand)
-                  <option value="{{ $brand->int_brand_id }}">{{ $brand->str_brand_name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('intV_Prod_ID', 'Product') !!}
-              <select name="intV_Prod_ID" id="intV_Prod_ID" class="form-control">
-                @foreach ($products as $product)
-                  <option value="{{ $product->int_product_id }}">{{ $product->str_product_name }}</option>
-                @endforeach
-              </select>
-            </div>
+            
           </div>
           <div class="row m-t-10">
             <div class="col-xs-6">

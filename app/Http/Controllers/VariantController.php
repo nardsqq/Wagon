@@ -5,20 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Variant;
 use App\Product;
-use App\Brand;
-use App\Dimension;
-use App\DimensionSet;
-use App\UOM;
+use App\Specs;
+use App\Price;
+use App\Stock;
 
 class VariantController extends Controller
 {
     public function table()
     {
-        $brands = Brand::orderBy('str_brand_name')->get();
-        $products = Product::orderBy('str_product_name')->get();
-        $variants = Variant::orderBy('strVarModel')->get();
-
-        return view('maintenance.product-variant.table')->with('brands', $brands)->with('products', $products)->with('variants', $variants);
+        $products = Product::with('prod_attribs.attribute')->get();
+        $variants = Variant::all();
+        return view('maintenance.product-variant.table', compact('products', 'variants'));
     }
 
     /**
@@ -28,11 +25,9 @@ class VariantController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('str_brand_name')->get();
-        $products = Product::orderBy('str_product_name')->get();
-        $variants = Variant::orderBy('strVarModel')->get();
-
-        return view('maintenance.product-variant.index')->with('brands', $brands)->with('products', $products)->with('variants', $variants);
+        $products = Product::with('prod_attribs.attribute')->get();
+        $variants = Variant::all();
+        return view('maintenance.product-variant.index', compact('products', 'variants'));
     }
 
     /**
@@ -54,38 +49,41 @@ class VariantController extends Controller
     public function store(Request $request)
     {
         if($request->ajax()) {
-            $this->validate($request, Variant::$rules);
+            try {
+                \DB::beginTransaction();
+                $this->validate($request, Variant::$rules);
 
-            $brand = Brand::find($request->intV_Brand_ID);
-            $product = Product::find($request->intV_Prod_ID);
+                $variant = new Variant();
+                $variant->int_prod_id_fk = $request->product_id;
+                $variant->save();
 
-            $variant = new Variant;
+                Price::create([
+                    'int_ip_var_id_fk' => $variant->int_var_id,
+                    'dbl_price' => $request->price
+                ]);
 
-            $variant->brands()->associate($brand);
-            $variant->products()->associate($product);
-            $variant->strVarPartNum = trim(ucwords($request->strVarPartNum));
-            $variant->strVarModel = trim(ucwords($request->strVarModel));
-            $variant->intVarReStockLevel = trim($request->intVarReStockLevel);
-            $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
-            $variant->decInventoryCost = $request->decInventoryCost;
+                Stock::create([
+                    'int_stock_var_id_fk' => $variant->int_var_id,
+                    'int_quantity' => $request->quantity
+                ]);
 
-            $variant->save();
-
-            if ($request->strDimenValue != null) {
-                foreach($request->strDimenValue as $attrib){
-                    DimensionSet::create([
-                        'intDS_Var_ID' => $variant->intVarID,
-                        'intDS_Dim_ID' => Dimension::create([
-                            'strDimenValue' => trim($attrib) 
-                        ])->intDimenID,
-                    ]);
+                if($request->has('str_spec_constant')){
+                    foreach($request->str_spec_constant as $key => $value){
+                        Specs::create([
+                            'int_spec_var_id_fk' => $variant->int_var_id,
+                            'int_spec_pa_id_fk' => $key,
+                            'str_spec_constant' => $value
+                        ]);
+                    }
                 }
-            } else {
-                //throw exception here
-            }
-                
 
-            return response()->json($variant);
+                \DB::commit();
+                return response()->json($variant);
+            }
+            catch(Exception $e){
+                \DB::rollback();
+                return $e;
+            }
         } else {
             return redirect(route('product-variant.index'));
         }
@@ -111,7 +109,7 @@ class VariantController extends Controller
      */
     public function edit($id)
     {
-        $variant = Variant::with('dimensions')->findOrFail($id);
+        $variant = Variant::findOrFail($id);
         return response()->json($variant);
     }
 
@@ -126,20 +124,7 @@ class VariantController extends Controller
     {
         if($request->ajax()) {
 
-            $brand = Brand::find($request->intV_Brand_ID);
-            $product = Product::find($request->intV_Prod_ID);
-
             $variant = Variant::findOrFail($id);
-
-            $variant->brands()->associate($brand);
-            $variant->products()->associate($product);
-            $variant->strVarPartNum = trim(ucwords($request->strVarPartNum));
-            $variant->strVarModel = trim(ucwords($request->strVarModel));
-            $variant->intVarReStockLevel = trim($request->intVarReStockLevel);
-            $variant->txtVarDesc = trim(ucfirst($request->txtVarDesc));
-            $variant->decInventoryCost = $request->decInventoryCost;
-
-            $variant->save();
 
             return response()->json($variant);
         } else {
