@@ -15,15 +15,15 @@ class CreateTblItemPrice extends Migration
     {
         Schema::create('tbl_item_price', function (Blueprint $table) {
             $table->increments('int_item_price_id');
-            $table->unsignedInteger('int_ip_item_id_fk');
+            $table->unsignedInteger('int_ip_var_id_fk');
             $table->double('dbl_price', 11, 2);
          
             $table->timestamps();
             $table->softdeletes();
 
-            $table->foreign('int_ip_item_id_fk')
-                  ->references('int_item_id')
-                  ->on('tbl_item');
+            $table->foreign('int_ip_var_id_fk')
+                  ->references('int_var_id')
+                  ->on('tbl_variation');
         });
     }
 
@@ -35,7 +35,7 @@ class CreateTblItemPrice extends Migration
     public function down()
     {
         Schema::table('tbl_item_price', function (Blueprint $table) {
-           $table->dropForeign(['int_ip_item_id_fk']);
+           $table->dropForeign(['int_ip_var_id_fk']);
         });
         Schema::dropIfExists('tbl_item_price');
     }
