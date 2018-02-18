@@ -15,20 +15,14 @@ class CreateTblVariation extends Migration
     {
         Schema::create('tbl_variation', function (Blueprint $table) {
             $table->increments('int_var_id');
-            $table->unsignedInteger('int_var_item_id_fk');
-            $table->unsignedInteger('int_specs_id_fk');
-            $table->string('str_specs_contant', 45);
+            $table->unsignedInteger('int_prod_id_fk');
 
             $table->timestamps();
             $table->softdeletes();
 
-            $table->foreign('int_var_item_id_fk')
-                  ->references('int_item_id')
-                  ->on('tbl_item');
-
-            $table->foreign('int_specs_id_fk')
-                  ->references('int_specs_id')
-                  ->on('tbl_specs');
+            $table->foreign('int_prod_id_fk')
+                  ->references('int_product_id')
+                  ->on('tbl_product');
         });
     }
 
@@ -40,8 +34,7 @@ class CreateTblVariation extends Migration
 	public function down()
 	{
         Schema::table('tbl_variation', function (Blueprint $table) {
-            $table->dropForeign(['int_var_item_id_fk']);
-            $table->dropForeign(['int_specs_id_fk']);
+            $table->dropForeign(['int_prod_id_fk']);
         });
 	    Schema::dropIfExists('tbl_variation');
 	}
