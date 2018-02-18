@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Attribute;
 use App\ProductAttribute;
+use App\Specs;
 
 class ProductController extends Controller
 {
@@ -129,12 +130,17 @@ class ProductController extends Controller
                             ])->int_attrib_id;
                         }
                         $current_attribs[] = $attrib;
+                        ProductAttribute::withTrashed()->where('int_pa_attrib_id_fk', $attrib)->where('int_pa_prod_id_fk', $product->int_product_id)->restore();
                         ProductAttribute::firstOrCreate([
                             'int_pa_attrib_id_fk' => $attrib,
                             'int_pa_prod_id_fk' => $product->int_product_id
                         ]);
                     }
                 }
+                // for existing attributes on product specs 
+                $deleted_prod_attribs = $product->prod_attribs->whereNotIn('int_pa_attrib_id_fk', $current_attribs)->pluck('int_prod_attrib_id')->toArray();
+                array_merge($current_attribs, Specs::whereIn('int_spec_pa_id_fk', $deleted_prod_attribs)->pluck('int_spec_var_id_fk')->toArray());
+                
 
                 ProductAttribute::destroy($product->prod_attribs->whereNotIn('int_pa_attrib_id_fk', $current_attribs)->pluck('int_prod_attrib_id')->toArray());
 
