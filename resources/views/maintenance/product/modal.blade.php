@@ -11,6 +11,11 @@
             {!! Form::text('str_product_name', null, ['id' => 'str_product_name', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
+          <div class="form-group">
+            {!! Form::label('str_attrib_name', 'Attributes') !!}
+            {!! Form::select('str_attrib_name[]', [], null, ['id' => 'str_attrib_name', 'class' => 'form-control']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
         {!! Form::close() !!}
       </div>
       <div class="modal-footer">

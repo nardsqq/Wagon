@@ -61,13 +61,31 @@
   </section>
 @endsection
 
-@section('scripts')
+@section('styles')
+<link rel="stylesheet" href="{{ asset('/plugins/selectize/selectize.bootstrap3.css/') }}">
+@endsection
 
+@section('scripts')
+  <script src="{{ asset('/plugins/selectize/selectize.min.js/') }}"></script>
   <!-- Delay table load until everything else is loaded -->
   <script>
+    var select_attrib, select_attrib_instance;
     $(window).on('load', function(){
         $('#dataTable').removeAttr('style');
-    })
+        select_attrib = $('select[name="str_attrib_name[]"]').selectize({
+          plugins: ['remove_button'],
+          create: true,
+          persist: false,
+          maxItems: null,
+          hideSelected: true,
+          valueField: 'int_attrib_id',
+          labelField: 'str_attrib_name'
+        });
+        select_attrib_instance = select_attrib[0].selectize;
+        $.get('/admin/maintenance/attrib', function (data) {
+          select_attrib_instance.addOption(data);
+        });
+    });
   </script>
 
   <script src="{{ asset('/js/ajax/product-ajax.js/') }}"></script>

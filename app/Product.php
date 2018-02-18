@@ -13,10 +13,10 @@ class Product extends Model
     protected $guarded = [];
     protected $primaryKey = 'int_product_id';
 
-    // public function items()
-    // {
-    //     return $this->hasMany('App\Item', 'int_product_id');
-    // }
+    public function prod_attribs()
+    {
+        return $this->hasMany('App\ProductAttribute', 'int_pa_prod_id_fk');
+    }
 
     public static $rules = [
       'str_product_name' => 'required|max:45|unique:tbl_product'

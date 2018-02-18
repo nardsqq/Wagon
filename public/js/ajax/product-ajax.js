@@ -7,6 +7,7 @@ $(document).ready(function() {
 
   $('#add_prod').on('hide.bs.modal', function() {
         $('#formProd').trigger('reset');
+        select_attrib_instance.clear();
     });
 
   var url = "/admin/maintenance/product";
@@ -16,20 +17,32 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Product Type');
+    $('#title').text('Edit Product');
     $('#prod-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
+    
+    
+    $.get('/admin/maintenance/attrib', function (data) {
+      // console.log(data);
+      select_attrib_instance.addOption(data);
+      // select_attrib_instance.refreshOptions();
+    });
 
     $.get(url + '/' + link_id + '/edit', function (data) {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
       $('#str_product_name').val(data.str_product_name);
+      data.items.forEach(element => {
+        select_attrib_instance.addItem(element);
+      });
+      // select_attrib_instance.refreshOptions();
+      // select_attrib_instance.refreshItems();
       $('#btn-save').val("update");
       $('#add_prod').modal('show');
 
-    }) 
+    }); 
 
   });
 

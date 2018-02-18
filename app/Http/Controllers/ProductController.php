@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Attribute;
+use App\ProductAttribute;
 
 class ProductController extends Controller
 {
@@ -38,14 +40,35 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         if($request->ajax()) {
-            $this->validate($request, Product::$rules);
+            try {
+                \DB::beginTransaction();
+                $this->validate($request, Product::$rules);
 
-            $product = new Product;
+                $product = new Product;
+                $product->str_product_name = trim(ucwords($request->str_product_name));
+                $product->save();
 
-            $product->str_product_name = trim(ucwords($request->str_product_name));
+                if($request->has('str_attrib_name')){
+                    foreach($request->str_attrib_name as $attrib) {
+                        if(Attribute::where('int_attrib_id', $attrib)->first() == null){
+                            $attrib = Attribute::firstOrCreate(['str_attrib_name' => $attrib])->int_attrib_id;
+                        }
 
-            $product->save();
-            return response()->json($product);
+                        ProductAttribute::firstOrCreate([
+                            'int_pa_attrib_id_fk' => $attrib,
+                            'int_pa_prod_id_fk' => $product->int_product_id
+                        ]);
+                    }
+                }
+                
+
+                \DB::commit();
+                return response()->json($product);
+            }
+            catch(Exception $e){
+                \DB::rollback();
+                return $e;
+            }
         } else {
             return redirect(route('product.index'));
         }
@@ -71,7 +94,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return response()->json($product);
+        $data = [
+            'str_product_name' => $product->str_product_name,
+            'items' => $product->prod_attribs->pluck('int_pa_attrib_id_fk')
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -83,14 +110,41 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return response()->json($request->all());
         if($request->ajax()) {
+            try {
+                \DB::beginTransaction();
 
-            $product = Product::findOrFail($id);
+                $product = Product::findOrFail($id);
+                $product->str_product_name = trim(ucwords($request->str_product_name));
+                $product->save();
 
-            $product->str_product_name = trim(ucwords($request->str_product_name));
-            
-            $product->save();
-            return response()->json($product);
+                $current_attribs = [];
+
+                if($request->has('str_attrib_name')){
+                    foreach($request->str_attrib_name as $attrib) {
+                        if(Attribute::where('int_attrib_id', $attrib)->first() == null){
+                            $attrib = Attribute::firstOrCreate([
+                                'str_attrib_name' => $attrib
+                            ])->int_attrib_id;
+                        }
+                        $current_attribs[] = $attrib;
+                        ProductAttribute::firstOrCreate([
+                            'int_pa_attrib_id_fk' => $attrib,
+                            'int_pa_prod_id_fk' => $product->int_product_id
+                        ]);
+                    }
+                }
+
+                ProductAttribute::destroy($product->prod_attribs->whereNotIn('int_pa_attrib_id_fk', $current_attribs)->pluck('int_prod_attrib_id')->toArray());
+
+                \DB::commit();
+                return response()->json($product);
+            }
+            catch(Exception $e){
+                \DB::rollback();
+                return $e;
+            }
         } else {
             return redirect(route('product.index'));
         }

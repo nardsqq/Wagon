@@ -9,11 +9,9 @@ class Attribute extends Model
 {
 	use SoftDeletes;
 
-	protected $table = 'tblAttribute';
-	protected $fillable = ['strAttribName'];
-	protected $primaryKey = 'intAttribID';
-	protected $dates = ['deleted_at'];
-	public $timestamps = false;
+	protected $table = 'tbl_attrib';
+	protected $guarded = [];
+	protected $primaryKey = 'int_attrib_id';
 
 	public function products()
 	{
@@ -21,6 +19,6 @@ class Attribute extends Model
 	}
 
 	public static $rules = [
-        'strAttribName' => 'required|min:2|unique:tblAttribute|max:45|regex:/^[a-z ,.\'-]+$/i',
+        'str_attrib_name' => 'required|min:2|unique:tbl_attrib|max:45|regex:/^[a-z ,.\'-]+$/i',
     ];
 }

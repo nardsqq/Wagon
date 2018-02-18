@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('specification', 'SpecsController');
     Route::resource('brand', 'BrandController');
     Route::resource('product', 'ProductController');
+    Route::resource('attrib', 'AttributeController');
 
     Route::resource('product-variant', 'VariantController');
     Route::get('product-variant-table', 'VariantController@table');
