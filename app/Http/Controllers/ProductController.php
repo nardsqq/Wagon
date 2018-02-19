@@ -139,11 +139,16 @@ class ProductController extends Controller
                 }
                 // for existing attributes on product specs 
                 $deleted_prod_attribs = $product->prod_attribs->whereNotIn('int_pa_attrib_id_fk', $current_attribs)->pluck('int_prod_attrib_id')->toArray();
-                array_merge($current_attribs, Specs::whereIn('int_spec_pa_id_fk', $deleted_prod_attribs)->pluck('int_spec_var_id_fk')->toArray());
+                $used_attribs = ProductAttribute::whereIn('int_prod_attrib_id', Specs::whereIn('int_spec_pa_id_fk', $deleted_prod_attribs)->pluck('int_spec_pa_id_fk')->toArray())->pluck('int_pa_attrib_id_fk')->toArray();
+
+                // var_dump(compact('current_attribs', 'deleted_prod_attribs', 'used_attribs'));
                 
+                $current_attribs = array_merge($current_attribs, $used_attribs);
 
+                // var_dump($current_attribs);
+                
                 ProductAttribute::destroy($product->prod_attribs->whereNotIn('int_pa_attrib_id_fk', $current_attribs)->pluck('int_prod_attrib_id')->toArray());
-
+               
                 \DB::commit();
                 return response()->json($product);
             }

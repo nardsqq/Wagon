@@ -70,7 +70,7 @@
         $('#dataTable').removeAttr('style');
     })
 
-    new Vue({
+    var app = new Vue({
       el: '#main',
       data: {
         products: {!! json_encode($products) !!},

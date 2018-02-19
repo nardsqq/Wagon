@@ -14,11 +14,66 @@
                   <option v-for="product in products" :key="product.int_product_id" :value="product">@{{ product.str_product_name }}</option>
               </select>
             </div>
+            
+            
+            <div class="col-xs-3">
+                {!! Form::label('quantity', 0, 'Quantity') !!}
+                {{ Form::number('quantity', 0, ['class'=>'form-control'])}}
+            </div>
+            <div class="col-xs-3">
+              {!! Form::label('price', 'Unit Price') !!}
+              {{ Form::number('price', 0, ['class'=>'form-control'])}}
+            </div>
           </div>
           <hr>
           <div class="form-group">
             <label>Product Specification</label>
-            <button id="btn-add-attrib" onclick="addAttrib()" type="button" class="btn btn-sm btn-success pull-right">Add Attribute</button>
+          </div>
+          <div  style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+            <div class="row m-t-10" v-for="specs in product.prod_attribs" :key="specs.int_prod_attrib_id">
+                <div class="col-xs-3">
+                  <input type="hidden" :value="specs.int_prod_attrib_id">
+                  <label :for="'str_spec_constant['+specs.int_prod_attrib_id+']'">@{{ specs.attribute.str_attrib_name }}</label>
+                </div>
+                <div class="col-xs-9">
+                  <input type="text" :name="'str_spec_constant['+specs.int_prod_attrib_id+']'" :id="'str_spec_constant['+specs.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45">
+                </div>
+            </div>  
+          </div>
+          <hr>
+          <div class="row m-t-10">
+            </div>
+        {!! Form::close() !!}
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button id="btn-save" value="add" class="modal-btn btn btn-success pull-right">Submit</button>
+        <input type="hidden" id="link_id" name="link_id" value="0">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="edit_prodvar" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header modal-header-info" id="prodvar-modal-header">
+        <h4 id="title">Edit Product Variant</h4>
+      </div>
+      <div class="modal-body">
+        <form id="formEditVar">
+          <div class="row m-t-10">
+            <div class="col-xs-6">
+              {!! Form::label('int_prod_id_fk', 'Product') !!}
+              <input type="hidden" name="product_id" :value="product.int_product_id">
+              <select name="int_prod_id_fk" id="int_prod_id_fk" class="form-control" v-model="product">
+                  <option v-for="product in products" :key="product.int_product_id" :value="product">@{{ product.str_product_name }}</option>
+              </select>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label>Product Specification</label>
           </div>
           <div  style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
             <div class="row m-t-10" v-for="specs in product.prod_attribs" :key="specs.int_prod_attrib_id">
@@ -42,56 +97,6 @@
                 {{ Form::number('price', 0, ['class'=>'form-control'])}}
               </div>
             </div>
-        {!! Form::close() !!}
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-        <button id="btn-save" value="add" class="modal-btn btn btn-success pull-right">Submit</button>
-        <input type="hidden" id="link_id" name="link_id" value="0">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="edit_prodvar" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header modal-header-info" id="prodvar-modal-header">
-        <h4 id="title">Edit Product Variant</h4>
-      </div>
-      <div class="modal-body">
-        <form id="formEditVar">
-          <div class="row m-t-10">
-            
-          </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strVarPartNum', 'Part Number') !!}
-              {!! Form::text('strVarPartNum', null, ['id' => 'strVarPartNum', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strVarModel', 'Product Model') !!}
-              {!! Form::text('strVarModel', null, ['id' => 'strVarModel', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="form-group m-t-10">
-            <label for="intVarReStockLevel">Stock Re-Order Level</label>
-            <input type="number" id="intVarReStockLevel" name="intVarReStockLevel" class="form-control" data-parsley-pattern=/^[a-zA-Z0-9\-\s]+$/ maxlength="45"  min="01.00" required>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('txtVarDesc', 'Description') !!}
-            {!! Form::textarea('txtVarDesc', null, ['id' => 'txtVarDesc', 'class' => 'form-control resize', 'rows' => '5']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <hr>
-          <div class="form-group m-t-10">
-            {!! Form::label('decInventoryCost', 'Inventory Cost (Php)') !!}
-            {!! Form::number('decInventoryCost', null, ['id' => 'decInventoryCost', 'class' => 'form-control resize', 'placeholder' => '0.00']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
         </form> 
       </div>
       <div class="modal-footer">
