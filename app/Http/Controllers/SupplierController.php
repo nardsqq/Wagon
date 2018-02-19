@@ -9,7 +9,7 @@ class SupplierController extends Controller
 {
     public function table()
     {
-        $suppliers = Supplier::orderBy('strSuppName')->get();
+        $suppliers = Supplier::orderBy('str_supplier_name')->get();
         return view('maintenance.supplier.table')->with('suppliers', $suppliers);
     }
     
@@ -20,7 +20,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::orderBy('strSuppName')->get();
+        $suppliers = Supplier::orderBy('str_supplier_name')->get();
         return view('maintenance.supplier.index')->with('suppliers', $suppliers);
     }
 
@@ -47,15 +47,9 @@ class SupplierController extends Controller
 
             $supplier = new Supplier;
 
-            $supplier->strSuppName = trim(ucwords($request->strSuppName));
-            $supplier->strSuppContactNum = trim($request->strSuppContactNum);
-            $supplier->strSuppAddLotNo = trim($request->strSuppAddLotNo);
-            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
-            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
-            $supplier->strSuppAddBrgy = trim(ucwords($request->strSuppAddBrgy));
-            $supplier->strSuppAddCity = trim(ucwords($request->strSuppAddCity));
-            $supplier->strSuppContactPers = trim(ucwords($request->strSuppContactPers));
-            $supplier->strSuppContactPersNum = trim($request->strSuppContactPersNum);
+            $supplier->str_supplier_name = trim(ucwords($request->str_supplier_name));
+            $supplier->str_supplier_mobile_num = trim($request->str_supplier_mobile_num);
+            $supplier->txt_supplier_address = trim(ucwords($request->txt_supplier_address));
 
             $supplier->save();
             return response()->json($supplier);
@@ -101,15 +95,9 @@ class SupplierController extends Controller
 
             $supplier = Supplier::findOrFail($id);
 
-            $supplier->strSuppName = trim(ucwords($request->strSuppName));
-            $supplier->strSuppContactNum = trim($request->strSuppContactNum);
-            $supplier->strSuppAddLotNo = trim($request->strSuppAddLotNo);
-            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
-            $supplier->strSuppAddStBldg = trim(ucwords($request->strSuppAddStBldg));
-            $supplier->strSuppAddBrgy = trim(ucwords($request->strSuppAddBrgy));
-            $supplier->strSuppAddCity = trim(ucwords($request->strSuppAddCity));
-            $supplier->strSuppContactPers = trim(ucwords($request->strSuppContactPers));
-            $supplier->strSuppContactPersNum = trim($request->strSuppContactPersNum);
+            $supplier->str_supplier_name = trim(ucwords($request->str_supplier_name));
+            $supplier->str_supplier_mobile_num = trim($request->str_supplier_mobile_num);
+            $supplier->txt_supplier_address = trim(ucwords($request->txt_supplier_address));
 
             $supplier->save();
             return response()->json($supplier);

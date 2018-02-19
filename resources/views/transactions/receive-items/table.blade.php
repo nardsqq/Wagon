@@ -12,7 +12,7 @@
     @foreach($headers as $header)
     <tr id="id{{$header->intRecDelID}}">
         <td>{{$header->intRecDelPONum}}</td>
-        <td>{{$header->supplier->strSuppName}}</td>
+        <td>{{$header->supplier->str_supplier_name}}</td>
         <td>{{ $header->intRecDelDtmRec->format('F d, Y')}}</td>
         <td>{{ $header->details->count() }}</td>
         <td class="text-center">

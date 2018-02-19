@@ -8,50 +8,23 @@
         {!! Form::open(['url' => '/admin/maintenance/supplier', 'method' => 'POST', 'id' => 'formSupp']) !!}
           <div class="row">
             <div class="col-xs-6">
-              {!! Form::label('strSuppName', 'Supplier Name') !!}
-              {!! Form::text('strSuppName', null, ['id' => 'strSuppName', 'class' => 'form-control']) !!}
+              {!! Form::label('str_supplier_name', 'Supplier Name') !!}
+              {!! Form::text('str_supplier_name', null, ['id' => 'str_supplier_name', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strSuppContactNum', 'Contact Number') !!}
-              {!! Form::text('strSuppContactNum', null, ['id' => 'strSuppContactNum', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div> 
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddLotNo', 'Lot Number') !!}
-              {!! Form::text('strSuppAddLotNo', null, ['id' => 'strSuppAddLotNo', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddStBldg', 'Street or Building Name') !!}
-              {!! Form::text('strSuppAddStBldg', null, ['id' => 'strSuppAddStBldg', 'class' => 'form-control']) !!}
+              {!! Form::label('str_supplier_mobile_num', 'Contact Number') !!}
+              {!! Form::text('str_supplier_mobile_num', null, ['id' => 'str_supplier_mobile_num', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddBrgy', 'Baranggay') !!}
-              {!! Form::text('strSuppAddBrgy', null, ['id' => 'strSuppAddBrgy', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddCity', 'City or Province') !!}
-              {!! Form::text('strSuppAddCity', null, ['id' => 'strSuppAddCity', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strSuppContactPers', 'Contact Person') !!}
-              {!! Form::text('strSuppContactPers', null, ['id' => 'strSuppContactPers', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strSuppContactPersNum', 'Associate Contact Number') !!}
-              {!! Form::text('strSuppContactPersNum', null, ['id' => 'strSuppContactPersNum', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group m-t-10">
+                {!! Form::label('txt_supplier_address', 'Address') !!}
+                {!! Form::textarea('txt_supplier_address', null, ['id' => 'txt_supplier_address', 'class' => 'form-control']) !!}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              </div>
             </div>
           </div>
         {!! Form::close() !!}
@@ -75,49 +48,24 @@
         <form id="formEditSupp">
           <div class="row">
             <div class="col-xs-6">
-              {!! Form::label('strSuppName', 'Supplier Name') !!}
-              {!! Form::text('strSuppName', null, ['id' => 'strSuppName', 'class' => 'form-control']) !!}
+              {!! Form::label('str_supplier_name', 'Supplier Name') !!}
+              {!! Form::text('str_supplier_name', null, ['id' => 'str_supplier_name', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('strSuppContactNum', 'Contact Number') !!}
-              {!! Form::text('strSuppContactNum', null, ['id' => 'strSuppContactNum', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div> 
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddLotNo', 'Lot Number') !!}
-              {!! Form::text('strSuppAddLotNo', null, ['id' => 'strSuppAddLotNo', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddStBldg', 'Street or Building Name') !!}
-              {!! Form::text('strSuppAddStBldg', null, ['id' => 'strSuppAddStBldg', 'class' => 'form-control']) !!}
+              {!! Form::label('str_supplier_mobile_num', 'Contact Number') !!}
+              {!! Form::text('str_supplier_mobile_num', null, ['id' => 'str_supplier_mobile_num', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div>
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddBrgy', 'Baranggay') !!}
-              {!! Form::text('strSuppAddBrgy', null, ['id' => 'strSuppAddBrgy', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group m-t-10">
+                {!! Form::label('txt_supplier_address', 'Address') !!}
+                {!! Form::textarea('txt_supplier_address', null, ['id' => 'txt_supplier_address', 'class' => 'form-control']) !!}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              </div>
             </div>
-            <div class="col-xs-6">
-              {!! Form::label('strSuppAddCity', 'City or Province') !!}
-              {!! Form::text('strSuppAddCity', null, ['id' => 'strSuppAddCity', 'class' => 'form-control']) !!}
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </div>
-          </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('strSuppContactPers', 'Contact Person') !!}
-            {!! Form::text('strSuppContactPers', null, ['id' => 'strSuppContactPers', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
-          <div class="form-group">
-            {!! Form::label('strSuppContactPersNum', 'Associate Contact Details') !!}
-            {!! Form::text('strSuppContactPersNum', null, ['id' => 'strSuppContactPersNum', 'class' => 'form-control']) !!}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>
       </div>

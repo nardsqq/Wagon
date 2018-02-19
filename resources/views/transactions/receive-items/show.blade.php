@@ -5,7 +5,7 @@
         </div>
         <div class="modal-body">
             <h3>PO Reference Number: {{ $header->intRecDelPONum }}</h3>
-            <h4>Supplier: {{$header->supplier->strSuppName}}</h4>
+            <h4>Supplier: {{$header->supplier->str_supplier_name}}</h4>
             <h4>Date: {{ $header->intRecDelDtmRec->format('F d, Y')}}</h4>
             <table class="table table-bordered table-hover" width="100%">
                 <thead>

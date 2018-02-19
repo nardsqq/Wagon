@@ -9,27 +9,15 @@ class Supplier extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'tblSupplier';
+    protected $table = 'tbl_supplier';
 
-    protected $fillable = 
-    [
-        'strSuppName', 
-        'strSuppAddLotNo', 
-        'strSuppAddStBldg', 
-        'strSuppAddBrgy',
-        'strSuppAddCity',
-        'strSuppContactNum',
-        'strSuppContactPers',
-        'strSuppContactPersNum'
-    ];
+    protected $guarded = [];
 
-    protected $primaryKey = 'intSuppID';
-    protected $dates = ['deleted_at'];
-    public $timestamps = false;
+    protected $primaryKey = 'int_supplier_id';
 
     public static $rules = [
-      'strSuppName' => 'required|max:45|unique:tblSupplier',
-      'strSuppContactNum' => 'required',
-      'strSuppContactPers' => 'required',
+      'str_supplier_name' => 'required|max:45|unique:tbl_supplier',
+      'txt_supplier_address' => 'required',
+      'str_supplier_mobile_num' => 'required',
     ];
 }

@@ -12,7 +12,7 @@ class StockController extends Controller
     public function table()
     {
         $variants = Variant::orderBy('strVarModel')->get();
-        $suppliers = Supplier::orderBy('strSuppName')->get();
+        $suppliers = Supplier::orderBy('str_supplier_name')->get();
 
         return view('transactions.inventory.table')->with('variants', $variants)->with('suppliers', $suppliers);
     }
@@ -25,7 +25,7 @@ class StockController extends Controller
     public function index()
     {
         $variants = Variant::orderBy('strVarModel')->get();
-        $suppliers = Supplier::orderBy('strSuppName')->get();
+        $suppliers = Supplier::orderBy('str_supplier_name')->get();
 
         return view('transactions.inventory.index')->with('variants', $variants)->with('suppliers', $suppliers);
     }

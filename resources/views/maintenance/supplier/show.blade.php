@@ -44,26 +44,17 @@
 			            </div>
 			            <div class="panel-body">	
 			               	<div class="col-md-8">
-								<h1>{{ $supplier->strSuppName }}</h1>
-								<p class="lead">{{ $supplier->strSuppAddLotNo }} {{ $supplier->strSuppAddStBldg }}, {{ $supplier->strSuppAddBrgy }}, {{ $supplier->strSuppAddCity }}</p>
+								<h1>{{ $supplier->str_supplier_name }}</h1>
+								<p class="lead">{{ $supplier->txt_supplier_address }}</p>
 							</div>
 							<div class="col-md-4">
 
 								<div class="well">
 									<dl>
 									  <dt>Supplier Contact Detail</dt>
-									  <dd>{{ $supplier->strSuppContactNum }}</dd>
+									  <dd>{{ $supplier->str_supplier_mobile_num }}</dd>
 									</dl>
 
-									<dl>
-									   <dt>Contact Person (Supplier Associate)</dt>
-									   <dd>{{ $supplier->strSuppContactPers }}</dd>
-									</dl>
-
-									<dl>
-									   <dt>Associate Contact Detail</dt>
-									   <dd>{{ $supplier->strSuppContactPersNum }}</dd>
-									</dl>
 
 									<hr>
 

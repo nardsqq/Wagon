@@ -22,7 +22,7 @@
             {!! Form::label('intS_Supp_ID', 'Supplier') !!}
             <select name="intS_Supp_ID" id="intS_Supp_ID" class="form-control">
               @foreach($suppliers as $supplier)
-              <option value="{{ $supplier->intSuppID }}">{{ $supplier->strSuppName }}</option>
+              <option value="{{ $supplier->int_supplier_id }}">{{ $supplier->str_supplier_name }}</option>
               @endforeach
             </select>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

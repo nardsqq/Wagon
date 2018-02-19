@@ -26,14 +26,9 @@ $(document).ready(function() {
       success: function(data) {
         var formEditSupp = $('#formEditSupp');
 
-        formEditSupp.find('#strSuppName').val(data.strSuppName);
-        formEditSupp.find('#strSuppAddLotNo').val(data.strSuppAddLotNo);
-        formEditSupp.find('#strSuppAddStBldg').val(data.strSuppAddStBldg);
-        formEditSupp.find('#strSuppAddBrgy').val(data.strSuppAddBrgy);
-        formEditSupp.find('#strSuppAddCity').val(data.strSuppAddCity);
-        formEditSupp.find('#strSuppContactNum').val(data.strSuppContactNum);
-        formEditSupp.find('#strSuppContactPers').val(data.strSuppContactPers);
-        formEditSupp.find('#strSuppContactPersNum').val(data.strSuppContactPersNum);
+        formEditSupp.find('#str_supplier_name').val(data.str_supplier_name);
+        formEditSupp.find('#str_supplier_mobile_num').val(data.str_supplier_mobile_num);
+        formEditSupp.find('#txt_supplier_address').val(data.txt_supplier_address);
 
         $('#edit_supp').modal('show');
       }

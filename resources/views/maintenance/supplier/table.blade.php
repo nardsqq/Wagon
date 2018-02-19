@@ -3,22 +3,20 @@
     <tr>
       <th>Supplier</th>
       <th class="text-center">Contact Number</th>
-      <th class="text-center">Associate</th>
-      <th class="text-center">Associate Contact</th>
+      <th class="text-center">Address</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
   <tbody id="mode-list">
     @foreach ($suppliers as $supplier)
-    <tr id="id{{ $supplier->intSuppID }}">
-        <td>{{ $supplier->strSuppName }}</td>
-        <td class="text-center">{{ $supplier->strSuppContactNum }}</td>
-        <td class="text-center">{{ $supplier->strSuppContactPers }}</td>
-        <td class="text-center">{{ $supplier->strSuppContactPersNum }}</td>
+    <tr id="id{{ $supplier->int_supplier_id }}">
+        <td>{{ $supplier->str_supplier_name }}</td>
+        <td class="text-center">{{ $supplier->str_supplier_mobile_num }}</td>
+        <td class="text-center">{{ $supplier->txt_supplier_address }}</td>
         <td class="text-center">
-            <a href="{{ route('supplier.show', $supplier->intSuppID) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
-            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $supplier->intSuppID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-            <button class="btn btn-danger btn-sm btn-delete" value="{{ $supplier->intSuppID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+            <a href="{{ route('supplier.show', $supplier->int_supplier_id) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>
+            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $supplier->int_supplier_id }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <button class="btn btn-danger btn-sm btn-delete" value="{{ $supplier->int_supplier_id }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
     </tr>
     @endforeach
