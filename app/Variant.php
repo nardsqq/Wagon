@@ -12,6 +12,7 @@ class Variant extends Model
     protected $table = 'tbl_variation';
     protected $guarded = [];
     protected $primaryKey = 'int_var_id';
+    protected $appends = ['price', 'stock'];
 
     public function product() 
     {
@@ -33,6 +34,14 @@ class Variant extends Model
     public static $rules = [
       'int_prod_id_fk' => 'required'
     ];
+
+    public function getPriceAttribute(){
+      return $this->prices()->latest()->first()->dbl_price;
+    }
+
+    public function getStockAttribute(){
+      return $this->stocks()->latest()->first()->int_quantity;
+    }
 
     // public function getCurrentStockAttribute(){
     //   return 

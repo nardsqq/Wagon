@@ -74,7 +74,27 @@
       el: '#main',
       data: {
         products: {!! json_encode($products) !!},
-        product: {!! json_encode($products->first() ?: []) !!}
+        product: {!! json_encode($products->first() ?: []) !!},
+        specs: [],
+        variant: {},
+        isFormEdit: false
+      },
+      methods: {
+        reset: function(){
+          {{--  $.ajax({
+              type: 'GET',
+              url: "/admin/maintenance/product-variant/create",
+              dataType: 'json'
+            }).done(function(data) {
+              this.products = data.products;
+            });  --}}
+            //Vue.nextTick(()=>{
+              this.product = this.products ? this.products[0] : {};
+              this.specs = [];
+              this.variant = {};
+              this.isFormEdit = false;
+            //});
+        }
       }
     });
   </script>

@@ -18,7 +18,13 @@ class Product extends Model
         return $this->hasMany('App\ProductAttribute', 'int_pa_prod_id_fk');
     }
 
+    public function variants()
+    {
+        return $this->hasMany('App\Variant', 'int_prod_id_fk');
+    }
+
     public static $rules = [
       'str_product_name' => 'required|max:45|unique:tbl_product'
     ];
+
 }

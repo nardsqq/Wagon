@@ -5,8 +5,10 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_prodvar').on('hide.bs.modal', function() {
+  $('#add_prodvar, #edit_prodvar').on('hide.bs.modal', function() {
     $('#formProdVar').trigger('reset');
+    // reset vue data
+    app.reset();
   });
 
   var url = "/admin/maintenance/product-variant";
@@ -16,6 +18,9 @@ $(document).ready(function() {
   computeRetailPrice();
 
   $(document).on('click', '.open-modal', function() {
+    
+    app.isFormEdit = true;
+
     var link_id = $(this).val();
     id = link_id;
 
@@ -28,15 +33,10 @@ $(document).ready(function() {
       success: function(data) {
         var formEditVar = $('#formEditVar');
 
-        formEditVar.find('#intV_Brand_ID').val(data.intV_Brand_ID);
-        formEditVar.find('#intV_Prod_ID').val(data.intV_Prod_ID);
-        formEditVar.find('#strVarPartNum').val(data.strVarPartNum);
-        formEditVar.find('#strVarModel').val(data.strVarModel);
-        formEditVar.find('#strVarHandle').val(data.strVarHandle);
-        formEditVar.find('#intVarReStockLevel').val(data.intVarReStockLevel);
-        formEditVar.find('#txtVarDesc').val(data.txtVarDesc);
-        formEditVar.find('#decInventoryCost').val(data.decInventoryCost);
-
+        // formEditVar.find('#product_id').val(data.variant.int_prod_id_fk);
+        app.product = data.product;
+        app.variant = data.variant;
+        app.specs = data.specs;
 
         $('#edit_prodvar').modal('show');
       }
