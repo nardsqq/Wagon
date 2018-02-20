@@ -16,7 +16,7 @@ class CreateTblItemOrder extends Migration
         Schema::create('tbl_item_order', function (Blueprint $table) {
             $table->increments('int_item_order_id');
             $table->unsignedInteger('int_io_order_id_fk');
-            $table->unsignedInteger('int_io_item_id_fk');
+            $table->unsignedInteger('int_io_var_id_fk');
             $table->integer('int_quantity');
             $table->text('txt_remarks')->nullable();
 
@@ -27,9 +27,9 @@ class CreateTblItemOrder extends Migration
                   ->references('int_order_id')
                   ->on('tbl_order');
 
-            $table->foreign('int_io_item_id_fk')
-                  ->references('int_item_id')
-                  ->on('tbl_item');
+            $table->foreign('int_io_var_id_fk')
+                  ->references('int_var_id')
+                  ->on('tbl_variation');
         });
     }
 
@@ -42,7 +42,7 @@ class CreateTblItemOrder extends Migration
     {
         Schema::table('tbl_item_order', function (Blueprint $table) {
             $table->dropForeign(['int_io_order_id_fk']);
-            $table->dropForeign(['int_io_item_id_fk']);
+            $table->dropForeign(['int_io_var_id_fk']);
         });
         Schema::dropIfExists('tbl_item_order');
     }
