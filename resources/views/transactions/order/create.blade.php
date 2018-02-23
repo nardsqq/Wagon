@@ -30,60 +30,41 @@
   </section>
 
   <section id="main">
-    <div class="container animated fadeIn" id="create-process-order">
+    <div class="container animated fadeIn">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" id="process-form">
             {{ Form::open(['id'=>'process-form', 'class'=>'form-horizontal', 'route'=>'process-order.store', 'method'=>'POST','autocomplete'=>'off']) }}
-                <input v-for="product in selected_products" type="hidden" name="products[]" :value="">
-                <form-wizard 
-                    @on-complete="onComplete"
-                    title="Process Order"  
-                    shape="tab"  
-                    color="#3498db" 
-                    error-color="#BC0E0E"
-                    finish-button-text="Submit"
-                >
-                    
-                    <tab-content title="Order Details" icon="fa fa-user" :before-change="validateFirstStep">
+            <div id="smartwizard">
+                <ul>
+                    <li><a href="#step-1">Order Details</a></li>
+                    <li><a href="#step-2">Product Order</a></li>
+                    <li><a href="#step-3">Service Order</a></li>
+                    <li><a href="#step-4">Terms & Conditions</a></li>
+                    <li><a href="#step-5">Summary</a></li>
+                </ul>
+             
+                <div>
+                    <div id="step-1" class="">
                         <div class="row">
                             <div class="col-md-12">
                                 @include('transactions.order.form.order-details')
                             </div>
                         </div>
-                    </tab-content>
-
-                    <tab-content title="Product Order" icon="fa fa-star" :before-change="validateSecondStep">
-                    <div class="row">
-                            <div class="col-md-12">
-                                @include('transactions.order.form.product')
-                            </div>
-                        </div>
-                    </tab-content>
-
-                    <tab-content title="Service ORder" icon="fa fa-star">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @include('transactions.order.form.service')
-                            </div>
-                        </div>
-                    </tab-content>
-                    
-                    <tab-content title="Terms & Conditions" icon="fa fa-star">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @include('transactions.order.form.terms')
-                            </div>
-                        </div>
-                    </tab-content>
-
-                    <tab-content title="Summary" icon="fa fa-star">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @include('transactions.order.form.summary')
-                            </div>
-                        </div>
-                    </tab-content>
-                </form-wizard>
+                    </div>
+                    <div id="step-2" class="">
+                        @include('transactions.order.form.product')
+                    </div>
+                    <div id="step-3" class="">
+                        @include('transactions.order.form.service')
+                    </div>
+                    <div id="step-4" class="">
+                        @include('transactions.order.form.terms')
+                    </div>
+                    <div id="step-5" class="">
+                        @include('transactions.order.form.summary')
+                    </div>
+                </div>
+            </div>
             {{ Form::close() }}
         </div>
       </div>
@@ -92,11 +73,11 @@
 @endsection
 
 @section('styles')
-  <link href="{{ asset('/plugins/vue-form-wizard/vue-form-wizard.min.css/') }}">
+    <link href="{{ asset('/plugins/smartwizard/smart_wizard.min.css/') }}">
 @endsection
 
 @section('scripts')
-  <script src="{{ asset('/js/vue.js/') }}"></script>
-  <script src="{{ asset('/plugins/vue-form-wizard/vue-form-wizard.js/') }}"></script>
-  <script src="{{ asset('/js/ajax/transactions/order-ajax.js/') }}"></script>
+    <script src="{{ asset('/js/app.js/') }}"></script>
+    <script src="{{ asset('/plugins/smartwizard/jquery.smartWizard.min.js/') }}"></script>
+    <script src="{{ asset('/js/ajax/transactions/order-ajax.js/') }}"></script>
 @endsection

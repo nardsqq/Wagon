@@ -26,7 +26,7 @@ class ProcessOrderController extends Controller
         $clients = Client::all();
         $products = Product::with('prod_attribs.attribute')->get();
         $services = Service::all();
-        return json(compact('clients', 'products', 'services'));
+        return json_encode(compact('clients', 'products', 'services'));
     }
 
     /**

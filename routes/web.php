@@ -90,7 +90,7 @@ Route::group(['prefix' => 'admin'], function() {
     // Order
     Route::resource('process-order', 'ProcessOrderController');
     Route::get('process-order-table', 'ProcessOrderController@table');
-    Route::get('process-order-formdata', 'ProcessOrderController@formData');
+    Route::get('process-order-form-data', 'ProcessOrderController@formData');
 
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');

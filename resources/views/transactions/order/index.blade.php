@@ -63,5 +63,5 @@
 @endsection
 
 @section('scripts')
-  <script src="{{ asset('/js/ajax/transactions/order-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/transactions/purchase-order-ajax.js/') }}"></script>
 @endsection
