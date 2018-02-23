@@ -87,8 +87,13 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('sales-order', 'SalesOrderController');
     Route::get('sales-order-table', 'SalesOrderController@table');
 
+    // Order
+    Route::resource('process-order', 'ProcessOrderController');
+    Route::get('process-order-table', 'ProcessOrderController@table');
+    Route::get('process-order-formdata', 'ProcessOrderController@formData');
+
     // Purchase Order
-    Route::get('process-order', 'RouteController@purchaseorder');
+    //Route::get('process-order', 'RouteController@purchaseorder');
 
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');
