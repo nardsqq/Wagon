@@ -24,7 +24,7 @@ class ProcessOrderController extends Controller
     public function formData()
     {
         $clients = Client::all();
-        $products = Product::with('prod_attribs.attribute')->get();
+        $products = Product::with('variants.specs.prod_attrib.attribute')->get();
         $services = Service::all();
         return json_encode(compact('clients', 'products', 'services'));
     }

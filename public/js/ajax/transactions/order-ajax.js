@@ -43,11 +43,30 @@ var app = new Vue({
             services: [],
             delivery_option: 0, // 0 - delivery, 1 - pick-up
             order_type: 0, // 0 - product, 1 - service, 2 - product & service 
+            selected_product: {},
+            selected_variant: {},
             selected_products: [],
             selected_services: []
         }
     },
+    computed: {
+        variants: function(){
+            return this.selected_product.variants;
+        }
+    },
+    watch: {
+        selected_product: function(product){
+            $('#dataTable').DataTable().destroy();
+            this.$nextTick(function() {
+	            $('#dataTable').DataTable();
+             });
+            console.log(product.int_product_id);
+        }
+    },
     methods: {
+        selectVariant: function(variant, event){
+            return this.selected_variant.int_var_id === variant.int_var_id ? this.selected_variant = {} : this.selected_variant = variant;
+        },
         onComplete: function(){
             return;
         },

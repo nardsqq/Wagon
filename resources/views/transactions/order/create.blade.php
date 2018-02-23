@@ -51,8 +51,12 @@
                             </div>
                         </div>
                     </div>
-                    <div id="step-2" class="">
-                        @include('transactions.order.form.product')
+                    <div id="step-2" class="" >
+                            <div class="row">
+                                <div class="col-md-12">
+                                @include('transactions.order.form.product')
+                            </div>
+                        </div>
                     </div>
                     <div id="step-3" class="">
                         @include('transactions.order.form.service')
