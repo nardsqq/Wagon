@@ -10,7 +10,7 @@ class Invoice extends Model
     protected $guarded = [];
     protected $primaryKey = 'int_invoice_id';
 
-    public function order) 
+    public function order() 
     {
       return $this->belongsTo('App\Order', 'int_invoice_order_id_fk');
     }
