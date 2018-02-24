@@ -43,7 +43,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square fa-fw"></i>&nbsp;Process Order</button>
+                <a id="btn-add" class="btn btn-success" href="{{ route('process-order.create') }}"><i class="fa fa-plus-square fa-fw"></i>&nbsp;Process Order</a>
               </div>
               <div class="panel-title">
                 <h4>Orders</h4>

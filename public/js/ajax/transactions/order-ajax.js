@@ -4,11 +4,39 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
+    $('form').on('submit', function(e){
+        e.preventDefault();
+    });
+
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
         .addClass('btn btn-info')
         .on('click', function(){ 
-            $('#process-order-form').submit();
+            var form = $('#process-order-form'),
+                form_data = form.serialize();
+
+            $.ajax({  
+                type: form.attr('method'),  
+                url: form.attr('action'),  
+                data: form_data,  
+                dataType: 'json',
+                success: function(data) {  
+                    if(data.alert=='success'){  
+                        window.location.assign(data.url);
+                    } else {
+                        alert('Error');
+                    }
+                },  
+                error: function (data) {  
+                    var message = data.responseJSON.message ? data.responseJSON.message : 'Error!';
+                    var errors = data.responseJSON.message ? '' : data.responseJSON;  
+                    var error_message = '';
+                    for(i in errors){  
+                        error_message += errors[i] + '\n';  
+                    }  
+                    alert(error_message);
+                }
+            });
         });
     var btnCancel = $('<button></button>').text('Cancel')
         .addClass('btn btn-danger')

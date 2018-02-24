@@ -13,7 +13,7 @@ class Order extends Model
         ['id' => 3, 'desc' => 'Net 30'],
         ['id' => 4, 'desc' => 'Net 60']
     ];
-        
+    
     public static $modes = [
         ['id' => 0, 'desc' => 'COD (Cash On Delivery)'],
         ['id' => 1, 'desc' => 'Cheque']
@@ -56,11 +56,15 @@ class Order extends Model
     }
 
     public function status(){
-        return $this->hasMany('App\OrderSignature', 'int_orsig_order_id_fk');
+        return $this->hasMany('App\OrderStatus', 'int_orstat_order_id_fk');
     }
 
     public function invoice(){
         return $this->hasMany('App\Invoice', 'int_invoice_order_id_fk');
+    }
+
+    public function getCurrentStatusAttribute(){
+        return $this->status()->latest()->first();
     }
 }
 

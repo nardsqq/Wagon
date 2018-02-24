@@ -22,7 +22,8 @@ class ProcessOrderController extends Controller
      */
     public function index()
     {
-        return view('transactions.order.index');
+        $orders = Order::all();
+        return view('transactions.order.index', compact('orders'));
     }
 
     public function formData()
@@ -60,6 +61,8 @@ class ProcessOrderController extends Controller
     public function store(Request $request)
     {
         try {
+            // [todo] insert validation rules here
+
             \DB::beginTransaction();
             
             $order                          = new Order();
@@ -101,13 +104,27 @@ class ProcessOrderController extends Controller
             $footer->dbl_downpayment    = $request->downpayment;
             $footer->save();
             
+            $status                         = new OrderStatus();
+            $status->int_orstat_order_id_fk = $order->int_order_id;
+            $status->str_status             = OrderStatus::$status['NEW'];
+            $status->save();
 
             \DB::commit();
         } 
         catch(Exception $e){
             \DB::rollback();
-            return $e;
+
+            return response()->json([
+                'message'   => $e,
+                'alert'     => 'error',
+            ]);
         }
+
+        return response()->json([
+            'message'   => 'Successfully completed transaction',
+            'alert'     => 'success',
+            'url'       => route('process-order.index')
+        ]);
     }
 
     /**

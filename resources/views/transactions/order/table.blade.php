@@ -9,24 +9,22 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>18TQES</td>
-      <td class="text-center">02-28-2018</td>
+    @foreach($orders as $order)
+    <tr id="id{{ $order->int_order_id }}">
+      <td>{{ $order->str_purc_order_num }}</td>
+      <td class="text-center">{{ $order->dat_order_date }}</td>
       <td class="text-center">
-        Taiyo
+        {{ $order->client->str_client_name }}
       </td>
       <td class="text-center">
-        {{-- @if($so->intSalesOrderStatus === 1) --}}
-        <span class="label label-warning"><i class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true"></i>&nbsp; Pending</span>
-        {{-- @else --}}
-        {{-- <span class="label label-success"><i class="fa fa-check fa-fw" aria-hidden="true"></i>&nbsp; Complete</span> --}}
-        {{-- @endif --}}
+        <span class="label label-{{ $order->current_status->value->class }}"><i class="fa fa-fw {{ $order->current_status->value->icon }}" aria-hidden="true"></i>&nbsp; {{ $order->current_status->str_status }}</span>
       </td>
       <td class="text-center">
-          <button class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</button>
-          <button class="btn btn-details btn-xs btn-primary"><i class="fa fa-reply fa-fw"></i>&nbsp; Refund</button>
-          <button class="btn btn-cancel-order btn-xs btn-danger"><i class='fa fa-trash-o fa-fw'></i>&nbsp; Cancel</button>
+          <button  value="{{ $order->int_order_id }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</button>
+          <button  value="{{ $order->int_order_id }}"class="btn btn-details btn-xs btn-primary"><i class="fa fa-reply fa-fw"></i>&nbsp; Refund</button>
+          <button  value="{{ $order->int_order_id }}"class="btn btn-cancel-order btn-xs btn-danger"><i class='fa fa-trash-o fa-fw'></i>&nbsp; Cancel</button>
       </td>
     </tr>
+    @endforeach
   </tbody>
 </table>
