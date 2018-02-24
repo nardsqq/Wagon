@@ -11,14 +11,15 @@ class Client extends Model
 
     protected $table = 'tbl_client';
     protected $primaryKey = 'int_client_id';
+    protected $appends = ['contact'];
     protected $guarded = [];
 
-    // public function contact_details()
-    // {
-    //     return $this->hasMany('App\ContactDetail', 'int_cd_client_id');
-    // }
+    public function contact_details()
+    {
+        return $this->hasMany('App\ContactDetail', 'int_cd_client_id_fk');
+    }
 
-    public static $rules = [
-      'str_client_name' => 'required',
-    ];
+    public function getContactAttribute(){
+      return $this->contact_details->count() > 0 ? $this->contact_details()->first()->str_contact_detail : null;
+    }
 }

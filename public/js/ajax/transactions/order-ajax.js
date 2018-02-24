@@ -79,7 +79,7 @@ var app = new Vue({
     data(){
         return {
             clients: [],
-            client: {},
+            selected_client: {},
             products: [],
             services: [],
             terms: [],
