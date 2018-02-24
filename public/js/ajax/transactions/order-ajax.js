@@ -7,7 +7,9 @@ $(document).ready(function() {
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
         .addClass('btn btn-info')
-        .on('click', function(){ alert('Finish Clicked'); });
+        .on('click', function(){ 
+            $('#process-order-form').submit();
+        });
     var btnCancel = $('<button></button>').text('Cancel')
         .addClass('btn btn-danger')
         .on('click', function(){ $('#smartwizard').smartWizard("reset"); });  
@@ -24,7 +26,7 @@ $(document).ready(function() {
     });
 
     $('#dataTable').DataTable({
-        'dom': '<if>tp'
+        'dom': 'iftp'
     });
 }); // $(document).ready(function() {});
 
@@ -36,6 +38,12 @@ var app = new Vue({
             .then(function (response){
                 self.clients = response.data.clients;
                 self.products = response.data.products;
+
+                self.terms = response.data.terms;
+                self.modes = response.data.modes;
+                self.downpayments = response.data.downpayments;
+                self.discounts = response.data.discounts;
+
                 self.selected_product = self.products[0];
                 self.services = response.data.services;
             });
@@ -46,8 +54,16 @@ var app = new Vue({
             client: {},
             products: [],
             services: [],
+            terms: [],
+            modes: [],
+            downpayments: [],
+            discounts: [],
             delivery_option: 0, // 0 - delivery, 1 - pick-up
             order_type: 0, // 0 - product, 1 - service, 2 - product & service 
+            selected_term: {},
+            selected_mode: {},
+            selected_downpayment: {},
+            selected_discount: {},
             selected_product: {},
             selected_variant: {},
             selected_variants: [],
@@ -75,30 +91,12 @@ var app = new Vue({
         //     return this.selected_variant.int_var_id === variant.int_var_id ? this.selected_variant = {} : this.selected_variant = variant;
         // },
         selectVariant: function(variant, event){
-            //console.log(!this.isSelected(contract), _.find(this.selected, ['strTranHID', contract.strTranHID]));
-            return !this.isSelected(variant.int_var_id) ? (this.selected_variants.push(variant)) : this.selected_variants = _.remove(this.selected_variants, function(v){
+            return !this.isSelected(variant.int_var_id) ? (this.selected_variants.quantity = 1,this.selected_variants.push(variant)) : this.selected_variants = _.remove(this.selected_variants, function(v){
                 return v.int_var_id != variant.int_var_id;
             });
-            //return !this.isSelected(contract.strTranHID) ? this.selected.push(contract) : this.selected.splice(_.findIndex(this.selected, ['strTranHID', contract.strTranHID]), 1); 
         },
         isSelected: function(id){
-            //console.log(id, _.findIndex(this.selected, ['strTranHID', id]) != -1);
             return _.findIndex(this.selected_variants, ['int_var_id', id]) != -1;
-        },
-        onComplete: function(){
-            return;
-        },
-        removeProduct: function(id){
-            return;
-        },
-        addProduct: function(id){
-            return;
-        },
-        removeService: function(id){
-            return;
-        },
-        addService: function(id){
-            return;
         }
     }
 });

@@ -6,6 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    public static $terms = [
+        ['id' => 0, 'desc' => 'Upon Receipt'],
+        ['id' => 1, 'desc' => 'EOM (End of the Month)'],
+        ['id' => 2, 'desc' => 'Net 15'],
+        ['id' => 3, 'desc' => 'Net 30'],
+        ['id' => 4, 'desc' => 'Net 60']
+    ];
+        
+    public static $modes = [
+        ['id' => 0, 'desc' => 'COD (Cash On Delivery)'],
+        ['id' => 1, 'desc' => 'Cheque']
+    ];
+        
+    public static $downpayments = [
+        ['id' => 0, 'desc' => 30],
+        ['id' => 1, 'desc' => 50]
+    ];
+        
+    public static $discounts = [
+        ['id' => 0, 'desc' => 5],
+        ['id' => 1, 'desc' => 10],
+        ['id' => 2, 'desc' => 15]
+    ];
+
     protected $table = 'tbl_order';
     protected $guarded = [];
     protected $primaryKey = 'int_order_id';
