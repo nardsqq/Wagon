@@ -79,6 +79,8 @@ var app = new Vue({
 
                 self.selected_product = self.products[0];
                 self.services = response.data.services;
+
+                $('#smartwizard').smartWizard("reset");
             });
     },
     data(){
