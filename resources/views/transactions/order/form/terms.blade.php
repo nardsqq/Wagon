@@ -21,6 +21,7 @@
     {!! Form::label('mode', 'Downpayment') !!}
     <input type="hidden" name="downpayment" :value="selected_downpayment.id">
     <select name="" class="form-control" v-model="selected_downpayment">
+        <option value="">No downpayment</option>
         <option v-for="downpayment in downpayments" :key="downpayment.id" :value="downpayment">@{{ downpayment.desc }}%</option>
     </select>
 </div>
@@ -31,6 +32,7 @@
     {!! Form::label('mode', 'Discount') !!}
     <input type="hidden" name="discount" :value="selected_discount.id">
     <select name="" class="form-control" v-model="selected_discount">
+        <option value="">No discount</option>
         <option v-for="discount in discounts" :key="discount.id" :value="discount">@{{ discount.desc }}%</option>
     </select>
 </div>

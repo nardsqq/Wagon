@@ -72,6 +72,11 @@ var app = new Vue({
                 self.downpayments = response.data.downpayments;
                 self.discounts = response.data.discounts;
 
+                self.selected_term = self.terms[0];
+                self.selected_mode = self.modes[0];
+                self.selected_downpayment = '';
+                self.selected_discount = '';
+
                 self.selected_product = self.products[0];
                 self.services = response.data.services;
             });
@@ -90,8 +95,8 @@ var app = new Vue({
             order_type: 0, // 0 - product, 1 - service, 2 - product & service 
             selected_term: {},
             selected_mode: {},
-            selected_downpayment: {},
-            selected_discount: {},
+            selected_downpayment: '',
+            selected_discount: '',
             selected_product: {},
             selected_variant: {},
             selected_variants: [],
