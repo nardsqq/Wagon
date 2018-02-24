@@ -22,6 +22,10 @@ $(document).ready(function() {
             toolbarExtraButtons: [btnFinish, btnCancel]
         }
     });
+
+    $('#dataTable').DataTable({
+        'dom': '<if>tp'
+    });
 }); // $(document).ready(function() {});
 
 var app = new Vue({
@@ -32,6 +36,7 @@ var app = new Vue({
             .then(function (response){
                 self.clients = response.data.clients;
                 self.products = response.data.products;
+                self.selected_product = self.products[0];
                 self.services = response.data.services;
             });
     },
@@ -45,7 +50,7 @@ var app = new Vue({
             order_type: 0, // 0 - product, 1 - service, 2 - product & service 
             selected_product: {},
             selected_variant: {},
-            selected_products: [],
+            selected_variants: [],
             selected_services: []
         }
     },
@@ -56,16 +61,29 @@ var app = new Vue({
     },
     watch: {
         selected_product: function(product){
-            $('#dataTable').DataTable().destroy();
+            $('#prod_dataTable').DataTable().destroy();
             this.$nextTick(function() {
-	            $('#dataTable').DataTable();
+                $('#prod_dataTable').DataTable({
+                    'dom': 'ftip'
+                });
              });
             console.log(product.int_product_id);
         }
     },
     methods: {
+        // selectVariant: function(variant, event){
+        //     return this.selected_variant.int_var_id === variant.int_var_id ? this.selected_variant = {} : this.selected_variant = variant;
+        // },
         selectVariant: function(variant, event){
-            return this.selected_variant.int_var_id === variant.int_var_id ? this.selected_variant = {} : this.selected_variant = variant;
+            //console.log(!this.isSelected(contract), _.find(this.selected, ['strTranHID', contract.strTranHID]));
+            return !this.isSelected(variant.int_var_id) ? (this.selected_variants.push(variant)) : this.selected_variants = _.remove(this.selected_variants, function(v){
+                return v.int_var_id != variant.int_var_id;
+            });
+            //return !this.isSelected(contract.strTranHID) ? this.selected.push(contract) : this.selected.splice(_.findIndex(this.selected, ['strTranHID', contract.strTranHID]), 1); 
+        },
+        isSelected: function(id){
+            //console.log(id, _.findIndex(this.selected, ['strTranHID', id]) != -1);
+            return _.findIndex(this.selected_variants, ['int_var_id', id]) != -1;
         },
         onComplete: function(){
             return;
