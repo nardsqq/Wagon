@@ -40,7 +40,11 @@ $(document).ready(function() {
         });
     var btnCancel = $('<button></button>').text('Cancel')
         .addClass('btn btn-danger')
-        .on('click', function(){ $('#smartwizard').smartWizard("reset"); });  
+        .on('click', function(){ 
+            if(confirm('Do you really want to leave? Your changes will not be saved')){
+                window.location.assign('/admin/transactions/process-order');
+            }
+        });  
 
         
     $('#smartwizard').smartWizard({

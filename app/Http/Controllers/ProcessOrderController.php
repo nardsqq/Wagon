@@ -100,8 +100,8 @@ class ProcessOrderController extends Controller
             $footer->int_payment_terms  = $request->term;
             $footer->str_payment_mode   = $request->mode;
             $footer->str_delivery_type  = $request->delivery_type;
-            $footer->int_discount       = $request->discount;
-            $footer->dbl_downpayment    = $request->downpayment;
+            $footer->int_discount       = $request->discount?:0;
+            $footer->dbl_downpayment    = $request->downpayment?:0;
             $footer->save();
             
             $status                         = new OrderStatus();
