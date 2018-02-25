@@ -37,8 +37,8 @@
                         <div id="smartwizard" class="panel">
                             <ul class="">
                                 <li><a href="#step-1">Order Details</a></li>
-                                <li><a href="#step-2">Product Order</a></li>
-                                <li><a href="#step-3">Service Order</a></li>
+                                <li v-if="order_type == 0"><a href="#step-2">Product Order</a></li>
+                                <li v-else><a href="#step-3">Service Order</a></li>
                                 <li><a href="#step-4">Terms & Conditions</a></li>
                                 <li><a href="#step-5">Summary</a></li>
                             </ul>
@@ -51,14 +51,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="step-2" class="" >
+                                <div id="step-2" v-show="order_type == 0">
                                     <div class="row">
                                         <div class="col-md-12">
                                             @include('transactions.order.form.product')
                                         </div>
                                     </div>
                                 </div>
-                                <div id="step-3" class="">
+                                <div id="step-3" v-show="order_type == 1">
                                     <div class="row">
                                         <div class="col-md-12">
                                             @include('transactions.order.form.service')
