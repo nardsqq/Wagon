@@ -66,7 +66,7 @@
                     <td>@{{ variant.price * variant.quantity }}</td>
                 </tr>
                 <tr>
-                    <th colspan="5"><h4>Total</h4></th>
+                    <th colspan="4"><h4>Total</h4></th>
                     <td>@{{ total }}</td>
                 </tr>
             </tbody>
