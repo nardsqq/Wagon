@@ -12,6 +12,7 @@
         <thead>
             <tr>
                 <th class="text-center">Variant</th>
+                <th class="text-center">Current Stock</th>
                 <th class="text-center">Price</th>
                 <th></th>
             </tr>
@@ -23,6 +24,7 @@
                         <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
                     </span>
                 </td>
+                <td>@{{ variant.stock }}</td>
                 <td>@{{ variant.price }}</td>
                 <td style="max-width: 47px;">
                     <button type="button" class="btn btn-sm btn-primary" @click="selectVariant(variant, $event)">@{{ !isSelected(variant.int_var_id) ? 'Select' : 'Remove' }}</button>
@@ -61,7 +63,7 @@
                 </td>
                 <td>@{{ variant.price }}</td>
                 <td style="max-width: 70px;">
-                    <input :name="'quantity['+variant.int_var_id+']'"  type="number" placeholder="Quantity" class="form-control" min="1" v-model="variant.quantity">
+                    <input :name="'quantity['+variant.int_var_id+']'"  type="number" placeholder="Quantity" class="form-control" min="1" :max="variant.stock" v-model="variant.quantity">
                 </td>
                 <td>@{{ variant.price * variant.quantity }}</td>                        
                 <td><input :name="'remarks['+variant.int_var_id+']'" type="text" placeholder="Remarks" class="form-control"></td>
