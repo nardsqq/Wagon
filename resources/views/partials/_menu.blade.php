@@ -20,9 +20,6 @@
                   <a href="{{ url('/admin/maintenance/supplier') }}"><i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i>&nbsp; Supplier</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/specification') }}"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp; Specification</a>
-                </li>
-                <li>
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
                 </li>
                 <li>
@@ -39,17 +36,17 @@
                 <li class="divider"></li>
                 <li class="dropdown-header">Workforce</li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/role') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Role</a>
+                  <a href="{{ url('/admin/maintenance/position') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Position</a>
                 </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
                 </li>
   							<li class="dropdown-header">Services</li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/service-type') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Service Type</a>
+                  <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Service</a>
                 </li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/service-area') }}"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Service Area</a>
+                  <a href="{{ url('/admin/maintenance/service-description') }}"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Service Description</a>
                 </li>
   						</ul>
   					</li>
@@ -57,14 +54,6 @@
   						<ul>
                 <li class="dropdown-main-header"><center>Payment Terms</center></li>
                 <li class="divider"></li>
-                {{-- <li class="dropdown-header">Transportation</li>
-                <li>
-                  <a href="{{ url('/admin/maintenance/vehicle-type') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Vehicle Type</a>
-                </li>
-                <li>
-                  <a href="{{ url('/admin/maintenance/vehicle') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Vehicle</a>
-                </li>
-  							<li class="divider"></li> --}}
   							<li class="dropdown-header">Terms</li>
   							<li>
                   <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
@@ -72,9 +61,6 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Mode of Payment</a>
                 </li>
-                {{-- <li>
-                  <a href="{{ url('/admin/maintenance/delivery-charge') }}"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Delivery Charge</a>
-                </li> --}}
   						</ul>
   					</li>
   				</ul>
