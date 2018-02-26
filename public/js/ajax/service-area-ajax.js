@@ -5,12 +5,12 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_servarea').on('hide.bs.modal', function() {
-        $('#formServArea').trigger('reset');
+  $('#add_service').on('hide.bs.modal', function() {
+        $('#formService').trigger('reset');
         removeStep();
     });
 
-  var url = "/admin/maintenance/service-area";
+  var url = "/admin/maintenance/service";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
@@ -18,8 +18,8 @@ $(document).ready(function() {
     id = link_id;
     console.log(id);
 
-    $('#title').text('Edit Service Area Details');
-    $('#servarea-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#title').text('Edit Service');
+    $('#service-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
     removeStep();
@@ -121,7 +121,7 @@ $(document).ready(function() {
   });  
 
     $('#btn-add').on('click', function(event) {
-      $('#title').text('Add Service Area');
+      $('#title').text('Add Service');
       $('#servarea-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
       $('#formServArea').trigger("reset");
       $('#btn-save').text('Submit');

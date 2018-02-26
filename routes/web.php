@@ -44,8 +44,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('personnel-table', 'PersonnelController@table');
 
     // Services
-    Route::resource('service-type', 'ServiceTypeController');
-    Route::resource('service-area', 'ServiceAreaController');
+    Route::resource('service', 'ServiceController');
 
     // Transportation
     Route::resource('vehicle-type', 'VehicleTypeController');

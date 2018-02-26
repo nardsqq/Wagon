@@ -24,12 +24,12 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Maintenance</li>
-        <li>Service Area</li>
+        <li>Service</li>
       </ol>
     </div>
   </section>
 
-  @include('maintenance.service-area.modal')
+  @include('maintenance.service.modal')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -39,22 +39,22 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Manage <i>Service Area</i> here.</strong>
+            <strong>Manage <i>Service</i> here.</strong>
             <br>
             <small>Perform <i>Add</i>, <i>Update</i>, and <i>Delete</i> Operations.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Service Area</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Add Service</button>
               </div>
               <div class="panel-title">
-                <h4>Service Area</h4>
+                <h4>Service</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('maintenance.service-area.table')
+                @include('maintenance.service.table')
               </div>
             </div>
           </div>
