@@ -47,8 +47,8 @@ class ServiceController extends Controller
             $description = new ServiceDescription;
 
             $service_id = DB::table('tbl_service')->insertGetId([
-                'str_service_name' => trim(ucwords($request->str_service_name));
-                'dbl_service_price' => $request->dbl_service_price;
+                'str_service_name' => trim(ucwords($request->str_service_name)),
+                'dbl_service_price' => $request->dbl_service_price
             ]);
 
             \DB::commit();

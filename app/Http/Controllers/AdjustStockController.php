@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\AdjustStock;
+use App\Variant;
+use App\Stock;
 
 class AdjustStockController extends Controller
 {
@@ -15,7 +17,8 @@ class AdjustStockController extends Controller
      */
     public function index()
     {
-        return view('transactions.adjust-stock.index');
+        $adjustments = AdjustStock::all();
+        return view('transactions.adjust-stock.index', compact('adjustments'));
     }
 
     public function formData()
@@ -49,14 +52,23 @@ class AdjustStockController extends Controller
 
             \DB::beginTransaction();
 
-            foreach($request->variants as $variant)
+            foreach($request->variants as $variant_id)
             {
                 $adjust_stock                     = new AdjustStock();
-                $adjust_stock->int_sa_var_id_fk   = $variant;
-                $adjust_stock->int_quantity       = $request->quantity[$variant];
-                $adjust_stock->str_action         = $request->action[$variant];
-                $adjust_stock->txt_reason         = $request->reason[$variant];
+                $adjust_stock->int_sa_var_id_fk   = $variant_id;
+                $adjust_stock->int_quantity       = $request->quantity[$variant_id];
+                $adjust_stock->str_action         = $request->action[$variant_id];
+                $adjust_stock->txt_reason         = $request->reason[$variant_id];
                 $adjust_stock->save();
+
+                $variant = Variant::findOrFail($variant_id);
+
+                $stock                            = new Stock();
+                $stock->int_stock_var_id_fk       = $variant_id;
+                $stock->int_quantity              = $request->action[$variant_id] == AdjustStock::$actions['WIT'] ? 
+                                                    $variant->getCurrPrevStock()['current'] - $request->quantity[$variant_id] : 
+                                                    $variant->getCurrPrevStock()['current'] + $request->quantity[$variant_id];
+                $stock->save();
             }
 
             \DB::commit();

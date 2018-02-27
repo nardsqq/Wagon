@@ -99,10 +99,11 @@
                                                     </td>
                                                     <td>@{{ variant.stock }}</td>
                                                     <td style="max-width: 70px;">
-                                                        <input :name="'quantity['+variant.int_var_id+']'" type="number" placeholder="Quantity" class="form-control" min="1" v-model="variant.quantity" required>
+                                                        <input v-if="variant.action=='Withdraw'" :name="'quantity['+variant.int_var_id+']'" type="number" placeholder="Quantity" class="form-control" min="1" :max="variant.stock" v-model="variant.quantity" required>
+                                                        <input v-else :name="'quantity['+variant.int_var_id+']'" type="number" placeholder="Quantity" class="form-control" min="1" v-model="variant.quantity" required>
                                                     </td>
                                                     <td>
-                                                        <select :name="'action['+variant.int_var_id+']'" class="form-control" required>
+                                                        <select :name="'action['+variant.int_var_id+']'" class="form-control" required v-model="variant.action">
                                                             <option v-for="action in actions" :key="action" :value="action">@{{ action }}</option>
                                                         </select>
                                                     </td>

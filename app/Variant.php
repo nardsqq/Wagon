@@ -43,6 +43,16 @@ class Variant extends Model
       return $this->stocks()->latest()->first()->int_quantity;
     }
 
+    public function getCurrPrevStock($date = null){
+      $date = $date ?: date('c');
+      $stock = $this->stocks()->where('int_stock_var_id_fk', $this->int_var_id)->where('created_at', '<=', $date)->latest()->pluck('int_quantity')->take(2);
+      
+      return count($stock) == 0 ? ['current'=>0, 'previous'=>0] : [
+        'current' => $stock[0],
+        'previous' => count($stock) == 2 ? $stock[1] : 0
+      ];
+    }
+
     // public function getCurrentStockAttribute(){
     //   return 
     //     (\DB::table('tblRecDelDetails')->selectRaw("SUM(intRecDelDetQty) as stock")->where('intRDD_Var_ID', $this->intVarID)->groupBy('intrdd_var_id')->pluck('stock')->first() ?: 0) - (\DB::table('tblSODetailsProduct')->selectRaw("SUM(intQuotDPQuantity) as stock")->where('intSODP_Var_ID', $this->intVarID)->groupBy('intSODP_Var_ID')->pluck('stock')->first() ?: 0);

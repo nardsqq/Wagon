@@ -3,7 +3,8 @@
     <tr>
       <th class="text-center">Product</th>
       <th class="text-center">Specifications</th>
-      <th class="text-center">Stock</th>
+      <th class="text-center">Initial Stock</th>
+      <th class="text-center">Current Stock</th>
       <th class="text-center">Unit Price</th>
       <th class="text-center">Actions</th>
     </tr>
@@ -34,6 +35,7 @@
         <button class="btn btn-block btn-default">View All Specifications</button>
         @endif
         </td>
+        <td class="text-center">{{ $variant->stocks()->first()->int_quantity }}</td>
         <td class="text-center">{{ $variant->stocks()->latest()->first()->int_quantity }}</td>
         <td class="text-center">{{ $variant->prices()->latest()->first()->dbl_price }}</td>
         <td class="text-center">

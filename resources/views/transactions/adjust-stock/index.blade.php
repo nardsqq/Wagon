@@ -51,7 +51,7 @@
             </div>
             <div class="panel-body">
               <div id="table-container">
-                
+                @include('transactions.adjust-stock.table')
               </div>
             </div>
           </div>
