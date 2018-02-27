@@ -95,6 +95,11 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('adjust-stock', 'AdjustStockController');
     Route::get('adjust-stock-table', 'AdjustStockController@table');
     Route::get('adjust-stock-form-data', 'AdjustStockController@formData');
+    
+    // Replenish Stock
+    Route::resource('replenish-stock', 'ReplenishStockController');
+    Route::get('replenish-stock-table', 'ReplenishStockController@table');
+    Route::get('replenish-stock-form-data', 'ReplenishStockController@formData');
 
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');

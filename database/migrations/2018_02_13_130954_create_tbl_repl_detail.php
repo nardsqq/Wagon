@@ -16,7 +16,7 @@ class CreateTblReplDetail extends Migration
         Schema::create('tbl_repl_detail', function (Blueprint $table) {
             $table->increments('int_repl_item_id');
             $table->unsignedInteger('int_replenish_id_fk');
-            $table->unsignedInteger('int_repl_item_id_fk');
+            $table->unsignedInteger('int_repl_var_id_fk');
             $table->integer('int_quantity');
             $table->double('dbl_unit_price', 11, 2);
 
@@ -26,9 +26,9 @@ class CreateTblReplDetail extends Migration
                   ->references('int_replenish_id')
                   ->on('tbl_replenish');
 
-            $table->foreign('int_repl_item_id_fk')
-                  ->references('int_item_id')
-                  ->on('tbl_item');
+            $table->foreign('int_repl_var_id_fk')
+                  ->references('int_var_id')
+                  ->on('tbl_variation');
         });
     }
 
@@ -41,7 +41,7 @@ class CreateTblReplDetail extends Migration
     {
         Schema::table('tbl_repl_detail', function (Blueprint $table) {
             $table->dropForeign(['int_replenish_id_fk']);
-            $table->dropForeign(['int_repl_item_id_fk']);
+            $table->dropForeign(['int_repl_var_id_fk']);
         });
         Schema::dropIfExists('tbl_repl_detail');
     }
