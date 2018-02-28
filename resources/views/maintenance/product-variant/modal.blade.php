@@ -36,7 +36,7 @@
                   <label :for="'str_spec_constant['+specs.int_prod_attrib_id+']'">@{{ specs.attribute.str_attrib_name }}</label>
                 </div>
                 <div class="col-xs-9">
-                  <input type="text" :name="'str_spec_constant['+specs.int_prod_attrib_id+']'" :id="'str_spec_constant['+specs.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45">
+                  <input type="text" :name="'str_spec_constant['+specs.int_prod_attrib_id+']'" :id="'str_spec_constant['+specs.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45" required>
                 </div>
             </div>  
           </div>
@@ -89,7 +89,7 @@
                   <label :for="'str_spec_constant['+spec.int_prod_attrib_id+']'">@{{ spec.str_attrib_name }}</label>
                 </div>
                 <div class="col-xs-9">
-                  <input type="text" :name="'str_spec_constant['+spec.int_prod_attrib_id+']'" :id="'str_spec_constant['+spec.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45" :value="spec.str_spec_constant">
+                  <input type="text" :name="'str_spec_constant['+spec.int_prod_attrib_id+']'" :id="'str_spec_constant['+spec.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45" :value="spec.str_spec_constant" required>
                 </div>
             </div>  
           </div>

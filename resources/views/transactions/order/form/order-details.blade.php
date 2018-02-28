@@ -11,6 +11,8 @@
     </select>
 </div>
 
+<hr>
+
 <div class="col-xs-12  m-t-10">
     <label class="control-label">Delivery Type</label>
     <div>
@@ -26,15 +28,17 @@
     </div>
 </div>
 
-<div class="col-xs-12  m-t-10">
+<div class="col-xs-12  m-t-10" v-if="delivery_option == 0">
     <label for="delivery_location">Delivery Location</label>
     {{ Form::textarea('delivery_location', null,['class'=>'form-control', 'rows'=>4, ':value'=>'selected_client.txt_client_address']) }}
 </div>
 
-<div class="col-xs-12  m-t-10">
+<div class="col-xs-12  m-t-10" v-if="delivery_option == 0">
     <label for="landmark">Landmark</label>
     {{ Form::text('landmark', null, ['class'=>'form-control', ':value'=>'selected_client.str_client_landmark']) }}
 </div>
+
+<hr>
 
 <div class="col-xs-12  m-t-10">
     <label for="billing_address">Billing Address</label>

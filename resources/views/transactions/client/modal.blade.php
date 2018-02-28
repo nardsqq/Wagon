@@ -13,7 +13,7 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('str_client_person', 'Client Person (?)') !!}
+              {!! Form::label('str_client_person', 'Client Representative') !!}
               {!! Form::text('str_client_person', null, ['id' => 'str_client_person', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
@@ -63,7 +63,7 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('str_client_person', 'Client Person (?)') !!}
+              {!! Form::label('str_client_person', 'Client Representative') !!}
               {!! Form::text('str_client_person', null, ['id' => 'str_client_person', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>

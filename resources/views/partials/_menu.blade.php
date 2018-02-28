@@ -19,9 +19,9 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/supplier') }}"><i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i>&nbsp; Supplier</a>
                 </li>
-                <li>
+                <!--li>
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
-                </li>
+                </li-->
                 <li>
                   <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                 </li>
@@ -35,9 +35,9 @@
                 <li class="dropdown-main-header"><center>Personnel and Services</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Workforce</li>
-                <li>
+                <!--li>
                   <a href="{{ url('/admin/maintenance/position') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Position</a>
-                </li>
+                </li-->
                 <li>
                   <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
                 </li>

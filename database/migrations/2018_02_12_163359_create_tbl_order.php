@@ -18,7 +18,7 @@ class CreateTblOrder extends Migration
             $table->string('str_purc_order_num', 45);
             $table->unsignedInteger('int_order_client_id_fk');
             $table->date('dat_order_date');
-            $table->text('txt_deli_address');
+            $table->text('txt_deli_address')->nullable();
             $table->text('txt_bill_address');
             $table->string('str_landmark', 45)->nullable();
             $table->string('str_contact_num', 45);

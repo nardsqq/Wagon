@@ -41,6 +41,7 @@
             <tr>
                 <th class="text-center">Product</th>
                 <th class="text-center">Variant</th>
+                <th class="text-center">Current Stock</th>
                 <th class="text-center">Price</th>
                 <th class="text-center">Quantity</th>
                 <th class="text-center">Cost</th>
@@ -61,6 +62,7 @@
                         <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
                     </span>
                 </td>
+                <td>@{{ variant.stock }}</td>
                 <td>@{{ variant.price }}</td>
                 <td style="max-width: 70px;">
                     <input :name="'quantity['+variant.int_var_id+']'"  type="number" placeholder="Quantity" class="form-control" min="1" :max="variant.stock" v-model="variant.quantity">
