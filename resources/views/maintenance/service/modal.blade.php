@@ -11,15 +11,24 @@
             <input type="text" id="str_service_name" name="str_service_name" class="form-control">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-          <div class="form-group">
-            <label for="dbl_service_price">Service Fee</label>
-            <input type="text" class="form-control" id="dbl_service_price">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
 
           <div class="form-group">
-            <label for="str_service_desc_detail">Service Description</label>
-            {!! Form::select('str_service_desc_detail[]', [], null, ['id' => 'str_service_desc_detail', 'class' => 'form-control']) !!}
+            <label>Description</label>
+            <button id="btn-add-step" onclick="addStep()" type="button" class="btn btn-sm btn-success pull-right">Add Description</button>
+          </div>
+          {{-- <div id="step-list"></div> --}}
+
+          <div class="form-group">
+            <table class="table table-hover table-bordered">
+              <tbody id="step-list">
+                <tr>
+                  <td>Sample Description 1</td>
+                </tr>
+                <tr>
+                  <td>Sample Description 2</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="form-group">
@@ -27,13 +36,13 @@
             {!! Form::select('int_material_id[]', [], null, ['id' => 'int_material_id', 'class' => 'form-control']) !!}
           </div>
 
-          <!-- STEPS -->
-          
-          {{-- <div class="form-group">
-            <label>Steps</label>
-            <button id="btn-add-step" onclick="addStep()" type="button" class="btn btn-sm btn-success pull-right">New Step</button>
+          <hr>
+
+          <div class="form-group">
+            <label for="dbl_service_price">Service Fee</label>
+            <input type="text" class="form-control" id="dbl_service_price">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
-          <div id="step-list"></div> --}}
 
         </form>
       </div>

@@ -259,14 +259,19 @@ function addStep(stepId='', stepDesc=''){
     let step = 1 + $('#step-list .step').get().length;
 
     $('#step-list').append(`
-        <div class="form-group step" data-step="`+step+`">
-            <label for="strServStepDesc`+step+`" class="col-md-2">Step `+step+`</label>
-            <div class="col-md-10 input-group">
-            <input id="strServStepDesc`+step+`" type="text" class="form-control" name="strServStepDesc[`+stepId+`]" value="`+stepDesc+`">
-            <span class="input-group-addon" title="Remove Step" onclick="removeStep(`+step+`)"><i class="fa fa-remove text-danger"></i></span>
-            </div>
-        </div>
+      <tr>
+        <td>Sample Data</td>
+      </tr>
     `);
+
+    // <div class="form-group step" data-step="`+step+`">
+    //   <div class="input-group">
+    //     <input id="strServStepDesc`+step+`" type="text" class="form-control" name="strServStepDesc[`+stepId+`]" value="`+stepDesc+`">
+    //     <span class="input-group-addon" title="Remove Step" onclick="removeStep(`+step+`)">
+    //       <i class="fa fa-remove text-danger"></i>
+    //     </span>
+    //   </div>
+    // </div>
 }
 function removeStep(step = -1){
     if(step === -1){
