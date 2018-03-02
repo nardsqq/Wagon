@@ -58,8 +58,13 @@ class PersonnelController extends Controller
             $personnel->str_personnel_mobile_num = trim($request->str_personnel_mobile_num);
 
             $personnel->save();
-            return response()->json($personnel);
-            
+
+            return response()->json([
+                'code' => 200,
+                'message' => 'Success',
+                'data' => $personnel
+            ]);
+
         } else {
             return redirect(route('personnel.index'));
         }
@@ -103,11 +108,11 @@ class PersonnelController extends Controller
             $personnel = Personnel::findOrFail($id);
 
             // $personnel->roles()->associate($role);
-            $personnel->strPersEmpType = $request->strPersEmpType;
-            $personnel->strPersFName = trim(ucwords($request->strPersFName));
-            $personnel->strPersMName = trim(ucfirst($request->strPersMName));
-            $personnel->strPersLName = trim(ucwords($request->strPersLName));
-            $personnel->strPersMobNo = $request->strPersMobNo;
+            $personnel->str_personnel_f_name = trim(ucwords($request->str_personnel_f_name));
+            $personnel->str_personnel_m_name = trim(ucfirst(($request->str_personnel_m_name)));
+            $personnel->str_personnel_l_name = trim(ucfirst($request->str_personnel_l_name));
+            $personnel->txt_personnel_address = trim(ucfirst($request->txt_personnel_address));
+            $personnel->str_personnel_mobile_num = trim($request->str_personnel_mobile_num);
 
             $personnel->save();
             return response()->json($personnel);

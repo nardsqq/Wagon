@@ -164,29 +164,31 @@ $(document).ready(function() {
       data: formData,
       success:function(data) {
         console.log(JSON.stringify(data));
-        $('#add_pers').modal('hide');
-        loadTable();
-      
-        if (state == "add") { 
-          toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": true,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "slideDown",
-            "hideMethod": "slideUp"
-          }
+        if(data.code = '200') {
+          $('#add_pers').modal('hide');
+          loadTable();
+        
+          if (state == "add") { 
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": true,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "slideDown",
+              "hideMethod": "slideUp"
+            }
 
-          toastr.success("Successfully Added a New Personnel Record");
+            toastr.success("Successfully Added a New Personnel Record");
+          }
         } 
       }
     })
