@@ -43,15 +43,20 @@ class ServiceController extends Controller
         try {
             \DB::beginTransaction();
 
-            $service = new Service;
-            $description = new ServiceDescription;
-
-            $service_id = DB::table('tbl_service')->insertGetId([
+            $service = Service::create([
                 'str_service_name' => trim(ucwords($request->str_service_name)),
                 'dbl_service_price' => $request->dbl_service_price
             ]);
 
+            foreach($request->description as $desc){
+                ServiceDescription::firstOrCreate([
+                    'int_sd_service_id_fk' => $service->int_service_id,
+                    'str_service_desc_detail' => $desc
+                ]);
+            }
+
             \DB::commit();
+            return response()->json($service);
         } catch (Exception $e) {
             \DB::rollback();
             

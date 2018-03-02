@@ -10,13 +10,8 @@ class ServiceDescription extends Model
     protected $guarded = [];
     protected $primaryKey = 'int_service_desc_id';
 
-    public function materials() 
+    public function service() 
     {
-      return $this->hasMany('App\Material', 'int_mat_service_id_fk');
-    }
-
-    public function descriptions() 
-    {
-      return $this->hasMany('App\ServiceDescription', 'int_sd_service_id_fk');
+      return $this->belongsTo('App\Service', 'int_sd_service_id_fk');
     }
 }

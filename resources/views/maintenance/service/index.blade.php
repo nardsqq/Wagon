@@ -29,7 +29,10 @@
     </div>
   </section>
 
-  @include('maintenance.service.modal')
+  <section id="app">
+    @include('maintenance.service.modal')
+  </section>
+  
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -74,6 +77,7 @@
     })
   </script>
 
+  <script src="{{ asset('/js/app.js/') }}"></script>
   <script src="{{ asset('/js/ajax/service-area-ajax.js/') }}"></script>
 
 @endsection

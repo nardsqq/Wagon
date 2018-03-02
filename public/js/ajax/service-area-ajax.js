@@ -5,9 +5,10 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_service').on('hide.bs.modal', function() {
+  $('#add_servarea').on('hide.bs.modal', function() {
         $('#formService').trigger('reset');
-        removeStep();
+        app.reset();
+        // removeDesc();
     });
 
   var url = "/admin/maintenance/service";
@@ -22,21 +23,22 @@ $(document).ready(function() {
     $('#service-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
-    removeStep();
+    app.reset();
+    // removeDesc();
     $.ajax({
         type: "GET",
         url: url + '/' + id + '/edit',
-        data: { intServAreaID: id, },
+        data: { int_service_id: id, },
         dataType: "json",
         success: function (data) {
             console.log(data);
 
             $('#intSA_ServType_ID').val(data.intSA_ServType_ID);
-            $("input[name=strServAreaName]").val(data.strServAreaName);
-            $('#txtServAreaDesc').val(data.txtServAreaDesc);
-            _.forEach(data.steps, function(step){
-                addStep(step.intServStepID, step.strServStepDesc);
-            });
+            $("input[name=str_service_name]").val(data.str_service_name);
+            $('#dbl_service_price').val(data.dbl_service_price);
+            // _.forEach(data.steps, function(step){
+            //     addDesc(step.intServStepID, step.strServStepDesc);
+            // });
             $('#btn-save').val("update");
             $('#add_servarea').modal('show');
         },
@@ -91,7 +93,7 @@ $(document).ready(function() {
               "hideMethod": "slideUp"
             }
 
-            toastr.success("Successfully Deleted Service Area Record");
+            toastr.success("Successfully Deleted Service Record");
         },
         error: function (data) {
             console.log(url + '/' + id);
@@ -123,11 +125,11 @@ $(document).ready(function() {
     $('#btn-add').on('click', function(event) {
       $('#title').text('Add Service');
       $('#servarea-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-      $('#formServArea').trigger("reset");
+      $('#formService').trigger("reset");
       $('#btn-save').text('Submit');
       $('#btn-save').val("add");
       $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-      addStep();
+      //addDesc();
       $('#add_servarea').modal('show');
     }); 
 
@@ -140,7 +142,7 @@ $(document).ready(function() {
       e.preventDefault();
       console.log(e);
 
-      var formData = $("#formServArea").serialize();
+      var formData = $("#formService").serialize();
       var state = $('#btn-save').val();
       var type = "POST";
       var my_url = url;
@@ -169,7 +171,7 @@ $(document).ready(function() {
         "showMethod": "slideDown",
         "hideMethod": "slideUp"
       }
-      toastr.info("Successfully Updated Service Area Record");
+      toastr.info("Successfully Updated Service Record");
     }
 
     console.log("" + type + ": " + my_url);
@@ -182,14 +184,13 @@ $(document).ready(function() {
     }).done(function(data) {
         console.log(data);
 
-        var row = $("<tr id=id" + data.intServAreaID +  "></tr>")
+        var row = $("<tr id=id" + data.int_service_id +  "></tr>")
         .append(
-            "<td>" + data.servtypes.strServTypeName + "</td>" +
-            "<td>" + data.strServAreaName + "</td>" +
-            "<td>" + data.txtServAreaDesc + "</td>" +
+            "<td>" + data.str_service_name + "</td>" +
+            "<td>" + data.dbl_service_price + "</td>" +
             "<td class='text-center'>" +
-            "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intServAreaID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-            "<button class='btn btn-danger btn-sm btn-delete' value="+data.intServAreaID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+            "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_service_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+            "<button class='btn btn-danger btn-sm btn-delete' value="+data.int_service_id+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
             "</td>"
         );
 
@@ -217,12 +218,12 @@ $(document).ready(function() {
             toastr.success("Successfully Added a New Service");
         } 
         else { 
-            table.row($("#id"+data.intServAreaID)).remove();
+            table.row($("#id"+data.int_service_id)).remove();
             table.row.add(row).draw();
         }
         // $("[data-toggle='toggle']").bootstrapToggle('destroy');
         // $("[data-toggle='toggle']").bootstrapToggle();
-        $('#formServArea').trigger("reset");
+        // $('#formService').trigger("reset");
         $('#add_servarea').modal('hide')
     }).fail(function(data) {
         console.log('Error:', data);
@@ -255,41 +256,75 @@ $(document).ready(function() {
 }); // $(document).ready(function() {});
 
 // Steps 
-function addStep(stepId='', stepDesc=''){
-    let step = 1 + $('#step-list .step').get().length;
+// function addDesc(stepId='', stepDesc=''){
+//     let step = 1 + $('#step-list .step').get().length;
 
-    $('#step-list').append(`
-      <tr>
-        <td>Sample Data</td>
-        <td class="text-center">
-          <button class="btn btn-danger">Remove</button>
-        </td>
-      </tr>
-    `);
+//     $('#step-list').append(`
+//       <tr>
+//         <td>Sample Data</td>
+//         <td class="text-center">
+//           <button class="btn btn-danger">Remove</button>
+//         </td>
+//       </tr>
+//     `);
 
     // <div class="form-group step" data-step="`+step+`">
     //   <div class="input-group">
     //     <input id="strServStepDesc`+step+`" type="text" class="form-control" name="strServStepDesc[`+stepId+`]" value="`+stepDesc+`">
-    //     <span class="input-group-addon" title="Remove Step" onclick="removeStep(`+step+`)">
+    //     <span class="input-group-addon" title="Remove Step" onclick="removeDesc(`+step+`)">
     //       <i class="fa fa-remove text-danger"></i>
     //     </span>
     //   </div>
     // </div>
-}
-function removeStep(step = -1){
-    if(step === -1){
-        $('#step-list .step').remove();
-        return;
-    }
-    $('#step-list .step[data-step='+step+']').remove();
-    _.forEach($('#step-list .step').get(), function(value, key){ 
-        let index = key + 1; 
-        if($(value).attr('data-step') !== index){
-            $(value).attr('data-step', index);
-            $(value).find('label').first().attr('for', 'strServStepDesc'+index);
-            $(value).find('label').first()[0].textContent = "Step "+ index;
-            $(value).find('input').first().attr('id', 'strServStepDesc'+index);            
-            $(value).find('span.input-group-addon').attr('onclick', 'removeStep('+index+')');
+// }
+// function removeDesc(step = -1){
+//     if(step === -1){
+//         $('#step-list .step').remove();
+//         return;
+//     }
+//     $('#step-list .step[data-step='+step+']').remove();
+//     _.forEach($('#step-list .step').get(), function(value, key){ 
+//         let index = key + 1; 
+//         if($(value).attr('data-step') !== index){
+//             $(value).attr('data-step', index);
+//             $(value).find('label').first().attr('for', 'strServStepDesc'+index);
+//             $(value).find('label').first()[0].textContent = "Step "+ index;
+//             $(value).find('input').first().attr('id', 'strServStepDesc'+index);            
+//             $(value).find('span.input-group-addon').attr('onclick', 'removeDesc('+index+')');
+//         }
+//     });
+// }
+
+var app = new Vue({
+    el: '#app',
+    mounted(){
+        //alert('vue');
+    },
+    data() {
+        return {
+            descriptions: [],
+            description: {
+                detail: ''
+            }
         }
-    });
-}
+    },
+    methods: {
+        addDesc: function(){
+            return this.description.detail && !this.isExisting(this.description) ? (this.descriptions.push(this.description), this.description = {
+                detail: ''
+            }) : null;
+        },
+        removeDesc: function(index){
+            return this.descriptions.splice(index, 1);
+        },
+        isExisting: function(desc){
+            return -1 != _.findIndex(this.descriptions, (d) => { return d.detail == this.description.detail; });
+        },
+        reset: function(){
+            this.description = {
+                detail: ''
+            };
+            this.descriptions = [];
+        }
+    }
+});

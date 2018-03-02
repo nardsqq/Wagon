@@ -14,26 +14,21 @@
 
           <div class="form-group">
             <label>Description</label>
-            <button id="btn-add-step" onclick="addStep()" type="button" class="btn btn-sm btn-success pull-right">Add Description</button>
+            <button id="btn-add-step" @click="addDesc" type="button" class="btn btn-sm btn-success pull-right">Add Description</button>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" v-model="description.detail" placeholder="Description" @keyup.enter="addDesc">
           </div>
           {{-- <div id="step-list"></div> --}}
 
           <div class="form-group">
             <table class="table table-hover table-bordered">
               <tbody id="step-list">
-                <tr>
-                  <td>Sample Description 1</td>
+                <tr v-for="(desc, index) in descriptions" :key="desc">
+                  <td><input :name="'description['+index+']'" type="text" class="form-control" v-model="desc.detail"></td>
+                  
                   <td class="text-center">
-                    <button class="btn btn-danger">Remove</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sample Description 2</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger">Remove</button>
+                    <button type="button" @click.prevent="removeDesc(index)" class="btn btn-xs btn-danger">Remove</button>
                   </td>
                 </tr>
               </tbody>
@@ -49,7 +44,7 @@
 
           <div class="form-group">
             <label for="dbl_service_price">Service Fee</label>
-            <input type="text" class="form-control" id="dbl_service_price">
+            <input type="number" class="form-control" name="dbl_service_price">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
 

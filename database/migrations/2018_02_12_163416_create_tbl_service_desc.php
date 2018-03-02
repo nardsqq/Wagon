@@ -16,7 +16,7 @@ class CreateTblServiceDesc extends Migration
         Schema::create('tbl_service_desc', function (Blueprint $table) {
             $table->increments('int_service_desc_id');
             $table->unsignedInteger('int_sd_service_id_fk');
-            $table->string('str_service_desc_desc', 45);
+            $table->string('str_service_desc_detail', 45);
 
             $table->timestamps();
             $table->softdeletes();

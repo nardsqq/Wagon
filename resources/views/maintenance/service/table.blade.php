@@ -7,16 +7,15 @@
     </tr>
   </thead>
   <tbody id="service-area-list">
-    {{-- @foreach ($servareas as $servarea)
-    <tr id="id{{ $servarea->intServAreaID }}">
-        <td>{{ $servarea->servtypes->strServTypeName }}</td>
-        <td>{{ $servarea->strServAreaName }}</td>
-        <td>{{ $servarea->txtServAreaDesc }}</td>
+    @foreach ($services as $service)
+    <tr id="id{{ $service->int_service_id }}">
+        <td>{{ $service->str_service_name }}</td>
+        <td>{{ $service->dbl_service_price }}</td>
         <td class="text-center">
-            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $servarea->intServAreaID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-            <button class="btn btn-danger btn-sm btn-delete" value="{{ $servarea->intServAreaID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $service->int_service_id }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <button class="btn btn-danger btn-sm btn-delete" value="{{ $service->int_service_id }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
     </tr>
-    @endforeach --}}
+    @endforeach
   </tbody>
 </table>
