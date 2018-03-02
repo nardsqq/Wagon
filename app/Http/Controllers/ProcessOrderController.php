@@ -11,6 +11,10 @@ use App\OrderStatus;
 use App\Client;
 use App\Product;
 use App\Service;
+use App\PaymentTerm;
+use App\Downpayment;
+use App\Discount;
+use App\ModeOfPayment;
 
 
 class ProcessOrderController extends Controller
@@ -28,10 +32,10 @@ class ProcessOrderController extends Controller
 
     public function formData()
     {
-        $terms = Order::$terms;
-        $modes = Order::$modes;
-        $downpayments = Order::$downpayments;
-        $discounts = Order::$discounts;
+        $terms = PaymentTerm::all();
+        $modes = ModeOfPayment::all();
+        $downpayments = Downpayment::all();
+        $discounts = Discount::all();
 
         $clients = Client::all();
         $products = Product::with('variants.specs.prod_attrib.attribute', 'variants.product')->get();
@@ -97,11 +101,11 @@ class ProcessOrderController extends Controller
             //footer
             $footer                     = new OrderFooter();
             $footer->int_of_order_id_fk = $order->int_order_id;
-            $footer->int_payment_terms  = $request->term;
-            $footer->str_payment_mode   = $request->mode;
             $footer->str_delivery_type  = $request->delivery_type;
-            $footer->int_discount       = $request->discount?:0;
-            $footer->dbl_downpayment    = $request->downpayment?:0;
+            $footer->int_of_terms_pay_id_fk  = $request->term;
+            $footer->int_of_mode_pay_id_fk   = $request->mode;
+            $footer->int_of_discount_id_fk       = $request->discount;
+            $footer->int_of_downpayment_id_fk    = $request->downpayment;
             $footer->save();
             
             $status                         = new OrderStatus();

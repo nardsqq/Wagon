@@ -17,22 +17,22 @@
         <div class="col-xs-6">
             <dl>
                 <dt>Payment Term</dt>
-                <dd>@{{ selected_term.desc }}</dd>
+                <dd>@{{ selected_term.str_terms_pay_name }}</dd>
             </dl>
         
             <dl>
                 <dt>Mode of Payment</dt>
-                <dd>@{{ selected_mode.desc }}</dd>
+                <dd>@{{ selected_mode.str_mode_pay_name }}</dd>
             </dl>
         
             <dl>
                 <dt>Downpayment</dt>
-                <dd>@{{ !selected_downpayment.desc ? 'No downpayment' : selected_downpayment.desc+'%' }}</dd>
+                <dd>@{{ selected_downpayment.str_down_name}} (@{{selected_downpayment.dbl_down_percentage}}%)</dd>
             </dl>
         
             <dl>
                 <dt>Discount</dt>
-                <dd>@{{ !selected_discount.desc ? 'No discount' : selected_discount.desc+'%' }}</dd>
+                <dd>@{{ selected_discount.str_discount_name }} (@{{ selected_discount.dbl_discount_percentage }}%)</dd>
             </dl>
         </div>
     </div>
@@ -61,13 +61,13 @@
                             <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
                         </span>
                     </td>
-                    <td>@{{ variant.price }}</td>
+                    <td class="text-right">@{{ variant.price | money }}</td>
                     <td>@{{ variant.quantity }}</td>
-                    <td>@{{ variant.price * variant.quantity }}</td>
+                    <td class="text-right">@{{ (variant.price * variant.quantity) | money }}</td>
                 </tr>
                 <tr>
                     <th colspan="4"><h4>Total</h4></th>
-                    <td>@{{ total }}</td>
+                    <td><h4 class="text-right">@{{ total_amount | money }}</h4></td>
                 </tr>
             </tbody>
         </table>

@@ -25,7 +25,7 @@
                     </span>
                 </td>
                 <td>@{{ variant.stock }}</td>
-                <td>@{{ variant.price }}</td>
+                <td class="text-right">@{{ variant.price | money }}</td>
                 <td style="max-width: 47px;">
                     <button type="button" class="btn btn-sm btn-primary" @click="selectVariant(variant, $event)">@{{ !isSelected(variant.int_var_id) ? 'Select' : 'Remove' }}</button>
                 </td>
@@ -63,11 +63,11 @@
                     </span>
                 </td>
                 <td>@{{ variant.stock }}</td>
-                <td>@{{ variant.price }}</td>
+                <td class="text-right">@{{ variant.price | money }}</td>
                 <td style="max-width: 70px;">
-                    <input :name="'quantity['+variant.int_var_id+']'"  type="number" placeholder="Quantity" class="form-control" min="1" :max="variant.stock" v-model="variant.quantity">
+                    <input :name="'quantity['+variant.int_var_id+']'"  type="number" placeholder="Quantity" class="form-control" min="1" :max="variant.stock" v-model.number="variant.quantity">
                 </td>
-                <td>@{{ variant.price * variant.quantity }}</td>                        
+                <td class="text-right">@{{ (variant.price * variant.quantity) | money }}</td>                        
                 <td><input :name="'remarks['+variant.int_var_id+']'" type="text" placeholder="Remarks" class="form-control"></td>
                 <td>
                     <button type="button" class="btn btn-sm btn-primary" @click="selectVariant(variant, $event)">Remove</button>

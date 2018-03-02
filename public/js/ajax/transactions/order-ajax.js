@@ -78,8 +78,8 @@ var app = new Vue({
 
                 self.selected_term = self.terms[0];
                 self.selected_mode = self.modes[0];
-                self.selected_downpayment = '';
-                self.selected_discount = '';
+                self.selected_downpayment = self.downpayments[0];
+                self.selected_discount = self.discounts[0];
 
                 self.selected_product = self.products[0];
                 self.services = response.data.services;
@@ -102,8 +102,8 @@ var app = new Vue({
             order_type: 0, // 0 - product, 1 - service, 2 - product & service 
             selected_term: {},
             selected_mode: {},
-            selected_downpayment: '',
-            selected_discount: '',
+            selected_downpayment: {},
+            selected_discount: {},
             selected_product: {},
             selected_variant: {},
             selected_variants: [],
@@ -115,10 +115,16 @@ var app = new Vue({
         variants: function(){
             return this.selected_product.variants;
         },
-        total: function(){
-            var sum = 0;
-            if(this.order_type == 0){
-                _.forEach(this.selected_variants, function(p){ sum += (p.quantity * p.price); });
+        total_amount: function(){
+            var sum = 0, self = this;
+            if(self.order_type == 0){
+                if(!_.isEmpty(self.selected_variants)){
+                    self.selected_variants.forEach(function(child){
+                        sum += (child.price * child.quantity);
+                        console.log(child.price, child.quantity, sum);
+                    });
+                }
+                // _.forEach(self.selected_variants, function(p){ return sum += (p.quantity * p.price); });
             }
             return sum;
         }
