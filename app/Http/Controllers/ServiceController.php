@@ -87,7 +87,9 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $service = Service::with('descriptions')->where('int_service_id', $id)->first();
+
+        return response()->json($service);
     }
 
     /**
@@ -99,7 +101,41 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            \DB::beginTransaction();
+
+            $service = Service::findOrfail($id);
+            $service->str_service_name = trim(ucwords($request->str_service_name));
+            $service->dbl_service_price = $request->dbl_service_price;
+            $service->save();
+
+            // delete removed descriptions
+            $existing_desc = $service->descriptions->pluck('int_service_desc_id')->toArray();
+            $current_desc = array_keys($request->description?:[]);
+            $deleted_desc = array_diff($existing_desc, $current_desc);
+            ServiceDescription::whereIn('int_service_desc_id', $deleted_desc)->delete();
+
+            // add or update descriptions
+            if($request->has('description')){
+                foreach($request->description as $key => $desc){
+                    ServiceDescription::updateOrCreate(
+                        ['int_sd_service_id_fk' => $service->int_service_id, 'int_service_desc_id' => $key],
+                        ['str_service_desc_detail' => $desc]
+                    );
+                }
+            }
+
+            \DB::commit();
+            return response()->json($service);
+        } catch (Exception $e) {
+            \DB::rollback();
+            
+            return response()-json([
+                'code' => 500,
+                'message' => 'Error',
+                'data' => $e
+            ]);
+        }
     }
 
     /**

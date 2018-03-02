@@ -5,7 +5,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_servarea').on('hide.bs.modal', function() {
+  $('#add_service').on('hide.bs.modal', function() {
         $('#formService').trigger('reset');
         app.reset();
         // removeDesc();
@@ -33,14 +33,15 @@ $(document).ready(function() {
         success: function (data) {
             console.log(data);
 
-            $('#intSA_ServType_ID').val(data.intSA_ServType_ID);
             $("input[name=str_service_name]").val(data.str_service_name);
-            $('#dbl_service_price').val(data.dbl_service_price);
+            $('input[name=dbl_service_price]').val(data.dbl_service_price);
             // _.forEach(data.steps, function(step){
             //     addDesc(step.intServStepID, step.strServStepDesc);
             // });
+            app.descriptions = data.descriptions;
+
             $('#btn-save').val("update");
-            $('#add_servarea').modal('show');
+            $('#add_service').modal('show');
         },
         error: function (data) {
           console.log(data);
@@ -52,7 +53,7 @@ $(document).ready(function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
-      $('#del_servarea').modal('show');
+      $('#del_service').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -73,7 +74,7 @@ $(document).ready(function() {
 
             var table = $('#dataTable').DataTable();
             table.row($("#id" + id)).remove().draw();
-            $('#del_servarea').modal('hide');
+            $('#del_service').modal('hide');
 
             toastr.options = {
               "closeButton": false,
@@ -124,13 +125,13 @@ $(document).ready(function() {
 
     $('#btn-add').on('click', function(event) {
       $('#title').text('Add Service');
-      $('#servarea-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+      $('#service-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
       $('#formService').trigger("reset");
       $('#btn-save').text('Submit');
       $('#btn-save').val("add");
       $('.modal-btn').addClass('btn-success').removeClass('btn-info');
       //addDesc();
-      $('#add_servarea').modal('show');
+      $('#add_service').modal('show');
     }); 
 
     $("#btn-save").on('click', function (e) {
@@ -224,7 +225,7 @@ $(document).ready(function() {
         // $("[data-toggle='toggle']").bootstrapToggle('destroy');
         // $("[data-toggle='toggle']").bootstrapToggle();
         // $('#formService').trigger("reset");
-        $('#add_servarea').modal('hide')
+        $('#add_service').modal('hide')
     }).fail(function(data) {
         console.log('Error:', data);
 
@@ -304,25 +305,25 @@ var app = new Vue({
         return {
             descriptions: [],
             description: {
-                detail: ''
+                str_service_desc_detail: ''
             }
         }
     },
     methods: {
         addDesc: function(){
-            return this.description.detail && !this.isExisting(this.description) ? (this.descriptions.push(this.description), this.description = {
-                detail: ''
+            return this.description.str_service_desc_detail && !this.isExisting(this.description) ? (this.descriptions.push(this.description), this.description = {
+                str_service_desc_detail: ''
             }) : null;
         },
         removeDesc: function(index){
             return this.descriptions.splice(index, 1);
         },
         isExisting: function(desc){
-            return -1 != _.findIndex(this.descriptions, (d) => { return d.detail == this.description.detail; });
+            return -1 != _.findIndex(this.descriptions, (d) => { return d.str_service_desc_detail == desc.str_service_desc_detail; });
         },
         reset: function(){
             this.description = {
-                detail: ''
+                str_service_desc_detail: ''
             };
             this.descriptions = [];
         }
