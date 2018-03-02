@@ -3,15 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ModeOfPayment;
+use App\PaymentTerm;
 
-class ModeOfPaymentController extends Controller
+class PaymentTermController extends Controller
 {
-    public function table()
-    {
-        $modes = ModeOfPayment::all();
-        return view('maintenance.mode-of-payment.table')->with('modes', $modes);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +14,8 @@ class ModeOfPaymentController extends Controller
      */
     public function index()
     {
-        $modes = ModeOfPayment::all();
-        return view('maintenance.mode-of-payment.index')->with('modes', $modes);
+        $payment_terms = PaymentTerm::orderBy('str_terms_pay_name')->get();
+        return view('maintenance.payment-term.index')->with('payment_terms', $payment_terms);
     }
 
     /**
@@ -41,14 +36,18 @@ class ModeOfPaymentController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->ajax()) {
-            $mode = new ModeOfPayment;
-            $mode->str_mode_pay_name = trim(ucwords($request->str_mode_pay_name));
-            $mode->save();
+            // $this->validate($request, PaymentTerm::$rules);
+            $payment_term = new PaymentTerm;
+            $payment_term->str_terms_pay_name = trim(ucwords($request->str_terms_pay_name));
+            $payment_term->dbl_terms_pay_percentage = trim($request->dbl_terms_pay_percentage);
+            $payment_term->int_terms_pay_days = trim($request->int_terms_pay_days);
+            $payment_term->save();
             
-            return response()->json($mode);
+            return response()->json($payment_term);
         } else {
-            return redirect(route('mode-of-payment.index'));
+            return redirect(route('payment-term.index'));
         }
         
     }
@@ -70,10 +69,10 @@ class ModeOfPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $mode = ModeOfPayment::findOrFail($id);
-        return response()->json($mode);
+        $payment_term = PaymentTerm::findOrFail($id);
+        return response()->json($payment_term);
     }
 
     /**
@@ -86,14 +85,17 @@ class ModeOfPaymentController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->ajax()) {
-            $mode = ModeOfPayment::findOrFail($id);
-            $mode->str_mode_pay_name = trim($request->str_mode_pay_name);
-            $mode->save();
+            $payment_term = PaymentTerm::findOrFail($id);
+            $payment_term ->str_terms_pay_name = trim($request->str_terms_pay_name);
+            $payment_term ->dbl_terms_pay_percentage = trim($request->dbl_terms_pay_percentage);
+            $payment_term->int_terms_pay_days = trim($request->int_terms_pay_days);
+            $payment_term->save();
             
-            return response()->json($mode);
+            return response()->json($payment_term);
         } else {
-            return redirect(route('mode-of-payment.index'));
+            return redirect(route('payment-term.index'));
         }
+        
     }
 
     /**
@@ -107,11 +109,12 @@ class ModeOfPaymentController extends Controller
         if ($request->ajax()) {
             $del = [];
             $request->has('values') ? $del = $request->values : array_push($del, $id);
-            $mode = ModeOfPayment::destroy($del);
+            $payment_term = PaymentTerm::destroy($del);
 
-            return response()->json($mode);
+            return response()->json($payment_term);
         } else {
-            return redirect(route('mode-of-payment.index'));
+            return redirect(route('payment-term.index'));
         }
+        
     }
 }

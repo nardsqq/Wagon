@@ -5,18 +5,18 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_disc').on('hide.bs.modal', function() {
-        $('#formDisc').trigger('reset');
+  $('#add_down').on('hide.bs.modal', function() {
+        $('#formDown').trigger('reset');
   });
 
-  var url = "/admin/maintenance/discount";
+  var url = "/admin/maintenance/downpayment";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#modal-title').text('Edit Discount Record');
+    $('#modal-title').text('Edit Downpayment Record');
     $('#disc-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
@@ -25,10 +25,10 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#str_discount_name').val(data.str_discount_name);
-      $('#dbl_discount_percentage').val(data.dbl_discount_percentage);
+      $('#str_down_name').val(data.str_down_name);
+      $('#dbl_down_percentage').val(data.dbl_down_percentage);
       $('#btn-save').val("update");
-      $('#add_disc').modal('show');
+      $('#add_down').modal('show');
 
     }) 
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
       var link_id = $(this).val();
       id = link_id;
       console.log(id)
-      $('#del_disc').modal('show');
+      $('#del_down').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -59,7 +59,7 @@ $(document).ready(function() {
 
               var table = $('#dataTable').DataTable();
               table.row($("#id" + id)).remove().draw();
-              $('#del_disc').modal('hide');
+              $('#del_down').modal('hide');
 
               toastr.options = {
                 "closeButton": false,
@@ -79,7 +79,7 @@ $(document).ready(function() {
                 "hideMethod": "slideUp"
               }
 
-              toastr.success("Successfully Deleted Discount Record");
+              toastr.success("Successfully Deleted Downpayment Record");
           },
           error: function (data) {
               console.log(url + '/' + id);
@@ -109,13 +109,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#modal-title').text('Add New Discount');
+    $('#modal-title').text('Add New Downpayment');
     $('#disc-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formDisc').trigger("reset");
+    $('#formDown').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_disc').modal('show');
+    $('#add_down').modal('show');
 
   }); 
 
@@ -128,7 +128,7 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    var formData = $("#formDisc").serialize();
+    var formData = $("#formDown").serialize();
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
@@ -156,7 +156,7 @@ $(document).ready(function() {
         "showMethod": "slideDown",
         "hideMethod": "slideUp"
       }
-      toastr.info("Successfully Updated Discount Record");
+      toastr.info("Successfully Updated Downpayment Record");
     }
 
   $.ajax({
@@ -167,13 +167,13 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.int_discount_id +  "></tr>")
+      var row = $("<tr id=id" + data.int_down_id +  "></tr>")
       .append(
-          "<td>" + data.str_discount_name + "</td>" +
-          "<td>" + data.dbl_discount_percentage + " %" + "</td>" +
+          "<td>" + data.str_down_name + "</td>" +
+          "<td>" + data.dbl_down_percentage + " %" + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_discount_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.int_discount_id+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_down_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.int_down_id+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -198,17 +198,17 @@ $(document).ready(function() {
           "showMethod": "slideDown",
           "hideMethod": "slideUp"
         }
-        toastr.success("Successfully Added a New Discount Record");
+        toastr.success("Successfully Added a New Downpayment Record");
 
       } 
       else { 
-          table.row($("#id"+data.int_discount_id)).remove();
+          table.row($("#id"+data.int_down_id)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formDisc').trigger("reset");
-      $('#add_disc').modal('hide')
+      $('#formDown').trigger("reset");
+      $('#add_down').modal('hide')
   }).fail(function(data) {
     console.log('Error:', data);
         toastr.options = {"preventDuplicates": true}

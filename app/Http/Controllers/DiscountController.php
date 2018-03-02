@@ -14,7 +14,7 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discs = Discount::orderBy('strDiscName')->get();
+        $discs = Discount::orderBy('str_discount_name')->get();
         return view('maintenance.discount.index')->with('discs', $discs);
     }
 
@@ -40,8 +40,8 @@ class DiscountController extends Controller
         if ($request->ajax()) {
             $this->validate($request, Discount::$rules);
             $disc = new Discount;
-            $disc->strDiscName = trim(ucwords($request->strDiscName));
-            $disc->decDiscValue = trim($request->decDiscValue);
+            $disc->str_discount_name = trim(ucwords($request->str_discount_name));
+            $disc->dbl_discount_percentage = trim($request->dbl_discount_percentage);
             $disc->save();
             
             return response()->json($disc);
@@ -85,8 +85,8 @@ class DiscountController extends Controller
     {
         if ($request->ajax()) {
             $disc = Discount::findOrFail($id);
-            $disc ->strDiscName = trim($request->strDiscName);
-            $disc ->decDiscValue = trim($request->decDiscValue);
+            $disc ->str_discount_name = trim($request->str_discount_name);
+            $disc ->dbl_discount_percentage = trim($request->dbl_discount_percentage);
             $disc->save();
             
             return response()->json($disc);

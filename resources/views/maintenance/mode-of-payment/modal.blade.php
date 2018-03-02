@@ -7,8 +7,8 @@
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/mode-of-payment', 'method' => 'POST', 'id' => 'formMode']) !!}
           <div class="form-group">
-            {!! Form::label('strMODName', 'Mode of Payment') !!}
-            {!! Form::text('strMODName', null, ['id' => 'strModName', 'class' => 'form-control']) !!}
+            {!! Form::label('str_mode_pay_name', 'Mode of Payment') !!}
+            {!! Form::text('str_mode_pay_name', null, ['id' => 'str_mode_pay_name', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         {!! Form::close() !!}
@@ -31,8 +31,8 @@
       <div class="modal-body">
         <form id="formEditMode">
           <div class="form-group">
-            {!! Form::label('strMODName', 'Mode of Payment') !!}
-            {!! Form::text('strMODName', null, ['id' => 'strModName', 'class' => 'form-control']) !!}
+            {!! Form::label('str_mode_pay_name', 'Mode of Payment') !!}
+            {!! Form::text('str_mode_pay_name', null, ['id' => 'str_mode_pay_name', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
         </form>

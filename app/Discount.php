@@ -9,14 +9,12 @@ class Discount extends Model
 {
 	use SoftDeletes;
 
-  	protected $table = 'tblDiscount';
-  	protected $fillable = ['strDiscName', 'decDiscValue'];
-  	protected $primaryKey = 'intDiscID';
-    protected $dates = ['deleted_at'];
-  	public $timestamps = false;
+	protected $table = 'tbl_discount';
+	protected $guarded = [];
+	protected $primaryKey = 'int_discount_id';
 
-  	public static $rules = [
-        'strDiscName' => 'required|min:2|unique:tblDiscount|max:45|regex:/^[a-z ,.\'-]+$/i',
-      	'decDiscValue' => 'required'
-    ];
+	public static $rules = [
+		'str_discount_name' => 'required|min:2|unique:tbl_discount|max:45|regex:/^[a-z ,.\'-]+$/i',
+		'dbl_discount_percentage' => 'required'
+	];
 }

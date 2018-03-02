@@ -16,17 +16,33 @@ class CreateTblOrderFooter extends Migration
         Schema::create('tbl_order_footer', function (Blueprint $table) {
             $table->increments('int_order_footer_id');
             $table->unsignedInteger('int_of_order_id_fk');
-            $table->integer('int_payment_terms');
-            $table->string('str_payment_mode', 45);
             $table->string('str_delivery_type', 45);
-            $table->integer('int_discount')->nullable();
-            $table->double('dbl_downpayment', 11, 2);
+            $table->unsignedInteger('int_of_terms_pay_id_fk');
+            $table->unsignedInteger('int_of_mode_pay_id_fk');
+            $table->unsignedInteger('int_of_downpayment_id_fk');
+            $table->unsignedInteger('int_of_discount_id_fk');
             
             $table->timestamps();
 
             $table->foreign('int_of_order_id_fk')
                   ->references('int_order_id')
                   ->on('tbl_order');
+
+            $table->foreign('int_of_terms_pay_id_fk')
+                ->references('int_terms_pay_id')
+                ->on('tbl_terms_payment');
+
+            $table->foreign('int_of_mode_pay_id_fk')
+                    ->references('int_mode_pay_id')
+                    ->on('tbl_mode_payment');
+
+            $table->foreign('int_of_downpayment_id_fk')
+                ->references('int_order_id')
+                ->on('tbl_downpayment');
+
+            $table->foreign('int_of_discount_id_fk')
+                    ->references('int_discount_id')
+                    ->on('tbl_discount');
         });
     }
 
@@ -39,6 +55,10 @@ class CreateTblOrderFooter extends Migration
     {
         Schema::table('tbl_order_footer', function (Blueprint $table) {
             $table->dropForeign(['int_of_order_id_fk']);
+            $table->dropForeign(['int_of_terms_pay_id_fk']);
+            $table->dropForeign(['int_of_mode_pay_id_fk']);
+            $table->dropForeign(['int_of_downpayment_id_fk']);
+            $table->dropForeign(['int_of_discount_id_fk']);
         });
         Schema::dropIfExists('tbl_order_footer');
     }

@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ModeOfPayment extends Model
+class Downpayment extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
-    protected $table = 'tbl_mode_payment';
+    protected $table = 'tbl_downpayment';
     protected $guarded = [];
-	protected $primaryKey = 'int_mode_pay_id';
-	
+    protected $primaryKey = 'int_down_id';
+
     public static $rules = [];
 }

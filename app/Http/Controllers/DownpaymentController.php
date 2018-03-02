@@ -3,15 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ModeOfPayment;
+use App\Downpayment;
 
-class ModeOfPaymentController extends Controller
+class DownpaymentController extends Controller
 {
-    public function table()
-    {
-        $modes = ModeOfPayment::all();
-        return view('maintenance.mode-of-payment.table')->with('modes', $modes);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +14,8 @@ class ModeOfPaymentController extends Controller
      */
     public function index()
     {
-        $modes = ModeOfPayment::all();
-        return view('maintenance.mode-of-payment.index')->with('modes', $modes);
+        $downs = Downpayment::orderBy('str_down_name')->get();
+        return view('maintenance.downpayment.index')->with('downs', $downs);
     }
 
     /**
@@ -41,14 +36,17 @@ class ModeOfPaymentController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->ajax()) {
-            $mode = new ModeOfPayment;
-            $mode->str_mode_pay_name = trim(ucwords($request->str_mode_pay_name));
-            $mode->save();
+            $this->validate($request, Downpayment::$rules);
+            $down = new Downpayment;
+            $down->str_down_name = trim(ucwords($request->str_down_name));
+            $down->dbl_down_percentage = trim($request->dbl_down_percentage);
+            $down->save();
             
-            return response()->json($mode);
+            return response()->json($down);
         } else {
-            return redirect(route('mode-of-payment.index'));
+            return redirect(route('downpayment.index'));
         }
         
     }
@@ -70,10 +68,10 @@ class ModeOfPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $mode = ModeOfPayment::findOrFail($id);
-        return response()->json($mode);
+        $down = Downpayment::findOrFail($id);
+        return response()->json($down);
     }
 
     /**
@@ -86,14 +84,16 @@ class ModeOfPaymentController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->ajax()) {
-            $mode = ModeOfPayment::findOrFail($id);
-            $mode->str_mode_pay_name = trim($request->str_mode_pay_name);
-            $mode->save();
+            $down = Downpayment::findOrFail($id);
+            $down ->str_down_name = trim($request->str_down_name);
+            $down ->dbl_down_percentage = trim($request->dbl_down_percentage);
+            $down->save();
             
-            return response()->json($mode);
+            return response()->json($down);
         } else {
-            return redirect(route('mode-of-payment.index'));
+            return redirect(route('downpayment.index'));
         }
+        
     }
 
     /**
@@ -107,11 +107,12 @@ class ModeOfPaymentController extends Controller
         if ($request->ajax()) {
             $del = [];
             $request->has('values') ? $del = $request->values : array_push($del, $id);
-            $mode = ModeOfPayment::destroy($del);
+            $down = Downpayment::destroy($del);
 
-            return response()->json($mode);
+            return response()->json($down);
         } else {
-            return redirect(route('mode-of-payment.index'));
+            return redirect(route('downpayment.index'));
         }
+        
     }
 }

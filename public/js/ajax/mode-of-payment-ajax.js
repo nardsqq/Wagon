@@ -26,7 +26,7 @@ $(document).ready(function() {
       success: function(data) {
         var formEditMode = $('#formEditMode');
 
-        formEditMode.find('#strModName').val(data.strMODName);
+        formEditMode.find('#str_mode_pay_name').val(data.str_mode_pay_name);
 
         $('#edit_mode').modal('show');
       }

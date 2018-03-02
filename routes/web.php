@@ -58,6 +58,12 @@ Route::group(['prefix' => 'admin'], function() {
     // Discount
     Route::resource('discount', 'DiscountController');
 
+    // Downpayment
+    Route::resource('downpayment', 'DownpaymentController');
+
+    // Payment Term
+    Route::resource('payment-term', 'PaymentTermController');
+
     Route::resource('delivery-charge', 'DeliveryChargeController');
 
   });

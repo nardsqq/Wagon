@@ -8,12 +8,12 @@
   </thead>
   <tbody id="disc-list">
     @foreach ($discs as $disc)
-    <tr id="id{{$disc->intDiscID}}">
-        <td>{{ $disc->strDiscName }}</td>
-        <td>{{ $disc->decDiscValue }} %</td>
+    <tr id="id{{$disc->int_discount_id}}">
+        <td>{{ $disc->str_discount_name }}</td>
+        <td>{{ $disc->dbl_discount_percentage }} %</td>
         <td class="text-center">
-            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $disc->intDiscID }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
-            <button class="btn btn-danger btn-sm btn-delete" value="{{ $disc->intDiscID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
+            <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $disc->int_discount_id }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
+            <button class="btn btn-danger btn-sm btn-delete" value="{{ $disc->int_discount_id }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
     </tr>
     @endforeach
