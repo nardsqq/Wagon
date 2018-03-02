@@ -19,9 +19,9 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/supplier') }}"><i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i>&nbsp; Supplier</a>
                 </li>
-                <!--li>
+                <li>
                   <a href="{{ url('/admin/maintenance/brand') }}"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>&nbsp; Brand</a>
-                </li-->
+                </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/product') }}"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>&nbsp; Product</a>
                 </li>
@@ -45,9 +45,9 @@
                 <li>
                   <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Service</a>
                 </li>
-                <li>
+                {{-- <li>
                   <a href="{{ url('/admin/maintenance/service-description') }}"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Service Description</a>
-                </li>
+                </li> --}}
   						</ul>
   					</li>
   					<li class="col-sm-4">
@@ -76,7 +76,7 @@
                 <li class="divider"></li>
                 <li class="dropdown-header">Adjust and Replenish Stocks</li>
                 <li>
-                  <a href="{{ url('/admin/transactions/stocks') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Stocks</a>
+                  <a href="{{ url('/admin/transactions/adjust-stock') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Adjust Stock</a>
                 </li>
                 {{-- <li>
                   <a href="{{ url('/admin/transactions/receive-items') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Receive Items</a>
@@ -97,12 +97,12 @@
                 {{-- <li class="{{ Request::is('admin/transactions/quotation') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/quotation') }}"><i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>&nbsp; Quotation</a>
                 </li> --}}
-                <li class="{{ Request::is('admin/transactions/sales-order') ? "active" : "" }}">
+                {{-- <li class="{{ Request::is('admin/transactions/sales-order') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/sales-order') }}"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>&nbsp; Sales Order</a>
                 </li>
                 <li class="{{ Request::is('admin/transactions/job-order') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/job-order') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Job Order</a>
-                </li>
+                </li> --}}
                 <li class="{{ Request::is('admin/transactions/invoice') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/invoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
                 </li>

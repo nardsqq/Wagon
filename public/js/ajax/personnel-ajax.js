@@ -26,11 +26,11 @@ $(document).ready(function() {
       success: function(data) {
         var formEditPers = $('#formEditPers');
 
-        formEditPers.find('#strPersEmpType').val(data.strPersEmpType);
-        formEditPers.find('#strPersFName').val(data.strPersFName);
-        formEditPers.find('#strPersMName').val(data.strPersMName);
-        formEditPers.find('#strPersLName').val(data.strPersLName);
-        formEditPers.find('#strPersMobNo').val(data.strPersMobNo);
+        formEditPers.find('#str_personnel_type').val(data.str_personnel_type);
+        formEditPers.find('#str_personnel_f_name').val(data.str_personnel_f_name);
+        formEditPers.find('#str_personnel_m_name').val(data.str_personnel_m_name);
+        formEditPers.find('#str_personnel_l_name').val(data.str_personnel_l_name);
+        formEditPers.find('#str_personnel_mobile_num').val(data.str_personnel_mobile_num);
 
         $('#edit_pers').modal('show');
       }
@@ -163,7 +163,7 @@ $(document).ready(function() {
       url: url,
       data: formData,
       success:function(data) {
-        console.log(data);
+        console.log(JSON.stringify(data));
         $('#add_pers').modal('hide');
         loadTable();
       

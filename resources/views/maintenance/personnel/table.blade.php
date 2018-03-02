@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody id="prod-list">
-    @foreach ($personnels as $personnel)
+    {{-- @foreach ($personnels as $personnel)
       <tr id="id{{ $personnel->intPersID }}">
         <td>{{ $personnel->roles->strRoleName }}</td>
         <td>{{ $personnel->strPersEmpType }}</td>
@@ -20,6 +20,6 @@
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $personnel->intPersID }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>
         </td>
       </tr>
-    @endforeach
+    @endforeach --}}
   </tbody>
 </table>

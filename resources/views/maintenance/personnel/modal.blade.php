@@ -6,42 +6,36 @@
       </div>
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/personnel', 'method' => 'POST', 'id' => 'formPers']) !!}
-          <div class="row">
-            <div class="col-xs-6">
-              {!! Form::label('intPers_Role_ID', 'Role') !!}
-              <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
-                @foreach($roles as $role)
-                  <option value="{{ $role->intRoleID }}">{{ $role->strRoleName }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-xs-6">
-              {!! Form::label('strPersEmpType', 'Employee Type') !!}
-              <select name="strPersEmpType" id="strPersEmpType" class="form-control">
-                <option value="Regular">Regular</option>
-                <option value="Contractual">Contractual</option>
-              </select>
-            </div>
+          <div class="form-group">
+            {!! Form::label('str_personnel_type', 'Personnel Type') !!}
+            <select name="str_personnel_type" id="str_personnel_type" class="form-control">
+              <option value="Contractual">Contractual</option>
+              <option value="Regular">Regular</option>
+            </select>
           </div>
-          <div class="form-group m-t-10">
-            {!! Form::label('strPersFName', 'First Name') !!}
-            {!! Form::text('strPersFName', null, ['id' => 'strPersFName', 'class' => 'form-control']) !!}
+          <div class="form-group">
+            {!! Form::label('str_personnel_f_name', 'First Name') !!}
+            {!! Form::text('str_personnel_f_name', null, ['id' => 'str_personnel_f_name', 'class' => 'form-control', 'required' => 'true']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            {!! Form::label('strPersMName', 'Middle Name') !!}
-            {!! Form::text('strPersMName', null, ['id' => 'strPersMName', 'class' => 'form-control']) !!}
+            {!! Form::label('str_personnel_m_name', 'Middle Name') !!}
+            {!! Form::text('str_personnel_m_name', null, ['id' => 'str_personnel_m_name', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            {!! Form::label('strPersLName', 'Last Name') !!}
-            {!! Form::text('strPersLName', null, ['id' => 'strPersLName', 'class' => 'form-control']) !!}
+            {!! Form::label('str_personnel_l_name', 'Last Name') !!}
+            {!! Form::text('str_personnel_l_name', null, ['id' => 'str_personnel_l_name', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            {!! Form::label('strPersMobNo', 'Mobile Number') !!}
-            {!! Form::text('strPersMobNo', null, ['id' => 'strPersMobNo', 'class' => 'form-control']) !!}
+            {!! Form::label('str_personnel_mobile_num', 'Mobile Number') !!}
+            {!! Form::text('str_personnel_mobile_num', null, ['id' => 'str_personnel_mobile_num', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
+          <div class="form-group">
+            {!! Form::label('txt_personnel_address', 'Address') !!}
+            <textarea name="txt_personnel_address" id="txt_personnel_address" cols="30" rows="10" class="form-control"></textarea>
           </div>
         {!! Form::close() !!}
       </div>
@@ -62,7 +56,7 @@
       </div>
       <div class="modal-body">
         <form id="formEditPers">
-          <div class="row">
+          {{-- <div class="row">
             <div class="col-xs-6">
               {!! Form::label('intPers_Role_ID', 'Role') !!}
               <select name="intPers_Role_ID" id="intPers_Role_ID" class="form-control">
@@ -78,7 +72,7 @@
                 <option value="Contractual">Contractual</option>
               </select>
             </div>
-          </div>
+          </div> --}}
           <div class="form-group m-t-10">
             {!! Form::label('strPersFName', 'First Name') !!}
             {!! Form::text('strPersFName', null, ['id' => 'strPersFName', 'class' => 'form-control']) !!}

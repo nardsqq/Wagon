@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Personnel;
-use App\Role;
 
 class PersonnelController extends Controller
 {
     public function table()
     {
-        $personnels = Personnel::orderBy('intPersID')->get();
-        $roles = Role::orderBy('strRoleName')->get();
+        $personnels = Personnel::orderBy('int_personnel_id')->get();
 
-        return view('maintenance.personnel.table')->with('personnels', $personnels)->with('roles', $roles);
+        return view('maintenance.personnel.table')->with('personnels', $personnels);
     }
     
     /**
@@ -23,10 +21,9 @@ class PersonnelController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::orderBy('intPersID')->get();
-        $roles = Role::orderBy('strRoleName')->get();
+        $personnels = Personnel::orderBy('int_personnel_id')->get();
 
-        return view('maintenance.personnel.index')->with('personnels', $personnels)->with('roles', $roles);
+        return view('maintenance.personnel.index')->with('personnels', $personnels);
     }
 
     /**
@@ -48,20 +45,21 @@ class PersonnelController extends Controller
     public function store(Request $request)
     {
         if($request->ajax()) {
-            $this->validate($request, Personnel::$rules);
 
-            $role = Role::find($request->intPers_Role_ID);
+            // $role = Role::find($request->intPers_Role_ID);
             $personnel = new Personnel;
 
-            $personnel->roles()->associate($role);
-            $personnel->strPersEmpType = $request->strPersEmpType;
-            $personnel->strPersFName = trim(ucwords($request->strPersFName));
-            $personnel->strPersMName = trim(ucfirst($request->strPersMName));
-            $personnel->strPersLName = trim(ucwords($request->strPersLName));
-            $personnel->strPersMobNo = $request->strPersMobNo;
+            // $personnel->roles()->associate($role);
+            $personnel->str_personnel_type = $request->str_personnel_type;
+            $personnel->str_personnel_f_name = trim(ucwords($request->str_personnel_f_name));
+            $personnel->str_personnel_m_name = trim(ucfirst($request->str_personnel_m_name));
+            $personnel->str_personnel_l_name = trim(ucwords($request->str_personnel_l_name));
+            $personnel->txt_personnel_address = trim(ucfirst($request->txt_personnel_address));
+            $personnel->str_personnel_mobile_num = trim($request->str_personnel_mobile_num);
 
             $personnel->save();
             return response()->json($personnel);
+            
         } else {
             return redirect(route('personnel.index'));
         }
@@ -101,10 +99,10 @@ class PersonnelController extends Controller
     {
         if($request->ajax()) {
 
-            $role = Role::find($request->intPers_Role_ID);
+            // $role = Role::find($request->intPers_Role_ID);
             $personnel = Personnel::findOrFail($id);
 
-            $personnel->roles()->associate($role);
+            // $personnel->roles()->associate($role);
             $personnel->strPersEmpType = $request->strPersEmpType;
             $personnel->strPersFName = trim(ucwords($request->strPersFName));
             $personnel->strPersMName = trim(ucfirst($request->strPersMName));
