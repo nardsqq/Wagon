@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Blade::directive('money', function($expression){
+            if($expression < 0)
+                return "<?php echo '(₱ '.number_format(round(abs($expression), 2),2,'.',',').')'; ?>";
+
+            return "<?php echo '₱ '.number_format(round($expression, 2),2,'.',','); ?>";
+        });
         Schema::defaultStringLength(191);
     }
 

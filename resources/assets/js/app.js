@@ -7,6 +7,14 @@
 
 require('./bootstrap');
 
+Vue.filter('money', function (value) {
+var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+if (value < 0) return '(' + (prefix ? '₱ ' : '') + Math.abs(value).toLocaleString('en-PH', { 'minimumFractionDigits': 2, 'maximumFractionDigits': 2 }) + ')';
+return (prefix ? '₱ ' : '') + value.toLocaleString('en-PH', { 'minimumFractionDigits': 2, 'maximumFractionDigits': 2 });
+});
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
