@@ -16,6 +16,9 @@
             <label>Description</label>
             <button id="btn-add-step" onclick="addStep()" type="button" class="btn btn-sm btn-success pull-right">Add Description</button>
           </div>
+          <div class="form-group">
+            <input type="text" class="form-control">
+          </div>
           {{-- <div id="step-list"></div> --}}
 
           <div class="form-group">
