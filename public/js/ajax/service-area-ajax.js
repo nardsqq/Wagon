@@ -261,6 +261,9 @@ function addStep(stepId='', stepDesc=''){
     $('#step-list').append(`
       <tr>
         <td>Sample Data</td>
+        <td class="text-center">
+          <button class="btn btn-danger">Remove</button>
+        </td>
       </tr>
     `);
 

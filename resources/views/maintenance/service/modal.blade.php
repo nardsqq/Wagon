@@ -26,9 +26,15 @@
               <tbody id="step-list">
                 <tr>
                   <td>Sample Description 1</td>
+                  <td class="text-center">
+                    <button class="btn btn-danger">Remove</button>
+                  </td>
                 </tr>
                 <tr>
                   <td>Sample Description 2</td>
+                  <td class="text-center">
+                    <button class="btn btn-danger">Remove</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
