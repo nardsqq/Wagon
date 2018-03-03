@@ -1,4 +1,4 @@
-<p align="center"><img src="https://img.shields.io/badge/phase-capstone-blue.svg"> <img src="https://img.shields.io/badge/estimated--progress-35%25-red.svg"></img> </img> <img src="https://img.shields.io/badge/maintenance-80%25-green.svg"></img> <img src="https://img.shields.io/badge/transactions-10%25-red.svg"></img> <img src="https://img.shields.io/badge/reports-0%25-red.svg"></img></p>
+<p align="center"><img src="https://img.shields.io/badge/phase-recapstone-blue.svg"></p>
 
 ## Marine and Industrial Sales and Services Management System
 
@@ -22,20 +22,17 @@
 
 #### Database
 
-For the meantime, we'll be using the .mwb file attached within the project folder for our database. If you have MySQL Workbench, just open the .mwb file with it.
-
 1. Run `php -r "file_exists('.env') || copy('.env.example', '.env')";` on the command shell to copy the existing `.env.example` file within the project folder. Fill in the fresh `.env` copy with your own configurations.
 2. Create a new database with `phpMyAdmin`. Use `dbmissms` for your database name.
-3. Open *dbmissms.mwb* with Workbench.
-4. Hit Ctrl + G (Shortcut for *Forward Engineer*) or via *Database* > *Forward Engineer* on your toolbar/ribbon.
-5. This will forward engineer the schema and it will make the database accessible through `localhost/phpMyAdmin`.
+3. Migrate your tables using the `php artisan migrate --seed` artisan command.
+4. This will forward engineer the schema and it will make the database accessible through `localhost/phpMyAdmin`.
 
 #### Usage
 
-1. After *forward engineering*, execute a separate command shell within the project folder.
+1. After *migrating*, execute a separate command shell within the project folder.
 2. Generate a new APP_KEY via `php artisan key:generate` artisan command.
-3. Run `php -S localhost:8080 -t public` on the command shell.
-4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8080/admin` on your address bar.
+3. Run `php artisan serve` on the command shell.
+4. Open any modern browsers (Chrome, Firefox, Edge etc) and access the application by typing `http://localhost:8000` on your address bar.
 
 #### Note to Contributors
 
