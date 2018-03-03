@@ -30,7 +30,7 @@ $(document).ready(function() {
         formEditClient.find('#str_client_person').val(data.str_client_person);
         formEditClient.find('#txt_client_address').val(data.txt_client_address);
         formEditClient.find('#str_client_landmark').val(data.str_client_landmark);
-        formEditClient.find('#str_client_tin').val(data.str_client_tin);
+        formEditClient.find('#ed_str_client_tin').val(data.str_client_tin);
 
         $('#edit_client').modal('show');
       }

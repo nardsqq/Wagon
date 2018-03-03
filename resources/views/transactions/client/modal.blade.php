@@ -82,8 +82,8 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="col-xs-6">
-              {!! Form::label('str_client_tin', 'Taxpayer Identification Number') !!}
-              {!! Form::text('str_client_tin', null, ['id' => 'str_client_tin', 'class' => 'form-control']) !!}
+              {!! Form::label('ed_str_client_tin', 'Taxpayer Identification Number') !!}
+              {!! Form::text('ed_str_client_tin', null, ['id' => 'ed_str_client_tin', 'class' => 'form-control']) !!}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
           </div> 

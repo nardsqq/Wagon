@@ -67,6 +67,9 @@
   <script>
     $(window).on('load', function(){
         $('#dataTable').removeAttr('style');
+
+        $('#str_client_tin').mask("AAAAA-AAAAA-A-A", {placeholder: "_ _ _ _ _ - _ _ _ _ _ - _ - _"});
+        $('#ed_str_client_tin').mask("AAAAA-AAAAA-A-A", {placeholder: "_ _ _ _ _ - _ _ _ _ _ - _ - _"});
     })
   </script>
 
