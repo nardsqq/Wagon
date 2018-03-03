@@ -18,6 +18,6 @@ class Supplier extends Model
     public static $rules = [
       'str_supplier_name' => 'required|max:45|unique:tbl_supplier',
       'txt_supplier_address' => 'required',
-      'str_supplier_mobile_num' => 'required',
+      'str_supplier_mobile_num' => 'required'
     ];
 }

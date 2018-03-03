@@ -1,6 +1,7 @@
 <script src="{{ asset('/js/main.js/') }}"></script>
 <script src="{{ asset('/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('/js/datepicker.js') }}"></script>
+<script src="{{ asset('/js/jquery.mask.min.js/') }}"></script>
 
 <script type="text/javascript">
   window.loading_screen = window.pleaseWait({

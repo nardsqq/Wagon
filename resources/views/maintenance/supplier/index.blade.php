@@ -67,6 +67,12 @@
   <script>
     $(window).on('load', function(){
         $('#dataTable').removeAttr('style');
+
+        $('#str_supplier_mobile_num').mask("000-000-0000", {placeholder: "+63-_ _ _-_ _ _-_ _ _ _"});
+        $('#str_supplier_tel_num').mask("(000)-0000", {placeholder: "( _ _ _ ) - _ _ _ _"});
+
+        $('#ed_str_supplier_mobile_num').mask("000-000-0000", {placeholder: "+63-_ _ _-_ _ _-_ _ _ _"});
+        $('#ed_str_supplier_tel_num').mask("(000)-0000", {placeholder: "( _ _ _ ) - _ _ _ _"});
     })
   </script>
 

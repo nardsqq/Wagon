@@ -49,7 +49,9 @@ class SupplierController extends Controller
 
             $supplier->str_supplier_name = trim(ucwords($request->str_supplier_name));
             $supplier->str_supplier_mobile_num = trim($request->str_supplier_mobile_num);
-            $supplier->txt_supplier_address = trim(ucwords($request->txt_supplier_address));
+            $supplier->str_supplier_tel_num = trim($request->str_supplier_tel_num);
+            $supplier->str_supplier_email = trim($request->str_supplier_email);
+            $supplier->txt_supplier_address = trim(ucfirst($request->txt_supplier_address));
 
             $supplier->save();
             return response()->json($supplier);
@@ -97,6 +99,8 @@ class SupplierController extends Controller
 
             $supplier->str_supplier_name = trim(ucwords($request->str_supplier_name));
             $supplier->str_supplier_mobile_num = trim($request->str_supplier_mobile_num);
+            $supplier->str_supplier_tel_num = trim($request->str_supplier_tel_num);
+            $supplier->str_supplier_email = trim($request->str_supplier_email);
             $supplier->txt_supplier_address = trim(ucwords($request->txt_supplier_address));
 
             $supplier->save();
