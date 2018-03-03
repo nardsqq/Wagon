@@ -84,6 +84,9 @@
                 <li>
                   <a href="{{ url('/admin/transactions/adjust-stock') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Adjust Stock</a>
                 </li>
+                <li>
+                  <a href="{{ url('/admin/transactions/replenish-stock') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Replenish Stock</a>
+                </li>
                 {{-- <li>
                   <a href="{{ url('/admin/transactions/receive-items') }}"><i class="fa fa-truck fa-fw" aria-hidden="true"></i>&nbsp; Receive Items</a>
                 </li> --}}
