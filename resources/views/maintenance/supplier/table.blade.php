@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>Supplier</th>
-      <th class="text-center">Contact Number</th>
+      <th class="text-center">Contact Detail</th>
       <th class="text-center">Address</th>
       <th class="text-center">Actions</th>
     </tr>
@@ -11,7 +11,11 @@
     @foreach ($suppliers as $supplier)
     <tr id="id{{ $supplier->int_supplier_id }}">
         <td>{{ $supplier->str_supplier_name }}</td>
-        <td class="text-center">{{ $supplier->str_supplier_mobile_num }}</td>
+        @if ($supplier->str_supplier_mobile_num != null && $supplier->str_supplier_tel_num == null && $supplier->str_supplier_email == null)
+          <td class="text-center">{{ $supplier->str_supplier_mobile_num }}</td>
+        @else
+          <td class="text-center">{{ $supplier->str_supplier_tel_num }}</td>
+        @endif
         <td class="text-center">{{ $supplier->txt_supplier_address }}</td>
         <td class="text-center">
             <a href="{{ route('supplier.show', $supplier->int_supplier_id) }}" class="btn btn-sm btn-default"><i class='fa fa-circle-o'></i>&nbsp; View</a>

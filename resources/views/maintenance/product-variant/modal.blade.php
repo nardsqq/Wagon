@@ -6,24 +6,12 @@
       </div>
       <div class="modal-body">
         {!! Form::open(['url' => '/admin/maintenance/product-variant', 'method' => 'POST', 'id' => 'formProdVar']) !!}
-          <div class="row m-t-10">
-            <div class="col-xs-6">
-              {!! Form::label('int_prod_id_fk', 'Product') !!}
-              <input type="hidden" name="product_id" :value="product.int_product_id">
-              <select name="int_prod_id_fk" id="int_prod_id_fk" class="form-control" v-model="product">
-                  <option v-for="product in products" :key="product.int_product_id" :value="product">@{{ product.str_product_name }}</option>
-              </select>
-            </div>
-            
-            
-            <div class="col-xs-3">
-                {!! Form::label('quantity', 0, 'Quantity') !!}
-                {{ Form::number('quantity', 0, ['class'=>'form-control'])}}
-            </div>
-            <div class="col-xs-3">
-              {!! Form::label('price', 'Unit Price') !!}
-              {{ Form::number('price', 0, ['class'=>'form-control'])}}
-            </div>
+          <div class="form-group">
+            {!! Form::label('int_prod_id_fk', 'Product') !!}
+            <input type="hidden" name="product_id" :value="product.int_product_id">
+            <select name="int_prod_id_fk" id="int_prod_id_fk" class="form-control" v-model="product">
+                <option v-for="product in products" :key="product.int_product_id" :value="product">@{{ product.str_product_name }}</option>
+            </select>
           </div>
           <hr>
           <div class="form-group">
@@ -39,6 +27,17 @@
                   <input type="text" :name="'str_spec_constant['+specs.int_prod_attrib_id+']'" :id="'str_spec_constant['+specs.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45" required>
                 </div>
             </div>  
+          </div>
+          <hr>
+          <div class="row m-t-10">
+            <div class="col-xs-6">
+                {!! Form::label('quantity', 0, 'Quantity') !!}
+                {{ Form::number('quantity', 0, ['class'=>'form-control'])}}
+            </div>
+            <div class="col-xs-6">
+              {!! Form::label('price', 'Unit Price') !!}
+              {{ Form::number('price', 0, ['class'=>'form-control'])}}
+            </div>
           </div>
         {!! Form::close() !!}
       </div>

@@ -18,6 +18,8 @@ class CreateTblSupplier extends Migration
             $table->string('str_supplier_name', 45);
             $table->text('txt_supplier_address');
             $table->string('str_supplier_mobile_num', 45);
+            $table->string('str_supplier_tel_num', 45);
+            $table->string('str_supplier_email', 45);
 
             $table->timestamps();
             $table->softdeletes();

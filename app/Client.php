@@ -22,4 +22,6 @@ class Client extends Model
     public function getContactAttribute(){
       return $this->contact_details->count() > 0 ? $this->contact_details()->first()->str_contact_detail : null;
     }
+
+    public static $rules = [];
 }

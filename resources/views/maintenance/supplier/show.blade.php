@@ -53,6 +53,8 @@
 									<dl>
 									  <dt>Supplier Contact Detail</dt>
 									  <dd>{{ $supplier->str_supplier_mobile_num }}</dd>
+									  <dd>{{ $supplier->str_supplier_tel_num }}</dd>
+									  <dd>{{ $supplier->str_supplier_email }}</dd>
 									</dl>
 
 

@@ -14,6 +14,8 @@ if (value < 0) return '(' + (prefix ? '₱ ' : '') + Math.abs(value).toLocaleStr
 return (prefix ? '₱ ' : '') + value.toLocaleString('en-PH', { 'minimumFractionDigits': 2, 'maximumFractionDigits': 2 });
 });
 
+require('../../../node_modules/jquery-mask-plugin/dist/jquery.mask');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

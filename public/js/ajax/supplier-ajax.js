@@ -27,7 +27,9 @@ $(document).ready(function() {
         var formEditSupp = $('#formEditSupp');
 
         formEditSupp.find('#str_supplier_name').val(data.str_supplier_name);
-        formEditSupp.find('#str_supplier_mobile_num').val(data.str_supplier_mobile_num);
+        formEditSupp.find('#ed_str_supplier_mobile_num').val(data.str_supplier_mobile_num);
+        formEditSupp.find('#ed_str_supplier_tel_num').val(data.str_supplier_tel_num);
+        formEditSupp.find('#str_supplier_email').val(data.str_supplier_email);
         formEditSupp.find('#txt_supplier_address').val(data.txt_supplier_address);
 
         $('#edit_supp').modal('show');
