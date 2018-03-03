@@ -16,7 +16,7 @@ class CreateDiscountsTable extends Migration
         Schema::create('tbl_discount', function (Blueprint $table) {
             $table->increments('int_discount_id');
             $table->string('str_discount_name', 45);
-            $table->double('dbl_discount_percentage', 5,2);
+            $table->integer('int_discount_percentage');
             
             $table->timestamps();
             $table->softdeletes();

@@ -16,7 +16,7 @@ class CreatePaymentTermsTable extends Migration
         Schema::create('tbl_terms_payment', function (Blueprint $table) {
             $table->increments('int_terms_pay_id');
             $table->string('str_terms_pay_name', 45);
-            $table->double('dbl_terms_pay_percentage', 5,2);
+            $table->integer('int_terms_pay_percentage');
             $table->integer('int_terms_pay_days');
             
             $table->timestamps();

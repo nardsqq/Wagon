@@ -16,7 +16,7 @@ class CreateDownpaymentsTable extends Migration
         Schema::create('tbl_downpayment', function (Blueprint $table) {
             $table->increments('int_down_id');
             $table->string('str_down_name', 45);
-            $table->double('dbl_down_percentage', 5,2);
+            $table->integer('int_down_percentage');
             
             $table->timestamps();
             $table->softdeletes();
