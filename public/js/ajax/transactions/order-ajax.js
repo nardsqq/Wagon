@@ -111,6 +111,7 @@ var app = new Vue({
             selected_variants: [],
             selected_services: [],
             current_service: {},
+            current_material: {},
             order_num: '',
             acqui_types: []
         }
@@ -166,12 +167,20 @@ var app = new Vue({
             return _.findIndex(this.selected_variants, ['int_var_id', id]) != -1;
         },
         selectService: function(service){
-            console.log(service);
             return (_.findIndex(this.selected_services, ['int_service_id', service.int_service_id]) != -1) ? this.current_service = service : null;
         },
         removeService: function(index){
             this.selected_services.splice(index, 1);
             this.current_service = {};
+        },
+        selectMaterialVariant: function(variant){
+            return this.selected_variant.int_var_id != variant.int_var_id ? this.current_material.variant = variant : this.current_material.variant = {};
+        },
+        selectMaterial: function(material){
+            this.current_material = material;
+        },
+        isEmpty: function(obj){
+            return _.isEmpty(obj);
         }
     }
 });

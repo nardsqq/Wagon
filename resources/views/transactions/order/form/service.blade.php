@@ -9,11 +9,14 @@
     </div>
 
     <div class="col-xs-12 m-t-30">
-        <hr>
-        <h3>Selected Services</h3>
+        
         <div class="col-xs-3">
-            <div class="list-group">
-                <a v-for="(service, index) in selected_services" :key="service.int_service_id" href="#" :class="'list-group-item' + (service === current_service ? ' active' : '')" @click="selectService(service)">@{{ service.str_service_name }} <span @click.prevent="removeService(index)" title="Remove" class="fa fa-remove pull-right"></span></a>
+            <div class="panel panel-info">
+                <div class="panel-heading">Selected Services</div>
+                <div class="list-group">
+                    <a v-if="selected_services.length <= 0" href="#" class="list-group-item">No services selected</a>    
+                    <a v-for="(service, index) in selected_services" :key="service.int_service_id" href="#" :class="'list-group-item' + (service === current_service ? ' active' : '')" @click="selectService(service)">@{{ service.str_service_name }} <span @click.prevent="removeService(index)" title="Remove" class="fa fa-remove pull-right"></span></a>
+                </div>
             </div>
         </div>
         <div class="col-xs-9">
@@ -22,8 +25,8 @@
                         <tr>
                             <th class="text-center">Material</th>
                             <th class="text-center">Type of Acquisition</th>
+                            <th class="text-center">Variant</th>
                             <th class="text-center">Quantity</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,14 +42,24 @@
                                 <option v-for="(type, index) in acqui_types" :key="index" :value="index">@{{type}}</option>
                                 </select>
                             </td>
-                            <td style="max-width: 70px;">
-                                <input :name="'quantity['+material.int_mat_id+']'"  type="number" placeholder="Quantity" class="form-control" min="1" :max="material.variant? material.variant.stock:999" v-model.number="material.quantity">
+                            <td><button v-if="material.acqui_type!=2 && isEmpty(material.variant)" type="button" class="btn btn-sm btn-info" @click="selectMaterial(material)"  data-toggle="modal" data-target="#select_material_variant">Select Variant</button>
+                                <span v-else-if="material.acqui_type==2">N/A</span>
+                                <span v-else>
+                                    <input type="hidden" :value="material.variant.int_var_id" :name="'variant['+material.int_mat_id+']'">
+                                    <span v-for="specs in material.variant.specs" :key="specs.int_specs_id">
+                                        <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
+                                    </span>
+                                    <a href="#" class="text-underline text-muted" @click="selectMaterial(material)" data-toggle="modal" data-target="#select_material_variant">Change variant</a>
+                                </span>
                             </td>
-                            <td><button v-if="material.acqui_type!=2" type="button" class="btn btn-sm btn-info">Select Variant</button></td>
+                            <td style="max-width: 70px;">
+                                <input :name="'quantity['+material.int_mat_id+']'" type="number" placeholder="Quantity" class="form-control" min="1" :max="material.variant? material.variant.stock:999" v-model.number="material.quantity" :disabled="isEmpty(material.variant) || material.acqui_type==2">
+                            </td>
+                            
                         </tr>
                     </tbody>
                 </table>
         </div>
     </div>
     
-    
+    @include('transactions.order.form.select-variant')
