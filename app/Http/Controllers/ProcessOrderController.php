@@ -16,6 +16,7 @@ use App\Downpayment;
 use App\Discount;
 use App\ModeOfPayment;
 use App\Variant;
+use App\Material;
 
 
 class ProcessOrderController extends Controller
@@ -38,12 +39,14 @@ class ProcessOrderController extends Controller
         $downpayments = Downpayment::all();
         $discounts = Discount::all();
 
+        $acqui_types = Material::$acqui_types;
+
         $clients = Client::all();
         $products = Product::with('variants.specs.prod_attrib.attribute', 'variants.product')->get();
-        $services = Service::all();
+        $services = Service::with('materials.product')->get();
 
         return json_encode(compact(
-            'clients', 'products', 'services', 'terms', 'modes', 'downpayments', 'discounts'
+            'clients', 'products', 'services', 'terms', 'modes', 'downpayments', 'discounts', 'acqui_types'
         ));
     }
 

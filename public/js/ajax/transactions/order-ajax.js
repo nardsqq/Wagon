@@ -84,6 +84,8 @@ var app = new Vue({
                 self.selected_product = self.products[0];
                 self.services = response.data.services;
 
+                self.acqui_types = response.data.acqui_types;
+                
                 $('#smartwizard').smartWizard("reset");
             });
     },
@@ -108,7 +110,9 @@ var app = new Vue({
             selected_variant: {},
             selected_variants: [],
             selected_services: [],
-            order_num: ''
+            current_service: {},
+            order_num: '',
+            acqui_types: []
         }
     },
     computed: {
@@ -138,6 +142,15 @@ var app = new Vue({
                 });
              });
             console.log(product.int_product_id);
+        },
+        order_type: function(type){
+            this.$nextTick(function() {
+                $('#smartwizard').smartWizard("reset");
+            });
+        },
+        selected_services: function(){
+            if(_.findIndex(this.selected_services, ['int_service_id', this.current_service.int_service_id]) === -1) 
+                this.current_service = {};
         }
     },
     methods: {
@@ -151,6 +164,14 @@ var app = new Vue({
         },
         isSelected: function(id){
             return _.findIndex(this.selected_variants, ['int_var_id', id]) != -1;
+        },
+        selectService: function(service){
+            console.log(service);
+            return (_.findIndex(this.selected_services, ['int_service_id', service.int_service_id]) != -1) ? this.current_service = service : null;
+        },
+        removeService: function(index){
+            this.selected_services.splice(index, 1);
+            this.current_service = {};
         }
     }
 });
