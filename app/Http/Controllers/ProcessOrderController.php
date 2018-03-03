@@ -15,6 +15,7 @@ use App\PaymentTerm;
 use App\Downpayment;
 use App\Discount;
 use App\ModeOfPayment;
+use App\Variant;
 
 
 class ProcessOrderController extends Controller
@@ -53,6 +54,54 @@ class ProcessOrderController extends Controller
      */
     public function create()
     {
+        if(Product::all()->count() <= 0) {
+            return redirect()->route('product.index')
+            ->with('message', 'Please configure your available products first')
+            ->with('alert', 'info');
+        }
+
+        if(Variant::all()->count() <= 0) {
+            return redirect()->route('product-variant.index')
+            ->with('message', 'Please configure your available product variants first')
+            ->with('alert', 'info');
+        }
+
+        if(Service::all()->count() <= 0) {
+            return redirect()->route('service.index')
+            ->with('message', 'Please configure your available services first')
+            ->with('alert', 'info');
+        }
+
+        if(ModeOfPayment::all()->count() <= 0) {
+            return redirect()->route('mode-of-payment.index')
+            ->with('message', 'Please configure your available mode of payments first')
+            ->with('alert', 'info');
+        }
+
+        if(PaymentTerm::all()->count() <= 0) {
+            return redirect()->route('payment-term.index')
+            ->with('message', 'Please configure your available payment terms first')
+            ->with('alert', 'info');
+        }
+
+        if(Downpayment::all()->count() <= 0) {
+            return redirect()->route('downpayment.index')
+            ->with('message', 'Please configure your available downpayment rates first')
+            ->with('alert', 'info');
+        }
+
+        if(Discount::all()->count() <= 0) {
+            return redirect()->route('discount.index')
+            ->with('message', 'Please configure your available discount rates first')
+            ->with('alert', 'info');
+        }
+
+        if(Client::all()->count() <= 0) {
+            return redirect()->route('client.index')
+            ->with('message', 'Please configure your list of clients first')
+            ->with('alert', 'info');
+        }
+
         return view('transactions.order.create');
     }
 
