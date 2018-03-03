@@ -10,6 +10,7 @@
         "barryvdh/laravel-dompdf": "^0.8.1",
         "barryvdh/laravel-snappy": "^0.4.0",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "doctrine/dbal": "^2.5",
         "felixkiss/uniquewith-validator": "^3.0",
         "filp/whoops": "^2.1",
         "laravel/framework": "5.4.*",
