@@ -37,7 +37,7 @@ class CreateTblOrderFooter extends Migration
                     ->on('tbl_mode_payment');
 
             $table->foreign('int_of_downpayment_id_fk')
-                ->references('int_downpayment_id')
+                ->references('int_down_id')
                 ->on('tbl_downpayment');
 
             $table->foreign('int_of_discount_id_fk')
