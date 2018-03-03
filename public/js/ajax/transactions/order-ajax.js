@@ -113,7 +113,7 @@ var app = new Vue({
             current_service: {},
             current_material: {},
             order_num: '',
-            acqui_types: []
+            acqui_types: [],
         }
     },
     computed: {
@@ -124,12 +124,42 @@ var app = new Vue({
             var sum = 0, self = this;
             if(self.order_type == 0){
                 if(!_.isEmpty(self.selected_variants)){
-                    self.selected_variants.forEach(function(child){
+                    _.forEach(self.selected_variants, (child)=>{
                         sum += (child.price * child.quantity);
-                        console.log(child.price, child.quantity, sum);
                     });
                 }
                 // _.forEach(self.selected_variants, function(p){ return sum += (p.quantity * p.price); });
+            }
+            return sum;
+        },
+        materials: function(){
+            let val = [];
+            _.forEach(this.selected_services, (s)=>{
+               _.forEach(s.materials, (m) => {
+                   val.push(m);
+               });
+            });
+            return val;
+        },
+        total_materials: function(){
+            var sum = 0;
+            if(this.order_type == 1){
+                if(!_.isEmpty(this.materials)){
+                    _.forEach(this.materials, (m)=>{
+                        sum += m.acqui_type == 0 && !_.isEmpty(m.variant) ? (m.variant.price * m.quantity) : 0;
+                    });
+                }
+            }
+            return sum;
+        },
+        total_services: function(){
+            var sum = 0;
+            if(this.order_type == 1){
+                if(!_.isEmpty(this.selected_services)){
+                    _.forEach(this.selected_services, (s)=>{
+                        sum += s.dbl_service_price;
+                    });
+                }
             }
             return sum;
         }
@@ -159,7 +189,7 @@ var app = new Vue({
         //     return this.selected_variant.int_var_id === variant.int_var_id ? this.selected_variant = {} : this.selected_variant = variant;
         // },
         selectVariant: function(variant, event){
-            return !this.isSelected(variant.int_var_id) ? (variant.quantity = 1, this.selected_variants.push(variant)) : this.selected_variants = _.remove(this.selected_variants, function(v){
+            return !this.isSelected(variant.int_var_id) ? (this.selected_variants.push(variant)) : this.selected_variants = _.remove(this.selected_variants, function(v){
                 return v.int_var_id != variant.int_var_id;
             });
         },

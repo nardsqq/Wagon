@@ -12,7 +12,7 @@ class Variant extends Model
     protected $table = 'tbl_variation';
     protected $guarded = [];
     protected $primaryKey = 'int_var_id';
-    protected $appends = ['price', 'stock'];
+    protected $appends = ['price', 'stock', 'quantity'];
 
     public function product() 
     {
@@ -34,6 +34,11 @@ class Variant extends Model
     public static $rules = [
       'int_prod_id_fk' => 'required'
     ];
+
+    // for process order - vue
+    public function getQuantityAttribute(){
+      return 1;
+    }
 
     public function getPriceAttribute(){
       return $this->prices()->latest()->first()->dbl_price;

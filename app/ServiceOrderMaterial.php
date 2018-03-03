@@ -18,4 +18,8 @@ class ServiceOrderMaterial extends Model
     public function material(){
         return $this->belongsTo('App\Material', 'int_sm_material_id_fk');
     }
+
+    public function variant(){
+        return $this->belongsTo('App\Variant', 'int_sm_var_id_fk');
+    }
 }

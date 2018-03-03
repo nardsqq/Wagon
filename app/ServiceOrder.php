@@ -21,10 +21,6 @@ class ServiceOrder extends Model
     }
 
     public function service_materials(){
-        return $this->hasMany('App\ServiceOrderMaterial', 'int_so_order_id_fk');
-    }
-
-    public function service_materials(){
         return $this->hasMany('App\ServiceOrderMaterial', 'int_sm_service_order_id_fk');
     }
 

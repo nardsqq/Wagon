@@ -16,12 +16,12 @@ class OrderStatus extends Model
     }
 
     public static $status = [
-      'NEW' =>  'New',
-      'PROC' => 'On process',
-      'DEPL' => 'Deploying/Deployed', 
-      'BILL' => 'Billing',
-      'PAID' => 'Paid',
-      'CANC' => 'Cancelled'
+      'NEW' =>  'New', 
+      'PROC' => 'On process', // kapag pumasok na sa delivery schedule / service schedule
+      'DEPL' => 'Deploying/Deployed', // sa delivery schedule or start ng service
+      'BILL' => 'Billing', // kapag nagawa na ang invoice
+      'PAID' => 'Paid', // kapag nagreceive ng payment 
+      'CANC' => 'Cancelled' // kapag di na tuloy (sa order pwede mag-cancel)
   ];
 
   public function getValueAttribute(){

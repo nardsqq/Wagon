@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\ItemOrder;
 use App\ServiceOrder;
+use App\ServiceOrderMaterial;
+use App\ServiceOrderStatus;
 use App\OrderFooter;
 use App\OrderStatus;
 use App\Client;
@@ -116,6 +118,8 @@ class ProcessOrderController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump($request->all());
+        // dd();
         try {
             // [todo] insert validation rules here
 
@@ -147,17 +151,36 @@ class ProcessOrderController extends Controller
             }
             // service
             else {
-
+                foreach($request->service_id as $service_id){
+                    $service_order = new ServiceOrder();
+                    $service_order->int_so_order_id_fk      = $order->int_order_id;
+                    $service_order->int_so_service_id_fk    = $service_id;
+                    $service_order->txt_remarks             = 'Remarks'; //$request->remarks[$service_id];
+                    $service_order->str_status              = ServiceOrderStatus::$status['NEW'];
+                    $service_order->save();
+                    // if(array_key_exists($service_id, $request->materials)){
+                    if(isset($request->materials[$service_id])){
+                        foreach($request->materials[$service_id] as $material_id){
+                            $serv_mat = new ServiceOrderMaterial();
+                            $serv_mat->int_sm_service_order_id_fk   = $service_order->int_service_order_id;
+                            $serv_mat->int_sm_material_id_fk        = $material_id;
+                            $serv_mat->int_acqui_type               = $request->acqui_type[$material_id];
+                            $serv_mat->int_sm_var_id_fk             = $request->variant[$material_id];
+                            $serv_mat->int_quantity                 = $request->quantity[$material_id];
+                            $serv_mat->save();
+                        }
+                    }
+                }
             }
 
             //footer
-            $footer                     = new OrderFooter();
-            $footer->int_of_order_id_fk = $order->int_order_id;
-            $footer->str_delivery_type  = $request->delivery_type;
-            $footer->int_of_terms_pay_id_fk  = $request->term;
-            $footer->int_of_mode_pay_id_fk   = $request->mode;
-            $footer->int_of_discount_id_fk       = $request->discount;
-            $footer->int_of_downpayment_id_fk    = $request->downpayment;
+            $footer                             = new OrderFooter();
+            $footer->int_of_order_id_fk         = $order->int_order_id;
+            $footer->str_delivery_type          = $request->delivery_type;
+            $footer->int_of_terms_pay_id_fk     = $request->term;
+            $footer->int_of_mode_pay_id_fk      = $request->mode;
+            $footer->int_of_discount_id_fk      = $request->discount;
+            $footer->int_of_downpayment_id_fk   = $request->downpayment;
             $footer->save();
             
             $status                         = new OrderStatus();
