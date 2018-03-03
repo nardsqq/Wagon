@@ -41,7 +41,7 @@ class PaymentTermController extends Controller
             // $this->validate($request, PaymentTerm::$rules);
             $payment_term = new PaymentTerm;
             $payment_term->str_terms_pay_name = trim(ucwords($request->str_terms_pay_name));
-            $payment_term->dbl_terms_pay_percentage = trim($request->dbl_terms_pay_percentage);
+            $payment_term->int_terms_pay_percentage = trim($request->int_terms_pay_percentage);
             $payment_term->int_terms_pay_days = trim($request->int_terms_pay_days);
             $payment_term->save();
             
@@ -87,7 +87,7 @@ class PaymentTermController extends Controller
         if ($request->ajax()) {
             $payment_term = PaymentTerm::findOrFail($id);
             $payment_term ->str_terms_pay_name = trim($request->str_terms_pay_name);
-            $payment_term ->dbl_terms_pay_percentage = trim($request->dbl_terms_pay_percentage);
+            $payment_term ->int_terms_pay_percentage = trim($request->int_terms_pay_percentage);
             $payment_term->int_terms_pay_days = trim($request->int_terms_pay_days);
             $payment_term->save();
             

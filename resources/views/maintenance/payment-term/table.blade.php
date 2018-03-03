@@ -11,7 +11,7 @@
     @foreach ($payment_terms as $payment_term)
     <tr id="id{{$payment_term->int_terms_pay_id}}">
         <td>{{ $payment_term->str_terms_pay_name }}</td>
-        <td>{{ $payment_term->dbl_terms_pay_percentage }} %</td>
+        <td>{{ $payment_term->int_terms_pay_percentage }} %</td>
         <td>{{ $payment_term->int_terms_pay_days }}</td>
         <td class="text-center">
             <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $payment_term->int_terms_pay_id }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>

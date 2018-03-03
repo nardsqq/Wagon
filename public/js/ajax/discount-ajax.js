@@ -26,7 +26,7 @@ $(document).ready(function() {
       console.log(data);
 
       $('#str_discount_name').val(data.str_discount_name);
-      $('#dbl_discount_percentage').val(data.dbl_discount_percentage);
+      $('#int_discount_percentage').val(data.int_discount_percentage);
       $('#btn-save').val("update");
       $('#add_disc').modal('show');
 
@@ -170,7 +170,7 @@ $(document).ready(function() {
       var row = $("<tr id=id" + data.int_discount_id +  "></tr>")
       .append(
           "<td>" + data.str_discount_name + "</td>" +
-          "<td>" + data.dbl_discount_percentage + " %" + "</td>" +
+          "<td>" + data.int_discount_percentage + " %" + "</td>" +
           "<td class='text-center'>" +
           "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_discount_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
           "<button class='btn btn-danger btn-sm btn-delete' value="+data.int_discount_id+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +

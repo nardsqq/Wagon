@@ -15,6 +15,6 @@ class Discount extends Model
 
 	public static $rules = [
 		'str_discount_name' => 'required|min:2|unique:tbl_discount|max:45|regex:/^[a-z ,.\'-]+$/i',
-		'dbl_discount_percentage' => 'required'
+		'int_discount_percentage' => 'required'
 	];
 }

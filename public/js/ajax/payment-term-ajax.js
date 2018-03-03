@@ -26,7 +26,7 @@ $(document).ready(function() {
       console.log(data);
 
       $('#str_terms_pay_name').val(data.str_terms_pay_name);
-      $('#dbl_terms_pay_percentage').val(data.dbl_terms_pay_percentage);
+      $('#int_terms_pay_percentage').val(data.int_terms_pay_percentage);
       $('#int_terms_pay_days').val(data.int_terms_pay_days);
       $('#btn-save').val("update");
       $('#add_payment_term').modal('show');
@@ -171,7 +171,7 @@ $(document).ready(function() {
       var row = $("<tr id=id" + data.int_terms_pay_id +  "></tr>")
       .append(
           "<td>" + data.str_terms_pay_name + "</td>" +
-          "<td>" + data.dbl_terms_pay_percentage + " %" + "</td>" +
+          "<td>" + data.int_terms_pay_percentage + " %" + "</td>" +
           "<td>" + data.int_terms_pay_days + "</td>" +
           "<td class='text-center'>" +
           "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_terms_pay_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +

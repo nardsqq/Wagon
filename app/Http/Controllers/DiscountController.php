@@ -41,7 +41,7 @@ class DiscountController extends Controller
             $this->validate($request, Discount::$rules);
             $disc = new Discount;
             $disc->str_discount_name = trim(ucwords($request->str_discount_name));
-            $disc->dbl_discount_percentage = trim($request->dbl_discount_percentage);
+            $disc->int_discount_percentage = trim($request->int_discount_percentage);
             $disc->save();
             
             return response()->json($disc);
@@ -86,7 +86,7 @@ class DiscountController extends Controller
         if ($request->ajax()) {
             $disc = Discount::findOrFail($id);
             $disc ->str_discount_name = trim($request->str_discount_name);
-            $disc ->dbl_discount_percentage = trim($request->dbl_discount_percentage);
+            $disc ->int_discount_percentage = trim($request->int_discount_percentage);
             $disc->save();
             
             return response()->json($disc);

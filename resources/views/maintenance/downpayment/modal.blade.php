@@ -12,10 +12,10 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>
           <div class="form-group">
-            <label for="dbl_down_percentage">Rate</label>
+            <label for="int_down_percentage">Rate</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-              <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="dbl_down_percentage" id="dbl_down_percentage" required min = "01.00">
+              <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="int_down_percentage" id="int_down_percentage" required min="1">
               <span class="input-group-addon">%</span>
             </div>
           </div>

@@ -27,12 +27,12 @@
         
             <dl>
                 <dt>Downpayment</dt>
-                <dd>@{{ selected_downpayment.str_down_name}} (@{{selected_downpayment.dbl_down_percentage}}%)</dd>
+                <dd>@{{ selected_downpayment.str_down_name}} (@{{selected_downpayment.int_down_percentage}}%)</dd>
             </dl>
         
             <dl>
                 <dt>Discount</dt>
-                <dd>@{{ selected_discount.str_discount_name }} (@{{ selected_discount.dbl_discount_percentage }}%)</dd>
+                <dd>@{{ selected_discount.str_discount_name }} (@{{ selected_discount.int_discount_percentage }}%)</dd>
             </dl>
         </div>
     </div>

@@ -41,7 +41,7 @@ class DownpaymentController extends Controller
             $this->validate($request, Downpayment::$rules);
             $down = new Downpayment;
             $down->str_down_name = trim(ucwords($request->str_down_name));
-            $down->dbl_down_percentage = trim($request->dbl_down_percentage);
+            $down->int_down_percentage = trim($request->int_down_percentage);
             $down->save();
             
             return response()->json($down);
@@ -86,7 +86,7 @@ class DownpaymentController extends Controller
         if ($request->ajax()) {
             $down = Downpayment::findOrFail($id);
             $down ->str_down_name = trim($request->str_down_name);
-            $down ->dbl_down_percentage = trim($request->dbl_down_percentage);
+            $down ->int_down_percentage = trim($request->int_down_percentage);
             $down->save();
             
             return response()->json($down);
