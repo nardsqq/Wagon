@@ -68,16 +68,23 @@
   
 @endsection
 
+@section('styles')
+<link href="{{ asset('css/select2.min.css') }}">
+@endsection
+
 @section('scripts')
 
   <!-- Delay table load until everything else is loaded -->
   <script>
+    var $select2;
     $(window).on('load', function(){
         $('#dataTable').removeAttr('style');
+        $select2 = $('#int_material_id').select2();
     })
   </script>
 
   <script src="{{ asset('/js/app.js/') }}"></script>
+  <script src="{{ asset('/js/select2.min.js/') }}"></script>
   <script src="{{ asset('/js/ajax/service-area-ajax.js/') }}"></script>
 
 @endsection

@@ -16,7 +16,7 @@ class CreateTblMaterial extends Migration
          Schema::create('tbl_material', function (Blueprint $table) {
             $table->increments('int_material_id');
             $table->unsignedInteger('int_mat_service_id_fk');
-            $table->unsignedInteger('int_mat_item_id_fk');
+            $table->unsignedInteger('int_mat_prod_id_fk');
             
             $table->timestamps();
 
@@ -24,9 +24,9 @@ class CreateTblMaterial extends Migration
                 ->references('int_service_id')
                 ->on('tbl_service');
 
-            $table->foreign('int_mat_item_id_fk')
-                ->references('int_item_id')
-                ->on('tbl_item');
+            $table->foreign('int_mat_prod_id_fk')
+                ->references('int_product_id')
+                ->on('tbl_product');
          });
      }
  
@@ -39,7 +39,7 @@ class CreateTblMaterial extends Migration
     {
         Schema::table('tbl_material', function (Blueprint $table) {
             $table->dropForeign(['int_mat_service_id_fk']);
-            $table->dropForeign(['int_mat_item_id_fk']);
+            $table->dropForeign(['int_mat_prod_id_fk']);
         });
         Schema::dropIfExists('tbl_material');
     }

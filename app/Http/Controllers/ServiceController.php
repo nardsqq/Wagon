@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Service;
 use App\ServiceDescription;
 use App\Material;
+use App\Product;
 
 class ServiceController extends Controller
 {
@@ -18,8 +19,9 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::orderBy('str_service_name')->get();
+        $products = Product::pluck('str_product_name', 'int_product_id');
 
-        return view('maintenance.service.index')->with('services', $services);
+        return view('maintenance.service.index', compact('services', 'products'));
     }
 
     /**
@@ -48,11 +50,23 @@ class ServiceController extends Controller
                 'dbl_service_price' => $request->dbl_service_price
             ]);
 
-            foreach($request->description as $desc){
-                ServiceDescription::firstOrCreate([
-                    'int_sd_service_id_fk' => $service->int_service_id,
-                    'str_service_desc_detail' => $desc
-                ]);
+            // descriptions
+            if($request->has('description')){
+                foreach($request->description as $desc){
+                    ServiceDescription::firstOrCreate([
+                        'int_sd_service_id_fk' => $service->int_service_id,
+                        'str_service_desc_detail' => $desc
+                    ]);
+                }
+            }
+
+            // materials
+            if($request->has('int_material_id')){
+                foreach($request->int_material_id as $prod){
+                    Material::firstOrCreate(
+                        ['int_mat_service_id_fk' => $service->int_service_id, 'int_mat_prod_id_fk' => $prod]
+                    );
+                }
             }
 
             \DB::commit();
@@ -88,8 +102,9 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $service = Service::with('descriptions')->where('int_service_id', $id)->first();
-
-        return response()->json($service);
+        $products = $service->materials->pluck('int_mat_prod_id_fk')->toArray();
+        
+        return json_encode(compact('service', 'products'));
     }
 
     /**
@@ -121,6 +136,22 @@ class ServiceController extends Controller
                     ServiceDescription::updateOrCreate(
                         ['int_sd_service_id_fk' => $service->int_service_id, 'int_service_desc_id' => $key],
                         ['str_service_desc_detail' => $desc]
+                    );
+                }
+            }
+
+            // delete removed materials
+            $existing_materials = $service->materials->pluck('int_mat_prod_id_fk')->toArray();
+            $current_materials = array_keys($request->int_material_id?:[]);
+            $deleted_materials = array_diff($existing_materials, $current_materials);
+            // dd($existing_materials, $current_materials, $deleted_materials);
+            Material::where('int_mat_service_id_fk', $service->int_service_id)->whereIn('int_mat_prod_id_fk', $deleted_materials)->delete();
+
+            // add or update materials
+            if($request->has('int_material_id')){
+                foreach($request->int_material_id as $prod){
+                    Material::firstOrCreate(
+                        ['int_mat_service_id_fk' => $service->int_service_id, 'int_mat_prod_id_fk' => $prod]
                     );
                 }
             }

@@ -7,7 +7,9 @@ $(document).ready(function() {
 
   $('#add_service').on('hide.bs.modal', function() {
         $('#formService').trigger('reset');
+        $select2.val(null).trigger('change');
         app.reset();
+        console.log('reset');
         // removeDesc();
     });
 
@@ -33,12 +35,14 @@ $(document).ready(function() {
         success: function (data) {
             console.log(data);
 
-            $("input[name=str_service_name]").val(data.str_service_name);
-            $('input[name=dbl_service_price]').val(data.dbl_service_price);
+            $("input[name=str_service_name]").val(data.service.str_service_name);
+            $('input[name=dbl_service_price]').val(data.service.dbl_service_price);
             // _.forEach(data.steps, function(step){
             //     addDesc(step.intServStepID, step.strServStepDesc);
             // });
-            app.descriptions = data.descriptions;
+            $select2.val(data.products).trigger('change');
+
+            app.descriptions = data.service.descriptions;
 
             $('#btn-save').val("update");
             $('#add_service').modal('show');

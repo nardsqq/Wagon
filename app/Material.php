@@ -15,7 +15,7 @@ class Material extends Model
       return $this->belongsTo('App\Service', 'int_mat_service_id_fk');
     }
 
-    public function variant(){
-        return $this->belongsTo('App\Variant', 'int_mat_var_id_fk');
+    public function product(){
+        return $this->belongsTo('App\Product', 'int_mat_prod_id_fk');
     }
 }

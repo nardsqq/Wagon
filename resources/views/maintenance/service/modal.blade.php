@@ -37,7 +37,7 @@
 
           <div class="form-group">
             <label for="int_material_id">Materials</label>
-            {!! Form::select('int_material_id[]', [], null, ['id' => 'int_material_id', 'class' => 'form-control']) !!}
+            {!! Form::select('int_material_id[]', $products, null, ['id' => 'int_material_id', 'class' => 'form-control', 'multiple'=>'multiple']) !!}
           </div>
 
           <hr>
