@@ -114,7 +114,7 @@
                 </thead>
                 <tbody>
                     <tr v-if="materials.length <= 0">
-                        <td colspan="3" class="text-center">No materials needed</td>
+                        <td colspan="6" class="text-center">No materials needed</td>
                     </tr>
                     <tr v-else v-for="(material, index) in materials" :key="material.int_material_id">
                         <td>@{{ material.product.str_product_name }}</td>

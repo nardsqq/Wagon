@@ -113,6 +113,7 @@ var app = new Vue({
             current_service: {},
             current_material: {},
             order_num: '',
+            contact_no: '',
             acqui_types: [],
         }
     },

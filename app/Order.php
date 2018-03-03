@@ -66,6 +66,10 @@ class Order extends Model
     public function getCurrentStatusAttribute(){
         return $this->status()->latest()->first();
     }
+
+    public function getTypeAttribute(){
+        return $this->item_orders->count() > 0 ? 'Item Order' : 'Service Order';
+    }
 }
 
 

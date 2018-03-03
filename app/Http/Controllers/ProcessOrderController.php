@@ -137,7 +137,7 @@ class ProcessOrderController extends Controller
             $order->save();
 
             // product
-            if($request->order_type === 0)
+            if($request->order_type == 0)
             {
                 foreach($request->variants as $variant)
                 {

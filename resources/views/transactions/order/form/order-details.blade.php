@@ -1,6 +1,6 @@
 <div class="col-xs-12  m-t-10">
     <label for="order_num">Purchase Order Number</label>
-    {{ Form::text('order_num', null,['class'=>'form-control', 'v-model'=>'order_num']) }}
+    {{ Form::text('order_num', null,['class'=>'form-control', 'v-model'=>'order_num', 'placeholder'=>'Purchase Order Number']) }}
 </div>
 
 <div class="col-xs-12  m-t-10">
@@ -47,7 +47,7 @@
 
 <div class="col-xs-12  m-t-10">
     <label for="contact_no">Contact No.</label>
-    {{ Form::text('contact_no', null, ['class'=>'form-control', ':value'=>'selected_client.contact']) }}
+    {{ Form::text('contact_no', null, ['class'=>'form-control', 'v-model'=>'contact_no']) }}
 </div>
 
 <div class="col-xs-12  m-t-10">

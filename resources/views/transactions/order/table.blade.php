@@ -4,6 +4,7 @@
       <th>Order Reference</th>
       <th class="text-center">Date Created</th>
       <th class="text-center">Client</th>
+      <th class="text-center">Type</th>
       <th class="text-center">Status</th>
       <th class="text-center">Actions</th>
     </tr>
@@ -16,6 +17,9 @@
       <td class="text-center">
         {{ $order->client->str_client_name }}
       </td>
+      <td class="text-center">
+          {{ $order->type }}
+        </td>
       <td class="text-center">
         <span class="label label-{{ $order->current_status->value->class }}"><i class="fa fa-fw {{ $order->current_status->value->icon }}" aria-hidden="true"></i>&nbsp; {{ $order->current_status->str_status }}</span>
       </td>
