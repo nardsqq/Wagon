@@ -16,8 +16,8 @@ class AdjustStock extends Model
     }
 
     public static $actions = [
-      'DEP' =>  'Deposit',
       'WIT' => 'Withdraw',
+      'DEP' =>  'Deposit',
       //'OFF' => 'Offset'
     ];
 }

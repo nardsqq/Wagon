@@ -49,6 +49,7 @@
                                         </select>
                                     </div>
                                         
+                                    <hr>
                                     
                                     <div class="col-xs-12 m-t-10">
                                         {!! Form::label('int_prod_id_fk', 'Product') !!}
@@ -108,7 +109,7 @@
                                                     <td>@{{ variant.product.str_product_name }}
                                                         <input type="hidden" name="variants[]" :value="variant.int_var_id">
                                                     </td>
-                                                    <td>@{{ variant.str_name }}</td>
+                                                    <td>@{{ variant.str_var_name }}</td>
                                                     <td>@{{ variant.stock }}</td>
                                                     <td style="max-width: 70px;">
                                                        <input :name="'quantity['+variant.int_var_id+']'" type="number" placeholder="Quantity" class="form-control" min="1" v-model="variant.quantity" required>

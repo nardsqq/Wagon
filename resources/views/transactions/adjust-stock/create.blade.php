@@ -50,12 +50,14 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">Variant</th>
+                                                    <th class="text-center">Specifications</th>
                                                     <th class="text-center">Current Stock</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr v-for="variant in variants" :key="variant.int_var_id"  :class="{'selected': isSelected(variant.int_var_id) }">
+                                                    <td>@{{ variant.str_var_name }}</td>
                                                     <td>
                                                         <span v-for="specs in variant.specs" :key="specs.int_specs_id">
                                                             <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
@@ -77,7 +79,6 @@
                                                 <tr>
                                                     <th class="text-center">Product</th>
                                                     <th class="text-center">Variant</th>
-                                                    <th class="text-center">Specifications</th>
                                                     <th class="text-center">Current Stock</th>
                                                     <th class="text-center">Quantity</th>
                                                     <th class="text-center">Action</th>
@@ -87,18 +88,13 @@
                                             </thead>
                                             <tbody>
                                                 <tr v-if="selected_variants.length === 0">
-                                                    <td colspan="8" class="text-center">No items selected</td>
+                                                    <td colspan="7" class="text-center">No items selected</td>
                                                 </tr>
                                                 <tr v-else v-for="variant in selected_variants" :key="variant.int_var_id">
                                                     <td>@{{ variant.product.str_product_name }}
                                                         <input type="hidden" name="variants[]" :value="variant.int_var_id">
                                                     </td>
                                                     <td>@{{ variant.str_var_name }}</td>
-                                                    <td>
-                                                        <span v-for="specs in variant.specs" :key="specs.int_specs_id">
-                                                            <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
-                                                        </span>
-                                                    </td>
                                                     <td>@{{ variant.stock }}</td>
                                                     <td style="max-width: 70px;">
                                                         <input v-if="variant.action=='Withdraw'" :name="'quantity['+variant.int_var_id+']'" type="number" placeholder="Quantity" class="form-control" min="1" :max="variant.stock" v-model="variant.quantity" required>
