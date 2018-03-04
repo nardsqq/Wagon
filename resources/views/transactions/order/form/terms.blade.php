@@ -16,23 +16,20 @@
 </div>
 
 
-
 <div class="col-xs-12 m-t-10">
-    {!! Form::label('mode', 'Downpayment') !!}
-    <input type="hidden" name="downpayment" :value="selected_downpayment.int_down_id">
-    <select name="" class="form-control" v-model="selected_downpayment">
-        <option v-for="downpayment in downpayments" :key="downpayment.int_down_id" :value="downpayment">@{{downpayment.int_down_percentage}}%</option>
-    </select>
-</div>
-
-
-
-<div class="col-xs-12 m-t-10">
-    {!! Form::label('mode', 'Discount') !!}
+    {!! Form::label('mode', 'Discount') !!} @{{ total | money }} * @{{ selected_discount.int_discount_percentage }}% = <strong>@{{ discount | money }}</strong>
     <input type="hidden" name="discount" :value="selected_discount.int_discount_id">
     <select name="" class="form-control" v-model="selected_discount">
         <option v-for="discount in discounts" :key="discount.int_discount_id" :value="discount">@{{ discount.str_discount_name }} (@{{ discount.int_discount_percentage }}%)</option>
     </select>
 </div>
-        
-        
+
+
+
+<div class="col-xs-12 m-t-10">
+    {!! Form::label('mode', 'Downpayment') !!} (@{{ total | money }} - @{{ discount | money }}) * @{{ selected_downpayment.int_down_percentage }}% = <strong>@{{ downpayment | money }}</strong>
+    <input type="hidden" name="downpayment" :value="selected_downpayment.int_down_id">
+    <select name="" class="form-control" v-model="selected_downpayment">
+        <option v-for="downpayment in downpayments" :key="downpayment.int_down_id" :value="downpayment">@{{downpayment.int_down_percentage}}%</option>
+    </select>
+</div>

@@ -26,13 +26,13 @@
             </dl>
         
             <dl>
-                <dt>Downpayment</dt>
-                <dd>@{{selected_downpayment.int_down_percentage}}%</dd>
+                <dt>Downpayment (@{{selected_downpayment.int_down_percentage}}%)</dt>
+                <dd>@{{ downpayment | money }}</dd>
             </dl>
         
             <dl>
-                <dt>Discount</dt>
-                <dd>@{{ selected_discount.str_discount_name }} (@{{ selected_discount.int_discount_percentage }}%)</dd>
+                <dt>Discount: @{{ selected_discount.str_discount_name }} (@{{ selected_discount.int_discount_percentage }}%)</dt>
+                <dd>@{{ discount | money }}</dd>
             </dl>
         </div>
     </div>
@@ -58,11 +58,7 @@
                     </tr>
                     <tr v-else v-for="variant in selected_variants" :key="variant.int_var_id">
                         <td>@{{ variant.product.str_product_name }}</td>
-                        <td>
-                            <span v-for="specs in variant.specs" :key="specs.int_specs_id">
-                                <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
-                            </span>
-                        </td>
+                        <td>@{{ variant.str_var_name }}</td>
                         <td class="text-right">@{{ variant.price | money }}</td>
                         <td class="text-right">@{{ variant.quantity }}</td>
                         <td class="text-right">@{{ (variant.price * variant.quantity) | money }}</td>
@@ -93,7 +89,7 @@
                         <td class="text-right">@{{ service.dbl_service_price | money}}</td>
                     </tr>
                     <tr>
-                        <td><h4>Total</h4></td>
+                        <td><h4>Total (Services)</h4></td>
                         <td class="text-right"><h4>@{{ total_services | money}}</h4></td>
                     </tr>
                 </tbody>
@@ -119,22 +115,22 @@
                     <tr v-else v-for="(material, index) in materials" :key="material.int_material_id">
                         <td>@{{ material.product.str_product_name }}</td>
                         <td>@{{ acqui_types[material.acqui_type] }}</td>
-                        <td>
-                            <span v-for="specs in material.variant.specs" :key="specs.int_specs_id">
-                                <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
-                            </span>
-                        </td>
+                        <td>@{{ material.variant.str_var_name }}</td>
                         <td class="text-right"><span v-if="!isEmpty(material.variant)">@{{ material.variant.price | money }}</span></td>
                         <td class="text-right"><span v-if="material.acqui_type!=2 && !isEmpty(material.variant)">@{{ material.quantity }}</span></td>
                         <td class="text-right"><span v-if="material.acqui_type!=2 && !isEmpty(material.variant)">@{{ material.quantity * material.variant.price | money }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="5"><h4>Total</h4></td>
+                        <td colspan="5"><h4>Total (Materials)</h4></td>
                         <td class="text-right"><h4>@{{ total_materials | money}}</h4></td>
                     </tr>
                 </tbody>
             </table>
-            <h3 class="text-right">Grand Total: <span>@{{ total_materials + total_services | money}}</span></h3>
         </div>
+        <h4 class="text-right">Subtotal: <span>@{{ total | money }}</span></h4>
+        <h4 class="text-right">Less: Discount: <span>(@{{ discount | money }})</span></h4>
+        <h3 class="text-right">Total: <span>@{{ total - discount | money }}</span></h3>
+        <h5 class="text-right">Downpayment: <span>@{{ downpayment | money }}</span></h5>
+        <h5 class="text-right">Balance Due: <span>@{{ total - downpayment | money }}</span></h5>
     </div>
 </div>

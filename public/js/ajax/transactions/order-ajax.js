@@ -163,7 +163,16 @@ var app = new Vue({
                 }
             }
             return sum;
-        }
+        },
+        total: function(){
+            return (this.order_type == 0 ? this.total_amount : (this.total_materials + this.total_services));
+        },
+        discount: function(){
+            return (this.selected_discount.int_discount_percentage/100) * (this.total);
+        },
+        downpayment: function(){
+            return (this.selected_downpayment.int_down_percentage/100) * (this.total - this.discount);
+        },
     },
     watch: {
         selected_product: function(product){
