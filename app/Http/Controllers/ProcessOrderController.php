@@ -250,4 +250,10 @@ class ProcessOrderController extends Controller
     {
         //
     }
+
+    public function receipt($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('transactions.order.receipt', compact('order'));
+    }
 }

@@ -33,6 +33,7 @@ class Order extends Model
     protected $table = 'tbl_order';
     protected $guarded = [];
     protected $primaryKey = 'int_order_id';
+    protected $dates = ['dat_order_date'];
 
     public function item_orders(){
         return $this->hasMany('App\ItemOrder', 'int_io_order_id_fk');
