@@ -61,9 +61,9 @@
   							<li>
                   <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
                 </li>
-                <li>
+                {{--  <li>
                   <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Mode of Payment</a>
-                </li>
+                </li>  --}}
                 <li>
                   <a href="{{ url('/admin/maintenance/payment-term') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Payment Term</a>
                 </li>
