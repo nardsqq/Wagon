@@ -96,7 +96,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('process-order', 'ProcessOrderController');
     Route::get('process-order-table', 'ProcessOrderController@table');
     Route::get('process-order-form-data', 'ProcessOrderController@formData');
-    Route::get('process-order/{id}/receipt', 'ProcessOrderController@receipt');
+    Route::get('process-order/{id}/invoice', 'ProcessOrderController@invoice');
     
     // Adjust Stock
     Route::resource('adjust-stock', 'AdjustStockController');

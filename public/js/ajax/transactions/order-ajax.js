@@ -22,6 +22,12 @@ $(document).ready(function() {
                 dataType: 'json',
                 success: function(data) {  
                     if(data.alert=='success'){  
+                        var _window = open(data.invoice);
+                        _window.onload = function(){
+                            _window.focus();
+                            _window.print();
+                            _window.close();
+                        }
                         window.location.assign(data.url);
                     } else {
                         alert('Error');

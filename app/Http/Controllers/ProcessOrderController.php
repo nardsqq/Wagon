@@ -19,6 +19,7 @@ use App\Discount;
 use App\ModeOfPayment;
 use App\Variant;
 use App\Material;
+use Carbon\Carbon;
 
 
 class ProcessOrderController extends Controller
@@ -128,7 +129,7 @@ class ProcessOrderController extends Controller
             $order                          = new Order();
             $order->str_purc_order_num      = $request->order_num;
             $order->int_order_client_id_fk  = $request->client_id;
-            $order->dat_order_date          = date('c');
+            $order->dat_order_date          = Carbon::now();
             $order->txt_deli_address        = $request->delivery_location;
             $order->txt_bill_address        = $request->billing_address;
             $order->str_landmark            = $request->landmark;
@@ -202,6 +203,7 @@ class ProcessOrderController extends Controller
         return response()->json([
             'message'   => 'Successfully completed transaction',
             'alert'     => 'success',
+            'invoice'   => action('ProcessOrderController@invoice', $order->int_order_id),
             'url'       => route('process-order.index')
         ]);
     }
@@ -251,9 +253,9 @@ class ProcessOrderController extends Controller
         //
     }
 
-    public function receipt($id)
+    public function invoice($id)
     {
         $order = Order::findOrFail($id);
-        return view('transactions.order.receipt', compact('order'));
+        return view('transactions.order.invoice', compact('order'));
     }
 }
