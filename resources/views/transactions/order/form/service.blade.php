@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                         <tr v-if="!current_service || !current_service.materials || current_service.materials.length <= 0">
-                            <td colspan="3" class="text-center">No materials needed</td>
+                            <td colspan="4" class="text-center">No materials needed</td>
                         </tr>
                         <tr v-else v-for="material in current_service.materials" :key="material.int_material_id">
                             <td>@{{ material.product.str_product_name }}
@@ -46,10 +46,8 @@
                                 <span v-else-if="material.acqui_type==2">N/A</span>
                                 <span v-else>
                                     <input type="hidden" :value="material.variant.int_var_id" :name="'variant['+material.int_material_id+']'">
-                                    <span v-for="specs in material.variant.specs" :key="specs.int_specs_id">
-                                        <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>
-                                    </span>
-                                    <a href="#" class="text-underline text-muted" @click="selectMaterial(material)" data-toggle="modal" data-target="#select_material_variant">Change variant</a>
+                                    @{{ material.variant.str_var_name }}
+                                    <a href="#" class="text-underline text-muted" @click="selectMaterial(material)" data-toggle="modal" data-target="#select_material_variant">(Change variant)</a>
                                 </span>
                             </td>
                             <td style="max-width: 70px;">

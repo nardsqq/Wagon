@@ -17,7 +17,7 @@
       @php $stock = $a->variant->getCurrPrevStock($a->created_at); @endphp
       <tr id="id{{$a->int_stock_adjust_id}}">
           <td>{{$a->variant->product->str_product_name}}</td>
-          <td>{{$a->int_sa_var_id_fk}}</td>
+          <td>{{$a->variant->str_var_name}}</td>
           <td>{{$a->str_action}}</td>
           <td>{{$a->int_quantity}}</td>
           <td>{{$stock['previous']}}</td>

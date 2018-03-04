@@ -9,6 +9,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">Variant</th>
+                            <th class="text-center">Specifications</th>
                             <th class="text-center">Current Stock</th>
                             <th class="text-center">Price</th>
                             <th></th>
@@ -16,6 +17,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="variant in current_material.product.variants" :key="variant.int_var_id"  :class="{'info': current_material.variant.int_var_id == (variant.int_var_id) }">
+                            <td>@{{ variant.str_var_name }}</td>
                             <td>
                                 <span v-for="specs in variant.specs" :key="specs.int_specs_id">
                                     <strong>@{{ specs.prod_attrib.attribute.str_attrib_name }}: </strong> @{{ specs.str_spec_constant }}<br>

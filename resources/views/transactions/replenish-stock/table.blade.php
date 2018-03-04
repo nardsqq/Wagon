@@ -16,7 +16,7 @@
       @php $stock = $a->variant->getCurrPrevStock($a->created_at); @endphp
       <tr id="id{{$a->int_replenish_id}}">
           <td>{{$a->variant->product->str_product_name}}</td>
-          <td>{{$a->int_repl_var_id_fk}}</td>
+          <td>{{$a->variant->str_var_name}}</td>
           <td>{{$a->int_quantity}}</td>
           <td>{{$stock['previous']}}</td>
           <td>{{$stock['current']}}</td>
