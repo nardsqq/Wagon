@@ -21,7 +21,7 @@
     {!! Form::label('mode', 'Downpayment') !!}
     <input type="hidden" name="downpayment" :value="selected_downpayment.int_down_id">
     <select name="" class="form-control" v-model="selected_downpayment">
-        <option v-for="downpayment in downpayments" :key="downpayment.int_down_id" :value="downpayment">@{{ downpayment.str_down_name }} (@{{downpayment.int_down_percentage}}%)</option>
+        <option v-for="downpayment in downpayments" :key="downpayment.int_down_id" :value="downpayment">@{{downpayment.int_down_percentage}}%</option>
     </select>
 </div>
 

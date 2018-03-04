@@ -6,11 +6,11 @@
       </div>
       <div class="modal-body">
         <form id="formDown">
-          <div class="form-group">
+          {{--  <div class="form-group">
             <label for="str_down_name">Downpayment Name</label>
             <input type="text" id="str_down_name" name="str_down_name" class="form-control" required>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </div>
+          </div>  --}}
           <div class="form-group">
             <label for="int_down_percentage">Rate</label>
             <div class="input-group">

@@ -25,7 +25,7 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#str_down_name').val(data.str_down_name);
+      // $('#str_down_name').val(data.str_down_name);
       $('#int_down_percentage').val(data.int_down_percentage);
       $('#btn-save').val("update");
       $('#add_down').modal('show');
@@ -169,7 +169,7 @@ $(document).ready(function() {
 
       var row = $("<tr id=id" + data.int_down_id +  "></tr>")
       .append(
-          "<td>" + data.str_down_name + "</td>" +
+          // "<td>" + data.str_down_name + "</td>" +
           "<td>" + data.int_down_percentage + " %" + "</td>" +
           "<td class='text-center'>" +
           "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_down_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +

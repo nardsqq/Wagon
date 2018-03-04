@@ -27,7 +27,7 @@
         
             <dl>
                 <dt>Downpayment</dt>
-                <dd>@{{ selected_downpayment.str_down_name}} (@{{selected_downpayment.int_down_percentage}}%)</dd>
+                <dd>@{{selected_downpayment.int_down_percentage}}%</dd>
             </dl>
         
             <dl>
