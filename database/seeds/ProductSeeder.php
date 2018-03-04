@@ -22,7 +22,8 @@ class ProductSeeder extends Seeder
         ]);
 
         $variant = Variant::firstOrCreate([
-            'int_prod_id_fk' => $product->int_product_id
+            'int_prod_id_fk' => $product->int_product_id,
+            'str_var_name' => 'Variant 1'
         ]);
 
         $variant->prices()->firstOrCreate([

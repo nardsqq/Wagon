@@ -13,6 +13,11 @@
                 <option v-for="product in products" :key="product.int_product_id" :value="product">@{{ product.str_product_name }}</option>
             </select>
           </div>
+          
+          <div class="form-group">
+            {!! Form::label('str_var_name', 'Variant Name') !!}
+            {{ Form::number('str_var_name', null, ['class'=>'form-control'])}}
+          </div>
           <hr>
           <div class="form-group">
             <label>Product Specification</label>
@@ -58,8 +63,7 @@
       </div>
       <div class="modal-body">
         <form id="formEditVar" v-if="isFormEdit">
-          <div class="row m-t-10">
-            <div class="col-xs-6">
+            <div class="form-group">
               {!! Form::label('int_prod_id_fk', 'Product') !!}
               {{--  <input type="hidden" name="product_id" :value="product.int_product_id">  --}}
               {{--  <select name="int_prod_id_fk" id="int_prod_id_fk" class="form-control" v-model="product">
@@ -68,15 +72,11 @@
               <input type="text" class="form-control" max-length="45" :value="product.str_product_name" disabled>
             </div>
             
-            <div class="col-xs-3">
-                {!! Form::label('quantity', 0, 'Quantity') !!}
-                <input type="number" class="form-control" :value="variant.stock" readonly>
+            <div class="form-group">
+              {!! Form::label('str_var_name', 'Variant Name') !!}
+              {{ Form::number('str_var_name', null, ['class'=>'form-control'])}}
             </div>
-            <div class="col-xs-3">
-              {!! Form::label('price', 'Unit Price') !!}
-              <input name="price" type="number" class="form-control" :value="variant.price">
-            </div>
-          </div>
+
           <hr>
           <div class="form-group">
             <label>Product Specification</label>
@@ -92,6 +92,18 @@
                 </div>
             </div>  
           </div>
+
+          
+          <div class="row m-t-10">
+              <div class="col-xs-6">
+                  {!! Form::label('quantity', 0, 'Quantity') !!}
+                  <input type="number" class="form-control" :value="variant.stock" readonly>
+              </div>
+              <div class="col-xs-6">
+                {!! Form::label('price', 'Unit Price') !!}
+                <input name="price" type="number" class="form-control" :value="variant.price">
+              </div>
+            </div>
         </form> 
       </div>
       <div class="modal-footer">

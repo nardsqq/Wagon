@@ -56,6 +56,7 @@ class VariantController extends Controller
 
                 $variant = new Variant();
                 $variant->int_prod_id_fk = $request->product_id;
+                $variant->str_var_name = $request->str_var_name;
                 $variant->save();
 
                 Price::create([
@@ -162,6 +163,8 @@ class VariantController extends Controller
                 \DB::beginTransaction();
 
                 $variant = Variant::findOrFail($id);
+                $variant->str_var_name = $request->str_var_name;
+                $variant->save();
 
                 Price::firstOrCreate([
                     'int_ip_var_id_fk' => $variant->int_var_id,

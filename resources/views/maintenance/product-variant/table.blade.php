@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th class="text-center">Product</th>
+      <th class="text-center">Variant</th>
       <th class="text-center">Specifications</th>
       <th class="text-center">Initial Stock</th>
       <th class="text-center">Current Stock</th>
@@ -13,6 +14,7 @@
     @foreach ($variants as $variant)
       <tr id="id{{ $variant->int_var_id }}">
         <td class="text-center">{{ $variant->product->str_product_name }}</td>
+        <td class="text-center">{{ $variant->str_var_name }}</td>
         <td>
           @foreach($variant->specs->take(5) as $spec)
           <strong>{{ $spec->prod_attrib->attribute->str_attrib_name }}: </strong> {{ $spec->str_spec_constant }}<br>
