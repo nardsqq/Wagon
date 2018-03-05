@@ -15,6 +15,7 @@ class CreateTblPersonnel extends Migration
     {
         Schema::create('tbl_personnel', function (Blueprint $table) {
             $table->increments('int_personnel_id');
+            $table->unsignedInteger('int_pers_position_id_fk');
             $table->string('str_personnel_type', 45);
             $table->string('str_personnel_l_name', 45);
             $table->string('str_personnel_f_name', 45);
@@ -24,16 +25,24 @@ class CreateTblPersonnel extends Migration
             
             $table->timestamps();
             $table->softdeletes();
+
+            $table->foreign('int_pers_position_id_fk')
+                  ->references('int_position_id')
+                  ->on('tbl_position');
         });
     }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-	   Schema::dropIfExists('tbl_personnel');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+      Schema::table('tbl_personnel', function (Blueprint $table) {
+          $table->dropForeign(['int_pers_position_id_fk']);
+      });
+        
+        Schema::dropIfExists('tbl_personnel');
+    }
 }

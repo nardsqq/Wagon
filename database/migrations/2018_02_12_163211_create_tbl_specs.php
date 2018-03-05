@@ -25,6 +25,7 @@ class CreateTblSpecs extends Migration
             $table->foreign('int_spec_var_id_fk')
                   ->references('int_var_id')
                   ->on('tbl_variation');
+                  
             $table->foreign('int_spec_pa_id_fk')
                   ->references('int_prod_attrib_id')
                   ->on('tbl_prod_attrib');
