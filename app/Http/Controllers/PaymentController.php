@@ -125,4 +125,16 @@ class PaymentController extends Controller
     {
         //
     }
+
+    public function payments($order_id)
+    {
+        $order = Order::findOrFail($order_id);
+        return view('transactions.payment.payments', compact('order'));
+    }
+
+    public function receipt($id)
+    {
+        $payment = Payment::findOrFail($id);
+        return view('transactions.payment.receipt', compact('payment'));
+    }
 }

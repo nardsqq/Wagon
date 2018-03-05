@@ -15,12 +15,12 @@
         <tr id="id{{ $order->int_order_id }}">
         <td>{{ $order->str_purc_order_num }}</td>
         <td class="text-center">{{ $order->client->str_client_name }}</td>
-        <td class="text-center">@money($order->invoice->dbl_total_amount)</td>
-        <td class="text-center">@money($paid = $order->invoice->payments()->sum('dbl_amount'))</td>
-        <td class="text-center">@money($order->invoice->dbl_total_amount - $paid)</td>
+        <td class="text-right">@money($order->invoice->dbl_total_amount)</td>
+        <td class="text-right">@money($paid = $order->invoice->payments()->sum('dbl_amount'))</td>
+        <td class="text-right">@money($order->invoice->dbl_total_amount - $paid)</td>
         <td class="text-center">{{ $order->invoice->payments()->latest()->first()->dat_date_received->format('F d, Y') }}</td>
         <td class="text-center">
-            <button  value="{{ $order->int_order_id }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</button>
+            <a href="{{ action('PaymentController@payments', $order->int_order_id) }}" class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</a>
             <button  value="{{ $order->int_order_id }}"class="btn btn-details btn-xs btn-primary"><i class="fa fa-reply fa-fw"></i>&nbsp; Receive Payment</button>
         </td>
         </tr>
