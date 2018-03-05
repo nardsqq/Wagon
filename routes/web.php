@@ -108,6 +108,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('replenish-stock-table', 'ReplenishStockController@table');
     Route::get('replenish-stock-form-data', 'ReplenishStockController@formData');
 
+    // Payment
+    Route::resource('payment', 'PaymentController');
+    Route::get('payment-table', 'PaymentController@table');
+    Route::get('payment-form-data', 'PaymentController@formData');
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');
 

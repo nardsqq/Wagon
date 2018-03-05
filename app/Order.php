@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    public static $prefix = 'O';
+    public static $suffix = ['PDT', 'SVC'];
+
     public static $terms = [
         ['id' => 0, 'desc' => 'Upon Receipt'],
         ['id' => 1, 'desc' => 'EOM (End of the Month)'],
