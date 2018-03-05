@@ -26,6 +26,7 @@ class CreateServiceMaterialsTable extends Migration
             $table->foreign('int_sm_service_order_id_fk')
                   ->references('int_service_order_id')
                   ->on('tbl_service_order');
+                  
             $table->foreign('int_sm_material_id_fk')
                   ->references('int_material_id')
                   ->on('tbl_material');
