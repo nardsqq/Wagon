@@ -112,8 +112,8 @@
                 <li class="{{ Request::is('admin/transactions/job-order') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/job-order') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Job Order</a>
                 </li> --}}
-                <li class="{{ Request::is('admin/transactions/invoice') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/invoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
+                <li class="{{ Request::is('admin/transactions/invoice/create') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/invoice/create') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
                 </li>
                 <li class="{{ Request::is('admin/transactions/payment/create') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/payment/create') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Payment</a>
