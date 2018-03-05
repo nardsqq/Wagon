@@ -52,7 +52,7 @@ var app = new Vue({
         },
         cancel: function(){
             if(confirm('Do you really want to leave? Your changes will not be saved')){
-                window.location.assign('/admin/transactions/payement');
+                window.location.assign('/admin/transactions/payment');
             }
         }
     },

@@ -25,7 +25,7 @@ class Counter {
             $output = static::encode($prefix, $counter, $suffix, $padding);
         }
         else {
-            $output = static::encode($prefix, $counter, $suffix, $padding);
+            $output = static::encode($prefix, 1, $suffix, $padding);
         }
         return $output;
     }

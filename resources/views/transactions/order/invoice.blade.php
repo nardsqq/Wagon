@@ -67,7 +67,7 @@ Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y
             <tr>
                 <td>{{ $item->int_quantity }}</td>
                 <td>pc</td>
-                <td colspan="3">{{ str_limit($item->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
+                <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
                 <td class="text-right">@money($item->variant->price)</td>
                 <td class="text-right">@money($total += ($item->variant->price * $item->int_quantity))</td>
             </tr>
