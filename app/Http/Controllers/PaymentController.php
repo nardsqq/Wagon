@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Invoice;
 use App\Payment;
+use App\Order;
 
 class PaymentController extends Controller
 {
@@ -15,6 +16,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
+        $orders = Order::whereHas('invoice.payments')->get();
+        return view('transactions.payment.index', compact('orders'));
     }
 
     /**

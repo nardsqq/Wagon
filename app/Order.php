@@ -64,7 +64,7 @@ class Order extends Model
     }
 
     public function invoice(){
-        return $this->hasMany('App\Invoice', 'int_invoice_order_id_fk');
+        return $this->hasOne('App\Invoice', 'int_invoice_order_id_fk');
     }
 
     public function getCurrentStatusAttribute(){
