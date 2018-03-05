@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Personnel;
+use App\Position;
 
 class PersonnelController extends Controller
 {
