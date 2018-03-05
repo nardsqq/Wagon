@@ -21,6 +21,7 @@ use App\Variant;
 use App\Material;
 use App\Invoice;
 use App\Payment;
+use App\Stock;
 use Carbon\Carbon;
 
 
@@ -145,14 +146,21 @@ class ProcessOrderController extends Controller
             // product
             if($request->order_type == 0)
             {
-                foreach($request->variants as $variant)
+                foreach($request->variants as $variant_id)
                 {
                     $item_order                     = new ItemOrder();
                     $item_order->int_io_order_id_fk = $order->int_order_id;
-                    $item_order->int_io_var_id_fk   = $variant;
-                    $item_order->int_quantity       = $request->quantity[$variant];
-                    $item_order->txt_remarks        = $request->remarks[$variant];
+                    $item_order->int_io_var_id_fk   = $variant_id;
+                    $item_order->int_quantity       = $request->quantity[$variant_id];
+                    $item_order->txt_remarks        = $request->remarks[$variant_id];
                     $item_order->save();
+
+                    // adjust stock
+                    $variant = Variant::findOrFail($variant_id);
+                    $stock                            = new Stock();
+                    $stock->int_stock_var_id_fk       = $variant_id;
+                    $stock->int_quantity              = $variant->getCurrPrevStock()['current'] - $request->quantity[$variant_id];
+                    $stock->save();
                 }
             }
             // service
@@ -174,6 +182,13 @@ class ProcessOrderController extends Controller
                             $serv_mat->int_sm_var_id_fk             = $request->variant[$material_id];
                             $serv_mat->int_quantity                 = $request->quantity[$material_id];
                             $serv_mat->save();
+
+                            // adjust stock
+                            $variant = Variant::findOrFail($request->variant[$material_id]);
+                            $stock                            = new Stock();
+                            $stock->int_stock_var_id_fk       = $request->variant[$material_id];
+                            $stock->int_quantity              = $variant->getCurrPrevStock()['current'] - $request->quantity[$material_id];
+                            $stock->save();
                         }
                     }
                 }
