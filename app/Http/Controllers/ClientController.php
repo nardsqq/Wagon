@@ -49,6 +49,9 @@ class ClientController extends Controller
 
             $client->str_client_name = trim($request->str_client_name);
             $client->str_client_person = trim($request->str_client_person);
+            $client->str_client_mobile_num = trim($request->str_client_mobile_num);
+            $client->str_client_tel_num = trim($request->str_client_tel_num);
+            $client->str_client_email = trim($request->str_client_email);
             $client->txt_client_address = trim($request->txt_client_address);
             $client->str_client_landmark = trim($request->str_client_landmark);
             $client->str_client_tin = trim($request->str_client_tin);
@@ -100,6 +103,9 @@ class ClientController extends Controller
 
             $client->str_client_name = trim($request->str_client_name);
             $client->str_client_person = trim($request->str_client_person);
+            $client->str_client_mobile_num = trim($request->str_client_mobile_num);
+            $client->str_client_tel_num = trim($request->str_client_tel_num);
+            $client->str_client_email = trim($request->str_client_email);
             $client->txt_client_address = trim($request->txt_client_address);
             $client->str_client_landmark = trim($request->str_client_landmark);
             $client->str_client_tin = trim($request->str_client_tin);

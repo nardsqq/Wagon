@@ -28,9 +28,12 @@ $(document).ready(function() {
 
         formEditClient.find('#str_client_name').val(data.str_client_name);
         formEditClient.find('#str_client_person').val(data.str_client_person);
+        formEditClient.find('#str_client_mobile_num').val(data.str_client_mobile_num);
+        formEditClient.find('#str_client_tel_num').val(data.str_client_tel_num);
+        formEditClient.find('#str_client_email').val(data.str_client_email);
         formEditClient.find('#txt_client_address').val(data.txt_client_address);
         formEditClient.find('#str_client_landmark').val(data.str_client_landmark);
-        formEditClient.find('#ed_str_client_tin').val(data.str_client_tin);
+        formEditClient.find('#str_client_tin').val(data.str_client_tin);
 
         $('#edit_client').modal('show');
       }

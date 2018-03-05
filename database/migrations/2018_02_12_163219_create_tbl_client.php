@@ -20,6 +20,9 @@ class CreateTblClient extends Migration
 			$table->text('txt_client_address');
 			$table->string('str_client_landmark', 45);
 			$table->string('str_client_tin', 45);
+			$table->string('str_client_mobile_num', 45);
+			$table->string('str_client_tel_num', 45);
+			$table->string('str_client_email', 45);
             
 			$table->timestamps();
 			$table->softdeletes();
