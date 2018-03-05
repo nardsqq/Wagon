@@ -19,6 +19,8 @@ use App\Discount;
 use App\ModeOfPayment;
 use App\Variant;
 use App\Material;
+use App\Invoice;
+use App\Payment;
 use Carbon\Carbon;
 
 
@@ -184,6 +186,23 @@ class ProcessOrderController extends Controller
             $footer->int_of_downpayment_id_fk   = $request->downpayment;
             $footer->save();
             
+            // Invoice
+            $invoice = new Invoice();
+            $invoice->int_invoice_order_id_fk = $order->int_order_id;
+            $invoice->dbl_total_amount = $request->total;
+            $invoice->save();
+
+            //Payment 
+            if(Downpayment::findOrFail($request->downpayment)->int_down_percentage > 0){
+                $payment = new Payment();
+                $payment->int_paym_invoice_id_fk = $invoice->int_invoice_id;
+                $payment->dat_date_received = Carbon::now();
+                $payment->dbl_amount = $request->payment;
+                $payment->str_received_by = 'test';
+                $payment->save();
+
+            }
+
             $status                         = new OrderStatus();
             $status->int_orstat_order_id_fk = $order->int_order_id;
             $status->str_status             = OrderStatus::$status['NEW'];
