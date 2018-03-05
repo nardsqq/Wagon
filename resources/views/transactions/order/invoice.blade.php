@@ -67,12 +67,13 @@ Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y
         <tbody>
             @php $rowCount = 14; $counter = 0; $total = 0; @endphp
             @foreach($order->item_orders as $item)
+            @php $total += ($item->variant->price * $item->int_quantity); @endphp
             <tr>
                 <td>{{ $item->int_quantity }}</td>
                 <td>pc</td>
                 <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
                 <td class="text-right">@money($item->variant->price)</td>
-                <td class="text-right">@money($total += ($item->variant->price * $item->int_quantity))</td>
+                <td class="text-right">@money($item->variant->price * $item->int_quantity)</td>
             </tr>
             @endforeach
         </tbody>
