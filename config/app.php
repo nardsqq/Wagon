@@ -235,6 +235,7 @@ return [
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'ViewHelper' => App\Classes\ViewHelper::class,
+        'Counter' => App\Classes\Counter::class,
     ],
 
 ];

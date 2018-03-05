@@ -108,6 +108,16 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('replenish-stock-table', 'ReplenishStockController@table');
     Route::get('replenish-stock-form-data', 'ReplenishStockController@formData');
 
+    // Invoice
+    Route::resource('invoice', 'InvoiceController');
+    Route::get('invoice-table', 'InvoiceController@table');
+    Route::get('invoice-form-data', 'InvoiceController@formData');
+    
+    // Payment
+    Route::resource('payment', 'PaymentController');
+    Route::get('payment-table', 'PaymentController@table');
+    Route::get('payment-form-data', 'PaymentController@formData');
+
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');
 
@@ -116,7 +126,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::name('quotation-report')->get('quotation-report/{id}', 'PDFController@quote');
     Route::get('quotation-table', 'QuotationController@table');
     // Route::get('sales-order', 'RouteController@salesorder');
-    Route::get('invoice', 'RouteController@invoice');
+    // Route::get('invoice', 'RouteController@invoice');
 
     Route::resource('vehicle-request', 'VehicleRequestController');
     Route::get('vehicle-request-table', 'VehicleRequestController@table');

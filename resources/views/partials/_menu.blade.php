@@ -96,7 +96,7 @@
               <ul>
                 <li class="dropdown-main-header"><center>Orders</center></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Placing a Job or Sales Order</li>
+                <li class="dropdown-header">Placing an Order</li>
                 <li class="{{ Request::is('admin/transactions/client') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/client') }}"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>&nbsp; Client</a>
                 </li>
@@ -114,6 +114,9 @@
                 </li> --}}
                 <li class="{{ Request::is('admin/transactions/invoice') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/invoice') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
+                </li>
+                <li class="{{ Request::is('admin/transactions/payment/create') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/payment/create') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Payment</a>
                 </li>
               </ul>
             </li>

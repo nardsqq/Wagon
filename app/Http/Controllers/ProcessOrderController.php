@@ -127,8 +127,11 @@ class ProcessOrderController extends Controller
             // [todo] insert validation rules here
 
             \DB::beginTransaction();
+
+            $current_no = Order::latest()->first() ? Order::latest()->first()->str_order_no:null;
             
             $order                          = new Order();
+            $order->str_order_no            = \Counter::generate($current_no, Order::$prefix, Order::$suffix[$request->order_type]);
             $order->str_purc_order_num      = $request->order_num;
             $order->int_order_client_id_fk  = $request->client_id;
             $order->dat_order_date          = Carbon::now();
@@ -187,7 +190,9 @@ class ProcessOrderController extends Controller
             $footer->save();
             
             // Invoice
+            $current_no = Invoice::latest()->first() ? Invoice::latest()->first()->str_invoice_no:null;
             $invoice = new Invoice();
+            $invoice->str_invoice_no            = \Counter::generate($current_no, Invoice::$prefix, Order::$suffix[$request->order_type]);
             $invoice->int_invoice_order_id_fk = $order->int_order_id;
             $invoice->dbl_total_amount = $request->total;
             $invoice->save();

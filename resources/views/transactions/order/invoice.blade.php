@@ -9,6 +9,9 @@
         html, body {
             font-family: Arial, Helvetica, sans-serif;
         }
+        body {
+            margin: 1in;
+        }
         .text-center {
             text-align: center;
         }
@@ -40,13 +43,13 @@
     <center>SALES INVOICE</center>
     <br>
 SOLD TO: {!! \ViewHelper::center_underline($order->client->str_client_name, 45) !!}  
-Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y'), 10) !!} 
+Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y'), 8) !!} 
     <br>
-    ADDRESS: {!! \ViewHelper::center_underline($order->client->txt_client_address, 45) !!}  
-    Terms: {!! \ViewHelper::center_underline($order->client->str_client_name, 15) !!}  
+    ADDRESS: {!! \ViewHelper::center_underline($order->client->txt_client_address, 40) !!}  
+    Terms: {!! \ViewHelper::center_underline('', 10) !!}  
     <br>
     TIN: {!! \ViewHelper::center_underline($order->client->str_client_tin, 15) !!}  
-    Business Style: {!! \ViewHelper::center_underline('', 20) !!}  
+    Business Style: {!! \ViewHelper::center_underline('', 15) !!}  
     PO# {!! \ViewHelper::center_underline($order->str_purc_order_num, 15) !!}  
     <br>
     <br>
@@ -64,12 +67,13 @@ Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y
         <tbody>
             @php $rowCount = 14; $counter = 0; $total = 0; @endphp
             @foreach($order->item_orders as $item)
+            @php $total += ($item->variant->price * $item->int_quantity); @endphp
             <tr>
                 <td>{{ $item->int_quantity }}</td>
                 <td>pc</td>
-                <td colspan="3">{{ str_limit($item->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
+                <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
                 <td class="text-right">@money($item->variant->price)</td>
-                <td class="text-right">@money($total += ($item->variant->price * $item->int_quantity))</td>
+                <td class="text-right">@money($item->variant->price * $item->int_quantity)</td>
             </tr>
             @endforeach
         </tbody>
