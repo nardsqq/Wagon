@@ -9,6 +9,9 @@
         html, body {
             font-family: Arial, Helvetica, sans-serif;
         }
+        body {
+            margin: 1in;
+        }
         .text-center {
             text-align: center;
         }
@@ -40,13 +43,13 @@
     <center>SALES INVOICE</center>
     <br>
 SOLD TO: {!! \ViewHelper::center_underline($order->client->str_client_name, 45) !!}  
-Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y'), 10) !!} 
+Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y'), 8) !!} 
     <br>
-    ADDRESS: {!! \ViewHelper::center_underline($order->client->txt_client_address, 45) !!}  
-    Terms: {!! \ViewHelper::center_underline($order->client->str_client_name, 15) !!}  
+    ADDRESS: {!! \ViewHelper::center_underline($order->client->txt_client_address, 40) !!}  
+    Terms: {!! \ViewHelper::center_underline('', 10) !!}  
     <br>
     TIN: {!! \ViewHelper::center_underline($order->client->str_client_tin, 15) !!}  
-    Business Style: {!! \ViewHelper::center_underline('', 20) !!}  
+    Business Style: {!! \ViewHelper::center_underline('', 15) !!}  
     PO# {!! \ViewHelper::center_underline($order->str_purc_order_num, 15) !!}  
     <br>
     <br>
