@@ -41,7 +41,7 @@ class PaymentController extends Controller
        try{
            \DB::beginTransaction();
 
-            $invoice = Invoice::findOrFail($request->invoice_no);
+            $invoice = Order::where('str_purc_order_num', $request->invoice_no)->first()->invoice;
 
             $payment = new Payment();
             $payment->int_paym_invoice_id_fk = $invoice->int_invoice_id;
@@ -63,7 +63,7 @@ class PaymentController extends Controller
             'message'   => 'Successfully completed transaction',
             'alert'     => 'success',
             //'invoice'   => action('ProcessOrderController@invoice', $order->int_order_id),
-            'url'       => route('payment.create')
+            'url'       => route('payment.index')
         ]);
     }
 
@@ -76,11 +76,12 @@ class PaymentController extends Controller
     public function show($id)
     {
         try {
-            $invoice = Invoice::findOrFail($id);
-            $client = $invoice->order->client;
+            $order = Order::where('str_purc_order_num', $id)->first();
+            $invoice = $order->invoice()->with('order')->first();
+            $client = $order->client;
 
-            $amount_due = $invoice->dbl_total_amount;
-            $amount_paid = $invoice->payments()->sum('dbl_amount');
+            $amount_due = $order->invoice->dbl_total_amount;
+            $amount_paid = $order->invoice->payments()->sum('dbl_amount');
             $balance_due = $amount_due - $amount_paid;
 
             $alert = 'success';

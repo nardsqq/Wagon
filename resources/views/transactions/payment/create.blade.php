@@ -39,15 +39,15 @@
                                 <div class="row">                
                                     <div class="col-xs-12 m-t-10">
                                         <div :class="'form-group '+ (false == invoice_exists?'has-error':'')">
-                                            {!! Form::label('invoice_no', 'Invoice #') !!}
+                                            {!! Form::label('invoice_no', 'Order #') !!}
                                             <div class="input-group">
-                                                <input type="text" id="invoice_no" name="invoice_no" class="form-control" v-model="invoice_no" placeholder="Enter Invoice #">
+                                                <input type="text" id="invoice_no" name="invoice_no" class="form-control" v-model="invoice_no" placeholder="Enter Order #">
                                                 <span class="input-group-btn" @click="getInvoice()" aria-describedby="invoice-help-block">
                                                     <button class="btn btn-default" type="button"><i class="fa fa-search"></i>&nbsp;Search</button>
                                                 </span>
                                             </div><!-- /input-group -->
                                             
-                                            <span id="invoice-help-block" class="help-block" v-if="!invoice_exists">Invoice does not exist</span>
+                                            <span id="invoice-help-block" class="help-block" v-if="!invoice_exists">Order does not exist</span>
                                         </div>
                                     </div>
 
@@ -78,7 +78,8 @@
                                     </div>
 
                                     <div class="col-xs-12 m-t-10">
-                                        <button type="submit" class="btn btn-info pull-right">Submit</button>
+                                        <button v-if="invoice" type="submit" class="btn btn-info pull-right">Submit</button>
+                                        <button v-else type="button" disabled class="btn btn-info pull-right">Submit</button>
                                         <button @click="cancel" class="btn btn-danger pull-right">Cancel</button>
                                     </div>
                                 </div>
