@@ -31,4 +31,9 @@ class ServiceOrder extends Model
     public function service_status(){
         return $this->hasMany('App\ServiceOrderStatus', 'int_sos_service_order_id_fk');
     }
+
+    public function getAmountAttribute(){
+        return $this->service->dbl_service_price;
+    }
+    
 }

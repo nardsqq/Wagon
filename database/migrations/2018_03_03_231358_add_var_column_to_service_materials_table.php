@@ -14,7 +14,7 @@ class AddVarColumnToServiceMaterialsTable extends Migration
     public function up()
     {
         Schema::table('tbl_service_materials', function (Blueprint $table) {
-            $table->integer('int_sm_var_id_fk')->unsigned();
+            $table->unsignedInteger('int_sm_var_id_fk')->nullable();
                   
             $table->foreign('int_sm_var_id_fk')
                 ->references('int_var_id')

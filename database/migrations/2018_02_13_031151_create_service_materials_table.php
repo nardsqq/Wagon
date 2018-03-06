@@ -17,7 +17,7 @@ class CreateServiceMaterialsTable extends Migration
             $table->increments('int_serv_mat_id');
             $table->integer('int_sm_service_order_id_fk')->unsigned();
             $table->integer('int_sm_material_id_fk')->unsigned();
-            $table->integer('int_quantity');
+            $table->integer('int_quantity')->default(0);
             $table->tinyInteger('int_acqui_type');
             
             $table->timestamps();
