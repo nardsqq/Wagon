@@ -42,13 +42,18 @@ class PaymentController extends Controller
            \DB::beginTransaction();
 
             $invoice = Order::where('str_purc_order_num', $request->invoice_no)->first()->invoice;
-
-            $payment = new Payment();
-            $payment->int_paym_invoice_id_fk = $invoice->int_invoice_id;
-            $payment->dat_date_received = $request->date_received;
-            $payment->dbl_amount = $request->amount_received;
-            $payment->str_received_by = 'test';
-            $payment->save();
+            if($invoice->dbl_total_amount > $invoice->payments()->sum('dbl_amount')){
+                $payment = new Payment();
+                $payment->int_paym_invoice_id_fk = $invoice->int_invoice_id;
+                $payment->dat_date_received = $request->date_received;
+                $payment->dbl_amount = $request->amount_received;
+                $payment->str_received_by = 'test';
+                $payment->save();
+            } else {
+                $alert = 'info';
+                $message = 'Order is fully paid';
+                return redirect(route('payment.index'), compact('alert', 'message'));
+            }
 
            \DB::commit();
        } catch(Exception $e){
