@@ -43,7 +43,7 @@
                 </li>
   							<li class="dropdown-header">Services</li>
                 <li>
-                  <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-industry fa-fw" aria-hidden="true"></i>&nbsp; Service</a>
+                  <a href="{{ url('/admin/maintenance/service') }}"><i class="fa fa-wrench fa-fw" aria-hidden="true"></i>&nbsp; Service</a>
                 </li>
                 {{-- <li>
                   <a href="{{ url('/admin/maintenance/service-description') }}"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Service Description</a>
@@ -56,7 +56,7 @@
                 <li class="divider"></li>
   							<li class="dropdown-header">Terms</li>
   							<li>
-                  <a href="{{ url('/admin/maintenance/downpayment') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Downpayment</a>
+                  <a href="{{ url('/admin/maintenance/downpayment') }}"><i class="fa fa-arrow-down fa-fw" aria-hidden="true"></i>&nbsp; Downpayment</a>
                 </li>
   							<li>
                   <a href="{{ url('/admin/maintenance/discount') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Discount</a>
@@ -65,7 +65,7 @@
                   <a href="{{ url('/admin/maintenance/mode-of-payment') }}"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Mode of Payment</a>
                 </li>  --}}
                 <li>
-                  <a href="{{ url('/admin/maintenance/payment-term') }}"><i class="fa fa-percent fa-fw" aria-hidden="true"></i>&nbsp; Payment Term</a>
+                  <a href="{{ url('/admin/maintenance/payment-term') }}"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Payment Term</a>
                 </li>
   						</ul>
   					</li>
@@ -82,7 +82,7 @@
                 <li class="divider"></li>
                 <li class="dropdown-header">Adjust and Replenish Stocks</li>
                 <li>
-                  <a href="{{ url('/admin/transactions/adjust-stock') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Adjust Stock</a>
+                  <a href="{{ url('/admin/transactions/adjust-stock') }}"><i class="fa fa-arrows-v fa-fw" aria-hidden="true"></i>&nbsp; Adjust Stock</a>
                 </li>
                 <li>
                   <a href="{{ url('/admin/transactions/replenish-stock') }}"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i>&nbsp; Replenish Stock</a>
@@ -116,7 +116,7 @@
                   <a href="{{ url('/admin/transactions/invoice/create') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Invoice</a>
                 </li>
                 <li class="{{ Request::is('admin/transactions/payment') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/payment') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Payment</a>
+                  <a href="{{ url('/admin/transactions/payment') }}"><i class="fa fa-credit-card fa-fw" aria-hidden="true"></i>&nbsp; Payment</a>
                 </li>
               </ul>
             </li>
