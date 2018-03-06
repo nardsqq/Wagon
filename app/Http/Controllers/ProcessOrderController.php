@@ -179,16 +179,19 @@ class ProcessOrderController extends Controller
                             $serv_mat->int_sm_service_order_id_fk   = $service_order->int_service_order_id;
                             $serv_mat->int_sm_material_id_fk        = $material_id;
                             $serv_mat->int_acqui_type               = $request->acqui_type[$material_id];
-                            $serv_mat->int_sm_var_id_fk             = $request->variant[$material_id];
-                            $serv_mat->int_quantity                 = $request->quantity[$material_id];
-                            $serv_mat->save();
+                            if($request->acqui_type[$material_id] < 2){
+                                $serv_mat->int_sm_var_id_fk             = $request->variant[$material_id];
+                                $serv_mat->int_quantity                 = $request->quantity[$material_id];
 
-                            // adjust stock
-                            $variant = Variant::findOrFail($request->variant[$material_id]);
-                            $stock                            = new Stock();
-                            $stock->int_stock_var_id_fk       = $request->variant[$material_id];
-                            $stock->int_quantity              = $variant->getCurrPrevStock()['current'] - $request->quantity[$material_id];
-                            $stock->save();
+                                
+                                // adjust stock
+                                $variant = Variant::findOrFail($request->variant[$material_id]);
+                                $stock                            = new Stock();
+                                $stock->int_stock_var_id_fk       = $request->variant[$material_id];
+                                $stock->int_quantity              = $variant->getCurrPrevStock()['current'] - $request->quantity[$material_id];
+                                $stock->save();
+                            }
+                            $serv_mat->save();
                         }
                     }
                 }
