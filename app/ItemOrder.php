@@ -19,4 +19,8 @@ class ItemOrder extends Model
     {
       return $this->belongsTo('App\Variant', 'int_io_var_id_fk');
     }
+
+    public function getAmountAttribute(){
+      return $this->variant->price * $this->int_quantity;
+    }
 }
