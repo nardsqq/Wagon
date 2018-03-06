@@ -12,6 +12,7 @@ class PaymentTerm extends Model
     protected $table = 'tbl_terms_payment';
     protected $guarded = [];
     protected $primaryKey = 'int_terms_pay_id';
+    protected $appends = ['term'];
 
     public static $rules = [];
 
