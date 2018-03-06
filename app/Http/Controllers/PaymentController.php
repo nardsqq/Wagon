@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Invoice;
+use App\InvoiceStatus;
 use App\Payment;
 use App\Order;
 
@@ -42,6 +43,7 @@ class PaymentController extends Controller
            \DB::beginTransaction();
 
             $invoice = Order::where('str_purc_order_num', $request->invoice_no)->first()->invoice;
+            
             if($invoice->dbl_total_amount > $invoice->payments()->sum('dbl_amount')){
                 $payment = new Payment();
                 $payment->int_paym_invoice_id_fk = $invoice->int_invoice_id;

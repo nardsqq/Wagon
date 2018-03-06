@@ -226,11 +226,6 @@ class ProcessOrderController extends Controller
 
             }
 
-            $status                         = new OrderStatus();
-            $status->int_orstat_order_id_fk = $order->int_order_id;
-            $status->str_status             = OrderStatus::$status['NEW'];
-            $status->save();
-
             \DB::commit();
         } 
         catch(Exception $e){
