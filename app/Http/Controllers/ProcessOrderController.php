@@ -259,14 +259,14 @@ class ProcessOrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-        $total = 0;
-        $total_amount = $order->item_orders->count() > 0 ? $order->item_orders->sum('amount') : $order->service_orders->sum('amount') + 
-        ServiceOrderMaterial::whereIn('int_sm_service_order_id_fk', $order->service_orders->pluck('int_service_order_id')->toArray())->get()->sum('amount')
-        ;
         $materials = $order->service_orders->count() > 0 ? ServiceOrderMaterial::whereIn('int_sm_service_order_id_fk', $order->service_orders->pluck('int_service_order_id')->toArray())->get() : [];
+        $total_materials =  $order->service_orders->count() > 0 ? $materials->sum('amount') : 0;
+        $total_services = $order->service_orders->sum('amount');
+        $total = $order->item_orders->count() > 0 ? $order->item_orders->sum('amount') : $total_services + $total_materials;
 
-        $discount = 0;
-        $downpayment = 0;
+        $discount = $total * ($order->footer->discount->int_discount_percentage / 100);
+        $total_amount = $total - $discount;
+        $downpayment = $total_amount * ($order->footer->downpayment->int_down_percentage / 100);;
         return view('transactions.order.show', compact('order', 'discount', 'downpayment', 'total_amount', 'total', 'materials'));
     }
 

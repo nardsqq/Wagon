@@ -80,12 +80,12 @@
                             
                                 <dl>
                                     <dt>Downpayment ({{$order->footer->downpayment->int_down_percentage}}%)</dt>
-                                    <dd>@{{ downpayment | money }}</dd>
+                                    <dd>@money($downpayment)</dd>
                                 </dl>
                             
                                 <dl>
                                     <dt>Discount: {{ $order->footer->discount->str_discount_name }} ({{ $order->footer->discount->int_discount_percentage }}%)</dt>
-                                    <dd>@{{ discount | money }}</dd>
+                                    <dd>@money($discount)</dd>
                                 </dl>
                             </div>
                         </div>
@@ -117,14 +117,14 @@
                                         <tr>
                                             <td>{{ $item->variant->product->str_product_name }}</td>
                                             <td>{{ $item->variant->str_var_name }}</td>
-                                            <td class="text-right">@money( $item->variant->price)</td>
+                                            <td class="text-right">@money($item->variant->price)</td>
                                             <td class="text-right">{{ $item->int_quantity }}</td>
                                             <td class="text-right">@money(($item->amount))</td>
                                         </tr>
                                         @endforeach
                                         <tr>
                                             <th colspan="4"><h4>Total</h4></th>
-                                            <td><h4 class="text-right">@money($total_amount)</h4></td>
+                                            <td><h4 class="text-right">@money($total)</h4></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -140,18 +140,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @empty($order->service_orders)
-                                        <tr v-if="selected_services.length <= 0">
-                                            <td colspan="3" class="text-center">No service selected</td>
-                                        </tr>
-                                        @endempty
-
-                                        @foreach($order->service_orders as $item)
+                                        @forelse($order->service_orders as $item)
                                         <tr v-else v-for="(service, index) in selected_services" :key="service.int_service_id">
                                             <td>{{ $item->service->str_service_name }}</td>
                                             <td class="text-right">@money($item->service->dbl_service_price)</td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        <tr v-if="selected_services.length <= 0">
+                                            <td colspan="3" class="text-center">No service selected</td>
+                                        </tr>
+                                        @endforelse
                                         <tr>
                                             <td><h4>Total (Services)</h4></td>
                                             <td class="text-right"><h4>@money( $total_services =  $order->service_orders->sum('amount'))</h4></td>
@@ -165,8 +163,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">Material</th>
-                                            <th class="text-center">Type of Acquisition</th>
                                             <th class="text-center">Variant</th>
+                                            <th class="text-center">Type of Acquisition</th>
                                             <th class="text-center">Price</th>
                                             <th class="text-center">Quantity</th>
                                             <th class="text-center">Cost</th>
@@ -180,30 +178,35 @@
                                         @endempty
                                         @foreach($materials as $item)
                                         <tr v-else v-for="(material, index) in materials" :key="material.int_material_id">
-                                            <td>@{{ $item->material->product->str_product_name }}</td>
-                                            <td>@{{ $item->acqui_type }}</td>
-                                            <td>@{{ $item->material->variant->str_var_name }}</td>
-                                            <td class="text-right"><span v-if="!isEmpty(material.variant)">@{{ material.variant.price | money }}</span></td>
-                                            <td class="text-right"><span v-if="material.acqui_type!=2 && !isEmpty(material.variant)">@{{ material.quantity }}</span></td>
-                                            <td class="text-right"><span v-if="material.acqui_type!=2 && !isEmpty(material.variant)">@{{ material.quantity * material.variant.price | money }}</span></td>
+                                            <td>{{ $item->variant->product->str_product_name }}</td>
+                                            <td>
+                                                @isset($item->variant)
+                                                {{ $item->variant->str_var_name }}
+                                                @endisset
+                                            </td>
+                                            <td>{{ $item->acqui_type }}</td>
+                                            <td class="text-right"><span v-if="!isEmpty(material.variant)">
+                                                @isset($item->variant)
+                                                    @money($item->variant->price)
+                                                @endisset
+                                            </span></td>
+                                            <td class="text-right"><span v-if="material.acqui_type!=2 && !isEmpty(material.variant)">{{ $item->int_quantity }}</span></td>
+                                            <td class="text-right"><span v-if="material.acqui_type!=2 && !isEmpty(material.variant)">@money($item->amount)</span></td>
                                         </tr>
                                         @endforeach
                                         <tr>
                                             <td colspan="5"><h4>Total (Materials)</h4></td>
-                                            <td class="text-right"><h4>@{{ total_materials | money}}</h4></td>
+                                            <td class="text-right"><h4>@money($total_materials = $materials->sum('amount'))</h4></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             @endif
-                            <h4 class="text-right">Subtotal: <span>@{{ total | money }}</span></h4>
-                            <h4 class="text-right">Less: Discount: <span>(@{{ discount | money }})</span></h4>
-                            <h3 class="text-right">Total: <span>@{{ total - discount | money }}</span></h3>
-                            <h5 class="text-right">Downpayment: <span>@{{ downpayment | money }}</span></h5>
-                            <h5 class="text-right">Balance Due: <span>@{{ total - downpayment | money }}</span></h5>
-                    
-                            <input type="hidden" name="payment" :value="downpayment">
-                            <input type="hidden" name="total" :value="total - discount">
+                            <h4 class="text-right">Subtotal: <span>@money($total)</span></h4>
+                            <h4 class="text-right">Less: Discount: <span>(@money($discount))</span></h4>
+                            <h3 class="text-right">Total: <span>@money($total_amount)</span></h3>
+                            <h5 class="text-right">Downpayment: <span>@money($downpayment)</span></h5>
+                            <h5 class="text-right">Balance Due: <span>@money($total_amount - $downpayment)</span></h5>
                         </div>
                     </div>
               </div>
