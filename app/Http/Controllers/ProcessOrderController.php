@@ -307,6 +307,8 @@ class ProcessOrderController extends Controller
     public function invoice($id)
     {
         $order = Order::findOrFail($id);
-        return view('transactions.order.invoice', compact('order'));
+        $materials = $order->service_orders->count() > 0 ? ServiceOrderMaterial::whereIn('int_sm_service_order_id_fk', $order->service_orders->pluck('int_service_order_id')->toArray())->get() : [];
+
+        return view('transactions.order.invoice', compact('order', 'materials'));
     }
 }

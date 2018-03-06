@@ -65,7 +65,7 @@ Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y
             </tr>
         </thead>
         <tbody>
-            @php $rowCount = 14; $counter = 0; $total = 0; @endphp
+            @php $rowCount = 14; $counter = 0; $total = 0; $material_total = 0; $service_total = 0; @endphp
             @foreach($order->item_orders as $item)
             @php $total += ($item->variant->price * $item->int_quantity); @endphp
             <tr>
@@ -74,6 +74,37 @@ Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y
                 <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
                 <td class="text-right">@money($item->variant->price)</td>
                 <td class="text-right">@money($item->variant->price * $item->int_quantity)</td>
+            </tr>
+            @endforeach
+
+            @foreach($order->service_orders as $item)
+            @php $service_total += ($item->service->dbl_service_price); @endphp
+                @if ($loop->first)
+                    <tr>
+                        <td colspan="7" class="text-center">SERVICES</td>
+                    </tr>
+                @endif
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3">{{ str_limit($item->service->str_service_name, 80) }}</td>
+                <td class="text-right">@money($item->service->dbl_service_price)</td>
+                <td class="text-right">@money($item->service->dbl_service_price)</td>
+            </tr>
+            @endforeach
+            @foreach($materials as $item)
+            @php $material_total += $item->amount; @endphp
+                @if ($loop->first)
+                    <tr>
+                        <td colspan="7" class="text-center">MATERIALS</td>
+                    </tr>
+                @endif
+            <tr>
+                <td>{{ $item->int_quantity }}</td>
+                <td>pc</td>
+                <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name.' ('.$item->acqui_type.')', 80) }}</td>
+                <td class="text-right">@money($item->variant->price)</td>
+                <td class="text-right">@money($item->amount)</td>
             </tr>
             @endforeach
         </tbody>
@@ -114,7 +145,7 @@ Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y
             </tr>
             <tr>
                 <td colspan="6" class="text-right">TOTAL AMOUNT DUE</td>
-                <td class="text-right">@money($total)</td>
+                <td class="text-right">@money($total + $material_total + $service_total)</td>
             </tr>
         </tfoot>
     </table>
