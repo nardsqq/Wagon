@@ -40,6 +40,10 @@ class AppServiceProvider extends ServiceProvider
 
         // create invoice status on creation of an invoice
         Invoice::saved(function ($invoice) {
+            OrderStatus::create([
+                'str_status' => OrderStatus::$status['BILL'],
+                'int_orstat_order_id_fk' => $invoice->order->int_order_id
+            ]);
             InvoiceStatus::create([
                 'str_status' => InvoiceStatus::$status['NEW'],
                 'int_instat_invoice_id_fk' => $invoice->int_invoice_id
@@ -60,6 +64,10 @@ class AppServiceProvider extends ServiceProvider
                 InvoiceStatus::create([
                     'str_status' => InvoiceStatus::$status['PAID'],
                     'int_instat_invoice_id_fk' => $invoice->int_invoice_id
+                ]);
+                OrderStatus::create([
+                    'str_status' => OrderStatus::$status['PAID'],
+                    'int_orstat_order_id_fk' => $invoice->order->int_order_id
                 ]);
             }
         });
