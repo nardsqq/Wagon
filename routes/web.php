@@ -116,7 +116,8 @@ Route::group(['prefix' => 'admin'], function() {
     // Payment
     Route::resource('payment', 'PaymentController');
     Route::get('payment-table', 'PaymentController@table');
-    Route::get('payment-form-data', 'PaymentController@formData');
+    Route::get('payment/{id}/receipt', 'PaymentController@receipt');
+    Route::get('payment/{order_id}/list', 'PaymentController@payments');
 
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');

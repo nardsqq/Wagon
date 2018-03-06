@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Invoice;
 use App\Payment;
+use App\Order;
 
 class PaymentController extends Controller
 {
@@ -15,6 +16,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
+        $orders = Order::whereHas('invoice.payments')->get();
+        return view('transactions.payment.index', compact('orders'));
     }
 
     /**
@@ -38,7 +41,7 @@ class PaymentController extends Controller
        try{
            \DB::beginTransaction();
 
-            $invoice = Invoice::findOrFail($request->invoice_no);
+            $invoice = Order::where('str_purc_order_num', $request->invoice_no)->first()->invoice;
 
             $payment = new Payment();
             $payment->int_paym_invoice_id_fk = $invoice->int_invoice_id;
@@ -60,7 +63,7 @@ class PaymentController extends Controller
             'message'   => 'Successfully completed transaction',
             'alert'     => 'success',
             //'invoice'   => action('ProcessOrderController@invoice', $order->int_order_id),
-            'url'       => route('payment.create')
+            'url'       => route('payment.index')
         ]);
     }
 
@@ -73,11 +76,12 @@ class PaymentController extends Controller
     public function show($id)
     {
         try {
-            $invoice = Invoice::findOrFail($id);
-            $client = $invoice->order->client;
+            $order = Order::where('str_purc_order_num', $id)->first();
+            $invoice = $order->invoice()->with('order')->first();
+            $client = $order->client;
 
-            $amount_due = $invoice->dbl_total_amount;
-            $amount_paid = $invoice->payments()->sum('dbl_amount');
+            $amount_due = $order->invoice->dbl_total_amount;
+            $amount_paid = $order->invoice->payments()->sum('dbl_amount');
             $balance_due = $amount_due - $amount_paid;
 
             $alert = 'success';
@@ -120,5 +124,17 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function payments($order_id)
+    {
+        $order = Order::findOrFail($order_id);
+        return view('transactions.payment.payments', compact('order'));
+    }
+
+    public function receipt($id)
+    {
+        $payment = Payment::findOrFail($id);
+        return view('transactions.payment.receipt', compact('payment'));
     }
 }
