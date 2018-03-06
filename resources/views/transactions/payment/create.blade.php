@@ -52,17 +52,22 @@
                                     </div>
 
                                     <div v-if="invoice">
-                                        <div class="col-md-6 m-t-10">
-                                            {{--  <div class="form-group">  --}}
-                                                {!! Form::label('amount_received', 'Amount Received') !!}
-                                                <input type="number" id="amount_received" name="amount_received" class="form-control text-right" v-model.number="amount_received" placeholder="Amount Received">
-                                            {{--  </div>  --}}
+                                        <div v-if="balance_due > 0">
+                                            <div class="col-md-6 m-t-10">
+                                                {{--  <div class="form-group">  --}}
+                                                    {!! Form::label('amount_received', 'Amount Received') !!}
+                                                    <input type="number" id="amount_received" name="amount_received" class="form-control text-right" v-model.number="amount_received" placeholder="Amount Received">
+                                                {{--  </div>  --}}
+                                            </div>
+                                            <div class="col-md-6 m-t-10">
+                                                {{--  <div class="form-group">  --}}
+                                                    {!! Form::label('date_received', 'Date Received') !!}
+                                                <input type="date" id="date_received" name="date_received" class="form-control" value="{{ date('Y-m-d') }}">
+                                                {{--  </div>  --}}
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 m-t-10">
-                                            {{--  <div class="form-group">  --}}
-                                                {!! Form::label('date_received', 'Date Received') !!}
-                                            <input type="date" id="date_received" name="date_received" class="form-control" value="{{ date('Y-m-d') }}">
-                                            {{--  </div>  --}}
+                                        <div v-else>
+                                            <h3 class="text-success text-center"><i class="fa fa-check"></i> Fully paid</h3> 
                                         </div>
                                         
                                         <div class="col-xs-12 m-t-30">
@@ -78,7 +83,7 @@
                                     </div>
 
                                     <div class="col-xs-12 m-t-10">
-                                        <button v-if="invoice" type="submit" class="btn btn-info pull-right">Submit</button>
+                                        <button v-if="invoice && balance_due > 0" type="submit" class="btn btn-info pull-right">Submit</button>
                                         <button v-else type="button" disabled class="btn btn-info pull-right">Submit</button>
                                         <button @click="cancel" class="btn btn-danger pull-right">Cancel</button>
                                     </div>

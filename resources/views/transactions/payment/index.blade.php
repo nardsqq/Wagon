@@ -51,7 +51,11 @@
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('transactions.payment.table')
+                @if(!$due)
+                  @include('transactions.payment.table')
+                @else
+                  @include('transactions.payment.due-table')
+                @endif
               </div>
             </div>
           </div>

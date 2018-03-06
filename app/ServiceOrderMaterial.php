@@ -24,10 +24,10 @@ class ServiceOrderMaterial extends Model
     }
 
     public function getAmountAttribute(){
-        return $this->variant->price * $this->int_quantity;
+        return $this->int_acqui_type == 0 ? $this->variant->price * $this->int_quantity : 0;
     }
-    public static $acqui_types = ['Buy', 'Free', 'Remove'];
+    
     public function getAcquiTypeAttribute(){
-        return static::$acqui_types[$this->int_acqui_type];
+        return Material::$acqui_types[$this->int_acqui_type];
     }
 }

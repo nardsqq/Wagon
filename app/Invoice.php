@@ -22,4 +22,11 @@ class Invoice extends Model
     {
       return $this->hasMany('App\Payment', 'int_paym_invoice_id_fk');
     }
+
+    public function invoice_status(){
+      return $this->hasMany('App\InvoiceStatus', 'int_instat_invoice_id_fk');
+    }
+    public function getCurrentStatusAttribute(){
+      return $this->invoice_status()->orderBy('int_invoice_status_id', 'desc')->first();
+    }
 }
