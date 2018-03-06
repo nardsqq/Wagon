@@ -74,7 +74,7 @@
             
             <div class="form-group">
               {!! Form::label('str_var_name', 'Variant Name') !!}
-              {{ Form::text('str_var_name', null, ['class'=>'form-control'])}}
+              {{ Form::text('str_var_name', null, ['class'=>'form-control',':value'=>'variant.str_var_name'])}}
             </div>
 
           <hr>
