@@ -14,7 +14,11 @@ class Counter {
     }
 
     private static function decode($current, $prefix = '', $suffix = ''){
-        return substr($current, strlen($prefix)+1, (strrpos($current, $suffix)-1) - (strlen($prefix)+1));
+        $last_index = strrpos($current, $suffix);
+        if(!$last_index){
+            $last_index = strlen($current) - strlen($suffix) - 1;
+        }
+        return substr($current, strlen($prefix)+1, $last_index - 2);
     }
 
     public static function generate($current = null, $prefix = '', $suffix = '', $padding = 4){
