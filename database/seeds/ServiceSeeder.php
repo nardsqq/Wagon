@@ -13,51 +13,60 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
-        $service = Service::firstOrCreate([
-            'str_service_name' => 'Service 1',
-            'dbl_service_price' => 1000.00
-        ]);
+        $services = [
+            'Supply and Install of Generating Sets' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+            'Crankshaft Replacement' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+            'Fuel Pumps Servicing' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+            'Electrical Works' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+            'Repair: Hydraulic Pumps and Motors' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+            'Repair: Air Compressor' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+            'Repair: Pumps' => [
+                'descriptions' => [],
+                'materials' => ['Power Pump']
+            ],
+            'Repair: Heat Exchangers' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+            'Repair: Air Conditioning Units' => [
+                'descriptions' => [],
+                'materials' => []
+            ],
+        ];
 
-        $service->descriptions()->firstOrCreate([
-            'str_service_desc_detail' => 'Description 1'
-        ]);
-        $service->descriptions()->firstOrCreate([
-            'str_service_desc_detail' => 'Description 2'
-        ]);
-        $service->descriptions()->firstOrCreate([
-            'str_service_desc_detail' => 'Description 3'
-        ]);
-        $service->descriptions()->firstOrCreate([
-            'str_service_desc_detail' => 'Description 4'
-        ]);
-
-        $service->materials()->firstOrCreate([
-             'int_mat_prod_id_fk' => Product::firstOrCreate(['str_product_name'=>'Product 1'])->int_product_id
-        ]);
-
-        $service->materials()->firstOrCreate([
-            'int_mat_prod_id_fk' => Product::firstOrCreate(['str_product_name'=>'Product 2'])->int_product_id
-        ]);
-
-
-        $service = Service::firstOrCreate([
-            'str_service_name' => 'Service 2',
-            'dbl_service_price' => 2000.00
-        ]);
-
-        $service->descriptions()->firstOrCreate([
-            'str_service_desc_detail' => 'Description 1'
-        ]);
-        $service->descriptions()->firstOrCreate([
-            'str_service_desc_detail' => 'Description 2'
-        ]);
-
-        $service->materials()->firstOrCreate([
-             'int_mat_prod_id_fk' => Product::firstOrCreate(['str_product_name'=>'Product 3'])->int_product_id
-        ]);
-
-        $service->materials()->firstOrCreate([
-            'int_mat_prod_id_fk' => Product::firstOrCreate(['str_product_name'=>'Product 2'])->int_product_id
-        ]);
+        foreach($services as $service_name => $value){
+            $service = Service::firstOrCreate([
+                'str_service_name' => $service_name,
+                'dbl_service_price' => 1000.00
+            ]);
+            foreach($value['descriptions'] as $desc){
+                $service->descriptions()->firstOrCreate([
+                    'str_service_desc_detail' => $desc
+                ]);
+            }
+            foreach($value['materials'] as $item){
+                $service->materials()->firstOrCreate([
+                    'int_mat_prod_id_fk' => Product::firstOrCreate(['str_product_name'=>$item])->int_product_id
+                ]);
+            }
+        }
     }
 }
