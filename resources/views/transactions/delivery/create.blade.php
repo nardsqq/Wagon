@@ -27,6 +27,8 @@
       </ol>
     </div>
   </section>
+
+  @include('transactions.delivery.modal')
   
   <section id="main">
     <div class="container animated fadeIn">
@@ -62,28 +64,30 @@
                   </div>
                 </div>
                 <hr>
-                <table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;">
-                  <thead>
-                    <tr>
-                      <th>Product(s) Ordered</th>
-                      <th class="text-center">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Self-Jector Purifier</td>
-                      <td class="text-center">
-                        <button class="btn btn-primary btn-sm btn-detail open-modal"><i class='fa fa-calendar'></i>&nbsp; Set Delivery Details</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Generator Set SAMP-001</td>
-                      <td class="text-center">
-                        <button class="btn btn-primary btn-sm btn-detail open-modal"><i class='fa fa-calendar'></i>&nbsp; Set Delivery Details</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div id="row-row" style="visibility: hidden;">
+                  <table id="dataTable" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Product(s) Ordered</th>
+                        <th class="text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Self-Jector Purifier</td>
+                        <td class="text-center">
+                          <button class="btn btn-primary btn-sm btn-detail open-modal"><i class='fa fa-calendar'></i>&nbsp; Set Delivery Details</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Generator Set SAMP-001</td>
+                        <td class="text-center">
+                          <button class="btn btn-primary btn-sm btn-detail open-modal"><i class='fa fa-calendar'></i>&nbsp; Set Delivery Details</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -95,8 +99,12 @@
 @endsection
 @section('scripts')
   <script>
-    $('#btn-search').on('click', function(){
-        $('#dataTable').removeAttr('style');
+    $('#btn-search').on('click', function() {
+      $('#row-row').removeAttr('style');
     })
+
+    $('.open-modal').on('click', function() {
+      $('#set-modal').modal('show');
+    });
   </script>
 @endsection
