@@ -35,9 +35,9 @@
                 <li class="dropdown-main-header"><center>Personnel and Services</center></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Workforce</li>
-                <!--li>
+                <li>
                   <a href="{{ url('/admin/maintenance/position') }}"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i>&nbsp; Position</a>
-                </li-->
+                </li>
                 <li>
                   <a href="{{ url('/admin/maintenance/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a>
                 </li>

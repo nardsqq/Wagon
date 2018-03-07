@@ -7,10 +7,10 @@
     </tr>
   </thead>
   <tbody id="role-list">
-    @foreach ($roles as $role)
-    <tr id="id{{ $role->intRoleId }}">
-        <td>{{ $role->strRoleName }}</td>
-        <td>{{ $role->txtRoleDesc }}</td>
+    @foreach ($positions as $position)
+    <tr id="id{{ $position->intRoleId }}">
+        <td>{{ $position->str_position_name }}</td>
+        <td>{{ $position->txt_position_desc }}</td>
         <td class="text-center">
             <button class="btn btn-info btn-sm btn-detail open-modal" value="{{ $role->intRoleId }}"><i class='fa fa-edit'></i>&nbsp; Edit</button>
             <button class="btn btn-danger btn-sm btn-delete" value="{{ $role->intRoleId }}"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>

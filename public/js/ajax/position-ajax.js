@@ -9,7 +9,7 @@ $(document).ready(function() {
     $('#formRole').trigger('reset');
   });
 
-  var url = "/admin/maintenance/role";
+  var url = "/admin/maintenance/position";
   var id = '';
 
   $(document).on('click', '.open-modal', function() {
