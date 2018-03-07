@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Set Delivery Schedule</li>
+        <li>Delivery</li>
       </ol>
     </div>
   </section>
@@ -43,10 +43,11 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button>
+                <a href="{{ url('admin/transactions/set-delivery-schedule/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</a>
+                {{-- <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button> --}}
               </div>
               <div class="panel-title">
-                <h4>Set Delivery Schedule</h4>
+                <h4>Delivery</h4>
               </div>
             </div>
             <div class="panel-body">
@@ -68,5 +69,5 @@
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-  <script src="{{ asset('/js/custom/ajax/ClientAjax.js/') }}"></script>
+  <script src="{{ asset('/js/custom/ajax/delivery-ajax.js/') }}"></script>
 @endsection

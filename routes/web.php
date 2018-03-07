@@ -125,6 +125,7 @@ Route::group(['prefix' => 'admin'], function() {
     //Route::get('process-order', 'RouteController@purchaseorder');
 
     Route::get('set-delivery-schedule', 'RouteController@setDeliverySchedule');
+    Route::get('set-delivery-schedule/create', 'RouteController@setDeliveryScheduleCreate');
 
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');

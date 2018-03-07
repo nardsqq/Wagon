@@ -79,4 +79,8 @@ class RouteController extends Controller
     public function setDeliverySchedule() {
       return view('transactions.delivery.index');
     }
+
+    public function setDeliveryScheduleCreate() {
+      return view('transactions.delivery.create');
+    }
 }
