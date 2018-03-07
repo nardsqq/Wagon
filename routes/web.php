@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin'], function() {
     // Payment Term
     Route::resource('payment-term', 'PaymentTermController');
 
-    Route::resource('delivery-charge', 'DeliveryChargeController');
+    // Route::resource('delivery-charge', 'DeliveryChargeController');
 
   });
 
@@ -124,6 +124,8 @@ Route::group(['prefix' => 'admin'], function() {
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');
 
+    Route::get('set-delivery-schedule', 'RouteController@setDeliverySchedule');
+
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');
     Route::name('quotation-report')->get('quotation-report/{id}', 'PDFController@quote');
@@ -131,12 +133,12 @@ Route::group(['prefix' => 'admin'], function() {
     // Route::get('sales-order', 'RouteController@salesorder');
     // Route::get('invoice', 'RouteController@invoice');
 
-    Route::resource('vehicle-request', 'VehicleRequestController');
-    Route::get('vehicle-request-table', 'VehicleRequestController@table');
-    Route::name('vehicle-request-report')->get('vehicle-request-report/{id}', 'PDFController@vehireq');
+    // Route::resource('vehicle-request', 'VehicleRequestController');
+    // Route::get('vehicle-request-table', 'VehicleRequestController@table');
+    // Route::name('vehicle-request-report')->get('vehicle-request-report/{id}', 'PDFController@vehireq');
 
-    Route::get('official-business', 'RouteController@ob');
-    Route::get('gate-pass', 'RouteController@gp');
+    // Route::get('official-business', 'RouteController@ob');
+    // Route::get('gate-pass', 'RouteController@gp');
 
   });
 
