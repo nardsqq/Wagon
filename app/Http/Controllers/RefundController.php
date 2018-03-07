@@ -104,13 +104,13 @@ class RefundController extends Controller
         try {
             $refund = Refund::find($id);
 
-//            dd($refund);
+//            dd($refund->int_refund_id);
             $alert = 'success';
         }
         catch(Exception $e){
             $alert = 'error';
         }
-        return compact('invoice', 'alert');
+        return view('transactions.refund.show', compact(['refund', 'alert']));
     }
 
     /**
