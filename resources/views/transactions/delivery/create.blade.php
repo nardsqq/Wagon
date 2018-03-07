@@ -106,5 +106,9 @@
     $('.open-modal').on('click', function() {
       $('#set-modal').modal('show');
     });
+
+    $('#btn-set').on('click', function() {
+      $('#set-modal').modal('hide');
+    });
   </script>
 @endsection

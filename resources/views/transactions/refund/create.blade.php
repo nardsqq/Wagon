@@ -36,21 +36,19 @@
                         <div class="panel-body">
                             {{ Form::open(['id'=>'refund-form', 'class'=>'form-horizontal', 'route'=>'refund.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
                             <div class="row">
-                                <div class="col-xs-12 m-t-10">
-                                    <div :class="'form-group '+ (false == invoice_exists?'has-error':'')">
-                                        {!! Form::label('invoice_no', 'Invoice #') !!}
-                                        <div class="input-group">
-                                            <input type="text" id="invoice_no" name="invoice_no" class="form-control"
-                                                   v-model="invoice_no" placeholder="Enter Invoice #">
-                                            <span class="input-group-btn" @click="getInvoice()"
-                                                  aria-describedby="invoice-help-block">
-                                                    <button class="btn btn-default" type="button"><i
-                                                                class="fa fa-search"></i>&nbsp;Search</button>
-                                                </span>
-                                        </div><!-- /input-group -->
+                                <div :class="'form-group '+ (false == invoice_exists?'has-error':'')" style="margin: 20px;">
+                                    {!! Form::label('invoice_no', 'Invoice #') !!}
+                                    <div class="input-group">
+                                        <input type="text" id="invoice_no" name="invoice_no" class="form-control"
+                                               v-model="invoice_no" placeholder="Enter Invoice #">
+                                        <span class="input-group-btn" @click="getInvoice()"
+                                              aria-describedby="invoice-help-block">
+                                                <button class="btn btn-default" type="button"><i
+                                                            class="fa fa-search"></i>&nbsp;Search</button>
+                                            </span>
+                                    </div><!-- /input-group -->
 
-                                        <span id="invoice-help-block" class="help-block" v-if="!invoice_exists">Order does not exist</span>
-                                    </div>
+                                    <span id="invoice-help-block" class="help-block" v-if="!invoice_exists">Order does not exist</span>
                                 </div>
 
                                 <div v-if="invoice">
@@ -104,7 +102,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12 m-t-10">
+                                <div style="margin: 20px;">
                                     <button v-if="invoice" type="submit" class="btn btn-info pull-right">Submit</button>
                                     <button v-else type="button" disabled class="btn btn-info pull-right">Submit
                                     </button>

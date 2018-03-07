@@ -5,9 +5,9 @@
         <h4 id="title">Add New Position</h4>
       </div>
       <div class="modal-body">
-        {!! Form::open(['url' => '/admin/maintenance/position', 'method' => 'POST', 'id' => 'formRole']) !!}
+        {!! Form::open(['url' => '/admin/maintenance/position', 'method' => 'POST', 'id' => 'formPosition']) !!}
           <div class="form-group">
-            {!! Form::label('str_position_name', 'Role') !!}
+            {!! Form::label('str_position_name', 'Position') !!}
             {!! Form::text('str_position_name', null, ['id' => 'str_position_name', 'class' => 'form-control']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </div>

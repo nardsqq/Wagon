@@ -57,8 +57,7 @@ class PositionController extends Controller
                 'message' => 'Error',
                 'data' => $e
             ]);
-        }
-        
+        } 
     }
 
     /**
@@ -80,7 +79,8 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $position = Position::findOrFail($id);
+        return response()->json($position);
     }
 
     /**
@@ -92,7 +92,28 @@ class PositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            if ($request->ajax()) {
+                $this->validate($request, Position::$rules);
+
+                $position = Position::findOrFail($id);
+
+                $position->str_position_name = trim(ucwords($request->str_position_name));
+                $position->txt_position_desc = trim(ucfirst($request->txt_position_desc));
+
+                $position->save();
+                
+                return response()->json($position);
+            } else {
+                return redirect(route('position.index'));
+            }
+        } catch(Exception $e) {
+            return response()->json([
+                'code' => 500,
+                'message' => 'Error',
+                'data' => $e
+            ]);
+        }
     }
 
     /**
@@ -101,8 +122,16 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $position = Position::destroy($del);
+
+            return response()->json($position);
+        } else {
+            return redirect(route('position.index'));
+        }
     }
 }

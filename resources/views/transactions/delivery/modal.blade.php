@@ -21,7 +21,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-        <button id="btn-save" value="add" class="modal-btn btn btn-success pull-right">Set</button>
+        <button id="btn-set" value="add" class="modal-btn btn btn-success pull-right">Set</button>
         <input type="hidden" id="link_id" name="link_id" value="0">
       </div>
     </div>

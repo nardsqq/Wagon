@@ -5,8 +5,8 @@ $(document).ready(function() {
     }
   });
 
-  $('#add_role').on('hide.bs.modal', function() {
-    $('#formRole').trigger('reset');
+  $('#add_position').on('hide.bs.modal', function() {
+    $('#formPosition').trigger('reset');
   });
 
   var url = "/admin/maintenance/position";
@@ -16,8 +16,8 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
 
-    $('#title').text('Edit Role');
-    $('#role-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
+    $('#title').text('Edit Position');
+    $('#position-modal-header').addClass('modal-header-info').removeClass('modal-header-success');
     $('#btn-save').text('Update');
     $('.modal-btn').addClass('btn-info').removeClass('btn-success');
 
@@ -25,10 +25,10 @@ $(document).ready(function() {
       console.log(url + '/' + link_id + '/edit');
       console.log(data);
 
-      $('#strRoleName').val(data.strRoleName);
-      $('#txtRoleDesc').val(data.txtRoleDesc);
+      $('#str_position_name').val(data.str_position_name);
+      $('#txt_position_desc').val(data.txt_position_desc);
       $('#btn-save').val("update");
-      $('#add_role').modal('show');
+      $('#add_position').modal('show');
 
     }) 
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
     var link_id = $(this).val();
     id = link_id;
     console.log(id)
-    $('#del_role').modal('show');
+    $('#del_position').modal('show');
   });
 
   $('#btn-del-confirm').on('click', function(e) { 
@@ -51,16 +51,16 @@ $(document).ready(function() {
 
     $.ajax({
       type: "DELETE",
-      url: '/admin/maintenance/role/' + id,
+      url: '/admin/maintenance/position/' + id,
       dataType: "json",
       success: function (data) {
-        console.log(data);
+        console.log(JSON.stringify(data));
         console.log(url);
 
         var table = $('#dataTable').DataTable();
         table.row($("#id" + id)).remove().draw();
 
-        $('#del_role').modal('hide');
+        $('#del_position').modal('hide');
 
         toastr.options = {
           "closeButton": false,
@@ -80,7 +80,7 @@ $(document).ready(function() {
           "hideMethod": "slideUp"
         }
 
-        toastr.error("Successfully Deleted Role Record");
+        toastr.error("Successfully Deleted Position Record");
       },
       error: function (data) {
         console.log(url + '/' + id);
@@ -110,14 +110,13 @@ $(document).ready(function() {
   }); 
 
   $('#btn-add').on('click', function(event) {
-    $('#title').text('Add New Role');
-    $('#role-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
-    $('#formRole').trigger("reset");
+    $('#title').text('Add New Position');
+    $('#position-modal-header').addClass('modal-header-success').removeClass('modal-header-info');
+    $('#formPosition').trigger("reset");
     $('#btn-save').text('Submit');
     $('#btn-save').val("add");
     $('.modal-btn').addClass('btn-success').removeClass('btn-info');
-    $('#add_role').modal('show');
-
+    $('#add_position').modal('show');
   }); 
 
   $("#btn-save").on('click', function (e) {
@@ -129,13 +128,7 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(e);
 
-    // var formData = {
-    //   _token: $('input[name=_token]').val(),
-    //   strProdCategName: $('#strProdCategName').val(),
-    //   txtProdCategDesc: $('#txtProdCategDesc').val()
-    // };
-
-    var formData = $("#formRole").serialize();
+    var formData = $("#formPosition").serialize();
     var state = $('#btn-save').val();
     var type = "POST";
     var my_url = url;
@@ -162,7 +155,7 @@ $(document).ready(function() {
       "hideMethod": "slideUp"
     }
 
-    toastr.info("Successfully Updated Role Record");
+    toastr.info("Successfully Updated Position Record");
   }
 
   $.ajax({
@@ -173,13 +166,13 @@ $(document).ready(function() {
   }).done(function(data) {
       console.log(data);
 
-      var row = $("<tr id=id" + data.intRoleID +  "></tr>")
+      var row = $("<tr id=id" + data.int_position_id +  "></tr>")
       .append(
-          "<td>" + data.strRoleName + "</td>" +
-          "<td>" + data.txtRoleDesc + "</td>" +
+          "<td>" + data.str_position_name + "</td>" +
+          "<td>" + data.txt_position_desc + "</td>" +
           "<td class='text-center'>" +
-          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.intRoleID+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
-          "<button class='btn btn-danger btn-sm btn-delete' value="+data.intRoleID+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
+          "<button class='btn btn-info btn-sm btn-detail open-modal' value="+data.int_position_id+"><i class='fa fa-edit'></i>&nbsp; Edit</button> " +
+          "<button class='btn btn-danger btn-sm btn-delete' value="+data.int_position_id+"><i class='fa fa-trash-o'></i>&nbsp; Delete</button>" +
           "</td>"
       );
 
@@ -205,16 +198,16 @@ $(document).ready(function() {
             "hideMethod": "slideUp"
           }
 
-          toastr.success("Successfully Added a New Role Record");
+          toastr.success("Successfully Added a New Position Record");
       } 
       else { 
-          table.row($("#id"+data.intRoleID)).remove();
+          table.row($("#id"+data.int_position_id)).remove();
           table.row.add(row).draw();
       }
       // $("[data-toggle='toggle']").bootstrapToggle('destroy');
       // $("[data-toggle='toggle']").bootstrapToggle();
-      $('#formRole').trigger("reset");
-      $('#add_role').modal('hide')
+      $('#formPosition').trigger("reset");
+      $('#add_position').modal('hide')
 
   }).fail(function(data) {
       console.log('Error:', data);
