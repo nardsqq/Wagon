@@ -13,4 +13,11 @@
     <link rel="stylesheet" href="{{ asset('/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/toastr-master/build/toastr.min.css') }}">
 
+    <style>
+        label[required]::after {
+            content: ' *';
+            color: #d32f2f;
+            font-size: large;
+        }
+    </style>
     @yield('styles')

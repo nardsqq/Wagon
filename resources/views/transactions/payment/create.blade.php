@@ -37,8 +37,8 @@
                         <div class="panel-body">
                                 {{ Form::open(['id'=>'payment-form', 'class'=>'form-horizontal', 'route'=>'payment.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
                                 <div class="row">                
-                                    <div class="col-xs-12 m-t-10">
-                                        <div :class="'form-group '+ (false == invoice_exists?'has-error':'')">
+                                    <div :class="'form-group '+ (false == invoice_exists?'has-error':'')">
+                                        <div class="col-md-12">
                                             {!! Form::label('invoice_no', 'Order #') !!}
                                             <div class="input-group">
                                                 <input type="text" id="invoice_no" name="invoice_no" class="form-control" v-model="invoice_no" placeholder="Enter Order #">

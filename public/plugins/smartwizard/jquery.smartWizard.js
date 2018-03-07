@@ -604,7 +604,7 @@
                     $.data(this, "smartWizard", new SmartWizard(this, options));
                 }
             });
-        } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
+        } else if (typeof options === 'string' /*&& options[0] !== '_'*/ && options !== 'init') {
             instance = $.data(this[0], 'smartWizard');
 
             if (options === 'destroy') {

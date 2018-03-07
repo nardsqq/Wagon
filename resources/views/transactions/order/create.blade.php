@@ -36,6 +36,7 @@
                     {{ Form::open(['id'=>'process-order-form', 'class'=>'form-horizontal', 'route'=>'process-order.store', 'method'=>'POST']) }}
                         <div id="smartwizard" class="panel">
                             <ul class="">
+                                <li><a href="#step-0">Client Information</a></li>
                                 <li><a href="#step-1">Order Details</a></li>
                                 <li v-if="order_type == 0"><a href="#step-2">Product Order</a></li>
                                 <li v-else><a href="#step-3">Service Order</a></li>
@@ -44,6 +45,13 @@
                             </ul>
 
                             <div class="panel-body">
+                                <div id="step-0" class="">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @include('transactions.order.form.client-details')
+                                        </div>
+                                    </div>
+                                </div>
                                 <div id="step-1" class="">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -94,6 +102,6 @@
 
 @section('scripts')
     <script src="{{ asset('/js/app.js/') }}"></script>
-    <script src="{{ asset('/plugins/smartwizard/jquery.smartWizard.min.js/') }}"></script>
+    <script src="{{ asset('/plugins/smartwizard/jquery.smartWizard.js/') }}"></script>
     <script src="{{ asset('/js/ajax/transactions/order-ajax.js/') }}"></script>
 @endsection

@@ -1,3 +1,5 @@
+var wizard;
+
 $(document).ready(function() {
     $.ajaxSetup({
       headers: {
@@ -53,7 +55,7 @@ $(document).ready(function() {
         });  
 
         
-    $('#smartwizard').smartWizard({
+    wizard = $('#smartwizard').smartWizard({
         selected: 0, 
         theme: 'default',
         transitionEffect:'fade',
@@ -122,6 +124,7 @@ var app = new Vue({
             order_num: [],
             contact_no: '',
             acqui_types: [],
+            existing_client: 0
         }
     },
     computed: {
@@ -194,11 +197,36 @@ var app = new Vue({
         order_type: function(type){
             this.$nextTick(function() {
                 $('#smartwizard').smartWizard("reset");
+                $('#smartwizard').smartWizard('_showStep', 1);
             });
         },
         selected_services: function(){
             if(_.findIndex(this.selected_services, ['int_service_id', this.current_service.int_service_id]) === -1) 
                 this.current_service = {};
+        },
+        existing_client: function(existing_client){
+            //new client
+            if(existing_client == 1){
+                let client = {
+                    contact:null
+                    ,contact_details:[]
+                    ,created_at:""
+                    ,deleted_at:null
+                    ,int_client_id:0
+                    ,str_client_email:""
+                    ,str_client_landmark:""
+                    ,str_client_mobile_num:""
+                    ,str_client_name:""
+                    ,str_client_person:""
+                    ,str_client_tel_num:""
+                    ,str_client_tin:""
+                    ,txt_client_address:""
+                    ,updated_at:""
+
+                };
+                this.selected_client = {};
+                this.selected_client = client;
+            }
         }
     },
     methods: {
