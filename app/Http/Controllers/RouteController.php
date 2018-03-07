@@ -75,4 +75,8 @@ class RouteController extends Controller
     {
       return view('queries.variants.index');
     }
+
+    public function setDeliverySchedule() {
+      return view('transactions.delivery.index');
+    }
 }
