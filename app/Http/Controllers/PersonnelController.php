@@ -11,8 +11,9 @@ class PersonnelController extends Controller
     public function table()
     {
         $personnels = Personnel::orderBy('int_personnel_id')->get();
+        $positions = Position::orderBy('str_position_name')->get();
 
-        return view('maintenance.personnel.table')->with('personnels', $personnels);
+        return view('maintenance.personnel.table')->with('personnels', $personnels)->with('positions', $positions);
     }
     
     /**
@@ -23,8 +24,9 @@ class PersonnelController extends Controller
     public function index()
     {
         $personnels = Personnel::orderBy('int_personnel_id')->get();
+        $positions = Position::orderBy('str_position_name')->get();
 
-        return view('maintenance.personnel.index')->with('personnels', $personnels);
+        return view('maintenance.personnel.index')->with('personnels', $personnels)->with('positions', $positions);
     }
 
     /**
@@ -47,10 +49,10 @@ class PersonnelController extends Controller
     {
         if($request->ajax()) {
 
-            // $role = Role::find($request->intPers_Role_ID);
+            $position = Position::find($request->int_pers_position_id_fk);
             $personnel = new Personnel;
 
-            // $personnel->roles()->associate($role);
+            $personnel->positions()->associate($position);
             $personnel->str_personnel_type = $request->str_personnel_type;
             $personnel->str_personnel_f_name = trim(ucwords($request->str_personnel_f_name));
             $personnel->str_personnel_m_name = trim(ucfirst($request->str_personnel_m_name));
@@ -91,7 +93,8 @@ class PersonnelController extends Controller
     public function edit($id)
     {
         $personnel = Personnel::findOrFail($id);
-        return response()->json($personnel);
+        $position = Position::all();
+        return response()->json($personnel, $position);
     }
 
     /**
@@ -105,10 +108,10 @@ class PersonnelController extends Controller
     {
         if($request->ajax()) {
 
-            // $role = Role::find($request->intPers_Role_ID);
+            $position = Position::find($request->int_pers_position_id_fk);
             $personnel = Personnel::findOrFail($id);
 
-            // $personnel->roles()->associate($role);
+            $personnel->positions()->associate($position);
             $personnel->str_personnel_f_name = trim(ucwords($request->str_personnel_f_name));
             $personnel->str_personnel_m_name = trim(ucfirst(($request->str_personnel_m_name)));
             $personnel->str_personnel_l_name = trim(ucfirst($request->str_personnel_l_name));

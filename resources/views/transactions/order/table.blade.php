@@ -25,7 +25,6 @@
       </td>
       <td class="text-center">
           <a  href="{{ route('process-order.show', $order->int_order_id) }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</a>
-          <button  value="{{ $order->int_order_id }}"class="btn btn-details btn-xs btn-primary"><i class="fa fa-reply fa-fw"></i>&nbsp; Refund</button>
           <button  value="{{ $order->int_order_id }}"class="btn btn-cancel-order btn-xs btn-danger"><i class='fa fa-trash-o fa-fw'></i>&nbsp; Cancel</button>
       </td>
     </tr>

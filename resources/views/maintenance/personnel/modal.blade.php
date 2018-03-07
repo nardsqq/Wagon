@@ -14,6 +14,14 @@
             </select>
           </div>
           <div class="form-group">
+            <label>Position</label>
+            <select name="int_pers_position_id_fk" id="int_pers_position_id_fk" class="form-control">
+              @foreach ($positions as $position)
+                <option value="{{$position->int_position_id}}">{{ $position->str_position_name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
             {!! Form::label('str_personnel_f_name', 'First Name') !!}
             {!! Form::text('str_personnel_f_name', null, ['id' => 'str_personnel_f_name', 'class' => 'form-control', 'required' => 'true']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -61,6 +69,14 @@
             <select name="str_personnel_type" id="str_personnel_type" class="form-control">
               <option value="Contractual">Contractual</option>
               <option value="Regular">Regular</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Position</label>
+            <select name="int_pers_position_id_fk" id="int_pers_position_id_fk" class="form-control">
+              @foreach ($positions as $position)
+                <option value="{{$position->int_position_id}}">{{ $position->str_position_name }}</option>
+              @endforeach
             </select>
           </div>
           <div class="form-group">

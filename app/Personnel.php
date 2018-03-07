@@ -12,4 +12,9 @@ class Personnel extends Model
     protected $table = 'tbl_personnel';
     protected $primaryKey = 'int_personnel_id';
     protected $guarded = [];
+
+    public function positions()
+    {
+        return $this->belongsTo('App\Position', 'int_pers_position_id_fk');
+    }
 }
