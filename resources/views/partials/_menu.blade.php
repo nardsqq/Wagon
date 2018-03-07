@@ -118,6 +118,9 @@
                 <li class="{{ Request::is('admin/transactions/payment') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/payment') }}"><i class="fa fa-credit-card fa-fw" aria-hidden="true"></i>&nbsp; Payment</a>
                 </li>
+                <li class="{{ Request::is('admin/transactions/payment') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/refund') }}"><i class="fa fa-ticket fa-fw" aria-hidden="true"></i>&nbsp; Process Refund</a>
+                </li>
               </ul>
             </li>
             <li class="col-sm-4">

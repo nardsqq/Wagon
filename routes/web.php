@@ -121,6 +121,10 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::get('due-payment', 'PaymentController@due');
 
+    // Process Refund
+      Route::resource('refund', 'RefundController');
+
+
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');
 
