@@ -51,8 +51,12 @@ class ProcessOrderController extends Controller
         $products = Product::with('variants.specs.prod_attrib.attribute', 'variants.product')->get();
         $services = Service::with('materials.product.variants.specs.prod_attrib.attribute')->get();
 
+        $current_no = Order::latest()->first() ? Order::latest()->first()->str_order_no:null;
+        $order_num[0] = \Counter::generate($current_no, Order::$prefix, Order::$suffix[0]);
+        $order_num[1] = \Counter::generate($current_no, Order::$prefix, Order::$suffix[1]);
+
         return json_encode(compact(
-            'clients', 'products', 'services', 'terms', 'modes', 'downpayments', 'discounts', 'acqui_types'
+            'clients', 'products', 'services', 'terms', 'modes', 'downpayments', 'discounts', 'acqui_types', 'order_num'
         ));
     }
 

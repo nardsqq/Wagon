@@ -91,6 +91,7 @@ var app = new Vue({
                 self.services = response.data.services;
 
                 self.acqui_types = response.data.acqui_types;
+                self.order_num = response.data.order_num;
                 
                 $('#smartwizard').smartWizard("reset");
             });
@@ -118,7 +119,7 @@ var app = new Vue({
             selected_services: [],
             current_service: {},
             current_material: {},
-            order_num: '',
+            order_num: [],
             contact_no: '',
             acqui_types: [],
         }

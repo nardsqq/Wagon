@@ -11,7 +11,7 @@ class PaymentModeSeeder extends Seeder
      */
     public function run()
     {
-        App\ModeOfPayment::firstOrCreate(['str_mode_pay_name'=>'COD (Cash On Delivery)']);
+        App\ModeOfPayment::firstOrCreate(['str_mode_pay_name'=>'Cash']);
         App\ModeOfPayment::firstOrCreate(['str_mode_pay_name'=>'Cheque']);
     }
 }

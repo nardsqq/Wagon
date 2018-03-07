@@ -26,7 +26,7 @@
 </div>
 
 <div class="col-xs-12 m-t-10">
-    {!! Form::label('term', 'Term') !!} <em>@{{ (total - downpayment) * (selected_term.int_terms_pay_percentage/100) | money }} every @{{ selected_term.int_terms_pay_days }} days </em>
+    {!! Form::label('term', 'Term') !!} <em>@{{ (total - downpayment) * (selected_term.int_terms_pay_percentage/100) | money }} within @{{ selected_term.int_terms_pay_days }} days </em>
     <input type="hidden" name="term" :value="selected_term.int_terms_pay_id">
     <select name="" class="form-control" v-model="selected_term">
         <option v-for="term in terms" :key="term.int_terms_pay_id" :value="term">@{{ term.str_terms_pay_name }} (@{{ term.term }})</option>

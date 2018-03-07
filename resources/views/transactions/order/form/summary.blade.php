@@ -3,7 +3,7 @@
         <div class="col-xs-6">
             <dl>
                 <dt>Purchase Order Number</dt>
-                <dd><h3>@{{ order_num }}</h3></dd>
+                <dd><h3>@{{ order_num[order_type] }}</h3></dd>
             </dl>
             <dl>
                 <dt>Client</dt>
