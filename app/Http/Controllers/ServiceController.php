@@ -175,8 +175,16 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $del = [];
+            $request->has('values') ? $del = $request->values : array_push($del, $id);
+            $service = Service::destroy($del);
+
+            return response()->json($service);
+        } else {
+            return redirect(route('service.index'));
+        }
     }
 }
