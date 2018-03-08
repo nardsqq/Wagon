@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Delivery;
+use App\DeliveryStatus;
 use App\Personnel;
 
 class DeliveryController extends Controller
@@ -91,14 +92,14 @@ class DeliveryController extends Controller
         ]);
     }
 
-    public function complete(Request $request)
+    public function complete($id)
     {
         try {
             // [todo] insert validation rules here
 
             \DB::beginTransaction();
 
-            $delivery = Delivery::findOrFail($request->int_delivery_id);
+            $delivery = Delivery::findOrFail($id);
             DeliveryStatus::create([
                 'int_delstat_delivery_id_fk' => $delivery->int_delivery_id,
                 'str_status' => DeliveryStatus::$status['DELI']
@@ -114,7 +115,7 @@ class DeliveryController extends Controller
                 'alert'     => 'error',
             ]);
         }
-        return response()->json([
+        return redirect()->route('delivery.index')->with([
             'message'   => 'Successfully completed transaction',
             'alert'     => 'success'
         ]);

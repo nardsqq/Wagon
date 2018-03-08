@@ -20,15 +20,15 @@
         <span class="label label-{{ $delivery->current_status->value->class }}"><i class="fa fa-fw {{ $delivery->current_status->value->icon }}" aria-hidden="true"></i>&nbsp; {{ $delivery->current_status->str_status }}</span>
       </td>
       <td class="text-center">
-          <a  href="{{ route('delivery.show', $delivery->int_delivery_id) }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</a>
-          @if(!$delivery->personnel && !$delivery->dat_delivery_date)
+          <a target="_blank" href="{{ route('delivery.receipt', $delivery->int_delivery_id) }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; View Delivery Receipt</a>
+          @if($delivery->current_status->str_status == 'New')
           <button class="btn btn-primary btn-xs btn-detail open-modal" value="{{ $delivery->int_delivery_id }}"
               data-date="{{ $delivery->dat_delivery_date }}"
               data-personnel="{{ $delivery->int_del_personnel_id_fk }}"
             ><i class='fa fa-calendar'></i>&nbsp; Set Delivery Details</button>
-          @else
-          <button class="btn btn-success btn-xs btn-detail open-complete-modal" value="{{ $delivery->int_delivery_id }}"
-            ><i class='fa fa-check'></i>&nbsp; Delivery Completed</button>
+          @elseif($delivery->current_status->str_status == 'On delivery')
+          <a href="{{ route('delivery.complete', $delivery->int_delivery_id) }}"class="btn btn-success btn-xs btn-detail open-complete-modal" value="{{ $delivery->int_delivery_id }}"
+            ><i class='fa fa-check'></i>&nbsp; Delivery Completed</a>
           @endif
       </td>
     </tr>

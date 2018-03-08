@@ -134,8 +134,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('delivery', 'DeliveryController');
     Route::get('delivery-form-data', 'DeliveryController@formData');
     Route::get('delivery-table', 'DeliveryController@table');
-    Route::get('delivery/{id}/receipt', 'DeliveryController@receipt');
-    Route::get('delivery-complete', 'DeliveryController@complete')->name('delivery.complete');
+    Route::get('delivery/{id}/receipt', 'DeliveryController@receipt')->name('delivery.receipt');
+    Route::get('delivery/{id}/complete', 'DeliveryController@complete')->name('delivery.complete');
 
     Route::get('process-deployment', 'RouteController@processDeployment');
     Route::get('process-deployment/create', 'RouteController@processDeploymentCreate');
