@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Deployment</li>
+        <li>Process Deployment</li>
       </ol>
     </div>
   </section>
@@ -47,7 +47,7 @@
                 {{-- <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button> --}}
               </div>
               <div class="panel-title">
-                <h4>Orders and Service Orders</h4>
+                <h4>Process Deployment</h4>
               </div>
             </div>
             <div class="panel-body">

@@ -24,6 +24,7 @@
         <li>Admin</li>
         <li>Transactions</li>
         <li>Process Deployment</li>
+        <li>Set Service Schedule</li>
       </ol>
     </div>
   </section>
@@ -38,12 +39,12 @@
             </div>
             <strong>Set your <i>Mobilization Schedules</i> here.</strong>
             <br>
-            <small>Manage <i><b>Deployments</b></i>.</small>
+            <small>Manage <i><b>Service Schedules</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="panel-title">
-                <h4>Process Deployment</h4>
+                <h4>Set Service Schedule</h4>
               </div>
             </div>
             <div class="panel-body">
