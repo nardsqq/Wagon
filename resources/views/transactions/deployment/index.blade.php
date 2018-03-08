@@ -43,7 +43,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <a href="{{ url('admin/transactions/set-delivery-schedule/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</a>
+                <a href="{{ url('admin/transactions/process-deployment/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</a>
                 {{-- <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button> --}}
               </div>
               <div class="panel-title">
@@ -66,8 +66,5 @@
   </section>
 @endsection
 @section('meta')
-<meta name="_token" content="{!! csrf_token() !!}" />
-@endsection
-@section('scripts')
-  <script src="{{ asset('/js/custom/ajax/delivery-ajax.js/') }}"></script>
+  <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection

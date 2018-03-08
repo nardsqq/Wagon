@@ -133,6 +133,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('set-delivery-schedule', 'RouteController@setDeliverySchedule');
     Route::get('set-delivery-schedule/create', 'RouteController@setDeliveryScheduleCreate');
 
+    Route::get('process-deployment', 'RouteController@processDeployment');
+    Route::get('process-deployment/create', 'RouteController@processDeploymentCreate');
+
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');
     Route::name('quotation-report')->get('quotation-report/{id}', 'PDFController@quote');
