@@ -102,8 +102,14 @@ Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y
             <tr>
                 <td>{{ $item->int_quantity }}</td>
                 <td>pc</td>
-                <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name.' ('.$item->acqui_type.')', 80) }}</td>
-                <td class="text-right">@money($item->variant->price)</td>
+                <td colspan="3">
+                    @if($item->int_acqui_type < 2)
+                    {{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name.' ('.$item->acqui_type.')', 80) }}
+                    @else 
+                    {{ str_limit($item->material->product->str_product_name, 80) }}
+                    @endif
+                </td>
+                <td class="text-right">@money($item->int_acqui_type < 2 ? $item->variant->price : 0)</td>
                 <td class="text-right">@money($item->amount)</td>
             </tr>
             @endforeach
