@@ -21,6 +21,10 @@ class DeliveryController extends Controller
         return view('transactions.delivery.index', compact('deliveries', 'personnels'));
     }
 
+    public function receipt(){
+        return view('transactions.delivery.receipt');
+    }
+
     public function table()
     {
         $deliveries = Delivery::all();
