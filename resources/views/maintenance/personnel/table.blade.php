@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Type</th>
+      <th>Position</th>
       <th>Full Name</th>
       <th>Mobile Number</th>
       <th class="text-center">Actions</th>
@@ -11,6 +12,7 @@
     @foreach ($personnels as $personnel)
       <tr id="id{{ $personnel->int_personnel_id }}">
         <td>{{ $personnel->str_personnel_type }}</td>
+        <td>{{ $personnel->positions->str_position_name }}</td>
         <td>{{ $personnel->str_personnel_l_name }}, {{ $personnel->str_personnel_f_name }} {{ $personnel->str_personnel_m_name }}</td>
         <td>{{ $personnel->str_personnel_mobile_num }}</td>
         <td class="text-center">

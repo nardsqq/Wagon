@@ -93,7 +93,7 @@ class PersonnelController extends Controller
     public function edit($id)
     {
         $personnel = Personnel::findOrFail($id);
-        // $position = Position::all();
+        $position = Position::all();
         //
         return response()->json($personnel);
     }
@@ -113,6 +113,7 @@ class PersonnelController extends Controller
             $personnel = Personnel::findOrFail($id);
 
             $personnel->positions()->associate($position);
+            $personnel->str_personnel_type = $request->str_personnel_type;
             $personnel->str_personnel_f_name = trim(ucwords($request->str_personnel_f_name));
             $personnel->str_personnel_m_name = trim(ucfirst(($request->str_personnel_m_name)));
             $personnel->str_personnel_l_name = trim(ucfirst($request->str_personnel_l_name));

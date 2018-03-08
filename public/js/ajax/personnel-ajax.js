@@ -27,10 +27,12 @@ $(document).ready(function() {
         var formEditPers = $('#formEditPers');
 
         formEditPers.find('#str_personnel_type').val(data.str_personnel_type);
+        formEditPers.find('#int_pers_position_id_fk').val(data.int_pers_position_id_fk);
         formEditPers.find('#str_personnel_f_name').val(data.str_personnel_f_name);
         formEditPers.find('#str_personnel_m_name').val(data.str_personnel_m_name);
         formEditPers.find('#str_personnel_l_name').val(data.str_personnel_l_name);
         formEditPers.find('#str_personnel_mobile_num').val(data.str_personnel_mobile_num);
+        formEditPers.find('#txt_personnel_address').val(data.txt_personnel_address);
 
         $('#edit_pers').modal('show');
       }
