@@ -52,7 +52,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('transactions.payment.create');
+        $orders = Order::pluck('str_purc_order_num', 'str_purc_order_num')->toArray();
+        return view('transactions.payment.create', compact('orders'));
     }
 
     /**
@@ -165,7 +166,17 @@ class PaymentController extends Controller
 
     public function receipt($id)
     {
+        $types = ['(Client\'s Copy)', '(Seller\'s Copy)'];
         $payment = Payment::findOrFail($id);
-        return view('transactions.payment.receipt', compact('payment'));
+
+        $order = $payment->invoice->order;
+        $invoice = $order->invoice()->with('order')->first();
+        $client = $order->client;
+
+        $amount_due = $order->invoice->dbl_total_amount;
+        $amount_paid = $order->invoice->payments()->sum('dbl_amount');
+        $balance_due = $amount_due - $amount_paid;
+        
+        return view('transactions.payment.receipt', compact('payment', 'order', 'invoice', 'client', 'amount_due', 'amount_paid', 'balance_due', 'types'));
     }
 }
