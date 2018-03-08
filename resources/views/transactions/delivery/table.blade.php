@@ -22,10 +22,13 @@
       <td class="text-center">
           <a  href="{{ route('delivery.show', $delivery->int_delivery_id) }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</a>
           @if(!$delivery->personnel && !$delivery->dat_delivery_date)
-          <button class="btn btn-primary btn-sm btn-detail open-modal" value="{{ $delivery->int_delivery_id }}"
+          <button class="btn btn-primary btn-xs btn-detail open-modal" value="{{ $delivery->int_delivery_id }}"
               data-date="{{ $delivery->dat_delivery_date }}"
               data-personnel="{{ $delivery->int_del_personnel_id_fk }}"
             ><i class='fa fa-calendar'></i>&nbsp; Set Delivery Details</button>
+          @else
+          <button class="btn btn-success btn-xs btn-detail open-complete-modal" value="{{ $delivery->int_delivery_id }}"
+            ><i class='fa fa-check'></i>&nbsp; Delivery Completed</button>
           @endif
       </td>
     </tr>

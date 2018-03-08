@@ -60,10 +60,18 @@ class AppServiceProvider extends ServiceProvider
         });
         //delivery on progress
         Delivery::saved(function ($delivery){
+            OrderStatus::firstOrCreate([
+                'str_status' => OrderStatus::$status['PROC'],
+                'int_orstat_order_id_fk' => $invoice->order->int_order_id
+            ]);
             if($delivery->int_del_personnel_id_fk && $delivery->dat_delivery_date){
-                DeliveryStatus::create([
+                DeliveryStatus::firstOrCreate([
                     'int_delstat_delivery_id_fk' => $delivery->int_delivery_id,
                     'str_status' => DeliveryStatus::$status['CONF']
+                ]);
+                OrderStatus::firstOrCreate([
+                    'str_status' => OrderStatus::$status['BILL'],
+                    'int_orstat_order_id_fk' => $invoice->order->int_order_id
                 ]);
             }
         });
@@ -71,11 +79,7 @@ class AppServiceProvider extends ServiceProvider
         
         // create invoice status on creation of an invoice
         Invoice::created(function ($invoice) {
-            OrderStatus::create([
-                'str_status' => OrderStatus::$status['BILL'],
-                'int_orstat_order_id_fk' => $invoice->order->int_order_id
-            ]);
-            InvoiceStatus::create([
+            InvoiceStatus::firstOrCreate([
                 'str_status' => InvoiceStatus::$status['NEW'],
                 'int_instat_invoice_id_fk' => $invoice->int_invoice_id
             ]);

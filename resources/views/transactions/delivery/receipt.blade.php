@@ -42,14 +42,14 @@
     <h3 class="text-center">MARINE SALES AND SERVICES MANAGEMENT SYSTEM</h3>
     <center>DELIVERY RECEIPT</center>
     <br>
-SOLD TO: (CLIENT)  
-Date:    (DATE DELIVERED) 
-    <br>
-    ADDRESS: (DELIVERY ADDRESS) 
-    Terms: (TERMS)
-    <br>
-    TIN: (CLIENT TIN)  
-    PO#: (Order #) 
+    SOLD TO: {!! \ViewHelper::center_underline($order->client->str_client_name, 45) !!}  
+    Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y'), 8) !!} 
+        <br>
+        ADDRESS: {!! \ViewHelper::center_underline($order->client->txt_client_address, 55) !!}  
+        <br>
+        TIN: {!! \ViewHelper::center_underline($order->client->str_client_tin, 17) !!}  
+        PO# {!! \ViewHelper::center_underline($order->str_purc_order_num, 17) !!}  
+        Terms: {!! \ViewHelper::center_underline($order->footer->term->term, 17) !!}  
     <br>
     <br>
     <br>
@@ -58,20 +58,22 @@ Date:    (DATE DELIVERED)
             <tr>
                 <th style="width: 40px">QTY</th>
                 <th style="width: 50px">UNIT</th>
-                <th colspan="3" style="width: 500px;"> ITEM DESCRIPTION</th>
+                <th colspan="3" style="width: 500px;">ITEM DESCRIPTION</th>
             </tr>
         </thead>
         <tbody>
-            
+            @php $rowCount = 14; $counter = 0; $total = 0; $material_total = 0; $service_total = 0; @endphp
+            @foreach($order->item_orders as $item)
+            @php $total += ($item->variant->price * $item->int_quantity); @endphp
             <tr>
-                <td>(QUANTITY)</td>
+                <td>{{ $item->int_quantity }}</td>
                 <td>pc</td>
-                <td colspan="3">(VARIANT)</td>
+                <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
             </tr>
-           
+            @endforeach
         </tbody>
-        
     </table>
+    <br>
     <div style="float:right;">
         Received the above items in good order and condition.
     </div>

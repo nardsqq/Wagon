@@ -21,8 +21,11 @@ class DeliveryController extends Controller
         return view('transactions.delivery.index', compact('deliveries', 'personnels'));
     }
 
-    public function receipt(){
-        return view('transactions.delivery.receipt');
+    public function receipt($id){
+        $delivery = Delivery::findOrFail($id);
+        $order = $delivery->order;
+
+        return view('transactions.delivery.receipt', compact('delivery', 'order'));
     }
 
     public function table()
@@ -71,6 +74,35 @@ class DeliveryController extends Controller
             $delivery->int_del_personnel_id_fk = $request->int_personnel_id;
             $delivery->dat_delivery_date = $request->dat_delivery_date;
             $delivery->save();
+
+            \DB::commit();
+        } 
+        catch(Exception $e){
+            \DB::rollback();
+
+            return response()->json([
+                'message'   => $e,
+                'alert'     => 'error',
+            ]);
+        }
+        return response()->json([
+            'message'   => 'Successfully completed transaction',
+            'alert'     => 'success'
+        ]);
+    }
+
+    public function complete(Request $request)
+    {
+        try {
+            // [todo] insert validation rules here
+
+            \DB::beginTransaction();
+
+            $delivery = Delivery::findOrFail($request->int_delivery_id);
+            DeliveryStatus::create([
+                'int_delstat_delivery_id_fk' => $delivery->int_delivery_id,
+                'str_status' => DeliveryStatus::$status['DELI']
+            ]);
 
             \DB::commit();
         } 

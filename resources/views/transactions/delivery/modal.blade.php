@@ -32,3 +32,30 @@
     </div>
   </div>
 </div>
+
+{{--  <div class="modal fade" id="complete-modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        {!! Form::open(array ('autocomplete'=>'off', 'id'=>'complete_delivery_form', 'class'=>'form-horizontal', 'route'=>'delivery.complete') ) !!}
+        <div class="modal-header modal-header-success" id="mode-modal-header">
+          <h4 id="title">Delivery Completion</h4>
+        </div>
+        <div class="modal-body">
+          <div class="col-xs-12">
+            {!!Form::hidden('int_delivery_id', null, array('id' => 'int_delivery_id')); !!}
+            <div class="form-group">
+              {!! Form::label('received_by', 'Received By') !!}
+              {{Form::text('received_by', null, ['class'=>'form-control'])}}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="modal-btn btn btn-success pull-right">Submit</button>
+          <input type="hidden" id="link_id" name="link_id" value="0">
+        </div>
+        
+        {{ Form::close() }}
+      </div>
+    </div>
+  </div>  --}}
