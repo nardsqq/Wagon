@@ -24,10 +24,13 @@
         <li>Admin</li>
         <li>Transactions</li>
         <li>Process Deployment</li>
+        <li>Set Service Schedule</li>
       </ol>
     </div>
   </section>
   
+  @include('transactions.deployment.modal')
+
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">
@@ -43,8 +46,8 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <a href="{{ url('admin/transactions/process-deployment/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Process Deployment</a>
-                {{-- <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button> --}}
+                {{-- <a id="btn-deploy" class="btn btn-success"><i class="fa fa-calendar"></i>&nbsp; Set Service Schedule</a> --}}
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button>
               </div>
               <div class="panel-title">
                 <h4>Process Deployment</h4>
@@ -67,4 +70,19 @@
 @endsection
 @section('meta')
   <meta name="_token" content="{!! csrf_token() !!}" />
+@endsection
+@section('scripts')
+  <script>
+    $(document).ready(function() {
+      $('#testzxc').select2();
+    });
+
+    $('#btn-add').on('click', function() {
+      $('#deploy-modal').modal('show');
+    });
+
+    $('#btn-deploy-submit').on('click', function() {
+      $('#deploy-modal').modal('hide');
+    });
+  </script>
 @endsection

@@ -2,28 +2,38 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-success" id="mode-modal-header">
-        <h4 id="title">Set Delivery Details</h4>
+        <h4 id="title">Set Delivery Schedule</h4>
       </div>
       <div class="modal-body">
-        <form style="margin: 120px;">
+        <div class="form-group">
+          {!! Form::label('order_no', 'Order #') !!}
+          <div class="form-group">
+            <select name="testzxc" id="testzxc">
+              <option>ORDERNUMBER001</option>
+              <option>ORDERNUMBER002</option>
+            </select>
+          </div>
+        </div>
+        <hr>
+        <form>
+          <div class="form-group">
+            {!! Form::label('order_no', 'Service Order') !!}
             <div class="form-group">
-              {!! Form::label('order_no', 'Service Order') !!}
-              <div class="form-group">
-                <select name="testzxc" id="testzxc" class="form-control">
-                  <option>SO-0004-01</option>
-                  <option>SO-0004-02</option>
-                </select>
-              </div>
+              <select name="testzxc" id="testzxc" class="form-control">
+                <option>SO-0004-01</option>
+                <option>SO-0004-02</option>
+              </select>
             </div>
-            <div class="form-group">
-              <label>Mobilization</label>
-              <input type="date" name="mobi" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>De-Mobilization</label>
-              <input type="date" name="demobi" class="form-control">
-            </div>
-          </form>
+          </div>
+          <div class="form-group">
+            <label>Mobilization</label>
+            <input type="date" name="mobi" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>De-Mobilization</label>
+            <input type="date" name="demobi" class="form-control">
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>

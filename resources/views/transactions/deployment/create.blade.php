@@ -50,14 +50,12 @@
             <div class="panel-body">
               <div id="table-container">
                 <div class="row">
-                  <div class="form-group" style="margin: 20px;">
+                  <div class="form-group" style="margin: 20px;" id="testzxc">
                       {!! Form::label('order_no', 'Order #') !!}
-                      <div class="form-group">
-                        <select name="testzxc" id="testzxc">
-                          <option>ORDERNUMBER001</option>
-                          <option>ORDERNUMBER002</option>
-                        </select>
-                      </div>
+                      <select name="testzxc" id="testzxc">
+                        <option>ORDERNUMBER001</option>
+                        <option>ORDERNUMBER002</option>
+                      </select>
                   </div>
                 </div>
                 <hr>
@@ -110,7 +108,7 @@
   </section>
 @endsection
 @section('scripts')
-  <script>
+  {{-- <script>
     $(document).ready(function() {
       $('#testzxc').select2();
     });
@@ -123,5 +121,5 @@
     $('#btn-deploy').on('click', function() {
       $('#deploy-modal').modal('hide');
     });
-  </script>
+  </script> --}}
 @endsection
