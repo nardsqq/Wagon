@@ -195,6 +195,8 @@ var app = new Vue({
             console.log(product.int_product_id);
         },
         order_type: function(type){
+            if(type == 1)
+                this.delivery_type = 0;
             this.$nextTick(function() {
                 $('#smartwizard').smartWizard("reset");
                 $('#smartwizard').smartWizard('_showStep', 1);

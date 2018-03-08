@@ -68,7 +68,7 @@ class Order extends Model
     }
 
     public function getCurrentStatusAttribute(){
-        return $this->status()->latest()->first();
+        return $this->status()->orderBy('int_order_status_id', 'desc')->first();
     }
 
     public function getTypeAttribute(){

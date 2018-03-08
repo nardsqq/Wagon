@@ -157,14 +157,14 @@ class ProcessOrderController extends Controller
             //footer
             $footer                             = new OrderFooter();
             $footer->int_of_order_id_fk         = $order->int_order_id;
-            $footer->str_delivery_type          = $request->delivery_type;
+            $footer->str_delivery_type          = $request->delivery_type?:0;
             $footer->int_of_terms_pay_id_fk     = $request->term;
             $footer->int_of_mode_pay_id_fk      = $request->mode;
             $footer->int_of_discount_id_fk      = $request->discount;
             $footer->int_of_downpayment_id_fk   = $request->downpayment;
             $footer->save();
 
-            
+
             // product
             if($request->order_type == 0)
             {
