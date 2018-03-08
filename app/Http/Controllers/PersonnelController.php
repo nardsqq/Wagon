@@ -93,7 +93,7 @@ class PersonnelController extends Controller
     public function edit($id)
     {
         $personnel = Personnel::findOrFail($id);
-        // $position = Position::all();
+        $position = Position::all();
         //
         return response()->json($personnel);
     }
