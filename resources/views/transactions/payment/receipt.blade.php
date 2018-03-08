@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Payment Receipt | (Order Number)</title>
+    <title>Payment Receipt | {{ $payment->invoice->order->str_purc_order_num }}</title>
 </head>
 <body>
     <style>
@@ -34,44 +34,51 @@
     
     <script>
             window.onload = function(){
-                window.focus();
-                window.print();
-                window.close();
+                // window.focus();
+                // window.print();
+                // window.close();
             }
         </script>
 </head>
 <body>
+    @foreach($types as $type)
     <h3 class="text-center">MARINE SALES AND SERVICES MANAGEMENT SYSTEM</h3>
     <center>PAYMENT RECEIPT</center>
-    <center>(Client's Copy)</center>
+    <center>{{ $type }}</center>
     <br>
     <br>
     <div style="float:right;">
-        Receipt #: (PR-(int_payment_id))
+        Receipt #: PR-{{$payment->int_payment_id}}
     </div>
-        Date: (date received)  
+        Date: {{$payment->dat_date_received->format('F d, Y')}}
     <br>
     <br>
     <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Payment received from (Client name) with the amount of (Amount received) for (Order #).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Payment received from <strong>{{$client->str_client_name}}</strong> with the amount of <strong>@money($payment->dbl_amount)</strong> for  <strong>{{ $order->str_purc_order_num }}</strong>.
     <br>
     <br>
     <br>
     <div style="float:right;">
+        @if($order->footer->mode->str_mode_pay_name == 'Cash')
         (X)Cash
     <br>
         (  )Cheque
+        @else
+        (X)Cash
+    <br>
+        (  )Cheque
+        @endif
     </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Amount Due: (Total ng babayaran)
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Amount Due: @money($amount_due)
     <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount Paid: (Total ng nabayad na)
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount Paid: @money($amount_paid)
     <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance Due: (Total ng babayaran pa)
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance Due: @money($balance_due)
     <br>
     <br>
     <br>
     <div style="float:right;">
-        Received by: (Personnel name)
+        Received by: _____________________
     </div>
 
 
@@ -80,7 +87,8 @@
     <br>
     <br>
     <br>
-    <h3 class="text-center">MARINE SALES AND SERVICES MANAGEMENT SYSTEM</h3>
+    @endforeach
+    {{--  <h3 class="text-center">MARINE SALES AND SERVICES MANAGEMENT SYSTEM</h3>
     <center>PAYMENT RECEIPT</center>
     <center>(Seller's Copy)</center>
     <br>
@@ -111,7 +119,7 @@
     <br>
     <div style="float:right;">
         Received by: (Personnel name)
-    </div>
+    </div>  --}}
 
 </body>
 </html>
