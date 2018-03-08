@@ -67,6 +67,11 @@ class Order extends Model
         return $this->hasOne('App\Invoice', 'int_invoice_order_id_fk');
     }
 
+    public function delivery() 
+    {
+      return $this->hasOne('App\Delivery', 'int_del_order_id_fk');
+    }
+
     public function getCurrentStatusAttribute(){
         return $this->status()->orderBy('int_order_status_id', 'desc')->first();
     }

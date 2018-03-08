@@ -27,6 +27,8 @@
       </ol>
     </div>
   </section>
+
+  @include('transactions.delivery.modal')
   
   <section id="main">
     <div class="container animated fadeIn">
@@ -43,7 +45,7 @@
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <a href="{{ url('admin/transactions/set-delivery-schedule/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</a>
+                {{--  <a href="{{ route('delivery.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</a>  --}}
                 {{-- <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button> --}}
               </div>
               <div class="panel-title">
@@ -69,5 +71,5 @@
 <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-  <script src="{{ asset('/js/custom/ajax/delivery-ajax.js/') }}"></script>
+  <script src="{{ asset('/js/ajax/transactions/delivery-ajax.js/') }}"></script>
 @endsection

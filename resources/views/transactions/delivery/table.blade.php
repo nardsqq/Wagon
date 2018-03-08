@@ -3,20 +3,27 @@
     <tr>
       <th>Order Reference</th>
       <th>Delivery Schedule</th>
-      <th class="text-center">Location</th>
       <th class="text-center">Personnel-in-Charge</th>
+      <th class="text-center">Location</th>
       <th class="text-center">Status</th>
+      <th class="text-center">Action</th>
     </tr>
   </thead>
   <tbody>
-    @foreach($orders as $order)
+    @foreach($deliveries as $delivery)
     <tr>
-      <td>{{ $order->str_purc_order_num }}</td>
-      <td>03-04-2018</td>
-      <td class="text-center">Manila, NCR</td>
-      <td class="text-center">Tyron delos Reyes</td>
+      <td>{{ $delivery->order->str_purc_order_num }}</td>
+      <td>{{ $delivery->dat_delivery_date or 'Not Set' }}</td>
+      <td class="text-center">{{ $delivery->personnel->name or 'Not Set' }}</td>
+      <td class="text-center">{{ $delivery->order->txt_deli_address }}</td>
       <td class="text-center">
-        <span class="label label-{{ $order->delivery->current_status->value->class }}"><i class="fa fa-fw {{ $order->delivery->current_status->value->icon }}" aria-hidden="true"></i>&nbsp; {{ $order->delivery->current_status->str_status }}</span>
+        <span class="label label-{{ $delivery->current_status->value->class }}"><i class="fa fa-fw {{ $delivery->current_status->value->icon }}" aria-hidden="true"></i>&nbsp; {{ $delivery->current_status->str_status }}</span>
+      </td>
+      <td class="text-center">
+          <a  href="{{ route('delivery.show', $delivery->int_delivery_id) }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</a>
+          @if(!$delivery->personnel && !$delivery->dat_delivery_date)
+          <button class="btn btn-primary btn-sm btn-detail open-modal" value="{{ $delivery->int_delivery_id }}"><i class='fa fa-calendar'></i>&nbsp; Set Delivery Details</button>
+          @endif
       </td>
     </tr>
     @endforeach

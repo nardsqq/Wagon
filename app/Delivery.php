@@ -26,6 +26,6 @@ class Delivery extends Model
     }
 
     public function getCurrentStatusAttribute(){
-        return $this->status()->latest()->first();
+        return $this->status()->orderBy('int_delivery_status_id', 'desc')->first();
     }
 }

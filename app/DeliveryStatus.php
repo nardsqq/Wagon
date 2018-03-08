@@ -24,10 +24,10 @@ class DeliveryStatus extends Model
   
     public function getValueAttribute(){
       switch($this->str_status){
-        case OrderStatus::$status['NEW']  : return (object)['class' => 'info', 'icon' => 'fa-circle-o']; break;
-        case OrderStatus::$status['CONF'] : return (object)['class' => 'warning', 'icon' => 'fa-circle-o-notch fa-spin']; break;
-        case OrderStatus::$status['DELI'] : return (object)['class' => 'success', 'icon' => 'fa-check']; break;
-        case OrderStatus::$status['CANC'] : return (object)['class' => 'danger', 'icon' => 'fa-circle-o']; break;
+        case static::$status['NEW']  : return (object)['class' => 'info', 'icon' => 'fa-circle-o']; break;
+        case static::$status['CONF'] : return (object)['class' => 'warning', 'icon' => 'fa-circle-o-notch fa-spin']; break;
+        case static::$status['DELI'] : return (object)['class' => 'success', 'icon' => 'fa-check']; break;
+        case static::$status['CANC'] : return (object)['class' => 'danger', 'icon' => 'fa-circle-o']; break;
       }
     }
 

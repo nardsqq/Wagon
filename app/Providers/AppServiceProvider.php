@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Blade;
 use App\Invoice;
 use App\InvoiceStatus;
 use App\Payment;
+use App\ItemOrder;
 use App\Order;
 use App\OrderStatus;
 use App\OrderFooter;
@@ -41,8 +42,35 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        ItemOrder::created(function ($item_order){
+            // delivery for items
+            if($item_order->order->footer->str_delivery_type == 0){
+                Delivery::firstOrCreate([
+                    'int_del_order_id_fk' => $item_order->order->int_order_id
+                ]);
+            }
+        });
+
+        // delivery 
+        Delivery::created(function ($delivery){
+            DeliveryStatus::create([
+                'int_delstat_delivery_id_fk' => $delivery->int_delivery_id,
+                'str_status' => DeliveryStatus::$status['NEW']
+            ]);
+        });
+        //delivery on progress
+        Delivery::saved(function ($delivery){
+            if($delivery->int_del_personnel_id_fk && $delivery->dat_delivery_date){
+                DeliveryStatus::create([
+                    'int_delstat_delivery_id_fk' => $delivery->int_delivery_id,
+                    'str_status' => DeliveryStatus::$status['CONF']
+                ]);
+            }
+        });
+
+        
         // create invoice status on creation of an invoice
-        Invoice::saved(function ($invoice) {
+        Invoice::created(function ($invoice) {
             OrderStatus::create([
                 'str_status' => OrderStatus::$status['BILL'],
                 'int_orstat_order_id_fk' => $invoice->order->int_order_id

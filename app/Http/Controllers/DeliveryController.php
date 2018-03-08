@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Delivery;
+use App\Personnel;
 
 class DeliveryController extends Controller
 {
@@ -15,23 +16,21 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $orders = Order::whereHas('item_orders')->get();
-        return view('transactions.delivery.index', compact('orders'));
+        $deliveries = Delivery::all();
+        $personnels = Personnel::all();
+        return view('transactions.delivery.index', compact('deliveries', 'personnels'));
+    }
+
+    public function table()
+    {
+        $deliveries = Delivery::all();
+        return view('transactions.delivery.table', compact('deliveries'));
     }
 
     public function formData()
     {
-        // $terms = PaymentTerm::all();
-        // $modes = ModeOfPayment::all();
-        // $downpayments = Downpayment::all();
-        // $discounts = Discount::all();
-
-        // $acqui_types = Material::$acqui_types;
-
-        // $clients = Client::all();
-        // $products = Product::with('variants.specs.prod_attrib.attribute', 'variants.product')->get();
-        // $services = Service::with('materials.product.variants.specs.prod_attrib.attribute')->get();
-
+        $orders = Order::whereHas('item_orders')->get();
+       dd($orders);
         // $current_no = Order::latest()->first() ? Order::latest()->first()->str_order_no:null;
         // $order_num[0] = \Counter::generate($current_no, Order::$prefix, Order::$suffix[0]);
         // $order_num[1] = \Counter::generate($current_no, Order::$prefix, Order::$suffix[1]);
@@ -59,7 +58,30 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            // [todo] insert validation rules here
+
+            \DB::beginTransaction();
+
+            $delivery = Delivery::findOrFail($request->int_delivery_id);
+            $delivery->int_del_personnel_id_fk = $request->int_personnel_id;
+            $delivery->dat_delivery_date = $request->dat_delivery_date;
+            $delivery->save();
+
+            \DB::commit();
+        } 
+        catch(Exception $e){
+            \DB::rollback();
+
+            return response()->json([
+                'message'   => $e,
+                'alert'     => 'error',
+            ]);
+        }
+        return response()->json([
+            'message'   => 'Successfully completed transaction',
+            'alert'     => 'success'
+        ]);
     }
 
     /**
