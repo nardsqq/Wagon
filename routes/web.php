@@ -123,6 +123,8 @@ Route::group(['prefix' => 'admin'], function() {
 
     // Process Refund
       Route::resource('refund', 'RefundController');
+      Route::get('refund-payments-data', 'RefundController@getPaymentData');
+      Route::get('refund-{id}', 'RefundController@getInvoice');
 
 
     // Purchase Order

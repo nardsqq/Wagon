@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
 use Illuminate\Http\Request;
 use App\Invoice;
 use DB;
@@ -145,5 +146,27 @@ class RefundController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPaymentData()
+    {
+        $payments = Payment::all();
+
+        return json_encode(compact('payments'));
+    }
+
+    public function getInvoice($id)
+    {
+        try {
+            $invoice = Invoice::find($id)->with('order.item_orders.variant.prices')->first();
+            $refund = Refund::where('int_refund_invoice_id_fk', $id)->first();
+
+//            dd($refund->int_refund_id);
+            $alert = 'success';
+        }
+        catch(Exception $e){
+            $alert = 'error';
+        }
+        return json_encode(compact('invoice', 'alert', 'refund'));
     }
 }
