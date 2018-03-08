@@ -23,12 +23,10 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Set Delivery Schedule</li>
+        <li>Process Deployment</li>
       </ol>
     </div>
   </section>
-
-  @include('transactions.delivery.modal')
   
   <section id="main">
     <div class="container animated fadeIn">
@@ -38,9 +36,9 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Set your <i>Delivery Schedules</i> here.</strong>
+            <strong>Set your <i>Mobilization Schedules</i> here.</strong>
             <br>
-            <small>Add and manage <i><b>Delivery Schedule Records</b></i>.</small>
+            <small>Manage <i><b>Deployments</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
@@ -62,14 +60,32 @@
                   </div>
                 </div>
                 <hr>
-                <div id="row-rows" style="visibility: hidden;">
+                <div id="deployment-table">
+                  <table id="dataTable" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Order</th>
+                        <th class="text-center">Date of Mobilization</th>
+                        <th class="text-center">Date of De-Mobilization</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>ORDERSAMPLENUMBER001</td>
+                        <td class="text-center">03-09-2018</td>
+                        <td class="text-center">03-10-2018</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="deployment-form" style="visibility: hidden;">
                   <form style="margin: 120px;">
                     <div class="form-group">
                       {!! Form::label('order_no', 'Service Order') !!}
                       <div class="form-group">
                         <select name="testzxc" id="testzxc" class="form-control">
-                          <option>Amiel</option>
-                          <option>Nards</option>
+                          <option>SO-0004-01</option>
+                          <option>SO-0004-02</option>
                         </select>
                       </div>
                     </div>
@@ -99,15 +115,12 @@
     });
 
     $( "#testzxc" ).change( function() {
-      $('#row-rows').removeAttr('style');
+      $("#deployment-table").css("visibility", "hidden");
+      $('#deployment-form').removeAttr('style');
     });
 
-    $('.open-modal').on('click', function() {
-      $('#set-modal').modal('show');
-    });
-
-    $('#btn-set').on('click', function() {
-      $('#set-modal').modal('hide');
+    $('#btn-deploy').on('click', function() {
+      $('#deploy-modal').modal('hide');
     });
   </script>
 @endsection

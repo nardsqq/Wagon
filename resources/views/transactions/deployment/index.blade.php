@@ -23,7 +23,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Delivery</li>
+        <li>Deployment</li>
       </ol>
     </div>
   </section>
@@ -36,18 +36,18 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Set your <i>Delivery Schedules</i> here.</strong>
+            <strong>Set your <i>Deployment Mobilization schedule</i> here.</strong>
             <br>
-            <small>Add and manage <i><b>Delivery Schedule Records</b></i>.</small>
+            <small>Process <i><b>Deployment</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <a href="{{ url('admin/transactions/process-deployment/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</a>
+                <a href="{{ url('admin/transactions/process-deployment/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Process Deployment</a>
                 {{-- <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button> --}}
               </div>
               <div class="panel-title">
-                <h4>Delivery</h4>
+                <h4>Orders and Service Orders</h4>
               </div>
             </div>
             <div class="panel-body">
@@ -55,7 +55,7 @@
                 <div class="row">
                   
                 </div>
-                @include('transactions.delivery.table')
+                @include('transactions.deployment.table')
               </div>
             </div>
           </div>
