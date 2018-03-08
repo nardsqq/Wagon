@@ -30,6 +30,7 @@
   </section>
   
   @include('transactions.deployment.modal')
+  @include('transactions.deployment.assign')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -75,6 +76,10 @@
   <script>
     $(document).ready(function() {
       $('#testzxc').select2();
+    });
+
+    $(document).on('click', '#btn-assign', function(){
+      $('#assign-modal').modal('show');
     });
 
     $('#btn-add').on('click', function() {
