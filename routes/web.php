@@ -151,7 +151,9 @@ Route::group(['prefix' => 'admin'], function() {
 
     // Route::get('official-business', 'RouteController@ob');
     // Route::get('gate-pass', 'RouteController@gp');
-
+    Route::get('receipt', function(){
+      return view('transactions.payment.receipt');
+    });
   });
 
 Route::group(['prefix' => 'queries'], function() {
