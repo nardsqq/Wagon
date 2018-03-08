@@ -76,11 +76,23 @@ class RouteController extends Controller
       return view('queries.variants.index');
     }
 
-    public function setDeliverySchedule() {
+    public function setDeliverySchedule() 
+    {
       return view('transactions.delivery.index');
     }
 
-    public function setDeliveryScheduleCreate() {
+    public function setDeliveryScheduleCreate() 
+    {
       return view('transactions.delivery.create');
+    }
+
+    public function processDeployment()
+    {
+      return view('transactions.deployment.index');
+    }
+
+    public function processDeploymentCreate()
+    {
+      return view('transactions.deployment.create');
     }
 }

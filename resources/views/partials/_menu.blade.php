@@ -134,8 +134,8 @@
                 <li class="{{ Request::is('admin/transactions/delivery') ? "active" : "" }}">
                   <a href="{{ url('/admin/transactions/delivery') }}"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; Set Delivery Schedule</a>
                 </li>
-                <li class="{{ Request::is('admin/transactions/deployment') ? "active" : "" }}">
-                  <a href="{{ url('/admin/transactions/deployment') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Process Deployment</a>
+                <li class="{{ Request::is('admin/transactions/process-deployment') ? "active" : "" }}">
+                  <a href="{{ url('/admin/transactions/process-deployment') }}"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Process Deployment</a>
                 </li>
               </ul>
             </li>

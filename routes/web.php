@@ -135,6 +135,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('delivery-form-data', 'DeliveryController@formData');
     Route::get('delivery-table', 'DeliveryController@table');
 
+    Route::get('process-deployment', 'RouteController@processDeployment');
+    Route::get('process-deployment/create', 'RouteController@processDeploymentCreate');
+
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');
     Route::name('quotation-report')->get('quotation-report/{id}', 'PDFController@quote');

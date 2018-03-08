@@ -1,16 +1,20 @@
 <table id="dataTable" class="table table-bordered table-hover">
   <thead>
     <tr>
-      <th>Delivery Schedule</th>
-      <th class="text-center">Location</th>
-      <th class="text-center">Personnel-in-Charge</th>
+      <th>Order</th>
+      <th class="text-center">Date of Mobilization</th>
+      <th class="text-center">Date of De-Mobilization</th>
+      <th class="text-center">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>03-04-2018</td>
-      <td class="text-center">Manila, NCR</td>
-      <td class="text-center">Tyron delos Reyes</td>
+      <td>ORDERSAMPLENUMBER001</td>
+      <td class="text-center">03-09-2018</td>
+      <td class="text-center">03-10-2018</td>
+      <td class="text-center">
+        <button id="btn-assign" class="btn btn-primary btn-sm"><i class='fa fa-user-circle-o'></i>&nbsp; Assign Personnel</button>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -23,11 +23,15 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Transactions</li>
-        <li>Delivery</li>
+        <li>Process Deployment</li>
+        <li>Set Service Schedule</li>
       </ol>
     </div>
   </section>
   
+  @include('transactions.deployment.modal')
+  @include('transactions.deployment.assign')
+
   <section id="main">
     <div class="container animated fadeIn">
       <div class="row">
@@ -36,18 +40,18 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Set your <i>Delivery Schedules</i> here.</strong>
+            <strong>Set your <i>Deployment Mobilization schedule</i> here.</strong>
             <br>
-            <small>Add and manage <i><b>Delivery Schedule Records</b></i>.</small>
+            <small>Process <i><b>Deployment</b></i>.</small>
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
-                <a href="{{ url('admin/transactions/set-delivery-schedule/create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</a>
-                {{-- <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button> --}}
+                {{-- <a id="btn-deploy" class="btn btn-success"><i class="fa fa-calendar"></i>&nbsp; Set Service Schedule</a> --}}
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Service Schedule</button>
               </div>
               <div class="panel-title">
-                <h4>Delivery</h4>
+                <h4>Process Deployment</h4>
               </div>
             </div>
             <div class="panel-body">
@@ -55,7 +59,7 @@
                 <div class="row">
                   
                 </div>
-                @include('transactions.delivery.table')
+                @include('transactions.deployment.table')
               </div>
             </div>
           </div>
@@ -66,8 +70,24 @@
   </section>
 @endsection
 @section('meta')
-<meta name="_token" content="{!! csrf_token() !!}" />
+  <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('scripts')
-  <script src="{{ asset('/js/custom/ajax/delivery-ajax.js/') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#testzxc').select2();
+    });
+
+    $(document).on('click', '#btn-assign', function(){
+      $('#assign-modal').modal('show');
+    });
+
+    $('#btn-add').on('click', function() {
+      $('#deploy-modal').modal('show');
+    });
+
+    $('#btn-deploy-submit').on('click', function() {
+      $('#deploy-modal').modal('hide');
+    });
+  </script>
 @endsection
