@@ -54,6 +54,10 @@
                                     <dt>Client</dt>
                                     <dd>{{ $refund->invoice->order->client->str_client_name  }}</dd>
                                 </dl>
+                                <dl>
+                                    <dt>Requested by</dt>
+                                    <dd>{{ $refund->str_received_by  }}</dd>
+                                </dl>
                                 {{--<dl>--}}
                                     {{--<dt>Delivery Type</dt>--}}
                                     {{--<dd>{{ $order->footer->str_delivery_type == 0? 'Delivery' : 'Pick-up' }}</dd>--}}

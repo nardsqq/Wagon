@@ -36,17 +36,23 @@
                         <div class="panel-body">
                             {{ Form::open(['id'=>'refund-form', 'class'=>'form-horizontal', 'route'=>'refund.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
                             <div class="row">
-                                <div :class="'form-group '+ (false == invoice_exists?'has-error':'')" style="margin: 20px;">
-                                    {!! Form::label('invoice_no', 'Invoice #') !!}
-                                    <div class="input-group">
-                                        <input type="text" id="invoice_no" name="invoice_no" class="form-control"
-                                               v-model="invoice_no" placeholder="Enter Invoice #">
-                                        <span class="input-group-btn" @click="getInvoice()"
-                                              aria-describedby="invoice-help-block">
-                                                <button class="btn btn-default" type="button"><i
-                                                            class="fa fa-search"></i>&nbsp;Search</button>
-                                            </span>
-                                    </div><!-- /input-group -->
+                                <div class="col-xs-12 m-t-10">
+                                    <div :class="'form-group '+ (false == invoice_exists?'has-error':'')">
+                                        {!! Form::label('invoice_no', 'Invoice #', array('class' => 'col-xs-1')) !!}
+                                        <div class="col-xs-4">
+                                            <select name="invoice_no" class="form-control" v-model="selected_invoice">
+                                                <option v-for="payment in payments" :value="payment.int_paym_invoice_id_fk">
+                                                    @{{ payment.int_paym_invoice_id_fk  }}
+                                                </option>
+                                            </select>
+                                            {{--<input type="text" id="invoice_no" name="invoice_no" class="form-control"--}}
+                                                   {{--v-model="invoice_no" placeholder="Enter Invoice #">--}}
+                                            {{--<span class="input-group-btn" @click="getInvoice()"--}}
+                                                  {{--aria-describedby="invoice-help-block">--}}
+                                                    {{--<button class="btn btn-default" type="button"><i--}}
+                                                                {{--class="fa fa-search"></i>&nbsp;Search</button>--}}
+                                                {{--</span>--}}
+                                        </div><!-- /input-group -->
 
                                     <span id="invoice-help-block" class="help-block" v-if="!invoice_exists">Order does not exist</span>
                                 </div>
@@ -93,10 +99,8 @@
                                     </div>
 
                                     <div class="col-xs-12 m-t-30">
-                                        <div class="col-md-3">
-                                            <label>Received by: </label>
-                                        </div>
-                                        <div class="col-md-4">
+                                            <label class="col-xs-2">Received by: </label>
+                                        <div class="col-xs-4">
                                             <input type="text" name="received_by" class="form-control">
                                         </div>
                                     </div>

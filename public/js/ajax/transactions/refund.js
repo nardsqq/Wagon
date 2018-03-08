@@ -1,20 +1,30 @@
 var app = new Vue({
     el: '#refund',
+    mounted(){
+        this.fetchPaymentsData()
+    },
     methods:{
+        fetchPaymentsData: function(){
+            var self = this;
+            axios.get('/admin/transactions/refund-payments-data').then(function(response) {
+                self.payments = response.data.payments;
+            });
+        },
         getInvoice: function(){
             var self = this;
-            axios.get('/admin/transactions/refund/'+self.invoice_no)
+            axios.get('/admin/transactions/refund-'+self.selected_invoice)
                 .then(function (response){
                     if(response.data.alert == 'success'){
                         self.invoice_exists = true;
                         self.invoice = response.data.invoice;
-
+                        self.refund = response.data.refund;
                         self.invoice_temp = JSON.parse(JSON.stringify(response.data.invoice));
 
                         for(var i = 0; i < self.invoice_temp.order.item_orders.length; i++)
                         {
                             self.invoice_temp.order.item_orders[i]['int_quantity'] = 0;
                         }
+
 
                     } else {
                         self.invoice_exists = false;
@@ -70,6 +80,9 @@ var app = new Vue({
     watch:{
         invoice_no: function(){
             this.invoice_exists = true;
+        },
+        selected_invoice: function () {
+            this.getInvoice();
         }
     },
     computed: {
@@ -86,13 +99,15 @@ var app = new Vue({
             invoice_no: '',
             invoice: null,
             invoice_temp: null,
+            payments: null,
             client: {},
             order: {},
             amount_due: 0,
             amount_paid: 0,
             balance_due: 0,
-
             amount_received: 0,
+            selected_invoice: '',
+            refund: null
         }
-    }
+    },
 });
