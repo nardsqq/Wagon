@@ -52,7 +52,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('transactions.payment.create');
+        $orders = Order::pluck('str_purc_order_num', 'str_purc_order_num')->toArray();
+        return view('transactions.payment.create', compact('orders'));
     }
 
     /**
