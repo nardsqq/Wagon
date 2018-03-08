@@ -13,7 +13,7 @@
       <td class="text-center">03-09-2018</td>
       <td class="text-center">03-10-2018</td>
       <td class="text-center">
-        <button class="btn btn-primary btn-sm"><i class='fa fa-user-circle-o'></i>&nbsp; Assign Personnel</button>
+        <button id="btn-assign" class="btn btn-primary btn-sm"><i class='fa fa-user-circle-o'></i>&nbsp; Assign Personnel</button>
       </td>
     </tr>
   </tbody>

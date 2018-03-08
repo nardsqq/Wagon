@@ -30,6 +30,7 @@
   </section>
   
   @include('transactions.deployment.modal')
+  @include('transactions.deployment.assign')
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -47,7 +48,7 @@
             <div class="panel-heading clearfix">
               <div class="btn-group pull-right">
                 {{-- <a id="btn-deploy" class="btn btn-success"><i class="fa fa-calendar"></i>&nbsp; Set Service Schedule</a> --}}
-                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Delivery Schedule</button>
+                <button type="button" id="btn-add" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Set Service Schedule</button>
               </div>
               <div class="panel-title">
                 <h4>Process Deployment</h4>
@@ -75,6 +76,10 @@
   <script>
     $(document).ready(function() {
       $('#testzxc').select2();
+    });
+
+    $(document).on('click', '#btn-assign', function(){
+      $('#assign-modal').modal('show');
     });
 
     $('#btn-add').on('click', function() {
