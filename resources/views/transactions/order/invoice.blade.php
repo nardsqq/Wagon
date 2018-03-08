@@ -42,15 +42,14 @@
     <h3 class="text-center">MARINE SALES AND SERVICES MANAGEMENT SYSTEM</h3>
     <center>SALES INVOICE</center>
     <br>
-SOLD TO: {!! \ViewHelper::center_underline($order->client->str_client_name, 45) !!}  
-Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y'), 8) !!} 
-    <br>
-    ADDRESS: {!! \ViewHelper::center_underline($order->client->txt_client_address, 40) !!}  
-    Terms: {!! \ViewHelper::center_underline('', 10) !!}  
-    <br>
-    TIN: {!! \ViewHelper::center_underline($order->client->str_client_tin, 15) !!}  
-    Business Style: {!! \ViewHelper::center_underline('', 15) !!}  
-    PO# {!! \ViewHelper::center_underline($order->str_purc_order_num, 15) !!}  
+    SOLD TO: {!! \ViewHelper::center_underline($order->client->str_client_name, 45) !!}  
+    Date:    {!! \ViewHelper::center_underline($order->dat_order_date->format('m-d-y'), 8) !!} 
+        <br>
+        ADDRESS: {!! \ViewHelper::center_underline($order->client->txt_client_address, 55) !!}  
+        <br>
+        TIN: {!! \ViewHelper::center_underline($order->client->str_client_tin, 17) !!}  
+        PO# {!! \ViewHelper::center_underline($order->str_purc_order_num, 17) !!}  
+        Terms: {!! \ViewHelper::center_underline($order->footer->term->term, 17) !!}   
     <br>
     <br>
     <br>

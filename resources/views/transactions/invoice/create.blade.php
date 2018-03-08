@@ -40,7 +40,8 @@
                                     <div :class="'form-group '+ (false == order_exists?'has-error':'')" style="margin: 20px;">
                                         {!! Form::label('order_no', 'Order #') !!}
                                         <div class="input-group">
-                                            <input type="text" id="order_no" name="order_no" class="form-control" v-model="order_no" placeholder="Enter Order #">
+                                            {{--  <input type="text" id="order_no" name="order_no" class="form-control" v-model="order_no" placeholder="Enter Order #">  --}}
+                                            {!!Form::select('order_no', $orders, null, array('class' => 'form-control', 'id' => 'order_no', 'required' => true, 'v-model'=>'order_no' ) ); !!}
                                             <span class="input-group-btn" @click="getInvoice()" aria-describedby="order-help-block">
                                                 <button class="btn btn-default" type="button"><i class="fa fa-search"></i>&nbsp;Search</button>
                                             </span>

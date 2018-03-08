@@ -37,11 +37,13 @@
                         <div class="panel-body">
                                 {{ Form::open(['id'=>'payment-form', 'class'=>'form-horizontal', 'route'=>'payment.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
                                 <div class="row">                
-                                    <div :class="'form-group '+ (false == invoice_exists?'has-error':'')">
+                                    <div :class="'form-group '+ (false == invoice_exists?'has-error':'')" style="margin: 20px;">
                                         <div class="col-md-12">
                                             {!! Form::label('invoice_no', 'Order #') !!}
+                                            
                                             <div class="input-group">
-                                                <input type="text" id="invoice_no" name="invoice_no" class="form-control" v-model="invoice_no" placeholder="Enter Order #">
+                                                {{--  <input type="text" id="invoice_no" name="invoice_no" class="form-control" v-model="invoice_no" placeholder="Enter Order #">  --}}
+                                                {!!Form::select('invoice_no', $orders, null, array('class' => 'form-control', 'id' => 'invoice_no', 'required' => true, 'v-model'=>'invoice_no' ) ); !!}
                                                 <span class="input-group-btn" @click="getInvoice()" aria-describedby="invoice-help-block">
                                                     <button class="btn btn-default" type="button"><i class="fa fa-search"></i>&nbsp;Search</button>
                                                 </span>
@@ -99,10 +101,17 @@
 @endsection
 
 @section('styles')
-
+<link href="{{ asset('css/select2.min.css') }}">
 @endsection
 
 @section('scripts')
     <script src="{{ asset('/js/app.js/') }}"></script>
+    <script src="{{ asset('/js/select2.min.js/') }}"></script>
     <script src="{{ asset('/js/ajax/transactions/payment.js/') }}"></script>
+    <script>
+    var $select2;
+    $(window).on('load', function(){
+        // $select2 = $('#invoice_no').select2();
+    })
+  </script>
 @endsection

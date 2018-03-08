@@ -17,4 +17,8 @@ class Personnel extends Model
     {
         return $this->belongsTo('App\Position', 'int_pers_position_id_fk');
     }
+
+    public function getNameAttribute(){
+        return $this->str_personnel_l_name.', '.$this->str_personnel_f_name.' '.$this->str_personnel_m_name;
+    }
 }

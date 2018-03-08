@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Blade;
 use App\Invoice;
 use App\InvoiceStatus;
 use App\Payment;
+use App\ItemOrder;
 use App\Order;
 use App\OrderStatus;
 use App\OrderFooter;
@@ -41,13 +42,44 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-        // create invoice status on creation of an invoice
-        Invoice::saved(function ($invoice) {
-            OrderStatus::create([
-                'str_status' => OrderStatus::$status['BILL'],
+        ItemOrder::created(function ($item_order){
+            // delivery for items
+            if($item_order->order->footer->str_delivery_type == 0){
+                Delivery::firstOrCreate([
+                    'int_del_order_id_fk' => $item_order->order->int_order_id
+                ]);
+            }
+        });
+
+        // delivery 
+        Delivery::created(function ($delivery){
+            DeliveryStatus::create([
+                'int_delstat_delivery_id_fk' => $delivery->int_delivery_id,
+                'str_status' => DeliveryStatus::$status['NEW']
+            ]);
+        });
+        //delivery on progress
+        Delivery::saved(function ($delivery){
+            OrderStatus::firstOrCreate([
+                'str_status' => OrderStatus::$status['PROC'],
                 'int_orstat_order_id_fk' => $invoice->order->int_order_id
             ]);
-            InvoiceStatus::create([
+            if($delivery->int_del_personnel_id_fk && $delivery->dat_delivery_date){
+                DeliveryStatus::firstOrCreate([
+                    'int_delstat_delivery_id_fk' => $delivery->int_delivery_id,
+                    'str_status' => DeliveryStatus::$status['CONF']
+                ]);
+                OrderStatus::firstOrCreate([
+                    'str_status' => OrderStatus::$status['BILL'],
+                    'int_orstat_order_id_fk' => $invoice->order->int_order_id
+                ]);
+            }
+        });
+
+        
+        // create invoice status on creation of an invoice
+        Invoice::created(function ($invoice) {
+            InvoiceStatus::firstOrCreate([
                 'str_status' => InvoiceStatus::$status['NEW'],
                 'int_instat_invoice_id_fk' => $invoice->int_invoice_id
             ]);

@@ -131,7 +131,7 @@
         <h4 class="text-right">Less: Discount: <span>(@{{ discount | money }})</span></h4>
         <h3 class="text-right">Total: <span>@{{ total - discount | money }}</span></h3>
         <h5 class="text-right">Downpayment: <span>@{{ downpayment | money }}</span></h5>
-        <h5 class="text-right">Balance Due: <span>@{{ total - downpayment | money }}</span></h5>
+        <h5 class="text-right">Balance Due: <span>@{{ total - discount - downpayment | money }}</span></h5>
 
         <input type="hidden" name="payment" :value="downpayment">
         <input type="hidden" name="total" :value="total - discount">
