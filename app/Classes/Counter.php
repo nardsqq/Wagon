@@ -17,8 +17,10 @@ class Counter {
         $last_index = strrpos($current, $suffix);
         if(!$last_index){
             $last_index = strlen($current) - strlen($suffix) - 1;
+        } else {
+            $last_index -= 1;
         }
-        return substr($current, strlen($prefix)+1, $last_index - 2);
+        return substr($current, strlen($prefix)+1, $last_index - strlen($prefix) - 1);
     }
 
     public static function generate($current = null, $prefix = '', $suffix = '', $padding = 4){

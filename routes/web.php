@@ -130,8 +130,10 @@ Route::group(['prefix' => 'admin'], function() {
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');
 
-    Route::get('set-delivery-schedule', 'RouteController@setDeliverySchedule');
-    Route::get('set-delivery-schedule/create', 'RouteController@setDeliveryScheduleCreate');
+    // Delivery Schedule
+    Route::resource('delivery', 'DeliveryController');
+    Route::get('delivery-form-data', 'DeliveryController@formData');
+    Route::get('delivery-table', 'DeliveryController@table');
 
     Route::get('process-deployment', 'RouteController@processDeployment');
     Route::get('process-deployment/create', 'RouteController@processDeploymentCreate');
