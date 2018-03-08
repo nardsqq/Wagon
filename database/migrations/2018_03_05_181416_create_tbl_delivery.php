@@ -15,16 +15,15 @@ class CreateTblDelivery extends Migration
     {
         Schema::create('tbl_delivery', function (Blueprint $table) {
         $table->increments('int_delivery_id');
-        $table->unsignedInteger('int_del_item_order_id_fk');
+        $table->unsignedInteger('int_del_order_id_fk');
         $table->unsignedInteger('int_del_personnel_id_fk');
-        $table->integer('int_quantity');
-        $table->string('str_status', 45);
+        $table->date('dat_delivery_date');
 
         $table->timestamps();
 
-        $table->foreign('int_del_item_order_id_fk')
-            ->references('int_item_order_id')
-            ->on('tbl_item_order');
+        $table->foreign('int_del_order_id_fk')
+            ->references('int_order_id')
+            ->on('tbl_order');
 
         $table->foreign('int_del_personnel_id_fk')
             ->references('int_personnel_id')
@@ -40,7 +39,7 @@ class CreateTblDelivery extends Migration
     public function down()
     {
         Schema::table('tbl_delivery', function (Blueprint $table) {
-            $table->dropForeign(['int_del_item_order_id_fk']);
+            $table->dropForeign(['int_del_order_id_fk']);
             $table->dropForeign(['int_del_personnel_id_fk']);
         });
         Schema::dropIfExists('tbl_delivery');

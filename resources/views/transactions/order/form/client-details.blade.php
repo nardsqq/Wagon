@@ -16,10 +16,8 @@
         <option v-for="client in clients" :key="client.int_client_id" :value="client">@{{ client.str_client_name }}</option>
     </select>
     <div v-if="existing_client == 1">
-        <div class="col-xs-12  m-t-10">
-            <label for="str_client_name" required>Client Name</label>
-            {{ Form::text('str_client_name', null, ['class'=>'form-control', 'v-model'=>'selected_client.str_client_name']) }}
-        </div>
+        <label for="str_client_name" required>Client Name</label>
+        {{ Form::text('str_client_name', null, ['class'=>'form-control', 'v-model'=>'selected_client.str_client_name']) }}
     </div>
 </div>
 

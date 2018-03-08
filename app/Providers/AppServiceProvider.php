@@ -11,6 +11,9 @@ use App\InvoiceStatus;
 use App\Payment;
 use App\Order;
 use App\OrderStatus;
+use App\OrderFooter;
+use App\Delivery;
+use App\DeliveryStatus;
 
 class AppServiceProvider extends ServiceProvider
 {
