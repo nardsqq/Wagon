@@ -133,12 +133,19 @@ class ProcessOrderController extends Controller
 
             \DB::beginTransaction();
 
+            // Save Client 
+            if($request->existing_client==1) {
+                $clientController = new ClientController();
+                $client_result = $clientController->store($request);
+                $client_id = $client_result->getData()->int_client_id;
+            }
+
             $current_no = Order::latest()->first() ? Order::latest()->first()->str_order_no:null;
             
             $order                          = new Order();
             $order->str_order_no            = \Counter::generate($current_no, Order::$prefix, Order::$suffix[$request->order_type]);
             $order->str_purc_order_num      = $request->order_num;
-            $order->int_order_client_id_fk  = $request->client_id;
+            $order->int_order_client_id_fk  = $request->existing_client == 0 ? $request->client_id : $client_id;
             $order->dat_order_date          = Carbon::now();
             $order->txt_deli_address        = $request->delivery_location;
             $order->txt_bill_address        = $request->billing_address;
