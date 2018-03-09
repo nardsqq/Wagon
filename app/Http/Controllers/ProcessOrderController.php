@@ -182,7 +182,7 @@ class ProcessOrderController extends Controller
                     $variant = Variant::findOrFail($variant_id);
                     $stock                            = new Stock();
                     $stock->int_stock_var_id_fk       = $variant_id;
-                    $stock->int_quantity              = $variant->getCurrPrevStock()['current'] - $request->quantity[$variant_id];
+                    $stock->int_quantity              = -1 * $request->quantity[$variant_id];
                     $stock->save();
                 }
             }
@@ -211,7 +211,7 @@ class ProcessOrderController extends Controller
                                 $variant = Variant::findOrFail($request->variant[$material_id]);
                                 $stock                            = new Stock();
                                 $stock->int_stock_var_id_fk       = $request->variant[$material_id];
-                                $stock->int_quantity              = $variant->getCurrPrevStock()['current'] - $request->quantity[$material_id];
+                                $stock->int_quantity              = -1 * $request->quantity[$material_id];
                                 $stock->save();
                             }
                             $serv_mat->save();
@@ -330,7 +330,7 @@ class ProcessOrderController extends Controller
                 foreach($order->item_orders as $item_order){
                     $stock = new Stock();
                     $stock->int_stock_var_id_fk = $item_order->int_io_var_id_fk;
-                    $stock->int_quantity = $item_order->variant->stock + $item_order->int_quantity;
+                    $stock->int_quantity = $item_order->int_quantity;
                     $stock->save();
                 }
 
@@ -344,7 +344,7 @@ class ProcessOrderController extends Controller
                         
                         $stock = new Stock();
                         $stock->int_stock_var_id_fk = $service_material->int_sm_var_id_fk;
-                        $stock->int_quantity = $service_material->variant->stock + $service_material->int_quantity;
+                        $stock->int_quantity = $service_material->int_quantity;
                         $stock->save();
                     }
                 }

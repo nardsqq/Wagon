@@ -21,6 +21,10 @@ class ItemOrder extends Model
       return $this->belongsTo('App\Variant', 'int_io_var_id_fk');
     }
 
+    public function refund_items(){
+      return $this->hasMany('App\RefundItem', 'int_ref_item_item_order_id_fk');
+    }
+
     public function getPriceAttribute(){
       return $this->variant->prices()->where('created_at', '<=', $this->created_at)->latest()->pluck('dbl_price')->first();
     }
