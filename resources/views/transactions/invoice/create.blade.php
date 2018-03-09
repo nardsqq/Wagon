@@ -43,7 +43,7 @@
                                             {{--  <input type="text" id="order_no" name="order_no" class="form-control" v-model="order_no" placeholder="Enter Order #">  --}}
                                             {!!Form::select('order_no', $orders, null, array('class' => 'form-control', 'id' => 'order_no', 'required' => true, 'v-model'=>'order_no' ) ); !!}
                                             <span class="input-group-btn" @click="getInvoice()" aria-describedby="order-help-block">
-                                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                                <button class="btn btn-default" type="button"><i class="fa fa-check"></i>&nbsp;Select</button>
                                             </span>
                                         </div><!-- /input-group -->
                                         
