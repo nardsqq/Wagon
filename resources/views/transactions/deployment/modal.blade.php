@@ -4,12 +4,12 @@
             <div class="modal-header modal-header-success" id="mode-modal-header">
                 <h4 id="title">Set Delivery Schedule</h4>
             </div>
-            {{ Form::open(['id'=>'deployment-form', 'class'=>'form-horizontal', 'route'=>'process-deployment.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
+            {{ Form::open(['id'=>'deployment-form', 'route'=>'process-deployment.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
             <div class="modal-body">
-               {{-- <div class="form-group">
+                <div class="form-group">
                     {!! Form::label('order_no', 'Order #') !!}
                     <div class="form-group">
-                        <select name="order_number" id="order_number" class="form-control">
+                        <select name="order_number" id="order_number" class="form-control" v-model="selected_order">
                                     @foreach($orders as $order)
                                         <option value="{{ $order->int_order_id }}">
                                         {{ $order->int_order_id }}
@@ -17,17 +17,15 @@
                                 </option>
                         </select>
                     </div>
-                </div>--}}
+                </div>
                 <hr>
                 <div class="form-group">
-                        {!! Form::label('service_order_number', 'Service Order') !!}
-                            <select name="service_order_number" id="service_order_number" class="form-control">
-                                @foreach($service_orders as $service)
-                                    <option value="{{ $service->int_service_order_id }}">
-                                        {{ $service->int_service_order_id }}
-                                    </option>
-                                @endforeach
-                            </select>
+                {!! Form::label('service_order_number', 'Service Order') !!}
+                    <select name="service_order_number" id="service_order_number" class="form-control">
+                        <option v-for="service in service_orders" :value="service.int_service_order_id">
+                            @{{ service.int_service_order_id }}
+                        </option>
+                    </select>
                 </div>
                     <div class="form-group">
                         <label>Mobilization</label>

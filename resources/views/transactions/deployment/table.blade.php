@@ -10,7 +10,7 @@
     <tbody>
     @foreach($schedules as $schedule)
         <tr>
-            <td>{{ $schedule->int_ss_service_order_id_fk }}</td>
+            <td>{{ $schedule->service_order->int_so_order_id_fk }}</td>
             <td class="text-center">{{ $schedule->dat_start }}</td>
             <td class="text-center">{{ $schedule->dat_end }}</td>
             <td class="text-center">

@@ -78,9 +78,10 @@
     <script src="{{ asset('/js/app.js/') }}"></script>
     <script src="{{ asset('/js/ajax/transactions/deployment.js/') }}"></script>
     <script>
-        $(document).ready(function () {
-            $('#testzxc').select2();
-        });
+        // $(document).ready(function () {
+        //     $('#order_number').select2();
+        //     $('#service_order_number').select2();
+        // });
 
         // $(document).on('click', '#btn-assign', function () {
         //     $('#assign-modal').modal('show');
