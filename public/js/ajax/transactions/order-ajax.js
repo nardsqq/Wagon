@@ -29,7 +29,16 @@ $(document).ready(function() {
                             _window.focus();
                             _window.print();
                             _window.close();
+                            if(!_.isNull(data.receipt)){
+                                var _window_receipt = open(data.receipt);
+                                _window_receipt.onload = function(){
+                                    _window_receipt.focus();
+                                    _window_receipt.print();
+                                    _window_receipt.close();
+                                }
+                            }
                         }
+                        
                         window.location.assign(data.url);
                     } else {
                         alert('Error');
