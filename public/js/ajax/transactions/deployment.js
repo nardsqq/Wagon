@@ -1,23 +1,52 @@
 var app = new Vue({
     el: '#deployment',
     mounted() {
+        this.getServicesData()
     },
     watch: {
         selected_order: function() {
-
             this.getServices();
         }
     },
     methods:{
+        getServicesData: function() {
+            var self = this;
+            axios.get('/admin/transactions/process-deployment-order-data')
+                .then(function (response){
+                    if(response.data.alert == 'success'){
+                        self.service_orders_all = response.data.service_orders;
+                    }
+                });
+        },
         getServices: function() {
             var self = this;
             axios.get('/admin/transactions/process-deployment/get-service-orders/' + this.selected_order)
                 .then(function (response){
                     if(response.data.alert == 'success'){
-                        console.log();
                         self.service_orders = response.data.service_orders;
                     }
                 });
+        },
+        isServiceDisabled: function (service) {
+            var self = this;
+            var ids = _.map(self.service_orders_all, 'int_ss_service_order_id_fk');
+            var index = ids.indexOf(service);
+            console.log(index);
+            if(index != -1)
+                return true;
+            else
+                return false;
+
+        },
+        isPersonDisabled: function (person) {
+            var self = this;
+            var ids = _.map(self.previous_personnel, 'int_personnel_id_fk');
+            var index = ids.indexOf(person.int_personnel_id);
+            if(index != -1)
+                return true;
+            else
+                return false;
+
         },
         addPersonnel: function() {
             this.added_personnel.push({"int_personnel_id": this.selected_personnel,"name": $('#select_person option:selected').text()});
@@ -26,17 +55,23 @@ var app = new Vue({
             var index = _.findIndex(this.added_personnel, personnel);
             this.added_personnel.splice(index, 1);
         },
-        assignPersonnelModal: function(id) {
+        assignPersonnelModal: function(schedule) {
             var self = this;
-            axios.get('/admin/transactions/process-deployment/' +id)
+            axios.get('/admin/transactions/process-deployment/' + schedule.int_sched_id)
                 .then(function (response){
                     if(response.data.alert == 'success'){
                         console.log();
                         self.previous_personnel = response.data.personnel;
+                        $('#orderNumber').text(response.data.order);
+                        $('#serviceName').text(response.data.service);
+                        $('#locationAddress').text(response.data.location);
+                        $('#mobilization').text(response.data.service_schedule.dat_start);
+                        $('#de_mobilization').text(response.data.service_schedule.dat_end);
                     }
                 });
 
-            $('#service_schedule_id').val(id);
+            self.selected_personnel = '';
+            $('#service_schedule_id').val(schedule.int_sched_id);
             $('#assign-modal').modal('show');
         },
         submitForm: function(){
@@ -110,6 +145,7 @@ var app = new Vue({
             client: {},
             order: null,
             service_orders: null,
+            service_orders_all: null,
             amount_due: 0,
             amount_paid: 0,
             balance_due: 0,
@@ -119,6 +155,7 @@ var app = new Vue({
             selected_order: '',
             selected_personnel: '',
             added_personnel: [],
+            check_service: false
 
         }
     }

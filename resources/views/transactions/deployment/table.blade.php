@@ -14,7 +14,7 @@
             <td class="text-center">{{ $schedule->dat_start }}</td>
             <td class="text-center">{{ $schedule->dat_end }}</td>
             <td class="text-center">
-                <button id="btn-assign" class="btn btn-primary btn-sm" @click="assignPersonnelModal({{ $schedule->int_sched_id }})"><i class='fa fa-user-circle-o'></i>&nbsp; Assign
+                <button id="btn-assign" class="btn btn-primary btn-sm" @click="assignPersonnelModal({{ $schedule }})"><i class='fa fa-user-circle-o'></i>&nbsp; Assign
                     Personnel
                 </button>
             </td>

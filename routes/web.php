@@ -131,7 +131,7 @@ Route::group(['prefix' => 'admin'], function() {
       Route::get('process-deployment-order-data', 'DeploymentController@getOrderData');
       Route::get('process-deployment/get-service-orders/{id}', 'DeploymentController@getServiceOrders');
       Route::post('process-deployment/assign-personnel', 'DeploymentController@assignPersonnel')->name('process-deployment.assign');
-
+      Route::get('process-deployment/check-service/{id}', 'DeploymentController@checkService')->name('process-deployment.check-service');
 
 
 

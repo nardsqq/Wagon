@@ -85,7 +85,7 @@
                                                            maxlength="2" @blur="verifyQuantity(item)">
                                      
                                                 </td>
-                                                <td v-else>All quantity are returned already</td>
+                                                <td v-else>Already returned</td>
                                                 <td class="text-right">₱@{{ item.variant.prices[0].dbl_price }}</td>
                                                 <td class="text-right">₱@{{ item.variant.prices[0].dbl_price *
                                                     item.int_quantity }}

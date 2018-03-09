@@ -7,6 +7,18 @@
             {{ Form::open(['id'=>'assign-form', 'route'=>'process-deployment.assign', 'method'=>'POST', '@submit.prevent'=>'submitAssignForm']) }}
 
             <div class="modal-body">
+                <div class="form-group col-md-12">
+                    <label class="col-md-6">Order #: <span id="orderNumber">TEST</span> </label>
+                    <label class="col-md-6">Service: <span id="serviceName">TEST</span> </label>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="col-md-12">Location: <span id="locationAddress">TEST</span> </label>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="col-md-6">Mobilization: <span id="mobilization">TEST</span> </label>
+                    <label class="col-md-6">De-Mobilization: <span id="de_mobilization">TEST</span> </label>
+                </div>
+                <hr>
                 <div class="form-group">
                     <label>Personnel</label>
                     <button id="btn-add-step" type="button" class="btn btn-sm btn-success pull-right" @click="addPersonnel">Add Personnel
@@ -15,7 +27,7 @@
                 <div class="form-group">
                     <select class="form-control" v-model="selected_personnel" id="select_person">
                         @foreach($personnel as $person)
-                            <option value="{{ $person->int_personnel_id }}">{{ $person->name }}</option>
+                            <option value="{{ $person->int_personnel_id }}" :disabled="isPersonDisabled({{ $person }})">{{ $person->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -42,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-                <button id="btn-deploy" value="add" class="modal-btn btn btn-success pull-right" type="submit">Assign</button>
+                <button id="btn-deploy" value="add" class="modal-btn btn btn-success pull-right" type="submit" :disabled="!selected_personnel">Assign</button>
                 <input type="hidden" id="service_schedule_id" name="service_schedule_id" value="0">
             </div>
             {{ Form::close() }}
