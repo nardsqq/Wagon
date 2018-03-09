@@ -157,7 +157,13 @@ class RefundController extends Controller
 
     public function getPaymentData()
     {
-        $payments = Payment::with('invoice.order')->get()   ;
+//        $payments = Payment::with('invoice.order')->get();
+        $payments = DB::table('tbl_payment as p')
+            ->join('tbl_invoice as i', 'i.int_invoice_id', 'p.int_paym_invoice_id_fk')
+            ->join('tbl_order as o', 'o.int_order_id', 'i.int_invoice_order_id_fk')
+            ->join('tbl_item_order as io', 'io.int_io_order_id_fk', 'o.int_order_id')
+            ->select(DB::raw('DISTINCT(p.int_paym_invoice_id_fk)'), 'o.str_purc_order_num')
+            ->get();
 
         return json_encode(compact('payments'));
     }
@@ -165,10 +171,11 @@ class RefundController extends Controller
     public function getInvoice($id)
     {
         try {
-            $invoice = Invoice::find($id)->with('order.item_orders.variant.prices')->first();
+            $invoice = Invoice::where('int_invoice_id', $id)->with('order.item_orders.variant.prices')->first();
             $refund = Refund::where('int_refund_invoice_id_fk', $id)->with('items.item')->get();
 
 //            dd($refund->int_refund_id);
+//            dd($invoice->int_invoice_id);
             $alert = 'success';
         }
         catch(Exception $e){

@@ -42,7 +42,7 @@
                                         <div class="col-xs-4">
                                             <select name="invoice_no" class="form-control" v-model="selected_invoice">
                                                 <option v-for="payment in payments" :value="payment.int_paym_invoice_id_fk">
-                                                    @{{ payment.invoice.order.str_purc_order_num  }}
+                                                    @{{ payment.str_purc_order_num  }}
                                                 </option>
                                             </select>
                                             {{--<input type="text" id="invoice_no" name="invoice_no" class="form-control"--}}
@@ -100,9 +100,9 @@
                                     </div>
 
                                     <div class="col-xs-12 m-t-30">
-                                            <label class="col-xs-2">Received by: </label>
+                                            <label class="col-xs-2">Received by: *</label>
                                         <div class="col-xs-4">
-                                            <input type="text" name="received_by" class="form-control">
+                                            <input type="text" name="received_by" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
