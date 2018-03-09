@@ -58,7 +58,7 @@
 
 @section('scripts')
   <script>
-    $(document).on('submit', '#filter-form', function(e) {
+    $(document).on('submit', '#adv-search-form', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
         
@@ -116,5 +116,10 @@
             },
         ],
     });
+    // FILTERS
+    $('#adv-search-form').on('keyup, change', 'input, select, .form-control', function(e){
+          datatable.columns([$(this).attr('data-index')]).search($(this).val(), false, false, $(this).attr('data-insensitive')==='false'?false:true);
+      });
+      
   </script>
 @endsection
