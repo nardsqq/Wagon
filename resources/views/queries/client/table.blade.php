@@ -40,6 +40,9 @@
       <th>Representative</th>
       <th>TIN</th>
       <th>Landmark</th>
+      <th>Mobile #</th>
+      <th>Telephone #</th>
+      <th>Email</th>
     </tr>
   </thead>
 </table>
@@ -49,4 +52,7 @@
     { data: 'str_client_person', name: 'str_client_person'},
     { data: 'str_client_tin', name: 'str_client_tin'},
     { data: 'str_client_landmark', name: 'str_client_landmark'},
+    { data: 'str_client_mobile_num', name: 'str_client_mobile_num'},
+    { data: 'str_client_tel_num', name: 'str_client_tel_num'},
+    { data: 'str_client_email', name: 'str_client_email'},
 @endsection

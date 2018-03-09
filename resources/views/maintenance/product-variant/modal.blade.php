@@ -21,6 +21,7 @@
           <hr>
           <div class="form-group">
             <label>Product Specification</label>
+            <span id="helpBlock" class="help-block">Reminder: Please add a designated unit of measurement with your value. e.g. 50 KG, 100 RPM</span>
           </div>
           <div  style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
             <div class="row m-t-10" v-for="specs in product.prod_attribs" :key="specs.int_prod_attrib_id">
@@ -29,7 +30,7 @@
                   <label :for="'str_spec_constant['+specs.int_prod_attrib_id+']'">@{{ specs.attribute.str_attrib_name }}</label>
                 </div>
                 <div class="col-xs-9">
-                  <input type="text" :name="'str_spec_constant['+specs.int_prod_attrib_id+']'" :id="'str_spec_constant['+specs.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45" required>
+                  <input type="text" :name="'str_spec_constant['+specs.int_prod_attrib_id+']'" :id="'str_spec_constant['+specs.int_prod_attrib_id+']'" placeholder="Enter value" class="form-control" max-length="45" required ariadescribedby="helpBlock">
                 </div>
             </div>  
           </div>
@@ -80,6 +81,7 @@
           <hr>
           <div class="form-group">
             <label>Product Specification</label>
+            <span id="helpBlock" class="help-block">Reminder: Please add a designated unit of measurement with your value. e.g. 50 KG, 100 RPM</span>
           </div>
           <div  style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
             <div class="row m-t-10" v-for="spec in specs" :key="specs.int_prod_attrib_id">
