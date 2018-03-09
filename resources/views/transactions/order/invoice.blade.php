@@ -28,6 +28,9 @@
         table td {
             padding: 0 3px;
         }
+        .text-muted {
+            color: #888;
+        }
     </style>
     
     <script>
@@ -149,10 +152,20 @@
                 <td></td>
             </tr>
             <tr>
+                <td colspan="6" class="text-right">SUBTOTAL</td>
+                <td class="text-right">@money($subtotal = $total + $material_total + $service_total)</td>
+            </tr>
+            <tr>
+                <td colspan="6" class="text-right">LESS:DISCOUNT ({{$order->footer->discount->str_discount_name}}: {{$order->footer->discount->int_discount_percentage}}%)</td>
+                <td class="text-right">@money($discount = ($subtotal * ($order->footer->discount->int_discount_percentage/100)))</td>
+            </tr>
+            <tr>
                 <td colspan="6" class="text-right">TOTAL AMOUNT DUE</td>
-                <td class="text-right">@money($total + $material_total + $service_total)</td>
+                <td class="text-right">@money($subtotal - $discount)</td>
             </tr>
         </tfoot>
     </table>
+    <br>
+    <center class="text-muted">THIS IS FOR BILLING PURPOSES ONLY</center>
 </body>
 </html>
