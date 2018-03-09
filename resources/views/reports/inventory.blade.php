@@ -26,8 +26,8 @@
 @endsection
 
 @section('datatable-columns')
-{ data: 'variant.str_variant_name', name: 'variant.str_variant_name'},
-{ data: 'variant.product.str_product_name', name: 'variant.product.str_product_name'},
+{ data: 'str_var_name', name: 'str_var_name'},
+{ data: 'product.str_product_name', name: 'product.str_product_name'},
 { data: 'start', name: 'start'},
 { data: 'in', name: 'in'},
 { data: 'out', name: 'out'},

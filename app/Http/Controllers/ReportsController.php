@@ -7,13 +7,14 @@ use Yajra\Datatables\Datatables;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Stock;
+use App\Variant;
 
 class ReportsController extends Controller
 {
     private function filterDate(Request $request, $query, $column = 'created_at'){
         $start = $request->startDate;
         $end = $request->endDate;
-        return $query->whereRaw("$column between ? AND ?", [$start, $end]);
+        return $query->whereRaw("DATE($column) between ? AND ?", [$start, $end]);
     }
 
     public function index(Request $request){
@@ -22,22 +23,34 @@ class ReportsController extends Controller
 
     public function inventory(Request $request){
         if($request->has('filter')){
-            $table = Stock::selectRaw("
-                DATE(created_at) AS date,
-                SUM(
-                    SELECT SUM(int_quantity) FROM tbl_stock WHERE created_at <= {$request->startDate} GROUP BY int_stock_var_id_fk
-                ) AS start,
-                SUM(CASE WHEN int_quantity > 0 THEN int_quantity ELSE 0 END) AS in,
-                SUM(CASE WHEN int_quantity < 0 THEN int_quantity ELSE 0 END) AS out,
-                SUM(
-                    SELECT SUM(int_quantity) FROM tbl_stock WHERE created_at <= {$request->endDate} GROUP BY int_stock_var_id_fk
-                ) AS end
-            ")
-            ->groupBy(DB::raw('int_stock_var_id_fk'))
-            ->groupBy(DB::raw('DATE(created_at)'));
+            
+            $start = $request->startDate;
+            $end = $request->endDate;
+            $table = Variant::with('product');
             return Datatables::of($table)
             ->filter(function ($query) use($request){
                 $this->filterDate($request, $query);
+            })
+            ->addColumn('in', function($query) use($start, $end) {
+                return $query->stocks()
+                ->whereDate('created_at', '>=', $start)
+                ->whereDate('created_at', '<=', $end)
+                ->where('int_quantity', '>',0)
+                ->sum('int_quantity') ?: 0;
+            })
+            ->addColumn('out', function($query) use($start, $end) {
+                return $query->stocks()
+                ->whereDate('created_at', '>=', $start)
+                ->whereDate('created_at', '<=', $end)
+                ->where('int_quantity', '<',0)
+                ->sum('int_quantity') * -1 ?: 0;
+            })
+            ->addColumn('start', function($query)  use($start, $end){
+                // return App\Stock::where('int_stock_var_id_fk', $variant->int_var_id)->where('created_at', '<=', $start)->sum('int_quantity') ?: 0;
+                return $query->stocks()->whereDate('created_at', '<=', $start)->sum('int_quantity') ?: 0;
+            })
+            ->addColumn('end', function($query) use($start, $end) {
+                return $query->stocks()->whereDate('created_at', '<=', $end)->sum('int_quantity') ?: 0;
             })
             ->make(true);
         }
