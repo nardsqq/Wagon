@@ -150,7 +150,7 @@ class RefundController extends Controller
 
     public function getPaymentData()
     {
-        $payments = Payment::all();
+        $payments = Payment::with('invoice.order')->get();
 
         return json_encode(compact('payments'));
     }

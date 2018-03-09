@@ -27,7 +27,7 @@ class DeploymentController extends Controller
         $service_personnel = ServiceOrderPersonnel::all();
         $orders = DB::table('tbl_order as o')
             ->join('tbl_service_order as so', 'so.int_so_order_id_fk', 'o.int_order_id')
-            ->select(DB::raw('DISTINCT(o.int_order_id)'))
+            ->select(DB::raw('DISTINCT(o.int_order_id)'), 'o.str_purc_order_num')
             ->get();
 
         return view('transactions.deployment.index', compact( 'service_orders', 'schedules', 'personnel', 'orders'));
@@ -216,7 +216,7 @@ class DeploymentController extends Controller
 
     public function getServiceOrders($id)
     {
-        $service_orders = ServiceOrder::where('int_so_order_id_fk', $id)->get();
+        $service_orders = ServiceOrder::where('int_so_order_id_fk', $id)->with('service')->get();
         return response()->json([
             'service_orders'   => $service_orders,
             'alert'     => 'success',
