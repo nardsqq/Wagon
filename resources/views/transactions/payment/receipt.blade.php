@@ -33,11 +33,11 @@
     </style>
     
     <script>
-            window.onload = function(){
+            // window.onload = function(){
                 // window.focus();
                 // window.print();
                 // window.close();
-            }
+            // }
         </script>
 </head>
 <body>

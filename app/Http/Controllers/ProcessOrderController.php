@@ -228,6 +228,7 @@ class ProcessOrderController extends Controller
             $invoice->dbl_total_amount = $request->total;
             $invoice->save();
 
+            $receipt = null;
             //Payment 
             if(Downpayment::findOrFail($request->downpayment)->int_down_percentage > 0){
                 $payment = new Payment();
@@ -237,6 +238,7 @@ class ProcessOrderController extends Controller
                 $payment->str_received_by = 'test';
                 $payment->save();
 
+                $receipt = action('PaymentController@receipt', $payment->int_payment_id);
             }
 
             \DB::commit();
@@ -254,6 +256,7 @@ class ProcessOrderController extends Controller
             'message'   => 'Successfully completed transaction',
             'alert'     => 'success',
             'invoice'   => action('ProcessOrderController@invoice', $order->int_order_id),
+            'receipt'   => $receipt,
             'url'       => route('process-order.index')
         ]);
     }
