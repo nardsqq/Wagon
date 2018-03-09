@@ -22,7 +22,7 @@
                 <div class="form-group">
                 {!! Form::label('service_order_number', 'Service Order') !!}
                     <select name="service_order_number" id="service_order_number" class="form-control">
-                        <option v-for="service in service_orders" :value="service.int_service_order_id">
+                        <option v-for="service in service_orders" :value="service.int_service_order_id" :disabled="isServiceDisabled(service.int_service_order_id)">
                             @{{ service.service.str_service_name }}
                         </option>
                     </select>

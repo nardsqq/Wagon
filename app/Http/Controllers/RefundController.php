@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ItemOrder;
 use App\Payment;
+use App\Stock;
 use Illuminate\Http\Request;
 use App\Invoice;
 use DB;
@@ -64,6 +66,9 @@ class RefundController extends Controller
                 $refund_item->int_ref_item_refund_id_fk = $refund->int_refund_id;
                 $refund_item->int_ref_item_item_order_id_fk = $item_id;
                 $refund_item->int_return_quantity = $request->quantity[$item_id];
+                $item_order = ItemOrder::where('int_item_order_id', $item_id)->first();
+                $stock = Stock::where('int_stock_var_id_fk', $item_order->int_io_var_id_fk);
+                $stock->int_quantity += $request->quantity[$item_id];
                 $refund_item->is_returned = 1;
                 $refund_item->save();
 
@@ -150,7 +155,7 @@ class RefundController extends Controller
 
     public function getPaymentData()
     {
-        $payments = Payment::with('invoice.order')->get();
+        $payments = Payment::with('invoice.order')->get()   ;
 
         return json_encode(compact('payments'));
     }

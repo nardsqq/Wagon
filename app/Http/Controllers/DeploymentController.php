@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
 use Illuminate\Http\Request;
 use App\Order;
 use App\ServiceOrder;
@@ -130,11 +131,19 @@ class DeploymentController extends Controller
     {
         //
         $personnel = ServiceOrderPersonnel::where('int_schedule_id_fk', $id)->with('personnel')->get();
+        $service_schedule = ServiceOrderSchedule::where('int_sched_id', $id)->first();
+        $service_order = ServiceOrder::where('int_service_order_id', $service_schedule->int_ss_service_order_id_fk)->first();
+        $service = Service::where('int_service_id', $service_order->int_so_service_id_fk)->first();
+        $order = Order::where('int_order_id', $service_order->int_so_order_id_fk)->first();
 //        dd($personnel);
 //        dd($personnel);
         return response()->json([
             'alert'     => 'success',
-            'personnel' => $personnel
+            'personnel' => $personnel,
+            'order' => $order->str_purc_order_num,
+            'service' => $service->str_service_name,
+            'location' => $order->txt_deli_address,
+            'service_schedule' => $service_schedule
         ]);
     }
 
@@ -175,8 +184,11 @@ class DeploymentController extends Controller
     public function getOrderData()
     {
         $orders = Order::with('service_orders')->get();
-        $service_orders = ServiceOrder::all();
-        return json_encode(compact('payments', 'orders', 'service_orders'));
+        $service_orders = ServiceOrderSchedule::all();
+        return response()->json([
+            'service_orders'   => $service_orders,
+            'alert' => 'success',
+        ]);
     }
 
     public function assignPersonnel(Request $request)
@@ -217,8 +229,19 @@ class DeploymentController extends Controller
     public function getServiceOrders($id)
     {
         $service_orders = ServiceOrder::where('int_so_order_id_fk', $id)->with('service')->get();
+
         return response()->json([
             'service_orders'   => $service_orders,
+            'alert'     => 'success',
+        ]);
+    }
+
+    public function checkService($id)
+    {
+        $service_order = ServiceOrderSchedule::where('int_ss_service_order_id_fk', $id)->first();
+
+        return response()->json([
+            'service_order'   => $service_order,
             'alert'     => 'success',
         ]);
     }
