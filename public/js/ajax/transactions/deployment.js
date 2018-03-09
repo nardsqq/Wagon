@@ -153,9 +153,10 @@ var app = new Vue({
             selected_invoice: '',
             refund: null,
             selected_order: '',
-            selected_personnel: '',
+            selected_personnel: null,
             added_personnel: [],
-            check_service: false
+            check_service: false,
+            selected_service_order: null
 
         }
     }

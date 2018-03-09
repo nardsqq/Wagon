@@ -21,7 +21,7 @@
                 <hr>
                 <div class="form-group">
                 {!! Form::label('service_order_number', 'Service Order') !!}
-                    <select name="service_order_number" id="service_order_number" class="form-control">
+                    <select name="service_order_number" id="service_order_number" class="form-control" v-model="selected_service_order">
                         <option v-for="service in service_orders" :value="service.int_service_order_id" :disabled="isServiceDisabled(service.int_service_order_id)">
                             @{{ service.service.str_service_name }}
                         </option>
@@ -38,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Submit</button>
+                <button type="submit" class="btn btn-info pull-right" :disabled="!selected_service_order">Submit</button>
                 <input type="hidden" id="link_id" name="link_id" value="0">
             </div>
             {{ Form::close() }}
