@@ -160,7 +160,6 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'queries'], function() {
         Route::get('client', 'QueryController@clientQuery');
-        Route::get('client-search', 'QueryController@clientQueryData');
     });
 
 });
