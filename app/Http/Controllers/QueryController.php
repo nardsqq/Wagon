@@ -9,12 +9,12 @@ use App\Client;
 
 class QueryController extends Controller
 {
-    public function clientQuery()
+    public function clientQuery(Request $request)
     {
     	if($request->has('filter')) {
     		$query = Client::all();
 
-    		return Datatables::of($query);
+    		return Datatables::of($query)
     		->make(true);
     	}
     	return view('queries.client.index');
