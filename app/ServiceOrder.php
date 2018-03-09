@@ -8,6 +8,7 @@ class ServiceOrder extends Model
 {
     protected $table = 'tbl_service_order';
     protected $guarded = [];
+    protected $appends = ['personnels'];
     protected $primaryKey = 'int_service_order_id';
 
     public function order() 
@@ -34,6 +35,10 @@ class ServiceOrder extends Model
 
     public function getAmountAttribute(){
         return $this->service->dbl_service_price;
+    }
+
+    public function getPersonnelsAttribute(){
+        return [];
     }
     
 }

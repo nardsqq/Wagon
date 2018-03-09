@@ -45,7 +45,7 @@
                                                 {{--  <input type="text" id="invoice_no" name="invoice_no" class="form-control" v-model="invoice_no" placeholder="Enter Order #">  --}}
                                                 {!!Form::select('invoice_no', $orders, null, array('class' => 'form-control', 'id' => 'invoice_no', 'required' => true, 'v-model'=>'invoice_no' ) ); !!}
                                                 <span class="input-group-btn" @click="getInvoice()" aria-describedby="invoice-help-block">
-                                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                                    <button class="btn btn-default" type="button"><i class="fa fa-check"></i>&nbsp;Select</button>
                                                 </span>
                                             </div><!-- /input-group -->
                                             
