@@ -45,7 +45,7 @@ class Variant extends Model
     }
 
     public function getStockAttribute(){
-      return $this->stocks()->latest()->first()->int_quantity;
+      return $this->stocks()->sum('int_quantity');
     }
 
     public function getCurrPrevStock($date = null){

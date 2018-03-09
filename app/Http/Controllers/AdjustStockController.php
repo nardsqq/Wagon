@@ -66,8 +66,7 @@ class AdjustStockController extends Controller
                 $stock                            = new Stock();
                 $stock->int_stock_var_id_fk       = $variant_id;
                 $stock->int_quantity              = $request->action[$variant_id] == AdjustStock::$actions['WIT'] ? 
-                                                    $variant->getCurrPrevStock()['current'] - $request->quantity[$variant_id] : 
-                                                    $variant->getCurrPrevStock()['current'] + $request->quantity[$variant_id];
+                                                    (-1 * $request->quantity[$variant_id]) : $request->quantity[$variant_id];
                 $stock->save();
             }
 
