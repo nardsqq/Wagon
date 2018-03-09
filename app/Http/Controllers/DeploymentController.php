@@ -8,6 +8,7 @@ use App\ServiceOrder;
 use App\ServiceOrderStatus;
 use App\ServiceOrderPersonnel;
 use App\ServiceOrderSchedule;
+use DB;
 use App\Personnel;
 
 
@@ -24,7 +25,12 @@ class DeploymentController extends Controller
         $service_orders = ServiceOrder::all();
         $personnel = Personnel::all();
         $service_personnel = ServiceOrderPersonnel::all();
-        return view('transactions.deployment.index', compact( 'service_orders', 'schedules', 'personnel'));
+        $orders = DB::table('tbl_order as o')
+            ->join('tbl_service_order as so', 'so.int_so_order_id_fk', 'o.int_order_id')
+            ->select(DB::raw('DISTINCT(o.int_order_id)'))
+            ->get();
+
+        return view('transactions.deployment.index', compact( 'service_orders', 'schedules', 'personnel', 'orders'));
     }
 
     /**
@@ -168,7 +174,7 @@ class DeploymentController extends Controller
 
     public function getOrderData()
     {
-        $orders = Order::all();
+        $orders = Order::with('service_orders')->get();
         $service_orders = ServiceOrder::all();
         return json_encode(compact('payments', 'orders', 'service_orders'));
     }
@@ -205,6 +211,15 @@ class DeploymentController extends Controller
             'message'   => 'Successfully completed transaction',
             'alert'     => 'success',
             'url'       => route('process-deployment.index')
+        ]);
+    }
+
+    public function getServiceOrders($id)
+    {
+        $service_orders = ServiceOrder::where('int_so_order_id_fk', $id)->get();
+        return response()->json([
+            'service_orders'   => $service_orders,
+            'alert'     => 'success',
         ]);
     }
 }

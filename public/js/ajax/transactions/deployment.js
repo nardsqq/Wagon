@@ -2,7 +2,23 @@ var app = new Vue({
     el: '#deployment',
     mounted() {
     },
+    watch: {
+        selected_order: function() {
+
+            this.getServices();
+        }
+    },
     methods:{
+        getServices: function() {
+            var self = this;
+            axios.get('/admin/transactions/process-deployment/get-service-orders/' + this.selected_order)
+                .then(function (response){
+                    if(response.data.alert == 'success'){
+                        console.log();
+                        self.service_orders = response.data.service_orders;
+                    }
+                });
+        },
         addPersonnel: function() {
             this.added_personnel.push({"int_personnel_id": this.selected_personnel,"name": $('#select_person option:selected').text()});
         },
@@ -93,7 +109,7 @@ var app = new Vue({
             payments: null,
             client: {},
             order: null,
-            service_order: null,
+            service_orders: null,
             amount_due: 0,
             amount_paid: 0,
             balance_due: 0,
