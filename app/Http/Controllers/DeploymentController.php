@@ -20,7 +20,11 @@ class DeploymentController extends Controller
      */
     public function index()
     {
-        return view('transactions.deployment.index');        
+        $schedules = ServiceOrderSchedule::all();
+        $service_orders = ServiceOrder::all();
+        $personnel = Personnel::all();
+        $service_personnel = ServiceOrderPersonnel::all();
+        return view('transactions.deployment.index', compact( 'service_orders', 'schedules', 'personnel'));
     }
 
     /**
@@ -39,6 +43,7 @@ class DeploymentController extends Controller
         $orders = Order::with('service_orders.service')->has('service_orders')->doesntHave('service_orders.service_schedules')->get();
         $personnels = Personnel::all();
         return json_encode(compact('orders', 'personnels'));
+        //
     }
 
     /**
@@ -49,6 +54,7 @@ class DeploymentController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         try{
             \DB::beginTransaction();
 
@@ -76,6 +82,22 @@ class DeploymentController extends Controller
 
             \DB::commit();
         } 
+        */
+        //
+        
+        try {
+            // [todo] insert validation rules here
+
+            \DB::beginTransaction();
+
+            $service_sched = new ServiceOrderSchedule();
+            $service_sched->int_ss_service_order_id_fk = $request->service_order_number;
+            $service_sched->dat_start = $request->mobilization;
+            $service_sched->dat_end = $request->de_mobilization;
+            $service_sched->save();
+
+            \DB::commit();
+        }
         catch(Exception $e){
             \DB::rollback();
 
@@ -101,6 +123,13 @@ class DeploymentController extends Controller
     public function show($id)
     {
         //
+        $personnel = ServiceOrderPersonnel::where('int_schedule_id_fk', $id)->with('personnel')->get();
+//        dd($personnel);
+//        dd($personnel);
+        return response()->json([
+            'alert'     => 'success',
+            'personnel' => $personnel
+        ]);
     }
 
     /**
@@ -135,5 +164,47 @@ class DeploymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getOrderData()
+    {
+        $orders = Order::all();
+        $service_orders = ServiceOrder::all();
+        return json_encode(compact('payments', 'orders', 'service_orders'));
+    }
+
+    public function assignPersonnel(Request $request)
+    {
+//        dd($request->all());
+        try {
+            // [todo] insert validation rules here
+
+            \DB::beginTransaction();
+
+            foreach($request->personnel as $person_id)
+            {
+                $service_personnel = new ServiceOrderPersonnel();
+                $service_personnel->int_schedule_id_fk = $request->service_schedule_id;
+                $service_personnel->int_personnel_id_fk = $person_id;
+                $service_personnel->txt_remarks = "";
+                $service_personnel->save();
+            }
+
+            \DB::commit();
+        }
+        catch(Exception $e){
+            \DB::rollback();
+
+            return response()->json([
+                'message'   => $e,
+                'alert'     => 'error',
+            ]);
+        }
+
+        return response()->json([
+            'message'   => 'Successfully completed transaction',
+            'alert'     => 'success',
+            'url'       => route('process-deployment.index')
+        ]);
     }
 }
