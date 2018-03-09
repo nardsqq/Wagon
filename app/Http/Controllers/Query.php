@@ -14,7 +14,7 @@ class Query extends Controller
      */
     public function index()
     {
-        return view('queries.personnel.index');
+        return view('queries.client.index');
     }
 
     public function search(Request $req){

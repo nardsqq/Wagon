@@ -20,7 +20,7 @@
       <ol class="breadcrumb">
         <li>Admin</li>
         <li>Queries</li>
-        <li>Personnel</li>
+        <li>Clients</li>
       </ol>
     </div>
   </section>
@@ -33,19 +33,19 @@
             <div class="icon">
               <i class="fa fa-info-circle"></i>
             </div>
-            <strong>Search <i>Personnel Records</i> here.</strong>
+            <strong>Search for <i>Client Records</i> here.</strong>
             <br>
-            <small>Search <i>Personnel Data</i>.</small>
+            <small>Search by <i>Client Data</i>.</small>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
               <div class="panel-title">
-                <h4>Queries - Personnel</h4>
+                <h4>Queries - Clients</h4>
               </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
-                @include('queries.personnel.table')
+                @include('queries.client.table')
               </div>
             </div>
           </div>
@@ -57,36 +57,7 @@
 @endsection
 
 @section('scripts')
-
-  <!-- Delay table load until everything else is loaded -->
   <script>
-    $(window).on('load', function(){
-        $('#dataTable').removeAttr('style');
-    })
-  </script>
-  <script type="text/javascript">
-    function search(){
-      $.ajaxSetup({
-        headers: {
-         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      }); 
-      $.ajax({
-        type: 'post',
-        url: '/admin/queries/personnel-search',
-        data: {
-            'strPersEmpType':$('#strPersEmpType').val(),
-            'intPers_Role_ID':$('#intPers_Role_ID').val(),
-            'strPersMobNo':$('#strPersMobNo').val(),
-            'strPersFName':$('#strPersFName').val(),
-            'strPersMName':$('#strPersMName').val(),
-            'strPersLName':$('#strPersLName').val(),
-        },
-        success: function(data){
 
-            $('#prod-list').html(data)
-        }
-      });
-    }
   </script>
 @endsection

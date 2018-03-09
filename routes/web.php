@@ -159,7 +159,7 @@ Route::group(['prefix' => 'admin'], function() {
   });
 
 Route::group(['prefix' => 'queries'], function() {
-    Route::get('personnel', 'Query@index');
+    Route::get('client', 'Query@index');
     Route::post('personnel-search', 'Query@search');
     Route::get('service-area', 'RouteController@servz');
     Route::post('service-area-search', 'Query@searchservice');

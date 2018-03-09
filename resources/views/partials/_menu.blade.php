@@ -146,9 +146,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-question fa-fw" aria-hidden="true"></i>&nbsp; Queries <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ url('/admin/queries/personnel') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Personnel</a></li>
-            <li><a href="{{ url('/admin/queries/service-area') }}"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Services</a></li>
-            <li><a href="{{ url('/admin/queries/product-variant') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Variants</a></li>
+            <li><a href="{{ url('/admin/queries/client') }}"><i class="fa fa-male fa-fw" aria-hidden="true"></i>&nbsp; Clients</a></li>
+            {{-- <li><a href="{{ url('/admin/queries/service-area') }}"><i class="fa fa-gavel fa-fw" aria-hidden="true"></i>&nbsp; Services</a></li>
+            <li><a href="{{ url('/admin/queries/product-variant') }}"><i class="fa fa-cube fa-fw" aria-hidden="true"></i>&nbsp; Product Variants</a></li> --}}
           </ul>
         </li>
         <li class="dropdown">
