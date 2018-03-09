@@ -117,7 +117,7 @@
                                         <tr>
                                             <td>{{ $item->variant->product->str_product_name }}</td>
                                             <td>{{ $item->variant->str_var_name }}</td>
-                                            <td class="text-right">@money($item->variant->price)</td>
+                                            <td class="text-right">@money($item->price)</td>
                                             <td class="text-right">{{ $item->int_quantity }}</td>
                                             <td class="text-right">@money(($item->amount))</td>
                                         </tr>

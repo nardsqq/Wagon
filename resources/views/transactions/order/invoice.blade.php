@@ -66,13 +66,13 @@
         <tbody>
             @php $rowCount = 14; $counter = 0; $total = 0; $material_total = 0; $service_total = 0; @endphp
             @foreach($order->item_orders as $item)
-            @php $total += ($item->variant->price * $item->int_quantity); @endphp
+            @php $total += ($item->amount); @endphp
             <tr>
                 <td>{{ $item->int_quantity }}</td>
                 <td>pc</td>
                 <td colspan="3">{{ str_limit($item->variant->product->str_product_name.'-'.$item->variant->str_var_name, 80) }}</td>
-                <td class="text-right">@money($item->variant->price)</td>
-                <td class="text-right">@money($item->variant->price * $item->int_quantity)</td>
+                <td class="text-right">@money($item->price)</td>
+                <td class="text-right">@money($item->amount)</td>
             </tr>
             @endforeach
 

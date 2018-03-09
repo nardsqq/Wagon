@@ -64,7 +64,7 @@
         <tbody>
             @php $rowCount = 14; $counter = 0; $total = 0; $material_total = 0; $service_total = 0; @endphp
             @foreach($order->item_orders as $item)
-            @php $total += ($item->variant->price * $item->int_quantity); @endphp
+            @php $total += ($item->amount); @endphp
             <tr>
                 <td>{{ $item->int_quantity }}</td>
                 <td>pc</td>
