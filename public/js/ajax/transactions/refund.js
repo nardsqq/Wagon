@@ -4,6 +4,17 @@ var app = new Vue({
         this.fetchPaymentsData()
     },
     methods:{
+        verifyQuantity: function(item) {
+            var self = this;
+            var ids = _.map(self.invoice_temp.order.item_orders, 'int_item_order_id');
+            var index = ids.indexOf(item.int_item_order_id);
+            if(item.int_quantity > self.invoice.order.item_orders[index].int_quantity)
+            {
+                item.int_quantity = self.invoice.order.item_orders[index].int_quantity
+            }
+            else if(item.int_quantity < 0)
+                item.int_quantity = 0;
+        },
         fetchPaymentsData: function(){
             var self = this;
             axios.get('/admin/transactions/refund-payments-data').then(function(response) {
@@ -20,11 +31,25 @@ var app = new Vue({
                         self.refund = response.data.refund;
                         self.invoice_temp = JSON.parse(JSON.stringify(response.data.invoice));
 
+                        // set quantity to 0
                         for(var i = 0; i < self.invoice_temp.order.item_orders.length; i++)
                         {
                             self.invoice_temp.order.item_orders[i]['int_quantity'] = 0;
                         }
 
+                        // if there are previous refunds, check the quantity left
+                        if(self.refund)
+                        {
+
+                            var ids = _.map(self.invoice_temp.order.item_orders, 'int_item_order_id');
+                            for(var i = 0; i < self.refund.length; i++)
+                            {
+                                for (var j = 0; j < self.refund[i].items.length; j++) {
+                                    var index = ids.indexOf(self.refund[i].items[j].int_ref_item_item_order_id_fk);
+                                    self.invoice.order.item_orders[index].int_quantity -= self.refund[i].items[j].int_return_quantity;
+                                }
+                            }
+                        }
 
                     } else {
                         self.invoice_exists = false;

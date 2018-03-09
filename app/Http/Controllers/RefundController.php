@@ -159,7 +159,7 @@ class RefundController extends Controller
     {
         try {
             $invoice = Invoice::find($id)->with('order.item_orders.variant.prices')->first();
-            $refund = Refund::where('int_refund_invoice_id_fk', $id)->first();
+            $refund = Refund::where('int_refund_invoice_id_fk', $id)->with('items.item')->get();
 
 //            dd($refund->int_refund_id);
             $alert = 'success';

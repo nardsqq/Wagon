@@ -76,15 +76,16 @@
                                                     <input type="hidden" name="item_orders[]"
                                                            :value="item.int_item_order_id">
                                                 </td>
-                                                <td>
+                                                <td v-if="invoice.order.item_orders[index].int_quantity > 0">
                                                     <input type="number" :name="'quantity['+item.int_item_order_id+']'"
                                                            class="btn btn-secondary btn-sm"
                                                            style="cursor: text;width: 100px;"
-                                                           v-model.number="item.int_quantity" min="1"
+                                                           v-model.number="item.int_quantity" min="0"
                                                            :max="invoice.order.item_orders[index].int_quantity"
-                                                           maxlength="2">
+                                                           maxlength="2" @blur="verifyQuantity(item)">
                                      
                                                 </td>
+                                                <td v-else>All quantity are returned already</td>
                                                 <td class="text-right">₱@{{ item.variant.prices[0].dbl_price }}</td>
                                                 <td class="text-right">₱@{{ item.variant.prices[0].dbl_price *
                                                     item.int_quantity }}
