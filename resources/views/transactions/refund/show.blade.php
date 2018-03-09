@@ -47,8 +47,8 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <dl>
-                                    <dt>Invoice Number</dt>
-                                    <dd><h3>{{ $refund->int_refund_invoice_id_fk }}</h3></dd>
+                                    <dt>Order Reference</dt>
+                                    <dd><h3>{{ $refund->invoice->order->str_purc_order_num  }}</h3></dd>
                                 </dl>
                                 <dl>
                                     <dt>Client</dt>
