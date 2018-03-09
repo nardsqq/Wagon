@@ -12,7 +12,7 @@
                         <select name="order_number" id="order_number" class="form-control" v-model="selected_order">
                                     @foreach($orders as $order)
                                         <option value="{{ $order->int_order_id }}">
-                                        {{ $order->int_order_id }}
+                                        {{ $order->str_purc_order_num }}
                                     @endforeach
                                 </option>
                         </select>
@@ -23,7 +23,7 @@
                 {!! Form::label('service_order_number', 'Service Order') !!}
                     <select name="service_order_number" id="service_order_number" class="form-control">
                         <option v-for="service in service_orders" :value="service.int_service_order_id">
-                            @{{ service.int_service_order_id }}
+                            @{{ service.service.str_service_name }}
                         </option>
                     </select>
                 </div>
