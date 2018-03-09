@@ -47,7 +47,13 @@ var app = new Vue({
             if(confirm('Do you really want to leave? Your changes will not be saved')){
                 window.location.assign('/admin/transactions/process-deployment');
             }
-        }
+        },
+        assignPersonnels: function(so){
+            this.current_so = so;
+        },
+        removePersonnel: function(index){
+            this.current_so.personnels.splice(index, 1);
+        },
     },
     data(){
         return {
@@ -55,6 +61,9 @@ var app = new Vue({
             orders: [],
             personnels: {},
             order: null,
+            current_so: {
+                personnels: []
+            }
         }
     }
 });

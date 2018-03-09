@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\ServiceOrder;
+use App\ServiceOrderStatus;
 use App\ServiceOrderPersonnel;
 use App\ServiceOrderSchedule;
 use App\Personnel;
@@ -59,6 +60,12 @@ class DeploymentController extends Controller
                     'dat_start' => $request->dat_start[$service_order_id],
                     'dat_end' => $request->dat_end[$service_order_id]
                 ]);
+
+                ServiceOrderStatus::create([
+                    'int_sos_service_order_id_fk' => $service_order_id,
+                    'str_status' => ServiceOrderStatus::$status['SCH']
+                ]);
+
                 foreach($request->personnels[$service_order_id] as $personnel_id){
                     ServiceOrderPersonnel::create([
                         'int_schedule_id_fk' => $sched->int_sched_id,

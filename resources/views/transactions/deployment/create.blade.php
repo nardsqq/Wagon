@@ -17,6 +17,7 @@
     <div class="container fadeIn">
         @include('partials._menu')
     </div>
+    
 
     <section id="breadcrumb">
         <div class="container animated fadeIn">
@@ -33,6 +34,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12" id="deployment">
+                    
+                     @include('transactions.deployment.assign')
                     <div class="panel">
                         <div class="panel-body">
                                 {{ Form::open(['id'=>'deployment-form', 'class'=>'form-horizontal', 'route'=>'process-deployment.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
@@ -49,8 +52,8 @@
                                     </div>
 
                                     <div style="margin: 20px;">
-                                        <button @click="cancel" class="btn btn-danger pull-right">Cancel</button>
                                         <button type="submitForm" class="btn btn-info pull-right">Submit</button>
+                                        <button @click="cancel" class="btn btn-danger pull-right">Cancel</button>
                                     </div>
                                     
                                     <div v-if="order" class="col-xs-12 m-t-20">
@@ -78,12 +81,12 @@
                                                     <td>
                                                         <input type="date" :name="'dat_end['+service_order.int_service_order_id+']'" class="form-control">
                                                     </td>
-                                                    <td><button v-if="isEmpty(service_order.personnels)" type="button" class="btn btn-sm btn-info" @click="selectMaterial(service_order)"  data-toggle="modal" data-target="#assign_personnels">Assign Personnels</button>
-                                                        <span v-else-if="service_order.acqui_type==2">N/A</span>
+                                                    <td>
+                                                        <button v-if="isEmpty(service_order.personnels)" type="button" class="btn btn-sm btn-info"  @click="assignPersonnels(service_order)" data-toggle="modal" data-target="#assign-modal">Assign Personnels</button>
                                                         <span v-else>
-                                                            <input type="hidden" v-for="personnel in service_order.personnels" :key="personnel.int_personnel_id" :value="service_order.personnels.int_personnel_id" :name="'personnels['+service_order.int_service_order_id+'][]'">
+                                                            <input type="hidden" v-for="personnel in service_order.personnels" :key="personnel.int_personnel_id" :value="personnel.int_personnel_id" :name="'personnels['+service_order.int_service_order_id+'][]'">
                                                             @{{ service_order.personnels.str_var_name }}
-                                                            <a href="#" class="text-underline text-muted" @click="assignPersonnels(service_order)" data-toggle="modal" data-target="#assign_personnels">(Change personnels)</a>
+                                                            <a href="#" class="text-underline text-muted" @click="assignPersonnels(service_order)" data-toggle="modal" data-target="#assign-modal">(Change personnels)</a>
                                                         </span>
                                                     </td>
                                                 </tr>
