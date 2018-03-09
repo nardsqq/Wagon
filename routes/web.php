@@ -126,6 +126,13 @@ Route::group(['prefix' => 'admin'], function() {
       Route::get('refund-payments-data', 'RefundController@getPaymentData');
       Route::get('refund-{id}', 'RefundController@getInvoice');
 
+      // Deployment
+      Route::resource('process-deployment', 'DeploymentController');
+      Route::get('process-deployment-order-data', 'DeploymentController@getOrderData');
+      Route::post('process-deployment/assign-personnel', 'DeploymentController@assignPersonnel')->name('process-deployment.assign');
+
+
+
 
     // Purchase Order
     //Route::get('process-order', 'RouteController@purchaseorder');
@@ -137,8 +144,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('delivery/{id}/receipt', 'DeliveryController@receipt')->name('delivery.receipt');
     Route::get('delivery/{id}/complete', 'DeliveryController@complete')->name('delivery.complete');
 
-    Route::get('process-deployment', 'RouteController@processDeployment');
-    Route::get('process-deployment/create', 'RouteController@processDeploymentCreate');
+//    Route::get('process-deployment', 'RouteController@processDeployment');
+//    Route::get('process-deployment/create', 'RouteController@processDeploymentCreate');
 
     // Temporary Routes
     Route::resource('quotation', 'QuotationController');

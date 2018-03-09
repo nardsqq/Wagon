@@ -11,7 +11,7 @@ class Personnel extends Model
 
     protected $table = 'tbl_personnel';
     protected $primaryKey = 'int_personnel_id';
-    protected $guarded = [];
+    protected $appends = array('name');
 
     public function positions()
     {
