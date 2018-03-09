@@ -12,6 +12,10 @@ class ReportsController extends Controller
     	return view('reports.sales_report');
     }
 
+    public function inventory(Request $request){
+      return view('reports.inventory_pdf');
+    }
+
     public function salesReportPDF(Request $request){
     	//return $request->toArray();
     	$sales_Reports = DB::table('tblvariant')

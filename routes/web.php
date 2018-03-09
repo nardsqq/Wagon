@@ -166,7 +166,9 @@ Route::group(['prefix' => 'queries'], function() {
     Route::get('product-variant', 'RouteController@varz');
     Route::post('product-variant-search', 'Query@varzsearch');
 });
-
+  Route::group(['prefix' => 'reports'], function() {
+    Route::get('inventory', 'ReportsController@inventory');
+  });
 });
 
 //<------------- Earl :D  ----------------> ///
