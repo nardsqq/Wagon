@@ -58,6 +58,63 @@
 
 @section('scripts')
   <script>
+    $(document).on('submit', '#filter-form', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        
+        datatable.ajax.reload();
 
+        return false;
+    });
+
+    var datatable = $('#dataTable').DataTable({
+        processing: true,
+        ajax: {
+            url: '{!! URL::current() !!}?filter=true',
+            data: function(){
+                @yield('datatable-ajax-data')
+            }
+        },
+        fixedHeader: true,
+        columns: [
+            @yield('datatable-columns')
+        ],
+        responsive: true,
+        dom: "<'row m-b-15'<'col-sm-6'l><'col-sm-6'B>><'row'<'col-sm-12'tr>><'row m-t-15'<'col-sm-5'i><'col-sm-7'p>>",
+        //dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':not([aria-label=Action]):not(.exclude)'
+                }
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':not([aria-label=Action]):not(.exclude)'
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':not([aria-label=Action]):not(.exclude)'
+                },
+                filename: "@yield('filename'){{ date('c') }}",
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':not([aria-label=Action]):not(.exclude)'
+                },
+                customize: function(win){
+                    $(win.document.body).css('font-size', '14px');
+                    let table = $(win.document.body).find('table').css('font-size', 'inherit');
+                    $(table).find('td').css('padding', '0.5rem')
+                    $(table).find('th').css('font-weight', 'bold');
+                }
+            },
+        ],
+    });
   </script>
 @endsection

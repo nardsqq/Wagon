@@ -1,4 +1,5 @@
-<form id="adv-search-form">
+{{ Form::open(['id'=>'adv-search-form','route'=> Route::currentRouteName(), 'method'=>'GET']) }}
+  {{ Form::hidden('filter', true) }}
   <div class="row">
     <div class="col-xs-6">
       {!! Form::label('str_client_name ', 'Client Name') !!}
@@ -25,28 +26,26 @@
       
     </div>
     <div class="col-md-4 pull-right">
-      <button type="button" id="filter" class="btn btn-success col-xs-12" name="button"><i class="fa fa-search fa-fw"></i>&nbsp; Filter</button>
+      <button type="submit" class="btn btn-success col-xs-12" name="button"><i class="fa fa-search fa-fw"></i>&nbsp; Filter</button>
     </div>
   </div>
-</form>
+{{ Form::close() }}
 
 <hr>
 
-<table id="dataTable" class="table table-bordered table-hover" style="visibility: hidden;" width="100%">
+<table id="dataTable" class="table table-bordered table-hover" width="100%">
   <thead>
     <tr>
       <th>Client</th>
+      <th>Representative</th>
       <th>TIN</th>
-      <th>Address</th>
-      <th>Mobile Number</th>
     </tr>
   </thead>
-  <tbody id="prod-list">
-      <tr id="">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-  </tbody>
 </table>
+
+@section('datatable-columns')
+    { data: 'int_client_id', name: 'int_client_id'},
+    { data: 'str_client_name', name: 'str_client_name'},
+    { data: 'str_client_person', name: 'str_client_person'},
+    { data: 'str_client_tin', name: 'str_client_tin'},
+@endsection

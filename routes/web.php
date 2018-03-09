@@ -158,14 +158,10 @@ Route::group(['prefix' => 'admin'], function() {
     });
   });
 
-Route::group(['prefix' => 'queries'], function() {
-    Route::get('client', 'Query@index');
-    Route::post('personnel-search', 'Query@search');
-    Route::get('service-area', 'RouteController@servz');
-    Route::post('service-area-search', 'Query@searchservice');
-    Route::get('product-variant', 'RouteController@varz');
-    Route::post('product-variant-search', 'Query@varzsearch');
-});
+    Route::group(['prefix' => 'queries'], function() {
+        Route::get('client', 'QueryController@clientQuery');
+        Route::get('client-search', 'QueryController@clientQueryData');
+    });
 
 });
 
