@@ -15,7 +15,7 @@ class ServiceOrderStatus extends Model
       'SCH' => 'Scheduled', //kapag nalagyan na ng schedule
       'MOB' => 'Mobilized', // start na ng service (with confirmation)
       'DEM' => 'De-mobilized', // end ng service (with confirmation)
-      'CAN' => 'Cancelled' // kapag kinansel yung order
+      'CANC' => 'Cancelled' // kapag kinansel yung order
     ];
 
     public function service_order() 

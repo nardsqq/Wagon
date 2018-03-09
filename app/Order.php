@@ -79,6 +79,11 @@ class Order extends Model
     public function getTypeAttribute(){
         return $this->item_orders->count() > 0 ? 'Item Order' : 'Service Order';
     }
+
+    public function getCanCancelAttribute(){
+        return count($this->invoice->payments) == 0 && $this->current_status->str_status != OrderStatus::$status['CANC'] && $this->current_status->str_status != OrderStatus::$status['PAID']
+        ;
+    }
 }
 
 

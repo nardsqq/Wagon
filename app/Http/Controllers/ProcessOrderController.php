@@ -10,6 +10,7 @@ use App\ServiceOrderMaterial;
 use App\ServiceOrderStatus;
 use App\OrderFooter;
 use App\OrderStatus;
+use App\DeliveryStatus;
 use App\Client;
 use App\Product;
 use App\Service;
@@ -308,7 +309,43 @@ class ProcessOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $order = Order::findOrFail($id);
+
+            if($order->can_cancel){
+                
+                \DB::beginTransaction();
+            
+                $order->status()->create([
+                    'str_status' => OrderStatus::$status['CANC']
+                ]);
+                if(isset($order->delivery)){
+                    $order->delivery->status()->create([
+                        'str_status' => DeliveryStatus::$status['CANC']
+                    ]);
+                }
+                
+                foreach($order->service_orders as $service_order){
+                    $service_order->service_status()->create([
+                        'str_status' => ServiceOrderStatus::$status['CANC']
+                    ]);
+                }
+            
+                \DB::commit();
+            } else {
+                // cannot cancel 
+            }
+        } catch(Exception $e){
+            \DB::rollback();
+
+            return redirect()->route('process-order.index')
+            ->with('message', $e)
+            ->with('alert', 'error');
+        }
+
+        return redirect()->route('process-order.index')
+            ->with('message', 'Successfully called order '.$order->str_purc_order_num)
+            ->with('alert', 'success');
     }
 
     public function invoice($id)

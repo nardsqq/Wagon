@@ -25,7 +25,12 @@
       </td>
       <td class="text-center">
           <a  href="{{ route('process-order.show', $order->int_order_id) }}"class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</a>
-          <button  value="{{ $order->int_order_id }}"class="btn btn-cancel-order btn-xs btn-danger"><i class='fa fa-trash-o fa-fw'></i>&nbsp; Cancel</button>
+          
+          @if($order->can_cancel)
+          {{ Form::open(['method'=>'delete', 'route'=>['process-order.destroy', $order->int_order_id]])}}
+          <button value="{{ $order->int_order_id }}" class="btn btn-cancel-order btn-xs btn-danger"><i class='fa fa-trash-o fa-fw'></i>&nbsp; Cancel</button>
+          {{ Form::close() }}
+          @endif
       </td>
     </tr>
     @endforeach
