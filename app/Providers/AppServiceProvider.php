@@ -62,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
         Delivery::saved(function ($delivery){
             OrderStatus::firstOrCreate([
                 'str_status' => OrderStatus::$status['PROC'],
-                'int_orstat_order_id_fk' => $invoice->order->int_order_id
+                'int_orstat_order_id_fk' => $delivery->order->int_order_id
             ]);
             if($delivery->int_del_personnel_id_fk && $delivery->dat_delivery_date){
                 DeliveryStatus::firstOrCreate([
@@ -71,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
                 ]);
                 OrderStatus::firstOrCreate([
                     'str_status' => OrderStatus::$status['BILL'],
-                    'int_orstat_order_id_fk' => $invoice->order->int_order_id
+                    'int_orstat_order_id_fk' => $delivery->order->int_order_id
                 ]);
             }
         });
