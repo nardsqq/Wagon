@@ -1,4 +1,7 @@
 @extends('main')
+@section('title')
+    @yield('report-name')
+@endsection
 @section('content')
 
  <header id="header">
@@ -25,7 +28,7 @@
     </div>
   </section>
 
-<div id="thelegendarymodal" class="modal fade">
+{{--  <div id="thelegendarymodal" class="modal fade">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -58,7 +61,7 @@
       
     </div>
   </div>
-</div>
+</div>  --}}
 
   <section id="main">
     <div class="container animated fadeIn">
@@ -74,15 +77,23 @@
           </div>  
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
-                <input id="custom" class="form-control input-daterange-datepicker" type="text" name="daterange" value="01/01/2015 - 01/31/2015">
-              <div class="btn-group pull-right">
-                <button class="btn btn-success" onclick="func_show('salesreport-pdf')">
-					<i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i>&nbsp; Generate Report
-				</button>
-              </div>
-              <div class="panel-title">
-                <h4>@yield('report-name')</h4>
-              </div>
+                <div class="col-md-12">
+                    <div class="col-xs-6">
+                        <div class="panel-title">
+                            <h4>@yield('report-name')</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                            <input id="custom" class="form-control input-daterange-datepicker" type="text" name="daterange" value="01/01/2015 - 01/31/2015">
+                        {{--  <div class="col-xs-6"> 
+                            <div class="btn-group pull-right">
+                                <button class="btn btn-success" onclick="datatable.ajax.reload()">
+                                    <i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i>&nbsp; Generate Report
+                                </button>
+                            </div>
+                        </div>  --}}
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
               <div id="table-container">
@@ -113,6 +124,9 @@
   </script>
 
   <script type="text/javascript">
+        $startDate = moment().startOf('month').format('YYYY-MM-DD');
+        $endDate = moment().endOf('month').format('YYYY-MM-DD');
+
 	function func_show(newroute){
 		$('#date-range-form').attr('action', newroute)
         $('#thelegendarymodal').modal('show');
@@ -136,6 +150,9 @@
             "applyClass": "btn-info"
         }, function(start, end, label) {
             console.log("New date range selected: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+            
+            $startDate = start.format('YYYY-MM-DD') ;
+            $endDate = end.format('YYYY-MM-DD');
             datatable.ajax.reload();
         });
         
@@ -200,7 +217,22 @@
                     exportOptions: {
                         columns: ':not([aria-label=Action]):not(.exclude)'
                     },
-                    filename: "@yield('filename'){{ date('c') }}",
+                    customize: function ( doc ) {
+                        doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content.splice( 0, 0, {
+                            fontSize: 16,
+                            margin: [0, 0, 0, 10],
+                            alignment: 'center',
+                            text: `MARINE SALES AND SERVICES MANAGEMENT SYSTEM`,
+                        });
+                        doc.content.splice( 2, 0, {
+                            fontSize: 11,
+                            margin: [0, 0, 0, 5],
+                            alignment: 'center',
+                            text: ($('.input-daterange-datepicker').data('daterangepicker').startDate).format('YYYY-MM-DD') +' to '+($('.input-daterange-datepicker').data('daterangepicker').endDate).format('YYYY-MM-DD'),
+                        });
+                    },
+                    filename: "@yield('report-name'){{ date('c') }}",
                 },
                 {
                     extend: 'print',
@@ -208,6 +240,13 @@
                     exportOptions: {
                         columns: ':not([aria-label=Action]):not(.exclude)'
                     },
+                    title: `
+                        <center>
+                            <h3>MARINE SALES AND SERVICES MANAGEMENT SYSTEM</h3>
+                            <span style="font-size: 20px">@yield('report-name')<br></span>
+                            <span style="font-size: 12px">${$startDate} to  ${$endDate} <br></span>
+                        </center>
+                    `,
                     customize: function(win){
                         $(win.document.body).css('font-size', '14px');
                         let table = $(win.document.body).find('table').css('font-size', 'inherit');
@@ -229,6 +268,8 @@
         });
 
         $('#datepickers').on('change', '.datepicker', function(e){
+            $startDate = ($('.input-daterange-datepicker').data('daterangepicker').startDate).format('YYYY-MM-DD');
+            $endDate = ($('.input-daterange-datepicker').data('daterangepicker').endDate).format('YYYY-MM-DD');
             datatable.ajax.reload();
         });
         
