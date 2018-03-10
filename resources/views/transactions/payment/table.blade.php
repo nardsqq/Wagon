@@ -31,7 +31,7 @@
         </td>
         <td class="text-center">
             <a href="{{ action('PaymentController@payments', $order->int_order_id) }}" class="btn btn-details btn-xs btn-default"><i class="fa fa-circle-o fa-fw"></i>&nbsp; Details</a>
-            <button  value="{{ $order->int_order_id }}"class="btn btn-details btn-xs btn-primary"><i class="fa fa-reply fa-fw"></i>&nbsp; Receive Payment</button>
+            {{-- <button  value="{{ $order->int_order_id }}"class="btn btn-details btn-xs btn-primary"><i class="fa fa-reply fa-fw"></i>&nbsp; Receive Payment</button> --}}
         </td>
         </tr>
         @endforeach
