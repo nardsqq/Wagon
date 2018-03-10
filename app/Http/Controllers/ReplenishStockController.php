@@ -73,7 +73,7 @@ class ReplenishStockController extends Controller
 
                 $stock                            = new Stock();
                 $stock->int_stock_var_id_fk       = $variant_id;
-                $stock->int_quantity              = $variant->getCurrPrevStock()['current'] + $request->quantity[$variant_id];
+                $stock->int_quantity              = $request->quantity[$variant_id];
                 $stock->save();
             }
 

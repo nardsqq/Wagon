@@ -50,11 +50,20 @@ class Variant extends Model
 
     public function getCurrPrevStock($date = null){
       $date = $date ?: date('c');
-      $stock = $this->stocks()->where('int_stock_var_id_fk', $this->int_var_id)->where('created_at', '<=', $date)->latest()->pluck('int_quantity')->take(2);
       
+      $stock = $this->stocks()->where('int_stock_var_id_fk', $this->int_var_id)->where('created_at', '<=', $date)->latest()->pluck('int_quantity','int_stock_id')->take(2)->toArray();
+      $keys = array_keys($stock);
+
+      $current = 0;
+      if(count($keys) > 0){
+        $current = $this->stocks()->where('int_stock_id', '<=', $keys[0])->sum('int_quantity');
+      }
+      
+      // return json_encode([$stock, $keys, $current]);
+
       return count($stock) == 0 ? ['current'=>0, 'previous'=>0] : [
-        'current' => $stock[0],
-        'previous' => count($stock) == 2 ? $stock[1] : 0
+        'current' => $current,
+        'previous' => count($stock) == 2 ? $current - $stock[$keys[0]] : 0
       ];
     }
 
