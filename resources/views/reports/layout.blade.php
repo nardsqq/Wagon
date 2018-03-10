@@ -120,10 +120,13 @@
   <script>
     $(window).on('load', function(){
         $('#dataTable').removeAttr('style');
-    })
+    });
   </script>
 
   <script type="text/javascript">
+    $( document ).ready( function(){
+        $('.dt-buttons').css('float', 'right');
+    });
         $startDate = moment().startOf('month').format('YYYY-MM-DD');
         $endDate = moment().endOf('month').format('YYYY-MM-DD');
 

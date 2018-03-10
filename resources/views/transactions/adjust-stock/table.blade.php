@@ -9,7 +9,6 @@
         <th>Current Stock</th>
         <th>Reason</th>
         <th>Date</th>
-        <th class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody id="mode-list">
@@ -24,9 +23,6 @@
           <td>{{$stock['current']}}</td>
           <td>{{$a->txt_reason}}</td>
           <td>{{$a->created_at->format('F d, Y')}}</td>
-          <td class="text-center">
-              <a href="#" data-id="{{$a->int_stock_adjust_id}}" class="btn btn-sm btn-default show-details"><i class='fa fa-circle-o'></i>&nbsp; Details</a>
-          </td>
       </tr>
       @endforeach
     </tbody>
