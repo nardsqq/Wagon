@@ -115,7 +115,7 @@
                                                        <input :name="'quantity['+variant.int_var_id+']'" type="number" placeholder="Quantity" class="form-control" min="1" v-model="variant.quantity" required>
                                                     </td>
                                                     <td style="max-width: 70px;">
-                                                        <input :name="'price['+variant.int_var_id+']'" type="number" placeholder="Quantity" step="0.01" class="form-control" min="0.01" v-model="variant.price" required>
+                                                        <input :name="'price['+variant.int_var_id+']'" type="number" placeholder="Quantity" step="0.01" class="form-control" min="0.01" v-model="variant._price" required>
                                                     </td>
                                                     <td>
                                                         <button type="button" class="btn btn-sm btn-primary" @click="selectVariant(variant, $event)">Remove</button>

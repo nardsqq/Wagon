@@ -48,8 +48,11 @@ var app = new Vue({
         // selectVariant: function(variant, event){
         //     return this.selected_variant.int_var_id === variant.int_var_id ? this.selected_variant = {} : this.selected_variant = variant;
         // },
-        selectVariant: function(variant, event){
-            return !this.isSelected(variant.int_var_id) ? (variant.price = 1.00, variant.quantity = 1, this.selected_variants.push(variant)) : this.selected_variants = _.remove(this.selected_variants, function(v){
+        selectVariant: function(_variant, event){
+            this.selected_variant = _variant;
+            var variant = this.selected_variant;
+
+            return !this.isSelected(variant.int_var_id) ? (variant._price = 1.00, variant.quantity = 1, this.selected_variants.push(variant)) : this.selected_variants = _.remove(this.selected_variants, function(v){
                 return v.int_var_id != variant.int_var_id;
             });
         },
