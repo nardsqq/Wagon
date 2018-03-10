@@ -182,11 +182,11 @@
                             return a + b;
                         }, 0);
                     
-                    var span = document.createElement("span");
-                    span.className = 'font-bold';
+                    var span = document.createElement("div");
+                    span.className = 'font-bold text-right';
                     // i need an if statement
                     span.innerText = parseFloat(sum).toLocaleString('en-PH', {'minimumFractionDigits':2, 'maximumFractionDigits':2});
-                    $(span).appendDate($(column.footer()).empty());
+                    $(span).appendTo($(column.footer()).empty());
                 });
             },
             fixedHeader: true,

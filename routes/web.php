@@ -176,6 +176,7 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'reports'], function() {
         Route::get('inventory', 'ReportsController@inventory');
+        Route::get('sales', 'ReportsController@sales');
     });
 });
 

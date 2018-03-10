@@ -13,16 +13,6 @@
             <th>On-Hand(End)</th>
         </tr>
     </thead>
-    <tfoot>
-        <tr>
-            <td>TOTAL</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tfoot>
 @endsection
 
 @section('datatable-columns')

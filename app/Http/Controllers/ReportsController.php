@@ -8,6 +8,9 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Stock;
 use App\Variant;
+use App\Invoice;
+use App\InvoiceStatus;
+use App\Order;
 
 class ReportsController extends Controller
 {
@@ -19,6 +22,33 @@ class ReportsController extends Controller
 
     public function index(Request $request){
     	return view('reports.sales_report');
+    }
+    
+    public function sales(Request $request){
+        if($request->has('filter')){
+            $services = implode(',', Order::has('service_orders')->pluck('int_order_id')->toArray()) ?: "null";
+            $products = implode(',', Order::has('item_orders')->pluck('int_order_id')->toArray()) ?: "null";
+
+            $paid_invoice = InvoiceStatus::where('str_status', '=', 'Paid')->pluck('int_instat_invoice_id_fk')->toArray();
+            // dd($services, $products);
+
+            $table = Invoice::selectRaw("
+                DATE(created_at) AS date,
+                SUM(CASE WHEN int_invoice_order_id_fk IN (".$products.") THEN dbl_total_amount ELSE 0 END) AS products,
+                SUM(CASE WHEN int_invoice_order_id_fk IN (".$services.") THEN dbl_total_amount ELSE 0 END) AS services,
+                SUM(dbl_total_amount) AS 'total'
+            ")
+            ->groupBy(DB::raw('DATE(tbl_invoice.created_at)'));
+
+            return Datatables::of($table)
+            ->filter(function ($query) use($request, $paid_invoice){
+                $this->filterDate($request, $query);
+                $query->whereIn('int_invoice_id', $paid_invoice);
+            })
+            ->make(true);
+        }
+
+        return view('reports.sales');
     }
 
     public function inventory(Request $request){
