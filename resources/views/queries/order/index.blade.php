@@ -58,13 +58,17 @@
 
 @section('scripts')
   <script>
+    $( document ).ready( function(){
+      $('.dt-buttons').css('float', 'right');
+    }); 
+    
     $(document).on('submit', '#adv-search-form', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
         
         datatable.ajax.reload();
-
         return false;
+
     });
 
     var datatable = $('#dataTable').DataTable({

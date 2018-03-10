@@ -172,6 +172,7 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'queries'], function() {
         Route::get('client', 'QueryController@clientQuery');
+        Route::get('order', 'QueryController@orderQuery');
     });
 
     Route::group(['prefix' => 'reports'], function() {

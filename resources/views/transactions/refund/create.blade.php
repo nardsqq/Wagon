@@ -100,7 +100,7 @@
                                     </div>
 
                                     <div class="col-xs-12 m-t-30">
-                                            <label class="col-xs-2">Received by: *</label>
+                                            <label class="col-xs-2">Processed by: *</label>
                                         <div class="col-xs-4">
                                             <input type="text" name="received_by" class="form-control" required>
                                         </div>

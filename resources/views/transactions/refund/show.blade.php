@@ -55,7 +55,7 @@
                                     <dd>{{ $refund->invoice->order->client->str_client_name  }}</dd>
                                 </dl>
                                 <dl>
-                                    <dt>Requested by</dt>
+                                    <dt>Processed by</dt>
                                     <dd>{{ $refund->str_received_by  }}</dd>
                                 </dl>
                                 {{--<dl>--}}
