@@ -49,7 +49,8 @@ var app = new Vue({
 
         },
         addPersonnel: function() {
-            this.added_personnel.push({"int_personnel_id": this.selected_personnel,"name": $('#select_person option:selected').text()});
+            if(_.findIndex(this.added_personnel, ['int_personnel_id', this.selected_personnel]) == -1)
+                this.added_personnel.push({"int_personnel_id": this.selected_personnel,"name": $('#select_person option:selected').text()});
         },
         removePersonnel: function(personnel) {
             var index = _.findIndex(this.added_personnel, personnel);

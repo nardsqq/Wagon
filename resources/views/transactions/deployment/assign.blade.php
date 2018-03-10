@@ -21,7 +21,7 @@
                 <hr>
                 <div class="form-group">
                     <label>Personnel</label>
-                    <button id="btn-add-step" type="button" class="btn btn-sm btn-success pull-right" @click="addPersonnel">Add Personnel
+                    <button id="btn-add-step" type="button" class="btn btn-sm btn-success pull-right" @click="addPersonnel" :disabled="!selected_personnel">Add Personnel
                     </button>
                 </div>
                 <div class="form-group">
