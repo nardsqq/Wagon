@@ -1,6 +1,6 @@
 <div class="col-md-8 col-md-offset-2">
 	<hr>
 	<div class="text-center">
-		<p>MRN&IND SSMS - Development Stage</p>
+		<p>Marine Sales and Services Management System</p>
     </div>
 </div>

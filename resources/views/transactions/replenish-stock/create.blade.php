@@ -38,20 +38,13 @@
                                 {{ Form::open(['id'=>'replenish-stock-form', 'class'=>'form-horizontal', 'route'=>'replenish-stock.store', 'method'=>'POST', '@submit.prevent'=>'submitForm']) }}
                                 <div class="row">            
                                     <div class="col-xs-6 m-t-10">
-                                        {!! Form::label('int_prod_id_fk', 'Purchase Order Number') !!}
-                                        <input name="purchase_order" type="text" placeholder="Purchase Order Number" class="form-control" required>
-                                    </div>
-                                    <div class="col-xs-6 m-t-10">
                                         {!! Form::label('supplier', 'Supplier') !!}
                                         <input type="hidden" name="supplier" :value="selected_supplier.int_supplier_id">
                                         <select class="form-control" v-model="selected_supplier" required>
                                             <option v-for="supplier in suppliers" :key="supplier.int_supplier_id" :value="supplier">@{{ supplier.str_supplier_name }}</option>
                                         </select>
                                     </div>
-                                        
-                                    <hr>
-                                    
-                                    <div class="col-xs-12 m-t-10">
+                                    <div class="col-xs-6 m-t-10">
                                         {!! Form::label('int_prod_id_fk', 'Product') !!}
                                         <input type="hidden" name="product_id" :value="selected_product.int_product_id">
                                         <select name="int_prod_id_fk" id="int_prod_id_fk" class="form-control" v-model="selected_product">
@@ -59,7 +52,8 @@
                                         </select>
                                     </div>
                                     
-                                    <div class="col-xs-12 m-t-30">
+                                    <div class="col-xs-12 m-t-10">
+                                    <hr>
                                         <table id="prod_dataTable" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>

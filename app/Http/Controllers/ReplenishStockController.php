@@ -28,7 +28,10 @@ class ReplenishStockController extends Controller
         $products = Product::with('variants.specs.prod_attrib.attribute', 'variants.product')->get();
         $suppliers = Supplier::all();
 
-        return json_encode(compact('products', 'suppliers'));
+        $current_no = ReplenishStock::latest()->first() ? ReplenishStock::latest()->first()->str_pur_order_num:null;
+        $order_num[0] = \Counter::generate($current_no, ReplenishStock::$prefix, ReplenishStock::$suffix);
+
+        return json_encode(compact('products', 'suppliers', 'order_num'));
     }
 
     /**
@@ -56,9 +59,11 @@ class ReplenishStockController extends Controller
 
             foreach($request->variants as $variant_id)
             {
+                $current_no = ReplenishStock::latest()->first() ? ReplenishStock::latest()->first()->str_pur_order_num:null;
+
                 $replenish_stock                     = new ReplenishStock();
                 $replenish_stock->int_supplier_id_fk = $request->supplier;
-                $replenish_stock->str_pur_order_num  = $request->purchase_order;
+                $replenish_stock->str_pur_order_num  = \Counter::generate($current_no, ReplenishStock::$prefix, ReplenishStock::$suffix);
                 $replenish_stock->dat_date_received  = date('c');
                 $replenish_stock->save();
 

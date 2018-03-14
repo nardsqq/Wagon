@@ -14,4 +14,7 @@ class ReplenishStock extends Model
     {
       return $this->belongsTo('App\Supplier', 'int_supplier_id_fk');
     }
+
+    public static $prefix = 'PO';
+    public static $suffix = 'REPL';
 }
