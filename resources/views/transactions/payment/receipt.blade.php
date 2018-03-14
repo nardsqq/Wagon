@@ -59,15 +59,7 @@
     <br>
     <br>
     <div style="float:right;">
-        @if($order->footer->mode->str_mode_pay_name == 'Cash')
         (X)Cash
-    <br>
-        (  )Cheque
-        @else
-        (X)Cash
-    <br>
-        (  )Cheque
-        @endif
     </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Amount Due: @money($amount_due)
     <br>

@@ -7,10 +7,10 @@
         <tr>
             <th>Variant</th>
             <th>Product</th>
-            <th>On-Hand(Start)</th>
+            <th>Starting Balance</th>
             <th>In</th>
             <th>Out</th>
-            <th>On-Hand(End)</th>
+            <th>Ending Balance</th>
         </tr>
     </thead>
 @endsection

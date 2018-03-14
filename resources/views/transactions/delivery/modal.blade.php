@@ -10,11 +10,11 @@
           {!!Form::hidden('int_delivery_id', null, array('id' => 'int_delivery_id')); !!}
           <div class="form-group">
             {!! Form::label('dat_delivery_date', 'Date of Delivery') !!}
-            <input type="date" name="dat_delivery_date" id="dat_delivery_date" class="form-control">
+            <input type="date" name="dat_delivery_date" id="dat_delivery_date" class="form-control" required>
           </div>
           <div class="form-group">
             {!! Form::label('personnel', 'Personnel in Charge') !!}
-            <select name="int_personnel_id" id="int_personnel_id" class="form-control">
+            <select name="int_personnel_id" id="int_personnel_id" class="form-control" required>
               @foreach($personnels as $personnel)
                 <option value="{{ $personnel->int_personnel_id }}">{{$personnel->name}}</option>
               @endforeach

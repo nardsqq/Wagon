@@ -1,7 +1,7 @@
 <div class="col-xs-12 m-t-10">
     {!! Form::label('mode', 'Mode') !!}
     <input type="hidden" name="mode" :value="selected_mode.int_mode_pay_id">
-    <select name="" class="form-control" v-model="selected_mode">
+    <select name="" class="form-control" v-model="selected_mode" disabled>
         <option v-for="mode in modes" :key="mode.int_mode_pay_id" :value="mode">@{{ mode.str_mode_pay_name }}</option>
     </select>
 </div>
