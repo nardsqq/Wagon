@@ -14,4 +14,8 @@ class PaymentTerm extends Model
     protected $primaryKey = 'int_terms_pay_id';
 
     public static $rules = [];
+
+    public function getTermAttribute(){
+        return $this->int_terms_pay_days.' days - '.$this->int_terms_pay_percentage.'%';
+    }
 }
