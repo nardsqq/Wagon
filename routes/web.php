@@ -187,3 +187,5 @@ Route::get('stocks-report','ReportsController@index');
 Route::get('stocks-report-pdf','ReportsController@salesReportPDF');
 
 // <----------------- end Earrl ---------------> //
+
+Route::get('download-manual', 'DownloadController@download');

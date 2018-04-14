@@ -16,7 +16,6 @@
             {!! Form::select('str_attrib_name[]', [], null, ['id' => 'str_attrib_name', 'class' => 'form-control', 'aria-describedby' => 'helpBlock']) !!}
             <span id="helpBlock" class="help-block">(e.g. Color, Size, Speed...)</span>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <span class="text-muted">(e.g. Color, Size, Speed...)</span>
           </div>
         {!! Form::close() !!}
       </div>
